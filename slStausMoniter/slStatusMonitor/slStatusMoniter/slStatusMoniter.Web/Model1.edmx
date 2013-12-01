@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SSCMModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SSCMModelStoreContainer">
+          <EntitySet Name="vwSensorStatus" EntityType="SSCMModel.Store.vwSensorStatus" store:Type="Views" store:Schema="dbo" store:Name="vwSensorStatus">
+            <DefiningQuery>SELECT 
+      [vwSensorStatus].[PNO] AS [PNO], 
+      [vwSensorStatus].[CX] AS [CX], 
+      [vwSensorStatus].[CY] AS [CY], 
+      [vwSensorStatus].[PICTYPE] AS [PICTYPE], 
+      [vwSensorStatus].[LEVEL] AS [LEVEL]
+      FROM [dbo].[vwSensorStatus] AS [vwSensorStatus]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSCM.dbo.vwSensorStatus' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSensorStatus">
+          <Key>
+            <PropertyRef Name="PNO" />
+            <PropertyRef Name="CX" />
+            <PropertyRef Name="CY" />
+            <PropertyRef Name="PICTYPE" />
+            <PropertyRef Name="LEVEL" />
+          </Key>
+          <Property Name="PNO" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="CX" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="CY" Type="nvarchar" Nullable="false" MaxLength="5" />
+          <Property Name="PICTYPE" Type="nvarchar" Nullable="false" MaxLength="10" />
+          <Property Name="LEVEL" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSCMModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SSCMEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="vwSensorStatus" EntityType="SSCMModel.vwSensorStatus" />
+        </EntityContainer>
+        <EntityType Name="vwSensorStatus">
+          <Key>
+            <PropertyRef Name="PNO" />
+            <PropertyRef Name="CX" />
+            <PropertyRef Name="CY" />
+            <PropertyRef Name="PICTYPE" />
+            <PropertyRef Name="LEVEL" />
+          </Key>
+          <Property Name="PNO" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="CX" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="CY" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+          <Property Name="PICTYPE" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="false" />
+          <Property Name="LEVEL" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSCMModelStoreContainer" CdmEntityContainer="SSCMEntities">
+          <EntitySetMapping Name="vwSensorStatus"><EntityTypeMapping TypeName="SSCMModel.vwSensorStatus"><MappingFragment StoreEntitySet="vwSensorStatus">
+            <ScalarProperty Name="PNO" ColumnName="PNO" />
+            <ScalarProperty Name="CX" ColumnName="CX" />
+            <ScalarProperty Name="CY" ColumnName="CY" />
+            <ScalarProperty Name="PICTYPE" ColumnName="PICTYPE" />
+            <ScalarProperty Name="LEVEL" ColumnName="LEVEL" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model1">
+        <EntityTypeShape EntityType="SSCMModel.vwSensorStatus" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

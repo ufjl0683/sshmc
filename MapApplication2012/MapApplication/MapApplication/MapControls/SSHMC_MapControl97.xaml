@@ -1,0 +1,664 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:myArgis="clr-namespace:ArcGISLib;assembly=ArcGISLib"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:esri="http://schemas.esri.com/arcgis/client/2009"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:myctl="clr-namespace:MapApplication.Controls" 
+             xmlns:ee="http://schemas.microsoft.com/expression/2010/effects"
+          
+    xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing"
+          
+    xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
+          
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+          
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
+          
+    x:Class="MapApplication.MapControls.SSHMC_MapControl97"
+    
+    d:DesignHeight="842.75" d:DesignWidth="1257.695" Loaded="UserControl_Loaded" mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ListBoxItemStyle1" TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".35" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="fillColor"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="contentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".75" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="fillColor2"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="FocusVisualElement">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="fillColor" Fill="#FFBADDE9" IsHitTestVisible="False" Opacity="0" RadiusY="1" RadiusX="1"/>
+                            <Rectangle x:Name="fillColor2" Fill="#FFBADDE9" IsHitTestVisible="False" Opacity="0" RadiusY="1" RadiusX="1"/>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="3,3,0,3"/>
+                            <Rectangle x:Name="FocusVisualElement" RadiusY="1" RadiusX="1" Stroke="#FF6DBDD1" StrokeThickness="1" Visibility="Collapsed"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="GLOBAL_VIEW_TEMPLATE" >
+            <myctl:SiteMenu  Height="150"  MouseEnter="SiteMenu_MouseEnter" MouseLeave="SiteMenu_MouseLeave" MouseLeftButtonUp="SiteMenu_MouseLeftButtonUp" Width="250" />
+        </DataTemplate>
+        <DataTemplate x:Key="SITE_VIEW_TEMPLATE" >
+            <myctl:SensorMenu  Height="150" MouseEnter="SensorMenu_MouseEnter"  MouseLeave="SensorMenu_MouseLeave"  MouseLeftButtonUp="SensorMenu_MouseLeftButtonUp" Width="250" />
+        </DataTemplate>
+        <Style x:Key="GoBack" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Path Data="M23.982662,23.994423 L23.992928,24.66424 L24.660183,24.663483 L24.660183,24.004038 z M24.545973,0 L32.431656,8.1127071 L28.432058,8.0559511 L28.251966,20.746864 L40.660183,20.746864 L40.660183,16.746864 L48.660183,24.746864 L40.660183,32.746864 L40.660183,28.746864 L28.394709,28.746864 L28.408222,40.659241 L32.408218,40.654705 L24.417299,48.663773 L16.40823,40.672855 L20.408226,40.66832 L20.394987,28.997631 L8.0603542,29.186663 L8.1216469,33.186195 L0,25.309719 L7.8764744,17.18807 L7.937767,21.187601 L20.247585,20.998951 L20.432863,7.9424381 L16.433266,7.8856821 z" Fill="#FF6DE90A" RenderTransformOrigin="0.753391802665026,0.508527432941965" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" HorizontalAlignment="Left" Margin="-28,-4,0,4" Width="56" d:LayoutOverrides="HorizontalAlignment">
+                                <Path.Effect>
+                                    <DropShadowEffect Direction="215"/>
+                                </Path.Effect>
+                                <Path.RenderTransform>
+                                    <CompositeTransform Rotation="270.065" TranslateX="12.097" TranslateY="-12.27"/>
+                                </Path.RenderTransform>
+                            </Path>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Storyboard x:Name="stbCCTVCollapse">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="gridCCTV">
+                <!--<EasingDoubleKeyFrame KeyTime="0" Value="0"/>-->
+                <EasingDoubleKeyFrame x:Name="dkfExpand"  KeyTime="0:0:0.5" Value="-496">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="gridCCTV">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="2">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<BackEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>-->
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="regularPolygon">
+                <DiscreteDoubleKeyFrame  KeyTime="0:0:0.5" Value="90"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="stbCCTVExpand">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="gridCCTV">
+
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <BackEase EasingMode="EaseInOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="gridCCTV">
+        		<SplineDoubleKeyFrame KeyTime="0" Value="2"/>
+        		<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0">
+        			<EasingDoubleKeyFrame.EasingFunction>
+        				<BackEase EasingMode="EaseInOut"/>
+        			</EasingDoubleKeyFrame.EasingFunction>
+        		</EasingDoubleKeyFrame>
+        	</DoubleAnimationUsingKeyFrames>-->
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.Rotation)" Storyboard.TargetName="regularPolygon">
+                <DiscreteDoubleKeyFrame KeyTime="0:0:0.5" Value="-90"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <ItemsPanelTemplate x:Key="lstCCTVItemsPanelTemplate">
+            <StackPanel Orientation="Horizontal"/>
+        </ItemsPanelTemplate>
+        <DataTemplate x:Key="ltsCCTCItemTemplate">
+            <Grid  Width="200" Height="150" >
+                <myctl:CCTV x:Name="imageCCTV" Margin="6,0,6,8"  MouseEnter="CCTV_MouseEnter" >
+                    <i:Interaction.Behaviors>
+                        <ei:FluidMoveSetTagBehavior Tag="DataContext"/>
+                    </i:Interaction.Behaviors>
+                </myctl:CCTV>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="lstCCTVItemContainerStyle" TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="3"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid Background="{TemplateBinding Background}">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".35" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="fillColor"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="contentPresenter"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="SelectionStates">
+                                    <VisualState x:Name="Unselected"/>
+                                    <VisualState x:Name="Selected">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".75" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="fillColor2"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="FocusVisualElement">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Rectangle x:Name="fillColor" Fill="#FFBADDE9" IsHitTestVisible="False" Opacity="0" RadiusY="1" RadiusX="1"/>
+                            <Rectangle x:Name="fillColor2" Fill="#FFBADDE9" IsHitTestVisible="False" Opacity="0" RadiusY="1" RadiusX="1"/>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Margin="3,3,0,3"/>
+                            <Rectangle x:Name="FocusVisualElement" RadiusY="1" RadiusX="1" Stroke="#FF6DBDD1" StrokeThickness="1" Visibility="Collapsed"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ControlTemplate x:Key="ValidationToolTipTemplate">
+            <Grid x:Name="Root" Margin="5,0" Opacity="0" RenderTransformOrigin="0,0">
+                <Grid.RenderTransform>
+                    <TranslateTransform x:Name="xform" X="-25"/>
+                </Grid.RenderTransform>
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="OpenStates">
+                        <VisualStateGroup.Transitions>
+                            <VisualTransition GeneratedDuration="0"/>
+                            <VisualTransition GeneratedDuration="0:0:0.2" To="Open">
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.2" To="0" Storyboard.TargetProperty="X" Storyboard.TargetName="xform">
+                                        <DoubleAnimation.EasingFunction>
+                                            <BackEase Amplitude=".3" EasingMode="EaseOut"/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                    <DoubleAnimation Duration="0:0:0.2" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Root"/>
+                                </Storyboard>
+                            </VisualTransition>
+                        </VisualStateGroup.Transitions>
+                        <VisualState x:Name="Closed">
+                            <Storyboard>
+                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Root"/>
+                            </Storyboard>
+                        </VisualState>
+                        <VisualState x:Name="Open">
+                            <Storyboard>
+                                <DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="X" Storyboard.TargetName="xform"/>
+                                <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="Root"/>
+                            </Storyboard>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+                <Border Background="#052A2E31" CornerRadius="5" Margin="4,4,-4,-4"/>
+                <Border Background="#152A2E31" CornerRadius="4" Margin="3,3,-3,-3"/>
+                <Border Background="#252A2E31" CornerRadius="3" Margin="2,2,-2,-2"/>
+                <Border Background="#352A2E31" CornerRadius="2" Margin="1,1,-1,-1"/>
+                <Border Background="#FFDC000C" CornerRadius="2"/>
+                <Border CornerRadius="2">
+                    <TextBlock Foreground="White" MaxWidth="250" Margin="8,4,8,4" TextWrapping="Wrap" Text="{Binding (Validation.Errors)[0].ErrorContent}" UseLayoutRounding="false"/>
+                </Border>
+            </Grid>
+        </ControlTemplate>
+
+        <Style x:Key="CheckBoxStyle1" TargetType="CheckBox">
+            <Setter Property="Background" Value="#FF448DCA"/>
+            <Setter Property="Foreground" Value="#FF000000"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Top"/>
+            <Setter Property="Padding" Value="4,1,0,0"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFA3AEB9" Offset="0"/>
+                        <GradientStop Color="#FF8399A9" Offset="0.375"/>
+                        <GradientStop Color="#FF718597" Offset="0.375"/>
+                        <GradientStop Color="#FF617584" Offset="1"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="16"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal"/>
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundOverlay"/>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BoxMiddleBackground"/>
+                                            <ColorAnimation Duration="0" To="#7FFFFFFF" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#CCFFFFFF" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#F2FFFFFF" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BackgroundOverlay"/>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="BoxMiddleBackground"/>
+                                            <ColorAnimation Duration="0" To="#6BFFFFFF" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[3].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#C6FFFFFF" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[2].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#EAFFFFFF" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#F4FFFFFF" Storyboard.TargetProperty="(Shape.Fill).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#FF6DBDD1" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[3].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#FF6DBDD1" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[0].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#FF6DBDD1" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[1].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                            <ColorAnimation Duration="0" To="#FF6DBDD1" Storyboard.TargetProperty="(Shape.Stroke).(GradientBrush.GradientStops)[2].(GradientStop.Color)" Storyboard.TargetName="BoxMiddle"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To=".55" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="contentPresenter"/>
+                                            <DoubleAnimation Duration="0" To="0.55" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="DisabledVisualElement"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="CheckStates">
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="CheckIcon"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unchecked"/>
+                                    <VisualState x:Name="Indeterminate">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="IndeterminateIcon"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentFocusVisualElement"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused"/>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="ValidationStates">
+                                    <VisualState x:Name="Valid"/>
+                                    <VisualState x:Name="InvalidUnfocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ValidationErrorElement">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="InvalidFocused">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" Storyboard.TargetName="ValidationErrorElement">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <Visibility>Visible</Visibility>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsOpen" Storyboard.TargetName="validationTooltip">
+                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                    <DiscreteObjectKeyFrame.Value>
+                                                        <System:Boolean>True</System:Boolean>
+                                                    </DiscreteObjectKeyFrame.Value>
+                                                </DiscreteObjectKeyFrame>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid HorizontalAlignment="Center" Margin="0" d:LayoutOverrides="Height" VerticalAlignment="Center">
+                                <Rectangle x:Name="Background" Fill="#FFFFFFFF" Height="14" Margin="1" RadiusY="1" RadiusX="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="{TemplateBinding BorderThickness}" Width="14"/>
+                                <Rectangle x:Name="BackgroundOverlay" Fill="#FFC4DBEE" Height="14" Margin="1" Opacity="0" RadiusY="1" RadiusX="1" Stroke="#00000000" StrokeThickness="1" Width="14"/>
+                                <Rectangle x:Name="BoxMiddleBackground" Fill="{TemplateBinding Background}" Height="10" RadiusY="1" RadiusX="1" Stroke="#00000000" StrokeThickness="1" Width="10"/>
+                                <Rectangle x:Name="BoxMiddle" Height="10" RadiusY="1" RadiusX="1" StrokeThickness="1" Width="10">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0.64,0.88" StartPoint="0.62,0.15">
+                                            <GradientStop Color="#FFFFFFFF" Offset="0.013"/>
+                                            <GradientStop Color="#F9FFFFFF" Offset="0.375"/>
+                                            <GradientStop Color="#EAFFFFFF" Offset="0.603"/>
+                                            <GradientStop Color="#D8FFFFFF" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                    <Rectangle.Stroke>
+                                        <LinearGradientBrush EndPoint=".5,1" StartPoint=".5,0">
+                                            <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                                            <GradientStop Color="#FFFFFFFF" Offset="0"/>
+                                            <GradientStop Color="#FFFFFFFF" Offset="0.375"/>
+                                            <GradientStop Color="#FFFFFFFF" Offset="0.375"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Stroke>
+                                </Rectangle>
+                                <Rectangle x:Name="BoxMiddleLine" Height="10" Opacity=".2" RadiusY="1" RadiusX="1" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="1" Width="10"/>
+                                <Path x:Name="CheckIcon" Data="M102.03442,598.79645 L105.22962,597.78918 L106.78825,600.42358 C106.78825,600.42358 108.51028,595.74304 110.21724,593.60419 C112.00967,591.35822 114.89314,591.42316 114.89314,591.42316 C114.89314,591.42316 112.67844,593.42645 111.93174,594.44464 C110.7449,596.06293 107.15683,604.13837 107.15683,604.13837 z" Fill="#FF333333" FlowDirection="LeftToRight" Height="10" Margin="1,1,0,1.5" Opacity="0" Stretch="Fill" Width="10.5"/>
+                                <Rectangle x:Name="IndeterminateIcon" Fill="#FF333333" Height="2" Opacity="0" Width="6"/>
+                                <Rectangle x:Name="DisabledVisualElement" Fill="#FFFFFFFF" Height="14" Opacity="0" RadiusY="1" RadiusX="1" Width="14"/>
+                                <Rectangle x:Name="ContentFocusVisualElement" Height="16" IsHitTestVisible="false" Opacity="0" RadiusY="2" RadiusX="2" Stroke="#FF6DBDD1" StrokeThickness="1" Width="16"/>
+                                <Border x:Name="ValidationErrorElement" BorderBrush="#FFDB000C" BorderThickness="1" CornerRadius="1" Margin="1" ToolTipService.PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" Visibility="Collapsed">
+                                    <ToolTipService.ToolTip>
+                                        <ToolTip x:Name="validationTooltip" DataContext="{Binding RelativeSource={RelativeSource TemplatedParent}}" Placement="Right" PlacementTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" Template="{StaticResource ValidationToolTipTemplate}">
+                                            <ToolTip.Triggers>
+                                                <EventTrigger RoutedEvent="Canvas.Loaded">
+                                                    <BeginStoryboard>
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="IsHitTestVisible" Storyboard.TargetName="validationTooltip">
+                                                                <DiscreteObjectKeyFrame KeyTime="0">
+                                                                    <DiscreteObjectKeyFrame.Value>
+                                                                        <System:Boolean>true</System:Boolean>
+                                                                    </DiscreteObjectKeyFrame.Value>
+                                                                </DiscreteObjectKeyFrame>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </BeginStoryboard>
+                                                </EventTrigger>
+                                            </ToolTip.Triggers>
+                                        </ToolTip>
+                                    </ToolTipService.ToolTip>
+                                    <Grid Background="Transparent" HorizontalAlignment="Right" Height="10" Margin="0,-4,-4,0" VerticalAlignment="Top" Width="10">
+                                        <Path Data="M 1,0 L5,0 A 2,2 90 0 1 7,2 L7,6 z" Fill="#FFDC000C" Margin="0,3,0,0"/>
+                                        <Path Data="M 0,0 L2,0 L 7,5 L7,7" Fill="#ffffff" Margin="0,3,0,0"/>
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                            <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Grid.Column="1" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <ItemsPanelTemplate x:Key="ItemsPanelTemplate1">
+
+            <toolkit:WrapPanel x:Name="WrapPanel" Loaded="WrapPanel_Loaded" >
+                <i:Interaction.Behaviors>
+                    <ei:FluidMoveBehavior Duration="0:0:0.5" AppliesTo="Children">
+                        <ei:FluidMoveBehavior.EaseY>
+                            <QuinticEase EasingMode="EaseOut"/>
+                        </ei:FluidMoveBehavior.EaseY>
+                        <ei:FluidMoveBehavior.EaseX>
+                            <QuarticEase EasingMode="EaseOut"/>
+                        </ei:FluidMoveBehavior.EaseX>
+                    </ei:FluidMoveBehavior>
+                </i:Interaction.Behaviors>
+            </toolkit:WrapPanel>
+
+        </ItemsPanelTemplate>
+
+
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="282"/>
+        </Grid.ColumnDefinitions>
+
+        <esri:Map Background="White" x:Name="map1" WrapAround="True" ExtentChanged="map1_ExtentChanged" IsLogoVisible="False" Margin="0,0,1,0">
+            <esri:Map.Extent>
+                <esri:Envelope XMin="-169840.699521129" XMax="599177.795721129" YMin="2403270.13928" YMax="2818099.11252" />
+            </esri:Map.Extent>
+            <esri:ArcGISTiledMapServiceLayer ID="BaseMap" Url="http://192.192.161.2/ArcGIS/rest/services/BaseMap/MapServer" />
+
+            <esri:FeatureLayer ID="buildingLyr" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/TaipeiCUTe_Bd/MapServer/0" />
+            <esri:FeatureLayer ID="buildingPointLyr" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/TaipeiCUTe_Bd/MapServer/1"   />
+            <esri:GroupLayer ID="FloodGroupLyr" Visible="False" >
+                <esri:FeatureLayer ID="FloodLyr" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/3"  Opacity="0.5" />
+                <esri:ArcGISImageServiceLayer  Opacity="0.5" ID="TpeFloodLyr" NoData="0" ImageFormat="PNG8" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/taipei350/ImageServer" />
+            </esri:GroupLayer>
+
+            <esri:FeatureLayer ID="MudyLyr"  Visible="False"  Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/9"   />
+
+            <esri:FeatureLayer ID="HistoricBuildingPointLyr" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/0"   />
+            <esri:GroupLayer ID="DangerZoneLyr" Visible="False"     >
+                <esri:FeatureLayer ID="LSLyr" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/5" />
+                <esri:FeatureLayer ID="DSLyr" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/6" />
+
+            </esri:GroupLayer>
+            <!--<esri:FeatureLayer ID="DisabilityLyr"  Visible="False"  Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/11" />-->
+            <!--<esri:FeatureLayer ID="ElderLyr"  Visible="False"  Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/12" />-->
+            <!--<esri:FeatureLayer OutFields="災民收容所"     ID="ShelterLyr"   Mode="OnDemand"  OnDemandCacheSize="1000"  Visible="False" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/13" >-->
+            <esri:FeatureLayer OutFields="PLACE_NAME,PLACE_ADDR,TEL" Where="[PLACE_TYPE]=6"   ID="ShelterLyr"   Mode="OnDemand"  OnDemandCacheSize="1000"  Visible="False" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/10" >
+                <esri:FeatureLayer.MapTip>
+                    <StackPanel Orientation="Vertical" Background="White" >
+                        <TextBlock Text="{Binding [PLACE_NAME]}" FontSize="20"  />
+                        <TextBlock Text="{Binding [PLACE_ADDR]}" FontSize="20" />
+                        <TextBlock Text="{Binding [TEL]}" FontSize="20" />
+                    </StackPanel>
+                </esri:FeatureLayer.MapTip>
+            </esri:FeatureLayer>
+            <esri:FeatureLayer OutFields="PLACE_NAME,PLACE_ADDR,TEL" Where="[PLACE_TYPE]=2"   ID="SaveParkLyr"   Mode="OnDemand"  OnDemandCacheSize="1000"  Visible="False" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/10" >
+                <esri:FeatureLayer.MapTip>
+                    <StackPanel Orientation="Vertical" Background="White" >
+                        <TextBlock Text="{Binding [PLACE_NAME]}" FontSize="20"  />
+                        <TextBlock Text="{Binding [PLACE_ADDR]}" FontSize="20" />
+                        <TextBlock Text="{Binding [TEL]}" FontSize="20" />
+                    </StackPanel>
+                </esri:FeatureLayer.MapTip>
+            </esri:FeatureLayer>
+            <esri:FeatureLayer OutFields="PLACE_NAME,PLACE_ADDR,TEL" Where="[PLACE_TYPE]=4"   ID="FireDeptLyr"   Mode="OnDemand"  OnDemandCacheSize="1000"  Visible="False" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/10" >
+                <esri:FeatureLayer.MapTip>
+                    <StackPanel Orientation="Vertical" Background="White" >
+                        <TextBlock Text="{Binding [PLACE_NAME]}" FontSize="20"  />
+                        <TextBlock Text="{Binding [PLACE_ADDR]}" FontSize="20" />
+                        <TextBlock Text="{Binding [TEL]}" FontSize="20" />
+                    </StackPanel>
+                </esri:FeatureLayer.MapTip>
+            </esri:FeatureLayer>
+            <esri:FeatureLayer OutFields="PLACE_NAME,PLACE_ADDR,TEL" Where="[PLACE_TYPE]=3"   ID="HospitalLyr"   Mode="OnDemand"  OnDemandCacheSize="1000"  Visible="False" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/10" >
+                <esri:FeatureLayer.MapTip>
+                    <StackPanel Orientation="Vertical" Background="White" >
+                        <TextBlock Text="{Binding [PLACE_NAME]}" FontSize="20"  />
+                        <TextBlock Text="{Binding [PLACE_ADDR]}" FontSize="20" />
+                        <TextBlock Text="{Binding [TEL]}" FontSize="20" />
+                    </StackPanel>
+                </esri:FeatureLayer.MapTip>
+            </esri:FeatureLayer>
+            <esri:FeatureLayer OutFields="PLACE_NAME,PLACE_ADDR,TEL" Where="[PLACE_TYPE]=5"   ID="PoliceLyr"   Mode="OnDemand"  OnDemandCacheSize="1000"  Visible="False" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/10" >
+                <esri:FeatureLayer.MapTip>
+                    <StackPanel Orientation="Vertical" Background="White" >
+                        <TextBlock Text="{Binding [PLACE_NAME]}" FontSize="20"  />
+                        <TextBlock Text="{Binding [PLACE_ADDR]}" FontSize="20" />
+                        <TextBlock Text="{Binding [TEL]}" FontSize="20" />
+                    </StackPanel>
+                </esri:FeatureLayer.MapTip>
+            </esri:FeatureLayer>
+            <esri:FeatureLayer OutFields="PLACE_NAME,PLACE_ADDR,TEL" Where="[PLACE_TYPE]=1"   ID="RspCenterLyr"   Mode="OnDemand"  OnDemandCacheSize="1000"  Visible="False" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/10" >
+                <esri:FeatureLayer.MapTip>
+                    <StackPanel Orientation="Vertical" Background="White" >
+                        <TextBlock Text="{Binding [PLACE_NAME]}" FontSize="20"  />
+                        <TextBlock Text="{Binding [PLACE_ADDR]}" FontSize="20" />
+                        <TextBlock Text="{Binding [TEL]}" FontSize="20" />
+                    </StackPanel>
+                </esri:FeatureLayer.MapTip>
+            </esri:FeatureLayer>
+            <!--<esri:FeatureLayer ID="SaveParkLyr"     Visible="False" Url="http://192.192.161.2/ArcGIS/rest/services/Maps/twboch/MapServer/12" />-->
+            <esri:ElementLayer ID="siteLyr"  />
+            <esri:ElementLayer ID="sensorLyr" />
+
+        </esri:Map>
+        <Border CornerRadius="0,0,0,10" Background="#BB919191" HorizontalAlignment="Left" Width="200" Height="200" BorderThickness="10" VerticalAlignment="Bottom" BorderBrush="#9C8D8B8B">
+            <esri:OverviewMap  Map="{Binding ElementName=map1}">
+                <!--<myArgis:GoogleMap ID="BaseMap" />-->
+                <esri:ArcGISTiledMapServiceLayer ID="BaseMap" Url="http://192.192.161.2/ArcGIS/rest/services/BaseMap/MapServer" />
+            </esri:OverviewMap>
+        </Border>
+        <TextBlock Height="31" Margin="0,81,265,0" x:Name="txtLevel" Text="TextBlock" VerticalAlignment="Top" HorizontalAlignment="Right" Width="70" Visibility="Collapsed" />
+        <ListBox x:Name="lstMenu" ItemContainerStyle="{StaticResource ListBoxItemStyle1}" ItemTemplate="{StaticResource GLOBAL_VIEW_TEMPLATE}" Margin="16,10,0,0" Grid.Column="1" ItemsPanel="{StaticResource ItemsPanelTemplate1}" SizeChanged="lstMenu_SizeChanged" Background="#FFA4C5E2" />
+        <Button Content="Button" HorizontalAlignment="Right" Height="57" Margin="0,19,278,0" Style="{StaticResource GoBack}" VerticalAlignment="Top" Width="56" x:Name="btmGoback" Click="btmGoback_Click" />
+        <Grid x:Name="gridCCTV" Height="176" Margin="0,0,394,0" VerticalAlignment="Top" Background="#7F918D8D" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Click="Button_Click" Tag="1" x:Name="btnCollapse">
+                <StackPanel Orientation="Vertical">
+                    <Image Source="/icons/Cam.png" Stretch="None" Margin="0,0,0,10" />
+                    <ed:RegularPolygon x:Name="regularPolygon" Fill="#FF5252CE" Height="24.001" InnerRadius="1" PointCount="3" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" Width="24.001" RenderTransformOrigin="0.5,0.5" d:LayoutOverrides="Margin">
+                        <ed:RegularPolygon.RenderTransform>
+                            <CompositeTransform    Rotation="-90"/>
+                        </ed:RegularPolygon.RenderTransform>
+                    </ed:RegularPolygon>
+                </StackPanel>
+            </Button>
+            <ListBox x:Name="lstCCTV" Margin="0,0,4,0" Background="{x:Null}" ItemsPanel="{StaticResource lstCCTVItemsPanelTemplate}" ItemTemplate="{StaticResource ltsCCTCItemTemplate}" ItemContainerStyle="{StaticResource lstCCTVItemContainerStyle}"  SelectionChanged="lstCCTV_SelectionChanged"  />
+        </Grid>
+        <sdk:GridSplitter Grid.Column="1" HorizontalAlignment="Left" Margin="1,1,0,0" Width="15" Background="#FF6E17AF"/>
+        <Grid x:Name="largeCCTVPanel"  Height="300" Margin="0,0,188,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="400"   DataContext="{Binding DataContext, ElementName=lstCCTV}"  Visibility="Collapsed" Grid.ColumnSpan="2" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <i:Interaction.Behaviors>
+                <ei:MouseDragElementBehavior  />
+            </i:Interaction.Behaviors>
+            <myctl:CCTV x:Name="largeCCTV" Margin="0"   Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"    >
+                <i:Interaction.Behaviors>
+                    <ei:FluidMoveBehavior InitialTag="DataContext" Duration="0:0:0.5">
+                        <ei:FluidMoveBehavior.EaseY>
+                            <QuinticEase EasingMode="EaseOut"/>
+                        </ei:FluidMoveBehavior.EaseY>
+                        <ei:FluidMoveBehavior.EaseX>
+                            <QuinticEase EasingMode="EaseOut"/>
+                        </ei:FluidMoveBehavior.EaseX>
+                    </ei:FluidMoveBehavior>
+                </i:Interaction.Behaviors>
+            </myctl:CCTV>
+            <Rectangle Stroke="Black" Grid.Row="0" Grid.Column="0"  >
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFFB1414" Offset="0"/>
+                        <GradientStop Color="#FFFB1414" Offset="1"/>
+                        <GradientStop Color="#FFEBAFAF" Offset="0.514"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Border HorizontalAlignment="Right" Margin="0,0,7,-1" Width="16" Cursor="Hand" MouseLeftButtonDown="Border_MouseLeftButtonDown" >
+                <Grid>
+                    <Path Data="M380,0 L392,22" Stretch="Fill" UseLayoutRounding="False" Fill="#FFF7F2F2" Stroke="#FFF1EAEA" StrokeThickness="4"/>
+                    <Path Data="M392,0 L380,22" Stretch="Fill" UseLayoutRounding="False" Fill="#FFF7F2F2" Stroke="#FFF1EAEA" StrokeThickness="4"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <Image HorizontalAlignment="Right" Height="112" Source="/images/Title.png" Margin="0,10,0,0" VerticalAlignment="Top" Width="250" Stretch="Fill" x:Name="imgLOGO" />
+        <Image Height="112" Margin="0,122,0,0" x:Name="image1" Source="/images/SAMPLE.png" Stretch="Fill" VerticalAlignment="Top" HorizontalAlignment="Right" Width="250" />
+        <Border HorizontalAlignment="Right" Height="492" Margin="0,341,10,0" VerticalAlignment="Top" Width="240" BorderThickness="1" BorderBrush="#FFD63636" Background="#BB919191" >
+            <StackPanel Margin="0,0,0,-1">
+
+                <Border Height="23" VerticalAlignment="Top" Background="#FF2DB411" >
+                    <TextBlock TextWrapping="Wrap" FontSize="18.667" Foreground="#FFFBF9F9" HorizontalAlignment="Center" Width="79" Margin="0" VerticalAlignment="Center" Text="災害潛勢"/>
+                   
+                </Border>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/muddy.png" Width="17" Margin="0" Height="17" Stretch="UniformToFill" />
+                    <CheckBox Content="土石流"   Margin="10,0,0,0" x:Name="chkMudy" IsChecked="False" HorizontalAlignment="Center" Width="86"  Checked="chkMudy_Checked" Unchecked="chkMudy_Unchecked" FontSize="20" Foreground="#FFE8E81A" Style="{StaticResource CheckBoxStyle1}" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/geology.png" Width="17" Margin="0" Height="17" Stretch="UniformToFill" />
+                    <CheckBox Content="地質" Height="24" HorizontalAlignment="Right" IsChecked="False" Margin="10,0,0,0" x:Name="chkDangerZone" VerticalAlignment="Top" Width="86" FontSize="20" Foreground="#FFCB7A08" Checked="chkDangerZone_Checked" Unchecked="chkDangerZone_Unchecked" Style="{StaticResource CheckBoxStyle1}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/flood.png" Width="17" Margin="0" Height="17" Stretch="UniformToFill" />
+                    <CheckBox Content="淹水 " FontSize="20" Foreground="#FF30BEE8" Height="24" HorizontalAlignment="Right" IsChecked="False" Margin="10,0,0,0" x:Name="chkFlood" VerticalAlignment="Top" Width="86" Checked="chkFlood_Checked" Unchecked="chkFlood_Unchecked" Style="{StaticResource CheckBoxStyle1}" />
+                </StackPanel>
+                <Border Height="23" Margin="-2,0,2,0" VerticalAlignment="Top" Background="#FFFB0C0C" >
+                    <TextBlock TextWrapping="Wrap" FontSize="18.667" Foreground="#FFFBF9F9" HorizontalAlignment="Center" VerticalAlignment="Center"><Run Text="防災地圖" /></TextBlock>
+                </Border>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/fire.png" Width="26" Margin="0" Height="26" Stretch="UniformToFill" />
+                    <CheckBox Content="消防隊" FontSize="20" Foreground="#FF0B0C0C" Height="24" IsChecked="False" Margin="10,0,0,0" x:Name="chkFireDept" Style="{StaticResource CheckBoxStyle1}" VerticalAlignment="Center" IsEnabled="True" Checked="chkFireDept_Checked" Unchecked="chkFireDept_Unchecked" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/police.png" Width="26" Margin="0" Height="26" Stretch="UniformToFill" />
+                    <CheckBox Content="警察局" FontSize="20" Foreground="#FF0B0C0C" Height="24" IsChecked="False" Margin="10,0,0,0" x:Name="chkPoliceDept" Style="{StaticResource CheckBoxStyle1}" VerticalAlignment="Center" IsEnabled="True" Checked="chkPoliceDept_Checked" Unchecked="chkPoliceDept_Unchecked" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/center.png" Width="26" Margin="0" Height="26" Stretch="UniformToFill" />
+                    <CheckBox Content="災害應變中心" FontSize="20" Foreground="#FF080808" HorizontalAlignment="Center" IsChecked="False" Margin="10,0,0,0" x:Name="chkRspCenter" Style="{StaticResource CheckBoxStyle1}" Width="148" Checked="chkRspCenter_Checked" Unchecked="chkRspCenter_Unchecked" IsEnabled="true" Height="34" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/park.png" Width="26" Margin="0" Height="26" Stretch="UniformToFill" />
+                    <CheckBox Content="防災公園" FontSize="20" Foreground="#FF080808" HorizontalAlignment="Right" IsChecked="False" Margin="10,0,0,0" x:Name="chkDisasterPark" Width="113" Style="{StaticResource CheckBoxStyle1}" IsEnabled="True" Height="34" VerticalAlignment="Center" Checked="chkDisasterPark_Checked" Unchecked="chkDisasterPark_Unchecked" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/hospital.png" Width="26" Margin="0" Height="26" Stretch="UniformToFill" />
+                    <CheckBox Content="醫院" Checked="chkHospital_Checked" Unchecked="chkHospital_Unchecked"  FontSize="20" Foreground="#FF0B0C0C" Height="24" HorizontalAlignment="Right" IsChecked="False" Margin="10,0,0,0" x:Name="chkHospital" VerticalAlignment="Center" Width="86" Style="{StaticResource CheckBoxStyle1}" IsEnabled="true"   />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
+                    <Image  Source="/images/shelter.png" Width="26" Margin="0" Height="26" Stretch="UniformToFill" />
+                    <CheckBox Content="收容所" FontSize="20" Foreground="#FF0B0C0C" Height="24" HorizontalAlignment="Right" IsChecked="False" Margin="10,0,0,0" x:Name="chkShelter" Style="{StaticResource CheckBoxStyle1}" VerticalAlignment="Center" Width="86" Checked="chkShelter_Checked" Unchecked="chkShelter_Unchecked" />
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+        <TextBlock Margin="0,90,277,0" x:Name="txtBA" Text="BA" HorizontalAlignment="Right" Width="58" FontSize="28" FontWeight="Bold" Foreground="#FF837E7E" Height="32" VerticalAlignment="Top" Visibility="Collapsed" />
+        <Button   HorizontalAlignment="Right" Height="76" Margin="0,251,155,0" ToolTipService.ToolTip="防災訊息"  VerticalAlignment="Top" Width="83" Click="Button_Click_1">
+            <Image Source="/images/news.png" />
+        </Button>
+        <Button   HorizontalAlignment="Right" Height="76" Margin="0,251,41,0"  ToolTipService.ToolTip="防災報告"  VerticalAlignment="Top" Width="83" Click="Button_Click_2">
+            <Image Source="/images/report.png" />
+        </Button>
+    </Grid>
+</UserControl>

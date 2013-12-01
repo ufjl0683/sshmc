@@ -1,0 +1,1388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SSHMC01Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SSHMC01ModelStoreContainer">
+          <EntitySet Name="tblCCTV" EntityType="SSHMC01Model.Store.tblCCTV" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblHOST_Config" EntityType="SSHMC01Model.Store.tblHOST_Config" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblMFCC_Config" EntityType="SSHMC01Model.Store.tblMFCC_Config" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPre_disasterNotified" EntityType="SSHMC01Model.Store.tblPre_disasterNotified" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblRules" EntityType="SSHMC01Model.Store.tblRules" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSensor" EntityType="SSHMC01Model.Store.tblSensor" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSensor_Values" EntityType="SSHMC01Model.Store.tblSensor_Values" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSite" EntityType="SSHMC01Model.Store.tblSite" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTC" EntityType="SSHMC01Model.Store.tblTC" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTC_Box" EntityType="SSHMC01Model.Store.tblTC_Box" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTC_Restore" EntityType="SSHMC01Model.Store.tblTC_Restore" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTC10MinDataLog" EntityType="SSHMC01Model.Store.tblTC10MinDataLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUser" EntityType="SSHMC01Model.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUserLogin" EntityType="SSHMC01Model.Store.tblUserLogin" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vwSensorDegree" EntityType="SSHMC01Model.Store.vwSensorDegree" store:Type="Views" store:Schema="dbo" store:Name="vwSensorDegree">
+            <DefiningQuery>SELECT 
+      [vwSensorDegree].[SITE_ID] AS [SITE_ID], 
+      [vwSensorDegree].[SENSOR_ID] AS [SENSOR_ID], 
+      [vwSensorDegree].[SENSOR_NAME] AS [SENSOR_NAME], 
+      [vwSensorDegree].[X] AS [X], 
+      [vwSensorDegree].[Y] AS [Y], 
+      [vwSensorDegree].[ISCONNECTED] AS [ISCONNECTED], 
+      [vwSensorDegree].[ID] AS [ID], 
+      [vwSensorDegree].[EXCUTION_MODE] AS [EXCUTION_MODE], 
+      [vwSensorDegree].[SENSOR_TYPE] AS [SENSOR_TYPE], 
+      [vwSensorDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
+      [vwSensorDegree].[VALUE0] AS [VALUE0], 
+      [vwSensorDegree].[VALUE1] AS [VALUE1], 
+      [vwSensorDegree].[VALUE2] AS [VALUE2], 
+      [vwSensorDegree].[ISVALID] AS [ISVALID], 
+      [vwSensorDegree].[MFCC_ID] AS [MFCC_ID], 
+      [vwSensorDegree].[IsConfirmed] AS [IsConfirmed]
+      FROM [dbo].[vwSensorDegree] AS [vwSensorDegree]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSensorValuesAndTC10MinDataLog" EntityType="SSHMC01Model.Store.vwSensorValuesAndTC10MinDataLog" store:Type="Views" store:Schema="dbo" store:Name="vwSensorValuesAndTC10MinDataLog">
+            <DefiningQuery>SELECT 
+      [vwSensorValuesAndTC10MinDataLog].[SENSOR_ID] AS [SENSOR_ID], 
+      [vwSensorValuesAndTC10MinDataLog].[TIMESTAMP] AS [TIMESTAMP], 
+      [vwSensorValuesAndTC10MinDataLog].[VALUE0] AS [VALUE0], 
+      [vwSensorValuesAndTC10MinDataLog].[VALUE1] AS [VALUE1], 
+      [vwSensorValuesAndTC10MinDataLog].[DEGREE] AS [DEGREE], 
+      [vwSensorValuesAndTC10MinDataLog].[VALUE2] AS [VALUE2], 
+      [vwSensorValuesAndTC10MinDataLog].[ISVALID] AS [ISVALID], 
+      [vwSensorValuesAndTC10MinDataLog].[EXECUTION_MODE] AS [EXECUTION_MODE], 
+      [vwSensorValuesAndTC10MinDataLog].[CONTROLLER_ID] AS [CONTROLLER_ID], 
+      [vwSensorValuesAndTC10MinDataLog].[VALUE_CNT] AS [VALUE_CNT], 
+      [vwSensorValuesAndTC10MinDataLog].[IS_REPAIR] AS [IS_REPAIR], 
+      [vwSensorValuesAndTC10MinDataLog].[signama0] AS [signama0], 
+      [vwSensorValuesAndTC10MinDataLog].[initmean0] AS [initmean0], 
+      [vwSensorValuesAndTC10MinDataLog].[sigma1] AS [sigma1], 
+      [vwSensorValuesAndTC10MinDataLog].[initmean1] AS [initmean1], 
+      [vwSensorValuesAndTC10MinDataLog].[sigma2] AS [sigma2], 
+      [vwSensorValuesAndTC10MinDataLog].[initmean2] AS [initmean2]
+      FROM [dbo].[vwSensorValuesAndTC10MinDataLog] AS [vwSensorValuesAndTC10MinDataLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSiteDegree" EntityType="SSHMC01Model.Store.vwSiteDegree" store:Type="Views" store:Schema="dbo" store:Name="vwSiteDegree">
+            <DefiningQuery>SELECT 
+      [vwSiteDegree].[SITE_ID] AS [SITE_ID], 
+      [vwSiteDegree].[SITE_NAME] AS [SITE_NAME], 
+      [vwSiteDegree].[SITE_ADDRESS] AS [SITE_ADDRESS], 
+      [vwSiteDegree].[ENVIRONMENT] AS [ENVIRONMENT], 
+      [vwSiteDegree].[X] AS [X], 
+      [vwSiteDegree].[Y] AS [Y], 
+      [vwSiteDegree].[MIN_X] AS [MIN_X], 
+      [vwSiteDegree].[MIN_Y] AS [MIN_Y], 
+      [vwSiteDegree].[MAX_X] AS [MAX_X], 
+      [vwSiteDegree].[MAX_Y] AS [MAX_Y], 
+      [vwSiteDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
+      [vwSiteDegree].[CUSTOMER_NAME] AS [CUSTOMER_NAME], 
+      [vwSiteDegree].[CUSTOMER_ID] AS [CUSTOMER_ID]
+      FROM [dbo].[vwSiteDegree] AS [vwSiteDegree]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tblCCTV_tblSite" Association="SSHMC01Model.Store.FK_tblCCTV_tblSite">
+            <End Role="tblSite" EntitySet="tblSite" />
+            <End Role="tblCCTV" EntitySet="tblCCTV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblMFCCCONFIG_tblHOSTCONFIG1" Association="SSHMC01Model.Store.FK_tblMFCCCONFIG_tblHOSTCONFIG1">
+            <End Role="tblHOST_Config" EntitySet="tblHOST_Config" />
+            <End Role="tblMFCC_Config" EntitySet="tblMFCC_Config" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRules_tblSensor_Values" Association="SSHMC01Model.Store.FK_tblRules_tblSensor_Values">
+            <End Role="tblSensor_Values" EntitySet="tblSensor_Values" />
+            <End Role="tblRules" EntitySet="tblRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSensor_Values_tblSensor1" Association="SSHMC01Model.Store.FK_tblSensor_Values_tblSensor1">
+            <End Role="tblSensor" EntitySet="tblSensor" />
+            <End Role="tblSensor_Values" EntitySet="tblSensor_Values" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTC_Box_tblSite" Association="SSHMC01Model.Store.FK_tblTC_Box_tblSite">
+            <End Role="tblSite" EntitySet="tblSite" />
+            <End Role="tblTC_Box" EntitySet="tblTC_Box" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTC_tblMFCCCONFIG" Association="SSHMC01Model.Store.FK_tblTC_tblMFCCCONFIG">
+            <End Role="tblMFCC_Config" EntitySet="tblMFCC_Config" />
+            <End Role="tblTC" EntitySet="tblTC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTC_tblSite" Association="SSHMC01Model.Store.FK_tblTC_tblSite">
+            <End Role="tblSite" EntitySet="tblSite" />
+            <End Role="tblTC" EntitySet="tblTC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblTC10mindatalog_tblSensor" Association="SSHMC01Model.Store.FK_TblTC10mindatalog_tblSensor">
+            <End Role="tblSensor" EntitySet="tblSensor" />
+            <End Role="tblTC10MinDataLog" EntitySet="tblTC10MinDataLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTiltSensor_tblTC" Association="SSHMC01Model.Store.FK_tblTiltSensor_tblTC">
+            <End Role="tblTC" EntitySet="tblTC" />
+            <End Role="tblSensor" EntitySet="tblSensor" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCCTV">
+          <Key>
+            <PropertyRef Name="CCTV_ID" />
+          </Key>
+          <Property Name="CCTV_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ROTATION" Type="float" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="REF_CCTV_ID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblHOST_Config">
+          <Key>
+            <PropertyRef Name="HOST_ID" />
+          </Key>
+          <Property Name="HOST_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="HOST_TYPE" Type="char" MaxLength="1" />
+          <Property Name="HOST_IP" Type="nvarchar" MaxLength="20" />
+          <Property Name="MEMO" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblMFCC_Config">
+          <Key>
+            <PropertyRef Name="MFCC_ID" />
+          </Key>
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="HOST_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="MFCC_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="MEMO" Type="nvarchar" MaxLength="50" />
+          <Property Name="MFCC_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="REMOTE_PORT" Type="int" />
+        </EntityType>
+        <EntityType Name="tblPre_disasterNotified">
+          <Key>
+            <PropertyRef Name="IDENTIFIED_ID" />
+          </Key>
+          <Property Name="IDENTIFIED_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="PUBLISH_ORANG" Type="nvarchar" MaxLength="50" />
+          <Property Name="CONTENT" Type="nvarchar" MaxLength="1500" />
+          <Property Name="PRE_ADMONISH_CLASS" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISSEND" Type="bit" Nullable="false" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTIFIED_TIME" Type="datetime" />
+          <Property Name="PRE_TIMESTAMP" Type="datetime" />
+          <Property Name="AFTER_TIMESTAMP" Type="datetime" />
+          <Property Name="ISREPORT" Type="tinyint" Nullable="false" />
+          <Property Name="DISASTER_NAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblRules">
+          <Key>
+            <PropertyRef Name="DEGREE" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="VALUE_ID" />
+          </Key>
+          <Property Name="DEGREE" Type="tinyint" Nullable="false" />
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="VALUE_ID" Type="int" Nullable="false" />
+          <Property Name="HOUR_MA" Type="float" />
+          <Property Name="LOWER_LIMIT" Type="float" />
+          <Property Name="UPPER_LIMIT" Type="float" />
+          <Property Name="LEFT_HOUR_MA1" Type="float" />
+          <Property Name="RIGHT_HOUR_MA1" Type="float" />
+          <Property Name="LEFT_HOUR_MA2" Type="float" />
+          <Property Name="RGHT_HOUR_MA2" Type="float" />
+        </EntityType>
+        <EntityType Name="tblSensor">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+          </Key>
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CONTROLLER_ID" Type="int" />
+          <Property Name="SENSOR_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID" Type="int" />
+          <Property Name="SENSOR_TYPE" Type="nvarchar" MaxLength="20" />
+          <Property Name="TYPEGROUP_ID" Type="int" />
+          <Property Name="COM_TYPE" Type="nvarchar" MaxLength="20" />
+          <Property Name="IP_ COMPORT" Type="nvarchar" MaxLength="20" />
+          <Property Name="PORT_BAUD" Type="int" />
+          <Property Name="EXCUTION_MODE" Type="bit" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="REFGPS_ID" Type="int" />
+          <Property Name="ISCONNECTED" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="CURRENT_DEGREE" Type="tinyint" />
+          <Property Name="VALUE0" Type="float" />
+          <Property Name="VALUE1" Type="float" />
+          <Property Name="VALUE2" Type="float" />
+          <Property Name="SERIAL_NUMBER" Type="nvarchar" MaxLength="20" />
+          <Property Name="CONNECTIONSTATUSLOG_ID" Type="bigint" />
+          <Property Name="ISVALID" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="EVET_ID" Type="int" />
+          <Property Name="ORG_EVENT_ID" Type="int" />
+          <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSensor_Values">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="VALUE_ID" />
+          </Key>
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="VALUE_ID" Type="int" Nullable="false" />
+          <Property Name="DESC" Type="nvarchar" MaxLength="30" />
+          <Property Name="OFFSET" Type="float" />
+          <Property Name="COEFFICIENT" Type="float" />
+          <Property Name="SIGMA" Type="float" />
+          <Property Name="INITMEAN" Type="float" />
+          <Property Name="MEANTHRESHOLD" Type="int" />
+          <Property Name="CONVERTFORMULA" Type="nvarchar" MaxLength="512" />
+        </EntityType>
+        <EntityType Name="tblSite">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="CUSTROMER_ID" Type="int" Nullable="false" />
+          <Property Name="SITE_NO" Type="nvarchar" MaxLength="30" />
+          <Property Name="SITE_NAME" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="SITE_ADDRESS" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ENVIRONMENT" Type="nvarchar" MaxLength="4" />
+          <Property Name="BUILDING_TYPE_ID" Type="int" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="MIN_X" Type="float" />
+          <Property Name="MIN_Y" Type="float" />
+          <Property Name="MAX_X" Type="float" />
+          <Property Name="MAX_Y" Type="float" />
+          <Property Name="STRUCT_TYPE_ID" Type="int" />
+          <Property Name="ON_STORIED" Type="tinyint" />
+          <Property Name="UNDER_STORIED" Type="tinyint" />
+          <Property Name="CONTRACT_START" Type="nvarchar" MaxLength="10" />
+          <Property Name="CONTRACT_TERMINATION" Type="nvarchar" MaxLength="10" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="20" />
+          <Property Name="COUNTY_ID" Type="nvarchar" MaxLength="2" />
+          <Property Name="AREA_ID" Type="nvarchar" MaxLength="3" />
+          <Property Name="ENGINEER" Type="nvarchar" MaxLength="10" />
+          <Property Name="N3_CONTENT" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTC">
+          <Key>
+            <PropertyRef Name="CONTROLLER_ID" />
+          </Key>
+          <Property Name="CONTROLLER_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="ISCONNECTED" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PORT" Type="int" Nullable="false" />
+          <Property Name="DEVICE_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="BUILD_DATE" Type="datetime" />
+          <Property Name="VERSION_NO" Type="nvarchar" MaxLength="30" />
+          <Property Name="HW_STATUS_1" Type="tinyint" Nullable="false" />
+          <Property Name="HW_STATUS_2" Type="tinyint" Nullable="false" />
+          <Property Name="HW_STATUS_3" Type="tinyint" Nullable="false" />
+          <Property Name="HW_STATUS_4" Type="tinyint" Nullable="false" />
+          <Property Name="ENABLE" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="INTERNALL_IP" Type="nvarchar" MaxLength="20" />
+          <Property Name="INTERNAL_PORT" Type="int" />
+          <Property Name="CONNECTIONSTATUSLOG_ID" Type="bigint" />
+          <Property Name="LATEST_UPDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblTC_Box">
+          <Key>
+            <PropertyRef Name="TC_BOX_ID" />
+          </Key>
+          <Property Name="TC_BOX_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SITE_ID" Type="nvarchar" MaxLength="30" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+        </EntityType>
+        <EntityType Name="tblTC_Restore">
+          <Key>
+            <PropertyRef Name="CONTROLLER_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+          </Key>
+          <Property Name="CONTROLLER_ID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" Nullable="false" />
+          <Property Name="TRYCNT" Type="int" />
+          <Property Name="ISFINSH" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblTC10MinDataLog">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+          </Key>
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" Nullable="false" />
+          <Property Name="VALUE0" Type="float" />
+          <Property Name="VALUE1" Type="float" />
+          <Property Name="VALUE2" Type="float" />
+          <Property Name="DEGREE" Type="tinyint" Nullable="false" />
+          <Property Name="ISVALID" Type="char" MaxLength="1" />
+          <Property Name="EXECUTION_MODE" Type="bit" />
+          <Property Name="CONTROLLER_ID" Type="int" />
+          <Property Name="VALUE_CNT" Type="tinyint" />
+          <Property Name="IS_REPAIR" Type="char" Nullable="false" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="USER_PW" Type="nvarchar" MaxLength="20" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="20" />
+          <Property Name="ROLES" Type="int" />
+          <Property Name="CUSTOMER_ID" Type="int" />
+          <Property Name="TELEPHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="MOBLE" Type="nvarchar" MaxLength="20" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="20" />
+          <Property Name="USER_ADDRESS" Type="nvarchar" MaxLength="100" />
+          <Property Name="USER_MAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="URI_CODE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblUserLogin">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+          </Key>
+          <Property Name="USER_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="TIMESTAMP" Type="datetime" Nullable="false" />
+          <Property Name="ENTRANCE" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.VWHOSTMFCC' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSensorDegree' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSensorDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="ISCONNECTED" />
+            <PropertyRef Name="ISVALID" />
+            <PropertyRef Name="MFCC_ID" />
+            <PropertyRef Name="IsConfirmed" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="SENSOR_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ISCONNECTED" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="ID" Type="int" />
+          <Property Name="EXCUTION_MODE" Type="bit" />
+          <Property Name="SENSOR_TYPE" Type="nvarchar" MaxLength="20" />
+          <Property Name="CURRENT_DEGREE" Type="int" />
+          <Property Name="VALUE0" Type="float" />
+          <Property Name="VALUE1" Type="float" />
+          <Property Name="VALUE2" Type="float" />
+          <Property Name="ISVALID" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSensorValuesAndTC10MinDataLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSensorValuesAndTC10MinDataLog">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+            <PropertyRef Name="DEGREE" />
+            
+            
+            
+            
+            
+            
+            
+          </Key>
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" Nullable="false" />
+          <Property Name="VALUE0" Type="float" />
+          <Property Name="VALUE1" Type="float" />
+          <Property Name="DEGREE" Type="tinyint" Nullable="false" />
+          <Property Name="VALUE2" Type="float" />
+          <Property Name="ISVALID" Type="char" MaxLength="1" />
+          <Property Name="EXECUTION_MODE" Type="bit" />
+          <Property Name="CONTROLLER_ID" Type="int" />
+          <Property Name="VALUE_CNT" Type="tinyint" />
+          <Property Name="IS_REPAIR" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="signama0" Type="float" Nullable="false" />
+          <Property Name="initmean0" Type="float" Nullable="false" />
+          <Property Name="sigma1" Type="float" Nullable="false" />
+          <Property Name="initmean1" Type="float" Nullable="false" />
+          <Property Name="sigma2" Type="float" Nullable="false" />
+          <Property Name="initmean2" Type="float" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSiteDegree' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSiteDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            
+            
+            
+            
+            
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SITE_NAME" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="SITE_ADDRESS" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ENVIRONMENT" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="MIN_X" Type="float" />
+          <Property Name="MIN_Y" Type="float" />
+          <Property Name="MAX_X" Type="float" />
+          <Property Name="MAX_Y" Type="float" />
+          <Property Name="CURRENT_DEGREE" Type="int" />
+          <Property Name="CUSTOMER_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCCTV_tblSite">
+          <End Role="tblSite" Type="SSHMC01Model.Store.tblSite" Multiplicity="1" />
+          <End Role="tblCCTV" Type="SSHMC01Model.Store.tblCCTV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SITE_ID" />
+            </Principal>
+            <Dependent Role="tblCCTV">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblMFCCCONFIG_tblHOSTCONFIG1">
+          <End Role="tblHOST_Config" Type="SSHMC01Model.Store.tblHOST_Config" Multiplicity="1" />
+          <End Role="tblMFCC_Config" Type="SSHMC01Model.Store.tblMFCC_Config" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHOST_Config">
+              <PropertyRef Name="HOST_ID" />
+            </Principal>
+            <Dependent Role="tblMFCC_Config">
+              <PropertyRef Name="HOST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRules_tblSensor_Values">
+          <End Role="tblSensor_Values" Type="SSHMC01Model.Store.tblSensor_Values" Multiplicity="1" />
+          <End Role="tblRules" Type="SSHMC01Model.Store.tblRules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSensor_Values">
+              <PropertyRef Name="SENSOR_ID" />
+              <PropertyRef Name="VALUE_ID" />
+            </Principal>
+            <Dependent Role="tblRules">
+              <PropertyRef Name="SENSOR_ID" />
+              <PropertyRef Name="VALUE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSensor_Values_tblSensor1">
+          <End Role="tblSensor" Type="SSHMC01Model.Store.tblSensor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblSensor_Values" Type="SSHMC01Model.Store.tblSensor_Values" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSensor">
+              <PropertyRef Name="SENSOR_ID" />
+            </Principal>
+            <Dependent Role="tblSensor_Values">
+              <PropertyRef Name="SENSOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTC_Box_tblSite">
+          <End Role="tblSite" Type="SSHMC01Model.Store.tblSite" Multiplicity="0..1" />
+          <End Role="tblTC_Box" Type="SSHMC01Model.Store.tblTC_Box" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SITE_ID" />
+            </Principal>
+            <Dependent Role="tblTC_Box">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTC_tblMFCCCONFIG">
+          <End Role="tblMFCC_Config" Type="SSHMC01Model.Store.tblMFCC_Config" Multiplicity="1" />
+          <End Role="tblTC" Type="SSHMC01Model.Store.tblTC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMFCC_Config">
+              <PropertyRef Name="MFCC_ID" />
+            </Principal>
+            <Dependent Role="tblTC">
+              <PropertyRef Name="MFCC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTC_tblSite">
+          <End Role="tblSite" Type="SSHMC01Model.Store.tblSite" Multiplicity="1" />
+          <End Role="tblTC" Type="SSHMC01Model.Store.tblTC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SITE_ID" />
+            </Principal>
+            <Dependent Role="tblTC">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblTC10mindatalog_tblSensor">
+          <End Role="tblSensor" Type="SSHMC01Model.Store.tblSensor" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tblTC10MinDataLog" Type="SSHMC01Model.Store.tblTC10MinDataLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSensor">
+              <PropertyRef Name="SENSOR_ID" />
+            </Principal>
+            <Dependent Role="tblTC10MinDataLog">
+              <PropertyRef Name="SENSOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTiltSensor_tblTC">
+          <End Role="tblTC" Type="SSHMC01Model.Store.tblTC" Multiplicity="0..1" />
+          <End Role="tblSensor" Type="SSHMC01Model.Store.tblSensor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTC">
+              <PropertyRef Name="CONTROLLER_ID" />
+            </Principal>
+            <Dependent Role="tblSensor">
+              <PropertyRef Name="CONTROLLER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSHMC01Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SSHMC01Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblHOST_Config" EntityType="SSHMC01Model.tblHOST_Config" />
+          <EntitySet Name="tblMFCC_Config" EntityType="SSHMC01Model.tblMFCC_Config" />
+          <EntitySet Name="tblRules" EntityType="SSHMC01Model.tblRules" />
+          <EntitySet Name="tblSensor" EntityType="SSHMC01Model.tblSensor" />
+          <EntitySet Name="tblSensor_Values" EntityType="SSHMC01Model.tblSensor_Values" />
+          <EntitySet Name="tblSite" EntityType="SSHMC01Model.tblSite" />
+          <EntitySet Name="tblTC" EntityType="SSHMC01Model.tblTC" />
+          <EntitySet Name="tblTC_Box" EntityType="SSHMC01Model.tblTC_Box" />
+          <EntitySet Name="tblTC_Restore" EntityType="SSHMC01Model.tblTC_Restore" />
+          <EntitySet Name="tblTC10MinDataLog" EntityType="SSHMC01Model.tblTC10MinDataLog" />
+          <AssociationSet Name="FK_tblMFCCCONFIG_tblHOSTCONFIG1" Association="SSHMC01Model.FK_tblMFCCCONFIG_tblHOSTCONFIG1">
+            <End Role="tblHOST_Config" EntitySet="tblHOST_Config" />
+            <End Role="tblMFCC_Config" EntitySet="tblMFCC_Config" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTC_tblMFCCCONFIG" Association="SSHMC01Model.FK_tblTC_tblMFCCCONFIG">
+            <End Role="tblMFCC_Config" EntitySet="tblMFCC_Config" />
+            <End Role="tblTC" EntitySet="tblTC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblRules_tblSensor_Values" Association="SSHMC01Model.FK_tblRules_tblSensor_Values">
+            <End Role="tblSensor_Values" EntitySet="tblSensor_Values" />
+            <End Role="tblRules" EntitySet="tblRules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSensor_Values_tblSensor1" Association="SSHMC01Model.FK_tblSensor_Values_tblSensor1">
+            <End Role="tblSensor" EntitySet="tblSensor" />
+            <End Role="tblSensor_Values" EntitySet="tblSensor_Values" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TblTC10mindatalog_tblSensor" Association="SSHMC01Model.FK_TblTC10mindatalog_tblSensor">
+            <End Role="tblSensor" EntitySet="tblSensor" />
+            <End Role="tblTC10MinDataLog" EntitySet="tblTC10MinDataLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTiltSensor_tblTC" Association="SSHMC01Model.FK_tblTiltSensor_tblTC">
+            <End Role="tblTC" EntitySet="tblTC" />
+            <End Role="tblSensor" EntitySet="tblSensor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTC_tblSite" Association="SSHMC01Model.FK_tblTC_tblSite">
+            <End Role="tblSite" EntitySet="tblSite" />
+            <End Role="tblTC" EntitySet="tblTC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTCrestore_tblTC" Association="SSHMC01Model.FK_tblTCrestore_tblTC">
+            <End Role="tblTC" EntitySet="tblTC" />
+            <End Role="tblTC_Restore" EntitySet="tblTC_Restore" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblTC_Box_tblSite" Association="SSHMC01Model.FK_tblTC_Box_tblSite">
+            <End Role="tblSite" EntitySet="tblSite" />
+            <End Role="tblTC_Box" EntitySet="tblTC_Box" />
+          </AssociationSet>
+          <EntitySet Name="tblCCTV" EntityType="SSHMC01Model.tblCCTV" />
+          <AssociationSet Name="FK_tblCCTV_tblSite" Association="SSHMC01Model.FK_tblCCTV_tblSite">
+            <End Role="tblSite" EntitySet="tblSite" />
+            <End Role="tblCCTV" EntitySet="tblCCTV" />
+          </AssociationSet>
+          <EntitySet Name="vwSensorDegree" EntityType="SSHMC01Model.vwSensorDegree" />
+          <EntitySet Name="vwSiteDegree" EntityType="SSHMC01Model.vwSiteDegree" />
+          <EntitySet Name="vwSensorValuesAndTC10MinDataLog" EntityType="SSHMC01Model.vwSensorValuesAndTC10MinDataLog" />
+          <EntitySet Name="tblUser" EntityType="SSHMC01Model.tblUser" />
+          <EntitySet Name="tblUserLogin" EntityType="SSHMC01Model.tblUserLogin" />
+          <EntitySet Name="tblPre_disasterNotified" EntityType="SSHMC01Model.tblPre_disasterNotified" />
+        </EntityContainer>
+        <EntityType Name="tblHOST_Config">
+          <Key>
+            <PropertyRef Name="HOST_ID" />
+          </Key>
+          <Property Name="HOST_ID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="HOST_TYPE" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="HOST_IP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MEMO" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblMFCC_Config" Relationship="SSHMC01Model.FK_tblMFCCCONFIG_tblHOSTCONFIG1" FromRole="tblHOST_Config" ToRole="tblMFCC_Config" />
+        </EntityType>
+        <EntityType Name="tblMFCC_Config">
+          <Key>
+            <PropertyRef Name="MFCC_ID" />
+          </Key>
+          <Property Name="MFCC_ID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="HOST_ID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MFCC_NAME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MEMO" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MFCC_TYPE" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="REMOTE_PORT" Type="Int32" />
+          <NavigationProperty Name="tblHOST_Config" Relationship="SSHMC01Model.FK_tblMFCCCONFIG_tblHOSTCONFIG1" FromRole="tblMFCC_Config" ToRole="tblHOST_Config" />
+          <NavigationProperty Name="tblTC" Relationship="SSHMC01Model.FK_tblTC_tblMFCCCONFIG" FromRole="tblMFCC_Config" ToRole="tblTC" />
+        </EntityType>
+        <EntityType Name="tblRules">
+          <Key>
+            <PropertyRef Name="DEGREE" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="VALUE_ID" />
+          </Key>
+          <Property Name="DEGREE" Type="Byte" Nullable="false" />
+          <Property Name="SENSOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="VALUE_ID" Type="Int32" Nullable="false" />
+          <Property Name="HOUR_MA" Type="Double" />
+          <Property Name="LOWER_LIMIT" Type="Double" />
+          <Property Name="UPPER_LIMIT" Type="Double" />
+          <Property Name="LEFT_HOUR_MA1" Type="Double" />
+          <Property Name="RIGHT_HOUR_MA1" Type="Double" />
+          <Property Name="LEFT_HOUR_MA2" Type="Double" />
+          <Property Name="RGHT_HOUR_MA2" Type="Double" />
+          <NavigationProperty Name="tblSensor_Values" Relationship="SSHMC01Model.FK_tblRules_tblSensor_Values" FromRole="tblRules" ToRole="tblSensor_Values" />
+        </EntityType>
+        <EntityType Name="tblSensor">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+          </Key>
+          <Property Name="SENSOR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SENSOR_NAME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="CONTROLLER_ID" Type="Int32" />
+          <Property Name="SENSOR_TYPE" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="COM_TYPE" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="IP__COMPORT" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PORT_BAUD" Type="Int32" />
+          <Property Name="EXCUTION_MODE" Type="Boolean" />
+          <Property Name="X" Type="Double" />
+          <Property Name="Y" Type="Double" />
+          <Property Name="REFGPS_ID" Type="Int32" />
+          <Property Name="ISCONNECTED" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="CURRENT_DEGREE" Type="Byte" />
+          <NavigationProperty Name="tblSensor_Values" Relationship="SSHMC01Model.FK_tblSensor_Values_tblSensor1" FromRole="tblSensor" ToRole="tblSensor_Values" />
+          <NavigationProperty Name="tblTC10MinDataLog" Relationship="SSHMC01Model.FK_TblTC10mindatalog_tblSensor" FromRole="tblSensor" ToRole="tblTC10MinDataLog" />
+          <NavigationProperty Name="tblTC" Relationship="SSHMC01Model.FK_tblTiltSensor_tblTC" FromRole="tblSensor" ToRole="tblTC" />
+          <Property Type="Double" Name="VALUE0" />
+          <Property Type="Double" Name="VALUE1" />
+          <Property Type="Double" Name="VALUE2" />
+          <Property Type="String" Name="SERIAL_NUMBER" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int64" Name="CONNECTIONSTATUSLOG_ID" />
+          <Property Type="String" Name="ISVALID" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="TYPEGROUP_ID" />
+          <Property Type="Int32" Name="EVET_ID" />
+          <Property Type="Int32" Name="ORG_EVENT_ID" />
+          <Property Type="Boolean" Name="IsConfirmed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSensor_Values">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="VALUE_ID" />
+          </Key>
+          <Property Name="SENSOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="VALUE_ID" Type="Int32" Nullable="false" />
+          <Property Name="DESC" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="OFFSET" Type="Double" />
+          <Property Name="COEFFICIENT" Type="Double" />
+          <NavigationProperty Name="tblRules" Relationship="SSHMC01Model.FK_tblRules_tblSensor_Values" FromRole="tblSensor_Values" ToRole="tblRules" />
+          <NavigationProperty Name="tblSensor" Relationship="SSHMC01Model.FK_tblSensor_Values_tblSensor1" FromRole="tblSensor_Values" ToRole="tblSensor" />
+          <Property Type="Double" Name="SIGMA" />
+          <Property Type="Double" Name="INITMEAN" />
+          <Property Type="Int32" Name="MEANTHRESHOLD" />
+          <Property Type="String" Name="CONVERTFORMULA" MaxLength="512" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblSite">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+          </Key>
+          <Property Name="SITE_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="SITE_NAME" Type="String" MaxLength="15" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="SITE_ADDRESS" Type="String" MaxLength="50" Unicode="true" FixedLength="false" Nullable="false" />
+          <Property Name="ENVIRONMENT" Type="String" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="X" Type="Double" Nullable="false" />
+          <Property Name="Y" Type="Double" Nullable="false" />
+          <Property Name="MIN_X" Type="Double" />
+          <Property Name="MIN_Y" Type="Double" />
+          <Property Name="MAX_X" Type="Double" />
+          <Property Name="MAX_Y" Type="Double" />
+          <NavigationProperty Name="tblTC" Relationship="SSHMC01Model.FK_tblTC_tblSite" FromRole="tblSite" ToRole="tblTC" />
+          <NavigationProperty Name="tblTC_Box" Relationship="SSHMC01Model.FK_tblTC_Box_tblSite" FromRole="tblSite" ToRole="tblTC_Box" />
+          <NavigationProperty Name="tblCCTV" Relationship="SSHMC01Model.FK_tblCCTV_tblSite" FromRole="tblSite" ToRole="tblCCTV" />
+          <Property Type="Int32" Name="CUSTROMER_ID" Nullable="false" />
+          <Property Type="String" Name="SITE_NO" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="BUILDING_TYPE_ID" />
+          <Property Type="Int32" Name="STRUCT_TYPE_ID" />
+          <Property Type="Byte" Name="ON_STORIED" />
+          <Property Type="Byte" Name="UNDER_STORIED" />
+          <Property Type="String" Name="CONTRACT_START" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONTRACT_TERMINATION" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FAX" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COUNTY_ID" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AREA_ID" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ENGINEER" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="N3_CONTENT" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblTC">
+          <Key>
+            <PropertyRef Name="CONTROLLER_ID" />
+          </Key>
+          <Property Name="CONTROLLER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SITE_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="MFCC_ID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ISCONNECTED" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PORT" Type="Int32" Nullable="false" />
+          <Property Name="DEVICE_TYPE" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BUILD_DATE" Type="DateTime" Precision="3" />
+          <Property Name="VERSION_NO" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="HW_STATUS_1" Type="Byte" Nullable="false" />
+          <Property Name="HW_STATUS_2" Type="Byte" Nullable="false" />
+          <Property Name="HW_STATUS_3" Type="Byte" Nullable="false" />
+          <Property Name="HW_STATUS_4" Type="Byte" Nullable="false" />
+          <Property Name="ENABLE" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="tblMFCC_Config" Relationship="SSHMC01Model.FK_tblTC_tblMFCCCONFIG" FromRole="tblTC" ToRole="tblMFCC_Config" />
+          <NavigationProperty Name="tblSensor" Relationship="SSHMC01Model.FK_tblTiltSensor_tblTC" FromRole="tblTC" ToRole="tblSensor" />
+          <NavigationProperty Name="tblSite" Relationship="SSHMC01Model.FK_tblTC_tblSite" FromRole="tblTC" ToRole="tblSite" />
+          <NavigationProperty Name="tblTC_Restore" Relationship="SSHMC01Model.FK_tblTCrestore_tblTC" FromRole="tblTC" ToRole="tblTC_Restore" />
+          <Property Type="String" Name="INTERNALL_IP" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="INTERNAL_PORT" />
+          <Property Type="Int64" Name="CONNECTIONSTATUSLOG_ID" />
+          <Property Type="DateTime" Name="LATEST_UPDATE" Precision="3" />
+        </EntityType>
+        <EntityType Name="tblTC_Box">
+          <Key>
+            <PropertyRef Name="TC_BOX_ID" />
+          </Key>
+          <Property Name="TC_BOX_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="X" Type="Double" />
+          <Property Name="Y" Type="Double" />
+          <Property Type="String" Name="SITE_ID" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSite" Relationship="SSHMC01Model.FK_tblTC_Box_tblSite" FromRole="tblTC_Box" ToRole="tblSite" />
+        </EntityType>
+        <EntityType Name="tblTC_Restore">
+          <Key>
+            <PropertyRef Name="CONTROLLER_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+          </Key>
+          <Property Name="CONTROLLER_ID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TRYCNT" Type="Int32" />
+          <Property Name="ISFINSH" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <NavigationProperty Name="tblTC" Relationship="SSHMC01Model.FK_tblTCrestore_tblTC" FromRole="tblTC_Restore" ToRole="tblTC" />
+        </EntityType>
+        <EntityType Name="tblTC10MinDataLog">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+          </Key>
+          <Property Name="SENSOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VALUE0" Type="Double" />
+          <Property Name="VALUE1" Type="Double" />
+          <Property Name="VALUE2" Type="Double" />
+          <Property Name="DEGREE" Type="Byte" Nullable="false" />
+          <Property Name="ISVALID" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="EXECUTION_MODE" Type="Boolean" />
+          <Property Name="CONTROLLER_ID" Type="Int32" />
+          <Property Name="VALUE_CNT" Type="Byte" />
+          <NavigationProperty Name="tblSensor" Relationship="SSHMC01Model.FK_TblTC10mindatalog_tblSensor" FromRole="tblTC10MinDataLog" ToRole="tblSensor" />
+          <Property Type="String" Name="IS_REPAIR" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tblMFCCCONFIG_tblHOSTCONFIG1">
+          <End Role="tblHOST_Config" Type="SSHMC01Model.tblHOST_Config" Multiplicity="1" />
+          <End Role="tblMFCC_Config" Type="SSHMC01Model.tblMFCC_Config" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblHOST_Config">
+              <PropertyRef Name="HOST_ID" />
+            </Principal>
+            <Dependent Role="tblMFCC_Config">
+              <PropertyRef Name="HOST_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTC_tblMFCCCONFIG">
+          <End Role="tblMFCC_Config" Type="SSHMC01Model.tblMFCC_Config" Multiplicity="1" />
+          <End Role="tblTC" Type="SSHMC01Model.tblTC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMFCC_Config">
+              <PropertyRef Name="MFCC_ID" />
+            </Principal>
+            <Dependent Role="tblTC">
+              <PropertyRef Name="MFCC_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblRules_tblSensor_Values">
+          <End Role="tblSensor_Values" Type="SSHMC01Model.tblSensor_Values" Multiplicity="1" />
+          <End Role="tblRules" Type="SSHMC01Model.tblRules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSensor_Values">
+              <PropertyRef Name="SENSOR_ID" />
+              <PropertyRef Name="VALUE_ID" />
+            </Principal>
+            <Dependent Role="tblRules">
+              <PropertyRef Name="SENSOR_ID" />
+              <PropertyRef Name="VALUE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSensor_Values_tblSensor1">
+          <End Role="tblSensor" Type="SSHMC01Model.tblSensor" Multiplicity="1" />
+          <End Role="tblSensor_Values" Type="SSHMC01Model.tblSensor_Values" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSensor">
+              <PropertyRef Name="SENSOR_ID" />
+            </Principal>
+            <Dependent Role="tblSensor_Values">
+              <PropertyRef Name="SENSOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TblTC10mindatalog_tblSensor">
+          <End Role="tblSensor" Type="SSHMC01Model.tblSensor" Multiplicity="1" />
+          <End Role="tblTC10MinDataLog" Type="SSHMC01Model.tblTC10MinDataLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSensor">
+              <PropertyRef Name="SENSOR_ID" />
+            </Principal>
+            <Dependent Role="tblTC10MinDataLog">
+              <PropertyRef Name="SENSOR_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTiltSensor_tblTC">
+          <End Role="tblTC" Type="SSHMC01Model.tblTC" Multiplicity="0..1" />
+          <End Role="tblSensor" Type="SSHMC01Model.tblSensor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTC">
+              <PropertyRef Name="CONTROLLER_ID" />
+            </Principal>
+            <Dependent Role="tblSensor">
+              <PropertyRef Name="CONTROLLER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTC_tblSite">
+          <End Role="tblSite" Type="SSHMC01Model.tblSite" Multiplicity="1" />
+          <End Role="tblTC" Type="SSHMC01Model.tblTC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SITE_ID" />
+            </Principal>
+            <Dependent Role="tblTC">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTCrestore_tblTC">
+          <End Role="tblTC" Type="SSHMC01Model.tblTC" Multiplicity="1" />
+          <End Role="tblTC_Restore" Type="SSHMC01Model.tblTC_Restore" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblTC">
+              <PropertyRef Name="CONTROLLER_ID" />
+            </Principal>
+            <Dependent Role="tblTC_Restore">
+              <PropertyRef Name="CONTROLLER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblTC_Box_tblSite">
+          <End Type="SSHMC01Model.tblSite" Role="tblSite" Multiplicity="0..1" />
+          <End Type="SSHMC01Model.tblTC_Box" Role="tblTC_Box" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SITE_ID" />
+            </Principal>
+            <Dependent Role="tblTC_Box">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCCTV">
+          <Key>
+            <PropertyRef Name="CCTV_ID" />
+          </Key>
+          <Property Type="String" Name="CCTV_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Double" Name="ROTATION" />
+          <NavigationProperty Name="tblSite" Relationship="SSHMC01Model.FK_tblCCTV_tblSite" FromRole="tblCCTV" ToRole="tblSite" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REF_CCTV_ID" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tblCCTV_tblSite">
+          <End Type="SSHMC01Model.tblSite" Role="tblSite" Multiplicity="1" />
+          <End Type="SSHMC01Model.tblCCTV" Role="tblCCTV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SITE_ID" />
+            </Principal>
+            <Dependent Role="tblCCTV">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwSensorDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="ISCONNECTED" />
+            <PropertyRef Name="ISVALID" />
+            <PropertyRef Name="MFCC_ID" />
+            <PropertyRef Name="IsConfirmed" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SENSOR_ID" Nullable="false" />
+          <Property Type="String" Name="SENSOR_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="String" Name="ISCONNECTED" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="ID" />
+          <Property Type="Boolean" Name="EXCUTION_MODE" />
+          <Property Type="String" Name="SENSOR_TYPE" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CURRENT_DEGREE" />
+          <Property Type="Double" Name="VALUE0" />
+          <Property Type="Double" Name="VALUE1" />
+          <Property Type="Double" Name="VALUE2" />
+          <Property Type="String" Name="ISVALID" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="MFCC_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsConfirmed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwSiteDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SITE_NAME" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="SITE_ADDRESS" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="String" Name="ENVIRONMENT" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Type="Double" Name="X" Nullable="false" />
+          <Property Type="Double" Name="Y" Nullable="false" />
+          <Property Type="Double" Name="MIN_X" />
+          <Property Type="Double" Name="MIN_Y" />
+          <Property Type="Double" Name="MAX_X" />
+          <Property Type="Double" Name="MAX_Y" />
+          <Property Type="Int32" Name="CURRENT_DEGREE" />
+          <Property Type="String" Name="CUSTOMER_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CUSTOMER_ID" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwSensorValuesAndTC10MinDataLog">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+            <PropertyRef Name="DEGREE" />
+          </Key>
+          <Property Type="Int32" Name="SENSOR_ID" Nullable="false" />
+          <Property Type="DateTime" Name="TIMESTAMP" Nullable="false" Precision="3" />
+          <Property Type="Double" Name="VALUE0" />
+          <Property Type="Double" Name="VALUE1" />
+          <Property Type="Byte" Name="DEGREE" Nullable="false" />
+          <Property Type="Double" Name="VALUE2" />
+          <Property Type="String" Name="ISVALID" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="EXECUTION_MODE" />
+          <Property Type="Int32" Name="CONTROLLER_ID" />
+          <Property Type="Byte" Name="VALUE_CNT" />
+          <Property Type="String" Name="IS_REPAIR" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Double" Name="signama0" Nullable="false" />
+          <Property Type="Double" Name="initmean0" Nullable="false" />
+          <Property Type="Double" Name="sigma1" Nullable="false" />
+          <Property Type="Double" Name="initmean1" Nullable="false" />
+          <Property Type="Double" Name="sigma2" Nullable="false" />
+          <Property Type="Double" Name="initmean2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Type="String" Name="USER_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="USER_PW" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="USER_NAME" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ROLES" />
+          <Property Type="Int32" Name="CUSTOMER_ID" />
+          <Property Type="String" Name="TELEPHONE" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MOBLE" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FAX" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="USER_ADDRESS" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="USER_MAIL" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URI_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblUserLogin">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+          </Key>
+          <Property Type="String" Name="USER_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="TIMESTAMP" Nullable="false" Precision="3" />
+          <Property Type="Byte" Name="ENTRANCE" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblPre_disasterNotified">
+          <Key>
+            <PropertyRef Name="IDENTIFIED_ID" />
+          </Key>
+          <Property Type="Int32" Name="IDENTIFIED_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="TIMESTAMP" Precision="3" />
+          <Property Type="String" Name="PUBLISH_ORANG" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONTENT" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PRE_ADMONISH_CLASS" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISSEND" Nullable="false" />
+          <Property Type="String" Name="TITLE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="NOTIFIED_TIME" Precision="3" />
+          <Property Type="DateTime" Name="PRE_TIMESTAMP" Precision="3" />
+          <Property Type="DateTime" Name="AFTER_TIMESTAMP" Precision="3" />
+          <Property Type="Byte" Name="ISREPORT" Nullable="false" />
+          <Property Type="String" Name="DISASTER_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSHMC01ModelStoreContainer" CdmEntityContainer="SSHMC01Entities">
+          <EntitySetMapping Name="tblHOST_Config"><EntityTypeMapping TypeName="SSHMC01Model.tblHOST_Config"><MappingFragment StoreEntitySet="tblHOST_Config">
+            <ScalarProperty Name="HOST_ID" ColumnName="HOST_ID" />
+            <ScalarProperty Name="HOST_TYPE" ColumnName="HOST_TYPE" />
+            <ScalarProperty Name="HOST_IP" ColumnName="HOST_IP" />
+            <ScalarProperty Name="MEMO" ColumnName="MEMO" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblMFCC_Config"><EntityTypeMapping TypeName="SSHMC01Model.tblMFCC_Config"><MappingFragment StoreEntitySet="tblMFCC_Config">
+            <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+            <ScalarProperty Name="HOST_ID" ColumnName="HOST_ID" />
+            <ScalarProperty Name="MFCC_NAME" ColumnName="MFCC_NAME" />
+            <ScalarProperty Name="MEMO" ColumnName="MEMO" />
+            <ScalarProperty Name="MFCC_TYPE" ColumnName="MFCC_TYPE" />
+            <ScalarProperty Name="REMOTE_PORT" ColumnName="REMOTE_PORT" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblRules"><EntityTypeMapping TypeName="SSHMC01Model.tblRules"><MappingFragment StoreEntitySet="tblRules">
+            <ScalarProperty Name="DEGREE" ColumnName="DEGREE" />
+            <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+            <ScalarProperty Name="VALUE_ID" ColumnName="VALUE_ID" />
+            <ScalarProperty Name="HOUR_MA" ColumnName="HOUR_MA" />
+            <ScalarProperty Name="LOWER_LIMIT" ColumnName="LOWER_LIMIT" />
+            <ScalarProperty Name="UPPER_LIMIT" ColumnName="UPPER_LIMIT" />
+            <ScalarProperty Name="LEFT_HOUR_MA1" ColumnName="LEFT_HOUR_MA1" />
+            <ScalarProperty Name="RIGHT_HOUR_MA1" ColumnName="RIGHT_HOUR_MA1" />
+            <ScalarProperty Name="LEFT_HOUR_MA2" ColumnName="LEFT_HOUR_MA2" />
+            <ScalarProperty Name="RGHT_HOUR_MA2" ColumnName="RGHT_HOUR_MA2" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblSensor"><EntityTypeMapping TypeName="SSHMC01Model.tblSensor"><MappingFragment StoreEntitySet="tblSensor">
+            <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="ORG_EVENT_ID" ColumnName="ORG_EVENT_ID" />
+                <ScalarProperty Name="EVET_ID" ColumnName="EVET_ID" />
+                <ScalarProperty Name="TYPEGROUP_ID" ColumnName="TYPEGROUP_ID" />
+                <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
+                <ScalarProperty Name="CONNECTIONSTATUSLOG_ID" ColumnName="CONNECTIONSTATUSLOG_ID" />
+                <ScalarProperty Name="SERIAL_NUMBER" ColumnName="SERIAL_NUMBER" />
+                <ScalarProperty Name="VALUE2" ColumnName="VALUE2" />
+                <ScalarProperty Name="VALUE1" ColumnName="VALUE1" />
+                <ScalarProperty Name="VALUE0" ColumnName="VALUE0" />
+                <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+            <ScalarProperty Name="SENSOR_NAME" ColumnName="SENSOR_NAME" />
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="CONTROLLER_ID" ColumnName="CONTROLLER_ID" />
+            <ScalarProperty Name="SENSOR_TYPE" ColumnName="SENSOR_TYPE" />
+            <ScalarProperty Name="COM_TYPE" ColumnName="COM_TYPE" />
+            <ScalarProperty Name="IP__COMPORT" ColumnName="IP_ COMPORT" />
+            <ScalarProperty Name="PORT_BAUD" ColumnName="PORT_BAUD" />
+            <ScalarProperty Name="EXCUTION_MODE" ColumnName="EXCUTION_MODE" />
+            <ScalarProperty Name="X" ColumnName="X" />
+            <ScalarProperty Name="Y" ColumnName="Y" />
+            <ScalarProperty Name="REFGPS_ID" ColumnName="REFGPS_ID" />
+            <ScalarProperty Name="ISCONNECTED" ColumnName="ISCONNECTED" />
+            <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblSensor_Values"><EntityTypeMapping TypeName="SSHMC01Model.tblSensor_Values"><MappingFragment StoreEntitySet="tblSensor_Values">
+            <ScalarProperty Name="CONVERTFORMULA" ColumnName="CONVERTFORMULA" />
+                <ScalarProperty Name="MEANTHRESHOLD" ColumnName="MEANTHRESHOLD" />
+                <ScalarProperty Name="INITMEAN" ColumnName="INITMEAN" />
+                <ScalarProperty Name="SIGMA" ColumnName="SIGMA" />
+                <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+            <ScalarProperty Name="VALUE_ID" ColumnName="VALUE_ID" />
+            <ScalarProperty Name="DESC" ColumnName="DESC" />
+            <ScalarProperty Name="OFFSET" ColumnName="OFFSET" />
+            <ScalarProperty Name="COEFFICIENT" ColumnName="COEFFICIENT" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblSite"><EntityTypeMapping TypeName="SSHMC01Model.tblSite"><MappingFragment StoreEntitySet="tblSite">
+            <ScalarProperty Name="N3_CONTENT" ColumnName="N3_CONTENT" />
+                <ScalarProperty Name="ENGINEER" ColumnName="ENGINEER" />
+                <ScalarProperty Name="AREA_ID" ColumnName="AREA_ID" />
+                <ScalarProperty Name="COUNTY_ID" ColumnName="COUNTY_ID" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="CONTRACT_TERMINATION" ColumnName="CONTRACT_TERMINATION" />
+                <ScalarProperty Name="CONTRACT_START" ColumnName="CONTRACT_START" />
+                <ScalarProperty Name="UNDER_STORIED" ColumnName="UNDER_STORIED" />
+                <ScalarProperty Name="ON_STORIED" ColumnName="ON_STORIED" />
+                <ScalarProperty Name="STRUCT_TYPE_ID" ColumnName="STRUCT_TYPE_ID" />
+                <ScalarProperty Name="BUILDING_TYPE_ID" ColumnName="BUILDING_TYPE_ID" />
+                <ScalarProperty Name="SITE_NO" ColumnName="SITE_NO" />
+                <ScalarProperty Name="CUSTROMER_ID" ColumnName="CUSTROMER_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+            <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
+            <ScalarProperty Name="SITE_ADDRESS" ColumnName="SITE_ADDRESS" />
+            <ScalarProperty Name="ENVIRONMENT" ColumnName="ENVIRONMENT" />
+            <ScalarProperty Name="X" ColumnName="X" />
+            <ScalarProperty Name="Y" ColumnName="Y" />
+            <ScalarProperty Name="MIN_X" ColumnName="MIN_X" />
+            <ScalarProperty Name="MIN_Y" ColumnName="MIN_Y" />
+            <ScalarProperty Name="MAX_X" ColumnName="MAX_X" />
+            <ScalarProperty Name="MAX_Y" ColumnName="MAX_Y" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblTC"><EntityTypeMapping TypeName="SSHMC01Model.tblTC"><MappingFragment StoreEntitySet="tblTC">
+            <ScalarProperty Name="LATEST_UPDATE" ColumnName="LATEST_UPDATE" />
+                <ScalarProperty Name="CONNECTIONSTATUSLOG_ID" ColumnName="CONNECTIONSTATUSLOG_ID" />
+                <ScalarProperty Name="INTERNAL_PORT" ColumnName="INTERNAL_PORT" />
+                <ScalarProperty Name="INTERNALL_IP" ColumnName="INTERNALL_IP" />
+                <ScalarProperty Name="CONTROLLER_ID" ColumnName="CONTROLLER_ID" />
+            <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+            <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+            <ScalarProperty Name="ISCONNECTED" ColumnName="ISCONNECTED" />
+            <ScalarProperty Name="IP" ColumnName="IP" />
+            <ScalarProperty Name="PORT" ColumnName="PORT" />
+            <ScalarProperty Name="DEVICE_TYPE" ColumnName="DEVICE_TYPE" />
+            <ScalarProperty Name="BUILD_DATE" ColumnName="BUILD_DATE" />
+            <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+            <ScalarProperty Name="HW_STATUS_1" ColumnName="HW_STATUS_1" />
+            <ScalarProperty Name="HW_STATUS_2" ColumnName="HW_STATUS_2" />
+            <ScalarProperty Name="HW_STATUS_3" ColumnName="HW_STATUS_3" />
+            <ScalarProperty Name="HW_STATUS_4" ColumnName="HW_STATUS_4" />
+            <ScalarProperty Name="ENABLE" ColumnName="ENABLE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblTC_Box"><EntityTypeMapping TypeName="SSHMC01Model.tblTC_Box"><MappingFragment StoreEntitySet="tblTC_Box">
+            <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+                <ScalarProperty Name="TC_BOX_ID" ColumnName="TC_BOX_ID" />
+            <ScalarProperty Name="X" ColumnName="X" />
+            <ScalarProperty Name="Y" ColumnName="Y" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblTC_Restore"><EntityTypeMapping TypeName="SSHMC01Model.tblTC_Restore"><MappingFragment StoreEntitySet="tblTC_Restore">
+            <ScalarProperty Name="CONTROLLER_ID" ColumnName="CONTROLLER_ID" />
+            <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+            <ScalarProperty Name="TRYCNT" ColumnName="TRYCNT" />
+            <ScalarProperty Name="ISFINSH" ColumnName="ISFINSH" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblTC10MinDataLog"><EntityTypeMapping TypeName="SSHMC01Model.tblTC10MinDataLog"><MappingFragment StoreEntitySet="tblTC10MinDataLog">
+            <ScalarProperty Name="IS_REPAIR" ColumnName="IS_REPAIR" />
+                <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+            <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+            <ScalarProperty Name="VALUE0" ColumnName="VALUE0" />
+            <ScalarProperty Name="VALUE1" ColumnName="VALUE1" />
+            <ScalarProperty Name="VALUE2" ColumnName="VALUE2" />
+            <ScalarProperty Name="DEGREE" ColumnName="DEGREE" />
+            <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
+            <ScalarProperty Name="EXECUTION_MODE" ColumnName="EXECUTION_MODE" />
+            <ScalarProperty Name="CONTROLLER_ID" ColumnName="CONTROLLER_ID" />
+            <ScalarProperty Name="VALUE_CNT" ColumnName="VALUE_CNT" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblCCTV">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblCCTV">
+              <MappingFragment StoreEntitySet="tblCCTV">
+                <ScalarProperty Name="REF_CCTV_ID" ColumnName="REF_CCTV_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ROTATION" ColumnName="ROTATION" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+                <ScalarProperty Name="CCTV_ID" ColumnName="CCTV_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSensorDegree">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwSensorDegree">
+              <MappingFragment StoreEntitySet="vwSensorDegree">
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+                <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
+                <ScalarProperty Name="VALUE2" ColumnName="VALUE2" />
+                <ScalarProperty Name="VALUE1" ColumnName="VALUE1" />
+                <ScalarProperty Name="VALUE0" ColumnName="VALUE0" />
+                <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
+                <ScalarProperty Name="SENSOR_TYPE" ColumnName="SENSOR_TYPE" />
+                <ScalarProperty Name="EXCUTION_MODE" ColumnName="EXCUTION_MODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ISCONNECTED" ColumnName="ISCONNECTED" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="SENSOR_NAME" ColumnName="SENSOR_NAME" />
+                <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSiteDegree">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwSiteDegree">
+              <MappingFragment StoreEntitySet="vwSiteDegree">
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
+                <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
+                <ScalarProperty Name="MAX_Y" ColumnName="MAX_Y" />
+                <ScalarProperty Name="MAX_X" ColumnName="MAX_X" />
+                <ScalarProperty Name="MIN_Y" ColumnName="MIN_Y" />
+                <ScalarProperty Name="MIN_X" ColumnName="MIN_X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="ENVIRONMENT" ColumnName="ENVIRONMENT" />
+                <ScalarProperty Name="SITE_ADDRESS" ColumnName="SITE_ADDRESS" />
+                <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSensorValuesAndTC10MinDataLog">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwSensorValuesAndTC10MinDataLog">
+              <MappingFragment StoreEntitySet="vwSensorValuesAndTC10MinDataLog">
+                <ScalarProperty Name="initmean2" ColumnName="initmean2" />
+                <ScalarProperty Name="sigma2" ColumnName="sigma2" />
+                <ScalarProperty Name="initmean1" ColumnName="initmean1" />
+                <ScalarProperty Name="sigma1" ColumnName="sigma1" />
+                <ScalarProperty Name="initmean0" ColumnName="initmean0" />
+                <ScalarProperty Name="signama0" ColumnName="signama0" />
+                <ScalarProperty Name="IS_REPAIR" ColumnName="IS_REPAIR" />
+                <ScalarProperty Name="VALUE_CNT" ColumnName="VALUE_CNT" />
+                <ScalarProperty Name="CONTROLLER_ID" ColumnName="CONTROLLER_ID" />
+                <ScalarProperty Name="EXECUTION_MODE" ColumnName="EXECUTION_MODE" />
+                <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
+                <ScalarProperty Name="VALUE2" ColumnName="VALUE2" />
+                <ScalarProperty Name="DEGREE" ColumnName="DEGREE" />
+                <ScalarProperty Name="VALUE1" ColumnName="VALUE1" />
+                <ScalarProperty Name="VALUE0" ColumnName="VALUE0" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="URI_CODE" ColumnName="URI_CODE" />
+                <ScalarProperty Name="USER_MAIL" ColumnName="USER_MAIL" />
+                <ScalarProperty Name="USER_ADDRESS" ColumnName="USER_ADDRESS" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="MOBLE" ColumnName="MOBLE" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ROLES" ColumnName="ROLES" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_PW" ColumnName="USER_PW" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserLogin">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblUserLogin">
+              <MappingFragment StoreEntitySet="tblUserLogin">
+                <ScalarProperty Name="ENTRANCE" ColumnName="ENTRANCE" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPre_disasterNotified">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblPre_disasterNotified">
+              <MappingFragment StoreEntitySet="tblPre_disasterNotified">
+                <ScalarProperty Name="DISASTER_NAME" ColumnName="DISASTER_NAME" />
+                <ScalarProperty Name="ISREPORT" ColumnName="ISREPORT" />
+                <ScalarProperty Name="AFTER_TIMESTAMP" ColumnName="AFTER_TIMESTAMP" />
+                <ScalarProperty Name="PRE_TIMESTAMP" ColumnName="PRE_TIMESTAMP" />
+                <ScalarProperty Name="NOTIFIED_TIME" ColumnName="NOTIFIED_TIME" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ISSEND" ColumnName="ISSEND" />
+                <ScalarProperty Name="PRE_ADMONISH_CLASS" ColumnName="PRE_ADMONISH_CLASS" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="PUBLISH_ORANG" ColumnName="PUBLISH_ORANG" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="IDENTIFIED_ID" ColumnName="IDENTIFIED_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DB" ZoomLevel="64">
+        <EntityTypeShape EntityType="SSHMC01Model.tblHOST_Config" Width="1.5" PointX="1.5" PointY="2.875" Height="1.9802864583333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblMFCC_Config" Width="1.5" PointX="3.75" PointY="2.625" Height="2.5571907552083335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblRules" Width="1.5" PointX="12.75" PointY="3" Height="3.1340950520833317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblSensor" Width="1.5" PointX="8.25" PointY="4.375" Height="4.2879036458333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblSensor_Values" Width="1.5" PointX="8.75" PointY="1.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblSite" Width="1.5" PointX="0.75" PointY="6.25" Height="3.3263964843749996" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblTC" Width="1.5" PointX="6" PointY="5.625" Height="4.4802050781250031" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblTC_Box" Width="1.5" PointX="1.5" PointY="0.5" Height="1.9802864583333339" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblTC_Restore" Width="1.5" PointX="8.25" PointY="10.75" Height="1.9802864583333317" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblTC10MinDataLog" Width="1.5" PointX="10.5" PointY="6.875" Height="3.1340950520833317" IsExpanded="true" />
+        <AssociationConnector Association="SSHMC01Model.FK_tblMFCCCONFIG_tblHOSTCONFIG1" ManuallyRouted="false">
+          <ConnectorPoint PointX="3" PointY="3.8651432291666667" />
+          <ConnectorPoint PointX="3.75" PointY="3.8651432291666667" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_tblTC_tblMFCCCONFIG" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.25" PointY="4.1797900390625005" />
+          <ConnectorPoint PointX="7.34375" PointY="4.1797900390625005" />
+          <ConnectorPoint PointX="7.34375" PointY="5.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_tblRules_tblSensor_Values" ManuallyRouted="false">
+          <ConnectorPoint PointX="10.25" PointY="3.49974609375" />
+          <ConnectorPoint PointX="12.75" PointY="3.49974609375" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_tblSensor_Values_tblSensor1" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.25" PointY="4.375" />
+          <ConnectorPoint PointX="9.25" PointY="3.9994921875" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_TblTC10mindatalog_tblSensor" ManuallyRouted="false">
+          <ConnectorPoint PointX="9.75" PointY="8.2497054036458337" />
+          <ConnectorPoint PointX="10.5" PointY="8.2497054036458337" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_tblTiltSensor_tblTC" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.5" PointY="7.6247054036458328" />
+          <ConnectorPoint PointX="8.25" PointY="7.6247054036458328" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_tblTC_tblSite" ManuallyRouted="false">
+          <ConnectorPoint PointX="2.25" PointY="9.5910953776041659" />
+          <ConnectorPoint PointX="6" PointY="9.5910953776041659" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_tblTCrestore_tblTC" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.4999999999999982" PointY="10.874410807291666" />
+          <ConnectorPoint PointX="7.875" PointY="11.249410807291667" />
+          <ConnectorPoint PointX="7.875" PointY="10.375" />
+          <ConnectorPoint PointX="8.25" PointY="10.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_tblTC_Box_tblSite" >
+          <ConnectorPoint PointX="1.1249995" PointY="6.25" />
+          <ConnectorPoint PointX="1.1249995" PointY="1.4901432291666668" />
+          <ConnectorPoint PointX="1.5" PointY="1.4901432291666668" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SSHMC01Model.tblCCTV" Width="1.5" PointX="3" PointY="6.75" Height="2.5571907552083317" />
+        <AssociationConnector Association="SSHMC01Model.FK_tblCCTV_tblSite" >
+          <ConnectorPoint PointX="2.25" PointY="8.0285953776041659" />
+          <ConnectorPoint PointX="3" PointY="8.0285953776041659" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SSHMC01Model.vwSensorDegree" Width="1.5" PointX="3.125" PointY="9.875" Height="3.5186979166666656" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSiteDegree" Width="1.5" PointX="0.75" PointY="10.75" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSensorValuesAndTC10MinDataLog" Width="1.5" PointX="5.125" PointY="11.125" Height="4.2879036458333388" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblUser" Width="1.5" PointX="2.75" PointY="14.25" Height="3.1340950520833388" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblUserLogin" Width="1.5" PointX="11.375" PointY="0.75" Height="1.4033821614583388" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblPre_disasterNotified" Width="1.5" PointX="2.0374122215609125" PointY="18.509864458120365" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>WinRTXamlToolkit.Controls.Calendar</id>
+    <version>1.5.3.0</version>
+    <title>WinRT XAML Toolkit - Calendar Control</title>
+    <authors>Filip Skakun,  Silverlight Toolkit Team</authors>
+    <owners>Filip Skakun,  Silverlight Toolkit Team</owners>
+    <licenseUrl>http://winrtxamltoolkit.codeplex.com/license</licenseUrl>
+    <projectUrl>http://winrtxamltoolkit.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Calendar control for Windows 8.0 and 8.1, ported from the Silverlight Toolkit.</description>
+    <releaseNotes>Calendar control for Windows 8.0 and 8.1, ported from the Silverlight Toolkit.
+
+      See also
+      - WinRTXamlToolkit for other controls and tools
+      - WinRTXamlToolkit.Composition for helpers for rendering the XAML UI into a bitmap
+      - WinRTXamlToolkit.Controls.DataVisualization for data visualization controls/charts
+      - WinRTXamlToolkit.Debugging for visual tree debugger and other debugging helpers</releaseNotes>
+    <copyright />
+    <language>en-US</language>
+    <tags>winrt xaml toolkit winrtxamltoolkit xyzzer calendar</tags>
+  </metadata>
+</package>

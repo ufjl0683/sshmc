@@ -1,0 +1,486 @@
+﻿<common:LayoutAwarePage
+    x:Class="sshmc.MainPage"
+     x:Name="pageRoot"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:sshmc"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+             xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+             xmlns:ed="http://schemas.microsoft.com/expression/2010/drawing" 
+    xmlns:common="using:sshmc.Common"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Storyboard x:Name="Storyboard1" AutoReverse="True" RepeatBehavior="Forever">
+            <DoubleAnimation Duration="0:0:1" To="114.408" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-15.197" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-0.066" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path1" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="43.421" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path1" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="76.316" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path2" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="8.671" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path2" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-96.013" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path3" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="77.815" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path3" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="74.342" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path4" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="21.52" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path4" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="25" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path5" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="38.816" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path5" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="33.389" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path6" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-21.053" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path6" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-46.052" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path7" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-16.982" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path7" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="32.895" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path8" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-43.092" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path8" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="76.645" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path9" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-22.204" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path9" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-211.623" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path10" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-0.658" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path10" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-65.434" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path11" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="11.414" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path11" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="26.844" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path12" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="0.191" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path12" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="53.717" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path13" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="31.066" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path13" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="161.184" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path14" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-1.974" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path14" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="80.921" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="path15" d:IsOptimized="True"/>
+            <DoubleAnimation Duration="0:0:1" To="-0.599" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="path15" d:IsOptimized="True"/>
+        </Storyboard>
+    </Page.Resources>
+
+    <!--<i:Interaction.Triggers>
+        <i:EventTrigger>
+            <ei:ControlStoryboardAction Storyboard="{StaticResource Storyboard1}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>-->
+    <Grid x:Name="grid1" Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Viewbox x:Name="viewbox" Margin="52,36,55,0" Stretch="Fill">
+            <Canvas x:Name="canvas" Width="1000" Height="625">
+                <Canvas.Background>
+                    <ImageBrush Stretch="Fill" ImageSource="Images/final.png"/>
+                </Canvas.Background>
+                <Grid x:Name="InputTextGrid" Height="139" Canvas.Top="341" Width="224">
+                    <TextBlock Height="23" Margin="50,0,55,0" TextWrapping="Wrap" Text="使用者登入" VerticalAlignment="Top" FontFamily="Arial Black" FontWeight="Bold" FontSize="16" Foreground="#FF291DBE" TextAlignment="Center"/>
+                </Grid>
+                <TextBlock x:Name="textBlock" Height="23" Canvas.Left="84" TextWrapping="Wrap" Text="帳號" Canvas.Top="372" Width="41" TextAlignment="Center" FontFamily="Arial Black" FontWeight="Bold" FontSize="16" Foreground="#FF291DBE"/>
+                <TextBlock x:Name="textBlock1" Height="23" Canvas.Left="84" TextWrapping="Wrap" Text="密碼" Canvas.Top="413" Width="41" TextAlignment="Center" FontFamily="Arial Black" FontWeight="Bold" FontSize="16" Foreground="#FF291DBE"/>
+                <TextBox x:Name="txtAccount" Height="23" Canvas.Left="125" TextWrapping="Wrap" Canvas.Top="369" Width="149"/>
+
+                <PasswordBox x:Name="txtpwd" Height="23" Canvas.Left="125"  Canvas.Top="406" Width="149"/>
+                <Button x:Name="button" Content="登入" Height="39" Canvas.Left="120" Canvas.Top="443" Width="66" FontSize="12" FontFamily="Arial Black" Foreground="#FF111111" Click="Button_Click"/>
+                <Button x:Name="button1" Content="忘記帳號密" Height="37" Canvas.Left="191" Canvas.Top="443" Width="95" FontSize="12" FontFamily="Arial Black" Foreground="#FF151414"/>
+                <Grid x:Name="grid" Height="370" Canvas.Left="344" Canvas.Top="114" Width="589">
+                    <Grid.Background>
+                        <ImageBrush Stretch="Fill" ImageSource="Images/frame0004.png"/>
+                    </Grid.Background>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Height="16" Margin="36,84,0,0" Stroke="#FFCCCCCC" VerticalAlignment="Top" Width="13"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Height="16" Margin="62,81,0,0" Stroke="#FFCCCCCC" VerticalAlignment="Top" Width="13"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Height="16" Margin="84,81,0,0" Stroke="#FFCCCCCC" VerticalAlignment="Top" Width="13"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Height="16" Margin="245,45,0,0" Stroke="#FFCCCCCC" VerticalAlignment="Top" Width="13"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Height="16" Margin="273,45,0,0" Stroke="#FFCCCCCC" VerticalAlignment="Top" Width="13"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Right" Margin="0,181,195,173" Stroke="#FFCCCCCC" Width="13"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Margin="157,178,0,176" Stroke="#FFCCCCCC" Width="13"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Margin="43,0,0,121" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Bottom"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Margin="99,0,0,28" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Bottom"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Margin="125,0,0,130" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Bottom"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Left" Margin="213,0,0,99" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Bottom"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Right" Margin="0,0,139,143" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Bottom"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Right" Margin="0,102,141,0" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Top"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Right" Margin="0,103,52,0" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Top"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Right" Margin="0,0,53,144" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Bottom"/>
+                    <Ellipse Fill="#FFCCCCCC" HorizontalAlignment="Right" Margin="0,0,37,24" Stroke="#FFCCCCCC" Width="13" Height="16" VerticalAlignment="Bottom"/>
+                    <Path Data="M4.5000038,0.5 L80.5,0.5 L80.5,25.499998 L82.5,25.499998 L82.5,38.5 L0.5,38.5 L0.5,25.499998 L4.5000038,25.499998 z" Fill="#FFCCCCCC" Height="39" Margin="248.875,0,257.125,110.625" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Bottom"/>
+                    <Path Data="M41.526306,91.921051 L25.736832,211" HorizontalAlignment="Left" Margin="25.737,91.921,0,158" Stretch="Fill" UseLayoutRounding="False" Width="16.789" StrokeThickness="2" Stroke="#FF371EE9"/>
+                    <Path Data="M118.49999,60.342102 L176.39847,60.342102" HorizontalAlignment="Left" Height="2" Margin="44.473,109.678,0,0" Stretch="Fill" Stroke="#FF371EE9" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Top" Width="48.058" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="90"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Data="M118.49999,60.342102 L176.39847,60.342102" HorizontalAlignment="Left" Height="2" Margin="57.549,129.225,0,0" Stretch="Fill" Stroke="#FF371EE9" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Top" Width="76.857" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="82.749"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path Data="M251.39473,65.000008 L157,141.26315" HorizontalAlignment="Left" Height="78.263" Margin="152.711,57.421,0,0" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Top" Width="96.395"/>
+                    <Path Data="M277.05261,51.789471 L300.07895,129.42105" HorizontalAlignment="Left" Height="79.632" Margin="276.053,50.789,0,0" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Top" Width="25.026"/>
+                    <Path Data="M441.52631,105.73684 L470.47366,149.81578" HorizontalAlignment="Right" Height="46.079" Margin="0,104.737,117.526,0" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Top" Width="30.948"/>
+                    <Path Data="M529.6842,107.05263 L507.31577,141.92105" HorizontalAlignment="Right" Height="36.868" Margin="0,106.053,58.316,0" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Top" Width="24.368"/>
+                    <Path Data="M528.36841,219.55263 L509.94736,168.89473" HorizontalAlignment="Right" Margin="0,167.895,59.632,149.447" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" Width="20.421"/>
+                    <Path Data="M442.8421,220.55299 L477.71051,175.47368" HorizontalAlignment="Right" Margin="0,174.474,110.289,148.447" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" Width="36.869"/>
+                    <Path Data="M385.60526,187.31578 L466.52631,164.28947" HorizontalAlignment="Right" Margin="0,163.289,121.474,181.684" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" Width="82.921"/>
+                    <Path Data="M219.15788,262.3158 L148.10526,274.8158" HorizontalAlignment="Left" Height="14.5" Margin="147.105,0,0,94.184" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="73.053"/>
+                    <Path Data="M132.31578,227 L132.31578,259.6842" HorizontalAlignment="Left" Height="34.684" Margin="131.316,0,0,109.316" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="2"/>
+                    <Path Data="M49.000019,243.23683 L104.02631,275.81604" HorizontalAlignment="Left" Height="34.579" Margin="48,0,0,93.184" Stretch="Fill" Stroke="#FFE91E3A" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="57.026"/>
+                    <Path Data="M105.02599,337.3158 L268.5,335.3421" HorizontalAlignment="Left" Height="3.974" Margin="104.026,0,0,31.684" Stretch="Fill" Stroke="#FF105019" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="165.474"/>
+                    <Path Data="M546.13159,338.31601 L331.65787,337.97366" HorizontalAlignment="Right" Height="2.342" Margin="0,0,41.868,30.684" Stretch="Fill" Stroke="#FF105019" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="216.474"/>
+                    <Rectangle Fill="#FFCCCCCC" HorizontalAlignment="Right" Height="7" Margin="0,0,197,124" VerticalAlignment="Bottom" Width="46"/>
+                    <Path Data="M263.89471,135.68399 L286,181.39473" HorizontalAlignment="Left" Height="50.781" Margin="257.382,128.517,0,0" Stretch="Fill" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Top" Width="23.666">
+                        <Path.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1300FF" Offset="1"/>
+                                <GradientStop Color="#FFCCCCCC"/>
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <Path Data="M360.60526,139.94736 L334.28946,182.39502" HorizontalAlignment="Right" Height="44.448" Margin="0,136.166,243.403,0" Stretch="Fill" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Top" Width="28.316">
+                        <Path.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1300FF" Offset="1"/>
+                                <GradientStop Color="#FFCCCCCC"/>
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <Path Data="M384.60501,188.31599 L347.44736,205.07895" HorizontalAlignment="Right" Height="19.639" Margin="0,0,203.395,163.045" Stretch="Fill" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="41.023">
+                        <Path.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1300FF" Offset="1"/>
+                                <GradientStop Color="#FFCCCCCC"/>
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <Path Data="M367.1842,258.36841 L333.28897,239.94736" HorizontalAlignment="Right" Height="21.298" Margin="0,0,202.821,105.162" Stretch="Fill" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="41.597">
+                        <Path.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1300FF"/>
+                                <GradientStop Color="#FFCCCCCC" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <Path Data="M336.92105,293.23685 L312.57895,261.31601" HorizontalAlignment="Right" Height="19.61" Margin="0,0,251.957,79.272" Stretch="Fill" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="19.762">
+                        <Path.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1300FF"/>
+                                <GradientStop Color="#FFCCCCCC" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <Path Data="M266.52631,296.52631 L286,261.31601" HorizontalAlignment="Left" Height="21.092" Margin="256.175,0,0,77.79" Stretch="Fill" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="22.461">
+                        <Path.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1300FF"/>
+                                <GradientStop Color="#FFCCCCCC" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <Path Data="M220.15802,261.31601 L252.05261,242.23698" HorizontalAlignment="Left" Height="18.776" Margin="219.158,0,0,107.684" Stretch="Fill" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="33.017">
+                        <Path.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1300FF"/>
+                                <GradientStop Color="#FFCCCCCC" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <Path Data="M220.15802,194.00002 L258,208.36841" HorizontalAlignment="Left" Height="16.368" Margin="212.333,0,0,162.632" Stretch="Fill" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="39.842">
+                        <Path.Stroke>
+                            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                                <GradientStop Color="#FF1300FF" Offset="1"/>
+                                <GradientStop Color="#FFCCCCCC"/>
+                            </LinearGradientBrush>
+                        </Path.Stroke>
+                    </Path>
+                    <!--<ed:RegularPolygon InnerRadius="1" Margin="247.262,172.319,239.518,92.454" PointCount="8" Stretch="Fill" Stroke="#FF1E0DFB" StrokeThickness="2" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5">
+                        <ed:RegularPolygon.RenderTransform>
+                            <CompositeTransform Rotation="-112.347"/>
+                        </ed:RegularPolygon.RenderTransform>
+                    </ed:RegularPolygon>-->
+                    <Path Data="M164.55263,186 L249.10599,185.01315" HorizontalAlignment="Left" Height="2.987" Margin="163.553,0,0,183" Stretch="Fill" Stroke="#FF105019" StrokeThickness="2" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="86.553"/>
+                    <Path x:Name="path" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Height="9.306" Margin="38.312,87.679,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path1" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Height="9.306" Margin="64.189,82.635,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path2" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Height="9.306" Margin="86.996,84.389,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path3" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Height="9.306" Margin="245.001,53.249,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="51.236"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path4" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" Height="9.306" Margin="273.776,47.986,0,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="8.073">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="-21.296"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path5" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Right" Height="9.306" Margin="0,102.769,141.738,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="-37.271"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path13" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Height="9.306" Margin="45.768,0,0,121.041" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="126.037"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path12" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Height="9.306" Margin="128.444,0,0,136.694" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Bottom" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path11" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Margin="213.75,0,0,102.62" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" Width="8.073" Height="9.306" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="75.574"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path9" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Right" Margin="0,182.775,198.088,177.919" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="72.766"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path15" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Margin="161.558,180.881,0,179.813" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="90"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path8" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Right" Margin="0,0,142.615,143.958" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" Width="8.073" Height="9.306" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="35.687"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path7" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Right" Margin="0,0,56.869,146.918" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" Width="8.073" Height="9.306" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="-26.328"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path10" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Right" Margin="0,0,39.763,26.982" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" Width="8.073" Height="9.306" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="85.113"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path14" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Left" Margin="101.471,0,0,28.058" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" Width="8.073" Height="9.306" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="90"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <Path x:Name="path6" Data="M38.812489,91.016441 L42.883694,88.179733 L45.885704,91.674728 L42.966064,91.46949 L42.760464,93.936592 L45.227646,93.977577 L41.896954,96.485718 L39.224174,93.81324 L41.444637,93.895477 L41.691353,90.934952 z" Fill="Black" HorizontalAlignment="Right" Height="9.306" Margin="0,101.934,55.334,0" Stretch="Fill" Stroke="Black" UseLayoutRounding="False" VerticalAlignment="Top" Width="8.073" RenderTransformOrigin="0.5,0.5">
+                        <Path.RenderTransform>
+                            <CompositeTransform Rotation="21.805"/>
+                        </Path.RenderTransform>
+                    </Path>
+                    <TextBlock Height="39" Margin="268,0,258,113" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="9.333" FontFamily="Arial Black" TextAlignment="Center" FontWeight="Bold" Foreground="#FF1E0DFB"><Run Text="中國科技大學"/><LineBreak/><Run Text="結構物"/><LineBreak/><Run Text="安全與防災中心"/></TextBlock>
+                    <TextBlock HorizontalAlignment="Right" Height="17" Margin="0,0,62,12" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="159" FontFamily="Arial Black" FontSize="13.333" FontWeight="Bold" Text="安全與防災監控系統" Foreground="#FFFF315B"/>
+                    <TextBlock HorizontalAlignment="Left" Height="8" Margin="247,0,0,101" TextWrapping="Wrap" Text="土木" VerticalAlignment="Bottom" Width="14" FontSize="6.667" FontFamily="Arial Black" FontWeight="Bold" Foreground="#FF2A2ACC"/>
+                    <TextBlock HorizontalAlignment="Right" Height="7" Margin="0,0,196,126" TextWrapping="Wrap" Text="救災重機支援組" VerticalAlignment="Bottom" Width="38" FontSize="5.333" Foreground="#FF8F6364" FontFamily="Arial Black" FontWeight="Bold"/>
+                    <TextBlock HorizontalAlignment="Right" Margin="0,161,232,176" TextWrapping="Wrap" Text="CCCTAFLAB" Width="17" FontFamily="Arial Black" FontWeight="Bold" FontSize="6.667" Foreground="#FF2616F9"/>
+                </Grid>
+                <Image x:Name="image" Source="Images/Title.png" Stretch="Fill" Height="151" Width="282" Canvas.Left="39" Canvas.Top="159" Visibility="Collapsed"/>
+            </Canvas>
+        </Viewbox>
+        <VisualStateManager.VisualStateGroups>
+
+            <!-- 視覺狀態會反映應用程式的檢視狀態 -->
+            <VisualStateGroup x:Name="ApplicationViewStates">
+        		<VisualState x:Name="FullScreenLandscape"/>
+        		<VisualState x:Name="Filled"/>
+
+                <!-- 上一頁按鈕縱向採用較窄的 100 像素邊界慣例 -->
+        		<VisualState x:Name="FullScreenPortrait"/>
+
+                <!-- 上一頁按鈕和標題在快照時具有不同的樣式-->
+        		<VisualState x:Name="Snapped">
+                   
+        			<Storyboard>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<Visibility>Collapsed</Visibility>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Viewbox.Stretch)" Storyboard.TargetName="viewbox">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<Stretch>None</Stretch>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="canvas">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<HorizontalAlignment>Stretch</HorizontalAlignment>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="canvas">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<VerticalAlignment>Stretch</VerticalAlignment>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="viewbox">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<Thickness>52,10,42,0</Thickness>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="canvas">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>1334</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="canvas">
+        					<DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="InputTextGrid">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>10</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="InputTextGrid">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>345</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="textBlock">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>20</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="textBlock">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>376</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="textBlock1">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>20</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="textBlock1">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>417</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="txtAccount">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>61</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="txtAccount">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>373</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="txtpwd">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>61</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="txtpwd">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>410</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="button">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>56</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="button">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>447</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="button1">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>127</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="button1">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>447</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="canvas">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>743</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="grid1">
+        					<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource CheckBoxContentForegroundThemeBrush}"/>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ColorAnimation Duration="0" To="#FF060606" Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="txtAccount" d:IsOptimized="True"/>
+        				<ColorAnimation Duration="0" To="#FF0E0D0D" Storyboard.TargetProperty="(Control.BorderBrush).(SolidColorBrush.Color)" Storyboard.TargetName="txtpwd" d:IsOptimized="True"/>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="image">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<Visibility>Visible</Visibility>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Left)" Storyboard.TargetName="image">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>20</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Canvas.Top)" Storyboard.TargetName="image">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>245</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="image">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>200</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        				<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Height)" Storyboard.TargetName="image">
+        					<DiscreteObjectKeyFrame KeyTime="0">
+        						<DiscreteObjectKeyFrame.Value>
+        							<x:Double>100</x:Double>
+        						</DiscreteObjectKeyFrame.Value>
+        					</DiscreteObjectKeyFrame>
+        				</ObjectAnimationUsingKeyFrames>
+        			</Storyboard>
+                   
+        		</VisualState>
+        	</VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+    </Grid>
+</common:LayoutAwarePage>

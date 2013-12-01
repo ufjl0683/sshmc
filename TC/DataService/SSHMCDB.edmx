@@ -1,0 +1,942 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SSHMC01Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SSHMC01ModelStoreContainer">
+          <EntitySet Name="tblCCTV" EntityType="SSHMC01Model.Store.tblCCTV" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblCustomer" EntityType="SSHMC01Model.Store.tblCustomer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPre_disasterNotified" EntityType="SSHMC01Model.Store.tblPre_disasterNotified" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblReportNotified" EntityType="SSHMC01Model.Store.tblReportNotified" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSite" EntityType="SSHMC01Model.Store.tblSite" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblSurvey_Disaster" EntityType="SSHMC01Model.Store.tblSurvey_Disaster" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUser" EntityType="SSHMC01Model.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vwReportNotified" EntityType="SSHMC01Model.Store.vwReportNotified" store:Type="Views" store:Schema="dbo" store:Name="vwReportNotified">
+            <DefiningQuery>SELECT 
+      [vwReportNotified].[SITE_ID] AS [SITE_ID], 
+      [vwReportNotified].[DATATIME] AS [DATATIME], 
+      [vwReportNotified].[TYPE] AS [TYPE], 
+      [vwReportNotified].[URL] AS [URL], 
+      [vwReportNotified].[ISTOBA] AS [ISTOBA], 
+      [vwReportNotified].[CUSTROMER_ID] AS [CUSTROMER_ID], 
+      [vwReportNotified].[SITE_NAME] AS [SITE_NAME]
+      FROM [dbo].[vwReportNotified] AS [vwReportNotified]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSensorDegree" EntityType="SSHMC01Model.Store.vwSensorDegree" store:Type="Views" store:Schema="dbo" store:Name="vwSensorDegree">
+            <DefiningQuery>SELECT 
+      [vwSensorDegree].[SITE_ID] AS [SITE_ID], 
+      [vwSensorDegree].[SENSOR_ID] AS [SENSOR_ID], 
+      [vwSensorDegree].[SENSOR_NAME] AS [SENSOR_NAME], 
+      [vwSensorDegree].[X] AS [X], 
+      [vwSensorDegree].[Y] AS [Y], 
+      [vwSensorDegree].[ISCONNECTED] AS [ISCONNECTED], 
+      [vwSensorDegree].[ID] AS [ID], 
+      [vwSensorDegree].[EXCUTION_MODE] AS [EXCUTION_MODE], 
+      [vwSensorDegree].[SENSOR_TYPE] AS [SENSOR_TYPE], 
+      [vwSensorDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
+      [vwSensorDegree].[VALUE0] AS [VALUE0], 
+      [vwSensorDegree].[VALUE1] AS [VALUE1], 
+      [vwSensorDegree].[VALUE2] AS [VALUE2], 
+      [vwSensorDegree].[ISVALID] AS [ISVALID], 
+      [vwSensorDegree].[MFCC_ID] AS [MFCC_ID], 
+      [vwSensorDegree].[IsConfirmed] AS [IsConfirmed]
+      FROM [dbo].[vwSensorDegree] AS [vwSensorDegree]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSensorValuesAndTC10MinDataLog" EntityType="SSHMC01Model.Store.vwSensorValuesAndTC10MinDataLog" store:Type="Views" store:Schema="dbo" store:Name="vwSensorValuesAndTC10MinDataLog">
+            <DefiningQuery>SELECT 
+      [vwSensorValuesAndTC10MinDataLog].[SENSOR_ID] AS [SENSOR_ID], 
+      [vwSensorValuesAndTC10MinDataLog].[TIMESTAMP] AS [TIMESTAMP], 
+      [vwSensorValuesAndTC10MinDataLog].[VALUE0] AS [VALUE0], 
+      [vwSensorValuesAndTC10MinDataLog].[VALUE1] AS [VALUE1], 
+      [vwSensorValuesAndTC10MinDataLog].[DEGREE] AS [DEGREE], 
+      [vwSensorValuesAndTC10MinDataLog].[VALUE2] AS [VALUE2], 
+      [vwSensorValuesAndTC10MinDataLog].[ISVALID] AS [ISVALID], 
+      [vwSensorValuesAndTC10MinDataLog].[EXECUTION_MODE] AS [EXECUTION_MODE], 
+      [vwSensorValuesAndTC10MinDataLog].[CONTROLLER_ID] AS [CONTROLLER_ID], 
+      [vwSensorValuesAndTC10MinDataLog].[VALUE_CNT] AS [VALUE_CNT], 
+      [vwSensorValuesAndTC10MinDataLog].[IS_REPAIR] AS [IS_REPAIR], 
+      [vwSensorValuesAndTC10MinDataLog].[signama0] AS [signama0], 
+      [vwSensorValuesAndTC10MinDataLog].[initmean0] AS [initmean0], 
+      [vwSensorValuesAndTC10MinDataLog].[sigma1] AS [sigma1], 
+      [vwSensorValuesAndTC10MinDataLog].[initmean1] AS [initmean1], 
+      [vwSensorValuesAndTC10MinDataLog].[sigma2] AS [sigma2], 
+      [vwSensorValuesAndTC10MinDataLog].[initmean2] AS [initmean2]
+      FROM [dbo].[vwSensorValuesAndTC10MinDataLog] AS [vwSensorValuesAndTC10MinDataLog]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSiteDegree" EntityType="SSHMC01Model.Store.vwSiteDegree" store:Type="Views" store:Schema="dbo" store:Name="vwSiteDegree">
+            <DefiningQuery>SELECT 
+      [vwSiteDegree].[SITE_ID] AS [SITE_ID], 
+      [vwSiteDegree].[SITE_NAME] AS [SITE_NAME], 
+      [vwSiteDegree].[SITE_ADDRESS] AS [SITE_ADDRESS], 
+      [vwSiteDegree].[ENVIRONMENT] AS [ENVIRONMENT], 
+      [vwSiteDegree].[X] AS [X], 
+      [vwSiteDegree].[Y] AS [Y], 
+      [vwSiteDegree].[MIN_X] AS [MIN_X], 
+      [vwSiteDegree].[MIN_Y] AS [MIN_Y], 
+      [vwSiteDegree].[MAX_X] AS [MAX_X], 
+      [vwSiteDegree].[MAX_Y] AS [MAX_Y], 
+      [vwSiteDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
+      [vwSiteDegree].[CUSTOMER_NAME] AS [CUSTOMER_NAME], 
+      [vwSiteDegree].[CUSTOMER_ID] AS [CUSTOMER_ID]
+      FROM [dbo].[vwSiteDegree] AS [vwSiteDegree]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tblCCTV_tblSite" Association="SSHMC01Model.Store.FK_tblCCTV_tblSite">
+            <End Role="tblSite" EntitySet="tblSite" />
+            <End Role="tblCCTV" EntitySet="tblCCTV" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblSite_tblCustomer" Association="SSHMC01Model.Store.FK_tblSite_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblSite" EntitySet="tblSite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblCustomer" Association="SSHMC01Model.Store.FK_tblUser_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCCTV">
+          <Key>
+            <PropertyRef Name="CCTV_ID" />
+          </Key>
+          <Property Name="CCTV_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ROTATION" Type="float" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="50" />
+          <Property Name="REF_CCTV_ID" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="CUSTOMER_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="TELEPHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="100" />
+          <Property Name="MAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="SUB_CUSTOMER_IDS" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tblPre_disasterNotified">
+          <Key>
+            <PropertyRef Name="IDENTIFIED_ID" />
+          </Key>
+          <Property Name="IDENTIFIED_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="PUBLISH_ORANG" Type="nvarchar" MaxLength="50" />
+          <Property Name="CONTENT" Type="nvarchar" MaxLength="1500" />
+          <Property Name="PRE_ADMONISH_CLASS" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISSEND" Type="bit" Nullable="false" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+          <Property Name="NOTIFIED_TIME" Type="datetime" />
+          <Property Name="PRE_TIMESTAMP" Type="datetime" />
+          <Property Name="AFTER_TIMESTAMP" Type="datetime" />
+          <Property Name="ISREPORT" Type="tinyint" Nullable="false" />
+          <Property Name="DISASTER_NAME" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblReportNotified">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="DATATIME" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="DATATIME" Type="datetime" Nullable="false" />
+          <Property Name="TYPE" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ISTOBA" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblSite">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="CUSTROMER_ID" Type="int" Nullable="false" />
+          <Property Name="SITE_NO" Type="nvarchar" MaxLength="30" />
+          <Property Name="SITE_NAME" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="SITE_ADDRESS" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ENVIRONMENT" Type="nvarchar" MaxLength="4" />
+          <Property Name="BUILDING_TYPE_ID" Type="int" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="MIN_X" Type="float" />
+          <Property Name="MIN_Y" Type="float" />
+          <Property Name="MAX_X" Type="float" />
+          <Property Name="MAX_Y" Type="float" />
+          <Property Name="STRUCT_TYPE_ID" Type="int" />
+          <Property Name="ON_STORIED" Type="tinyint" />
+          <Property Name="UNDER_STORIED" Type="tinyint" />
+          <Property Name="CONTRACT_START" Type="nvarchar" MaxLength="10" />
+          <Property Name="CONTRACT_TERMINATION" Type="nvarchar" MaxLength="10" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="20" />
+          <Property Name="COUNTY_ID" Type="nvarchar" MaxLength="2" />
+          <Property Name="AREA_ID" Type="nvarchar" MaxLength="3" />
+          <Property Name="ENGINEER" Type="nvarchar" MaxLength="10" />
+          <Property Name="N3_CONTENT" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSurvey_Disaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SITE_ID" Type="nvarchar" MaxLength="30" />
+          <Property Name="N3_REPORT_ID" Type="nvarchar" MaxLength="2" />
+          <Property Name="BUILD_TIME" Type="datetime" Nullable="false" />
+          <Property Name="OCCUR_TIME" Type="datetime" Nullable="false" />
+          <Property Name="BUILD_USER" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="SITUATION_0" Type="tinyint" Nullable="false" />
+          <Property Name="SITUATION_1" Type="tinyint" Nullable="false" />
+          <Property Name="SITUATION_2" Type="int" Nullable="false" />
+          <Property Name="TYPE_0" Type="bit" Nullable="false" />
+          <Property Name="TYPE_1" Type="bit" Nullable="false" />
+          <Property Name="TYPE_2" Type="bit" Nullable="false" />
+          <Property Name="TYPE_3" Type="bit" Nullable="false" />
+          <Property Name="TYPE_4" Type="bit" Nullable="false" />
+          <Property Name="TYPE_5" Type="bit" Nullable="false" />
+          <Property Name="TYPE_6" Type="bit" Nullable="false" />
+          <Property Name="CASUALTIES_0" Type="int" Nullable="false" />
+          <Property Name="CASUALTIES_1" Type="int" Nullable="false" />
+          <Property Name="CASUALTIES_2" Type="int" Nullable="false" />
+          <Property Name="CASUALTIES_3" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="DAMAGED_ROADS" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="DAMAGED_ROADS_0" Type="tinyint" Nullable="false" />
+          <Property Name="DAMAGED_BRIDGE" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="DAMAGED_BRIDGE_0" Type="tinyint" Nullable="false" />
+          <Property Name="EVACUATION_0" Type="bit" Nullable="false" />
+          <Property Name="EVACUATION_1" Type="int" Nullable="false" />
+          <Property Name="PHOTO_PATH" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="USER_ POSITION_X" Type="float" />
+          <Property Name="USER_ POSITION_Y" Type="float" />
+          <Property Name="ISCHECK" Type="bit" />
+          <Property Name="ISCLOSE" Type="bit" />
+          <Property Name="PLACE_NAME" Type="nvarchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="USER_PW" Type="nvarchar" MaxLength="20" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="20" />
+          <Property Name="ROLES" Type="int" />
+          <Property Name="CUSTOMER_ID" Type="int" />
+          <Property Name="TELEPHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="MOBLE" Type="nvarchar" MaxLength="20" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="20" />
+          <Property Name="USER_ADDRESS" Type="nvarchar" MaxLength="100" />
+          <Property Name="USER_MAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="URI_CODE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwReportNotified' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwReportNotified">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="DATATIME" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="URL" />
+            <PropertyRef Name="CUSTROMER_ID" />
+            <PropertyRef Name="SITE_NAME" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="DATATIME" Type="datetime" Nullable="false" />
+          <Property Name="TYPE" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ISTOBA" Type="bit" />
+          <Property Name="CUSTROMER_ID" Type="int" Nullable="false" />
+          <Property Name="SITE_NAME" Type="nvarchar" Nullable="false" MaxLength="15" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSensorDegree' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSensorDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="ISCONNECTED" />
+            <PropertyRef Name="ISVALID" />
+            <PropertyRef Name="MFCC_ID" />
+            <PropertyRef Name="IsConfirmed" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="SENSOR_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ISCONNECTED" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="ID" Type="int" />
+          <Property Name="EXCUTION_MODE" Type="bit" />
+          <Property Name="SENSOR_TYPE" Type="nvarchar" MaxLength="20" />
+          <Property Name="CURRENT_DEGREE" Type="int" />
+          <Property Name="VALUE0" Type="float" />
+          <Property Name="VALUE1" Type="float" />
+          <Property Name="VALUE2" Type="float" />
+          <Property Name="ISVALID" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSensorValuesAndTC10MinDataLog' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSensorValuesAndTC10MinDataLog">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+            <PropertyRef Name="DEGREE" />
+            <PropertyRef Name="IS_REPAIR" />
+            <PropertyRef Name="signama0" />
+            <PropertyRef Name="initmean0" />
+            <PropertyRef Name="sigma1" />
+            <PropertyRef Name="initmean1" />
+            <PropertyRef Name="sigma2" />
+            <PropertyRef Name="initmean2" />
+          </Key>
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="datetime" Nullable="false" />
+          <Property Name="VALUE0" Type="float" />
+          <Property Name="VALUE1" Type="float" />
+          <Property Name="DEGREE" Type="tinyint" Nullable="false" />
+          <Property Name="VALUE2" Type="float" />
+          <Property Name="ISVALID" Type="char" MaxLength="1" />
+          <Property Name="EXECUTION_MODE" Type="bit" />
+          <Property Name="CONTROLLER_ID" Type="int" />
+          <Property Name="VALUE_CNT" Type="tinyint" />
+          <Property Name="IS_REPAIR" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="signama0" Type="float" Nullable="false" />
+          <Property Name="initmean0" Type="float" Nullable="false" />
+          <Property Name="sigma1" Type="float" Nullable="false" />
+          <Property Name="initmean1" Type="float" Nullable="false" />
+          <Property Name="sigma2" Type="float" Nullable="false" />
+          <Property Name="initmean2" Type="float" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSiteDegree' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSiteDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SITE_NAME" />
+            <PropertyRef Name="SITE_ADDRESS" />
+            <PropertyRef Name="ENVIRONMENT" />
+            <PropertyRef Name="X" />
+            <PropertyRef Name="Y" />
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SITE_NAME" Type="nvarchar" Nullable="false" MaxLength="15" />
+          <Property Name="SITE_ADDRESS" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ENVIRONMENT" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="X" Type="float" Nullable="false" />
+          <Property Name="Y" Type="float" Nullable="false" />
+          <Property Name="MIN_X" Type="float" />
+          <Property Name="MIN_Y" Type="float" />
+          <Property Name="MAX_X" Type="float" />
+          <Property Name="MAX_Y" Type="float" />
+          <Property Name="CURRENT_DEGREE" Type="int" />
+          <Property Name="CUSTOMER_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tblCCTV_tblSite">
+          <End Role="tblSite" Type="SSHMC01Model.Store.tblSite" Multiplicity="1" />
+          <End Role="tblCCTV" Type="SSHMC01Model.Store.tblCCTV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SITE_ID" />
+            </Principal>
+            <Dependent Role="tblCCTV">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblSite_tblCustomer">
+          <End Role="tblCustomer" Type="SSHMC01Model.Store.tblCustomer" Multiplicity="1" />
+          <End Role="tblSite" Type="SSHMC01Model.Store.tblSite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="tblSite">
+              <PropertyRef Name="CUSTROMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblCustomer">
+          <End Role="tblCustomer" Type="SSHMC01Model.Store.tblCustomer" Multiplicity="0..1" />
+          <End Role="tblUser" Type="SSHMC01Model.Store.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSHMC01Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SSHMC01Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblUser" EntityType="SSHMC01Model.tblUser" />
+          <EntitySet Name="vwSensorDegree" EntityType="SSHMC01Model.vwSensorDegree" />
+          <EntitySet Name="vwSiteDegree" EntityType="SSHMC01Model.vwSiteDegree" />
+          <EntitySet Name="tblCCTV" EntityType="SSHMC01Model.tblCCTV" />
+          <EntitySet Name="tblPre_disasterNotified" EntityType="SSHMC01Model.tblPre_disasterNotified" />
+          <EntitySet Name="tblReportNotified" EntityType="SSHMC01Model.tblReportNotified" />
+          <EntitySet Name="tblSite" EntityType="SSHMC01Model.tblSite" />
+          <AssociationSet Name="FK_tblCCTV_tblSite" Association="SSHMC01Model.FK_tblCCTV_tblSite">
+            <End Role="tblSite" EntitySet="tblSite" />
+            <End Role="tblCCTV" EntitySet="tblCCTV" />
+          </AssociationSet>
+          <EntitySet Name="tblCustomer" EntityType="SSHMC01Model.tblCustomer" />
+          <AssociationSet Name="FK_tblSite_tblCustomer" Association="SSHMC01Model.FK_tblSite_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblSite" EntitySet="tblSite" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUser_tblCustomer" Association="SSHMC01Model.FK_tblUser_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <EntitySet Name="vwReportNotified" EntityType="SSHMC01Model.vwReportNotified" />
+          <EntitySet Name="vwSensorValuesAndTC10MinDataLog" EntityType="SSHMC01Model.vwSensorValuesAndTC10MinDataLog" />
+          <EntitySet Name="tblSurvey_Disaster" EntityType="SSHMC01Model.tblSurvey_Disaster" />
+        </EntityContainer>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="USER_PW" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="USER_NAME" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ROLES" Type="Int32" />
+          <Property Name="CUSTOMER_ID" Type="Int32" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="MOBLE" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="FAX" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="USER_ADDRESS" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="USER_MAIL" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="URI_CODE" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblCustomer" Relationship="SSHMC01Model.FK_tblUser_tblCustomer" FromRole="tblUser" ToRole="tblCustomer" />
+        </EntityType>
+        <EntityType Name="vwSensorDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="ISCONNECTED" />
+            <PropertyRef Name="ISVALID" />
+            <PropertyRef Name="MFCC_ID" />
+            <PropertyRef Name="IsConfirmed" />
+          </Key>
+          <Property Name="SITE_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="SENSOR_ID" Type="Int32" Nullable="false" />
+          <Property Name="SENSOR_NAME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="X" Type="Double" />
+          <Property Name="Y" Type="Double" />
+          <Property Name="ISCONNECTED" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="ID" Type="Int32" />
+          <Property Name="EXCUTION_MODE" Type="Boolean" />
+          <Property Name="SENSOR_TYPE" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="CURRENT_DEGREE" Type="Int32" />
+          <Property Name="VALUE0" Type="Double" />
+          <Property Name="VALUE1" Type="Double" />
+          <Property Name="VALUE2" Type="Double" />
+          <Property Name="ISVALID" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Type="String" Name="MFCC_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsConfirmed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwSiteDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SITE_NAME" />
+            <PropertyRef Name="SITE_ADDRESS" />
+            <PropertyRef Name="ENVIRONMENT" />
+            <PropertyRef Name="X" />
+            <PropertyRef Name="Y" />
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="SITE_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="SITE_NAME" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="SITE_ADDRESS" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="ENVIRONMENT" Type="String" Nullable="false" MaxLength="4" Unicode="true" FixedLength="false" />
+          <Property Name="X" Type="Double" Nullable="false" />
+          <Property Name="Y" Type="Double" Nullable="false" />
+          <Property Name="MIN_X" Type="Double" />
+          <Property Name="MIN_Y" Type="Double" />
+          <Property Name="MAX_X" Type="Double" />
+          <Property Name="MAX_Y" Type="Double" />
+          <Property Name="CURRENT_DEGREE" Type="Int32" />
+          <Property Name="CUSTOMER_NAME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCCTV">
+          <Key>
+            <PropertyRef Name="CCTV_ID" />
+          </Key>
+          <Property Type="String" Name="CCTV_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Double" Name="ROTATION" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="REF_CCTV_ID" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSite" Relationship="SSHMC01Model.FK_tblCCTV_tblSite" FromRole="tblCCTV" ToRole="tblSite" />
+        </EntityType>
+        <EntityType Name="tblPre_disasterNotified">
+          <Key>
+            <PropertyRef Name="IDENTIFIED_ID" />
+          </Key>
+          <Property Type="Int32" Name="IDENTIFIED_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="TIMESTAMP" />
+          <Property Type="String" Name="PUBLISH_ORANG" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONTENT" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PRE_ADMONISH_CLASS" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISSEND" Nullable="false" />
+          <Property Type="String" Name="TITLE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="NOTIFIED_TIME" />
+          <Property Type="DateTime" Name="PRE_TIMESTAMP" />
+          <Property Type="DateTime" Name="AFTER_TIMESTAMP" />
+          <Property Type="Byte" Name="ISREPORT" Nullable="false" />
+          <Property Type="String" Name="DISASTER_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblReportNotified">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="DATATIME" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DATATIME" Nullable="false" />
+          <Property Type="String" Name="TYPE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISTOBA" />
+        </EntityType>
+        <EntityType Name="tblSite">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CUSTROMER_ID" Nullable="false" />
+          <Property Type="String" Name="SITE_NO" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SITE_NAME" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SITE_ADDRESS" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ENVIRONMENT" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="BUILDING_TYPE_ID" />
+          <Property Type="Double" Name="X" Nullable="false" />
+          <Property Type="Double" Name="Y" Nullable="false" />
+          <Property Type="Double" Name="MIN_X" />
+          <Property Type="Double" Name="MIN_Y" />
+          <Property Type="Double" Name="MAX_X" />
+          <Property Type="Double" Name="MAX_Y" />
+          <Property Type="Int32" Name="STRUCT_TYPE_ID" />
+          <Property Type="Byte" Name="ON_STORIED" />
+          <Property Type="Byte" Name="UNDER_STORIED" />
+          <Property Type="String" Name="CONTRACT_START" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONTRACT_TERMINATION" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FAX" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="COUNTY_ID" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AREA_ID" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ENGINEER" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="N3_CONTENT" Nullable="false" />
+          <NavigationProperty Name="tblCCTV" Relationship="SSHMC01Model.FK_tblCCTV_tblSite" FromRole="tblSite" ToRole="tblCCTV" />
+          <NavigationProperty Name="tblCustomer" Relationship="SSHMC01Model.FK_tblSite_tblCustomer" FromRole="tblSite" ToRole="tblCustomer" />
+        </EntityType>
+        <Association Name="FK_tblCCTV_tblSite">
+          <End Type="SSHMC01Model.tblSite" Role="tblSite" Multiplicity="1" />
+          <End Type="SSHMC01Model.tblCCTV" Role="tblCCTV" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSite">
+              <PropertyRef Name="SITE_ID" />
+            </Principal>
+            <Dependent Role="tblCCTV">
+              <PropertyRef Name="SITE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Type="Int32" Name="CUSTOMER_ID" Nullable="false" />
+          <Property Type="String" Name="CUSTOMER_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="TELEPHONE" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ADDRESS" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MAIL" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblSite" Relationship="SSHMC01Model.FK_tblSite_tblCustomer" FromRole="tblCustomer" ToRole="tblSite" />
+          <NavigationProperty Name="tblUser" Relationship="SSHMC01Model.FK_tblUser_tblCustomer" FromRole="tblCustomer" ToRole="tblUser" />
+          <Property Type="String" Name="SUB_CUSTOMER_IDS" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_tblSite_tblCustomer">
+          <End Type="SSHMC01Model.tblCustomer" Role="tblCustomer" Multiplicity="1" />
+          <End Type="SSHMC01Model.tblSite" Role="tblSite" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="tblSite">
+              <PropertyRef Name="CUSTROMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUser_tblCustomer">
+          <End Type="SSHMC01Model.tblCustomer" Role="tblCustomer" Multiplicity="0..1" />
+          <End Type="SSHMC01Model.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vwReportNotified">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="DATATIME" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="URL" />
+            <PropertyRef Name="CUSTROMER_ID" />
+            <PropertyRef Name="SITE_NAME" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DATATIME" Nullable="false" />
+          <Property Type="String" Name="TYPE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISTOBA" />
+          <Property Type="Int32" Name="CUSTROMER_ID" Nullable="false" />
+          <Property Type="String" Name="SITE_NAME" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vwSensorValuesAndTC10MinDataLog">
+          <Key>
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="TIMESTAMP" />
+            <PropertyRef Name="DEGREE" />
+            <PropertyRef Name="IS_REPAIR" />
+            <PropertyRef Name="signama0" />
+            <PropertyRef Name="initmean0" />
+            <PropertyRef Name="sigma1" />
+            <PropertyRef Name="initmean1" />
+            <PropertyRef Name="sigma2" />
+            <PropertyRef Name="initmean2" />
+          </Key>
+          <Property Type="Int32" Name="SENSOR_ID" Nullable="false" />
+          <Property Type="DateTime" Name="TIMESTAMP" Nullable="false" />
+          <Property Type="Double" Name="VALUE0" />
+          <Property Type="Double" Name="VALUE1" />
+          <Property Type="Byte" Name="DEGREE" Nullable="false" />
+          <Property Type="Double" Name="VALUE2" />
+          <Property Type="String" Name="ISVALID" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="EXECUTION_MODE" />
+          <Property Type="Int32" Name="CONTROLLER_ID" />
+          <Property Type="Byte" Name="VALUE_CNT" />
+          <Property Type="String" Name="IS_REPAIR" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Double" Name="signama0" Nullable="false" />
+          <Property Type="Double" Name="initmean0" Nullable="false" />
+          <Property Type="Double" Name="sigma1" Nullable="false" />
+          <Property Type="Double" Name="initmean1" Nullable="false" />
+          <Property Type="Double" Name="sigma2" Nullable="false" />
+          <Property Type="Double" Name="initmean2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblSurvey_Disaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SITE_ID" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="N3_REPORT_ID" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="BUILD_TIME" Nullable="false" />
+          <Property Type="DateTime" Name="OCCUR_TIME" Nullable="false" />
+          <Property Type="String" Name="BUILD_USER" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="SITUATION_0" Nullable="false" />
+          <Property Type="Byte" Name="SITUATION_1" Nullable="false" />
+          <Property Type="Int32" Name="SITUATION_2" Nullable="false" />
+          <Property Type="Boolean" Name="TYPE_0" Nullable="false" />
+          <Property Type="Boolean" Name="TYPE_1" Nullable="false" />
+          <Property Type="Boolean" Name="TYPE_2" Nullable="false" />
+          <Property Type="Boolean" Name="TYPE_3" Nullable="false" />
+          <Property Type="Boolean" Name="TYPE_4" Nullable="false" />
+          <Property Type="Boolean" Name="TYPE_5" Nullable="false" />
+          <Property Type="Boolean" Name="TYPE_6" Nullable="false" />
+          <Property Type="Int32" Name="CASUALTIES_0" Nullable="false" />
+          <Property Type="Int32" Name="CASUALTIES_1" Nullable="false" />
+          <Property Type="Int32" Name="CASUALTIES_2" Nullable="false" />
+          <Property Type="String" Name="CASUALTIES_3" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DAMAGED_ROADS" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="DAMAGED_ROADS_0" Nullable="false" />
+          <Property Type="String" Name="DAMAGED_BRIDGE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="DAMAGED_BRIDGE_0" Nullable="false" />
+          <Property Type="Boolean" Name="EVACUATION_0" Nullable="false" />
+          <Property Type="Int32" Name="EVACUATION_1" Nullable="false" />
+          <Property Type="String" Name="PHOTO_PATH" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="Double" Name="USER__POSITION_X" />
+          <Property Type="Double" Name="USER__POSITION_Y" />
+          <Property Type="Boolean" Name="ISCHECK" />
+          <Property Type="Boolean" Name="ISCLOSE" />
+          <Property Type="String" Name="PLACE_NAME" MaxLength="15" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSHMC01ModelStoreContainer" CdmEntityContainer="SSHMC01Entities">
+          <EntitySetMapping Name="tblUser"><EntityTypeMapping TypeName="SSHMC01Model.tblUser"><MappingFragment StoreEntitySet="tblUser">
+            <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+            <ScalarProperty Name="USER_PW" ColumnName="USER_PW" />
+            <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+            <ScalarProperty Name="ROLES" ColumnName="ROLES" />
+            <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+            <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+            <ScalarProperty Name="MOBLE" ColumnName="MOBLE" />
+            <ScalarProperty Name="FAX" ColumnName="FAX" />
+            <ScalarProperty Name="USER_ADDRESS" ColumnName="USER_ADDRESS" />
+            <ScalarProperty Name="USER_MAIL" ColumnName="USER_MAIL" />
+            <ScalarProperty Name="URI_CODE" ColumnName="URI_CODE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="vwSensorDegree"><EntityTypeMapping TypeName="SSHMC01Model.vwSensorDegree"><MappingFragment StoreEntitySet="vwSensorDegree">
+            <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+            <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+            <ScalarProperty Name="SENSOR_NAME" ColumnName="SENSOR_NAME" />
+            <ScalarProperty Name="X" ColumnName="X" />
+            <ScalarProperty Name="Y" ColumnName="Y" />
+            <ScalarProperty Name="ISCONNECTED" ColumnName="ISCONNECTED" />
+            <ScalarProperty Name="ID" ColumnName="ID" />
+            <ScalarProperty Name="EXCUTION_MODE" ColumnName="EXCUTION_MODE" />
+            <ScalarProperty Name="SENSOR_TYPE" ColumnName="SENSOR_TYPE" />
+            <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
+            <ScalarProperty Name="VALUE0" ColumnName="VALUE0" />
+            <ScalarProperty Name="VALUE1" ColumnName="VALUE1" />
+            <ScalarProperty Name="VALUE2" ColumnName="VALUE2" />
+            <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="vwSiteDegree"><EntityTypeMapping TypeName="SSHMC01Model.vwSiteDegree"><MappingFragment StoreEntitySet="vwSiteDegree">
+            <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+            <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
+            <ScalarProperty Name="SITE_ADDRESS" ColumnName="SITE_ADDRESS" />
+            <ScalarProperty Name="ENVIRONMENT" ColumnName="ENVIRONMENT" />
+            <ScalarProperty Name="X" ColumnName="X" />
+            <ScalarProperty Name="Y" ColumnName="Y" />
+            <ScalarProperty Name="MIN_X" ColumnName="MIN_X" />
+            <ScalarProperty Name="MIN_Y" ColumnName="MIN_Y" />
+            <ScalarProperty Name="MAX_X" ColumnName="MAX_X" />
+            <ScalarProperty Name="MAX_Y" ColumnName="MAX_Y" />
+            <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
+            <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
+            <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblCCTV">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblCCTV">
+              <MappingFragment StoreEntitySet="tblCCTV">
+                <ScalarProperty Name="REF_CCTV_ID" ColumnName="REF_CCTV_ID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ROTATION" ColumnName="ROTATION" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+                <ScalarProperty Name="CCTV_ID" ColumnName="CCTV_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPre_disasterNotified">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblPre_disasterNotified">
+              <MappingFragment StoreEntitySet="tblPre_disasterNotified">
+                <ScalarProperty Name="DISASTER_NAME" ColumnName="DISASTER_NAME" />
+                <ScalarProperty Name="ISREPORT" ColumnName="ISREPORT" />
+                <ScalarProperty Name="AFTER_TIMESTAMP" ColumnName="AFTER_TIMESTAMP" />
+                <ScalarProperty Name="PRE_TIMESTAMP" ColumnName="PRE_TIMESTAMP" />
+                <ScalarProperty Name="NOTIFIED_TIME" ColumnName="NOTIFIED_TIME" />
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ISSEND" ColumnName="ISSEND" />
+                <ScalarProperty Name="PRE_ADMONISH_CLASS" ColumnName="PRE_ADMONISH_CLASS" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="PUBLISH_ORANG" ColumnName="PUBLISH_ORANG" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="IDENTIFIED_ID" ColumnName="IDENTIFIED_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReportNotified">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblReportNotified">
+              <MappingFragment StoreEntitySet="tblReportNotified">
+                <ScalarProperty Name="ISTOBA" ColumnName="ISTOBA" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="DATATIME" ColumnName="DATATIME" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSite">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblSite">
+              <MappingFragment StoreEntitySet="tblSite">
+                <ScalarProperty Name="N3_CONTENT" ColumnName="N3_CONTENT" />
+                <ScalarProperty Name="ENGINEER" ColumnName="ENGINEER" />
+                <ScalarProperty Name="AREA_ID" ColumnName="AREA_ID" />
+                <ScalarProperty Name="COUNTY_ID" ColumnName="COUNTY_ID" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="CONTRACT_TERMINATION" ColumnName="CONTRACT_TERMINATION" />
+                <ScalarProperty Name="CONTRACT_START" ColumnName="CONTRACT_START" />
+                <ScalarProperty Name="UNDER_STORIED" ColumnName="UNDER_STORIED" />
+                <ScalarProperty Name="ON_STORIED" ColumnName="ON_STORIED" />
+                <ScalarProperty Name="STRUCT_TYPE_ID" ColumnName="STRUCT_TYPE_ID" />
+                <ScalarProperty Name="MAX_Y" ColumnName="MAX_Y" />
+                <ScalarProperty Name="MAX_X" ColumnName="MAX_X" />
+                <ScalarProperty Name="MIN_Y" ColumnName="MIN_Y" />
+                <ScalarProperty Name="MIN_X" ColumnName="MIN_X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="BUILDING_TYPE_ID" ColumnName="BUILDING_TYPE_ID" />
+                <ScalarProperty Name="ENVIRONMENT" ColumnName="ENVIRONMENT" />
+                <ScalarProperty Name="SITE_ADDRESS" ColumnName="SITE_ADDRESS" />
+                <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
+                <ScalarProperty Name="SITE_NO" ColumnName="SITE_NO" />
+                <ScalarProperty Name="CUSTROMER_ID" ColumnName="CUSTROMER_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCustomer">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblCustomer">
+              <MappingFragment StoreEntitySet="tblCustomer">
+                <ScalarProperty Name="SUB_CUSTOMER_IDS" ColumnName="SUB_CUSTOMER_IDS" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwReportNotified">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwReportNotified">
+              <MappingFragment StoreEntitySet="vwReportNotified">
+                <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
+                <ScalarProperty Name="CUSTROMER_ID" ColumnName="CUSTROMER_ID" />
+                <ScalarProperty Name="ISTOBA" ColumnName="ISTOBA" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="DATATIME" ColumnName="DATATIME" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSensorValuesAndTC10MinDataLog">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwSensorValuesAndTC10MinDataLog">
+              <MappingFragment StoreEntitySet="vwSensorValuesAndTC10MinDataLog">
+                <ScalarProperty Name="initmean2" ColumnName="initmean2" />
+                <ScalarProperty Name="sigma2" ColumnName="sigma2" />
+                <ScalarProperty Name="initmean1" ColumnName="initmean1" />
+                <ScalarProperty Name="sigma1" ColumnName="sigma1" />
+                <ScalarProperty Name="initmean0" ColumnName="initmean0" />
+                <ScalarProperty Name="signama0" ColumnName="signama0" />
+                <ScalarProperty Name="IS_REPAIR" ColumnName="IS_REPAIR" />
+                <ScalarProperty Name="VALUE_CNT" ColumnName="VALUE_CNT" />
+                <ScalarProperty Name="CONTROLLER_ID" ColumnName="CONTROLLER_ID" />
+                <ScalarProperty Name="EXECUTION_MODE" ColumnName="EXECUTION_MODE" />
+                <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
+                <ScalarProperty Name="VALUE2" ColumnName="VALUE2" />
+                <ScalarProperty Name="DEGREE" ColumnName="DEGREE" />
+                <ScalarProperty Name="VALUE1" ColumnName="VALUE1" />
+                <ScalarProperty Name="VALUE0" ColumnName="VALUE0" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSurvey_Disaster">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblSurvey_Disaster">
+              <MappingFragment StoreEntitySet="tblSurvey_Disaster">
+                <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
+                <ScalarProperty Name="ISCLOSE" ColumnName="ISCLOSE" />
+                <ScalarProperty Name="ISCHECK" ColumnName="ISCHECK" />
+                <ScalarProperty Name="USER__POSITION_Y" ColumnName="USER_ POSITION_Y" />
+                <ScalarProperty Name="USER__POSITION_X" ColumnName="USER_ POSITION_X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="PHOTO_PATH" ColumnName="PHOTO_PATH" />
+                <ScalarProperty Name="EVACUATION_1" ColumnName="EVACUATION_1" />
+                <ScalarProperty Name="EVACUATION_0" ColumnName="EVACUATION_0" />
+                <ScalarProperty Name="DAMAGED_BRIDGE_0" ColumnName="DAMAGED_BRIDGE_0" />
+                <ScalarProperty Name="DAMAGED_BRIDGE" ColumnName="DAMAGED_BRIDGE" />
+                <ScalarProperty Name="DAMAGED_ROADS_0" ColumnName="DAMAGED_ROADS_0" />
+                <ScalarProperty Name="DAMAGED_ROADS" ColumnName="DAMAGED_ROADS" />
+                <ScalarProperty Name="CASUALTIES_3" ColumnName="CASUALTIES_3" />
+                <ScalarProperty Name="CASUALTIES_2" ColumnName="CASUALTIES_2" />
+                <ScalarProperty Name="CASUALTIES_1" ColumnName="CASUALTIES_1" />
+                <ScalarProperty Name="CASUALTIES_0" ColumnName="CASUALTIES_0" />
+                <ScalarProperty Name="TYPE_6" ColumnName="TYPE_6" />
+                <ScalarProperty Name="TYPE_5" ColumnName="TYPE_5" />
+                <ScalarProperty Name="TYPE_4" ColumnName="TYPE_4" />
+                <ScalarProperty Name="TYPE_3" ColumnName="TYPE_3" />
+                <ScalarProperty Name="TYPE_2" ColumnName="TYPE_2" />
+                <ScalarProperty Name="TYPE_1" ColumnName="TYPE_1" />
+                <ScalarProperty Name="TYPE_0" ColumnName="TYPE_0" />
+                <ScalarProperty Name="SITUATION_2" ColumnName="SITUATION_2" />
+                <ScalarProperty Name="SITUATION_1" ColumnName="SITUATION_1" />
+                <ScalarProperty Name="SITUATION_0" ColumnName="SITUATION_0" />
+                <ScalarProperty Name="BUILD_USER" ColumnName="BUILD_USER" />
+                <ScalarProperty Name="OCCUR_TIME" ColumnName="OCCUR_TIME" />
+                <ScalarProperty Name="BUILD_TIME" ColumnName="BUILD_TIME" />
+                <ScalarProperty Name="N3_REPORT_ID" ColumnName="N3_REPORT_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="SSHMCDB" ZoomLevel="95">
+        <EntityTypeShape EntityType="SSHMC01Model.tblUser" Width="1.5" PointX="0.75" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSensorDegree" Width="1.5" PointX="2.75" PointY="0.75" Height="3.7109993489583326" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSiteDegree" Width="1.5" PointX="4.75" PointY="0.75" Height="3.5186979166666656" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblCCTV" Width="1.5" PointX="4" PointY="5.375" Height="2.4746101888020835" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblPre_disasterNotified" Width="1.5" PointX="6" PointY="5.625" Height="3.2137866210937496" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblReportNotified" Width="1.5" PointX="7.375" PointY="0.75" Height="1.9202278645833317" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblSite" Width="1.5" PointX="0.75" PointY="7.625" Height="5.4313159179687531" />
+        <AssociationConnector Association="SSHMC01Model.FK_tblCCTV_tblSite" >
+          <ConnectorPoint PointX="2.25" PointY="8.7685555944010414" />
+          <ConnectorPoint PointX="5.21875" PointY="8.7685555944010414" />
+          <ConnectorPoint PointX="5.21875" PointY="7.8496101888020835" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SSHMC01Model.tblCustomer" Width="1.5" PointX="0.875" PointY="4.875" Height="2.2898160807291674" />
+        <AssociationConnector Association="SSHMC01Model.FK_tblSite_tblCustomer" >
+          <ConnectorPoint PointX="1.5625" PointY="7.1648160807291674" />
+          <ConnectorPoint PointX="1.5625" PointY="7.625" />
+        </AssociationConnector>
+        <AssociationConnector Association="SSHMC01Model.FK_tblUser_tblCustomer" >
+          <ConnectorPoint PointX="1.5625" PointY="4.875" />
+          <ConnectorPoint PointX="1.5625" PointY="3.9637866210937496" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SSHMC01Model.vwReportNotified" Width="1.5" PointX="9.375" PointY="0.75" Height="2.2898160807291674" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSensorValuesAndTC10MinDataLog" Width="2.5" PointX="3.375" PointY="9.75" Height="4.1377571614583317" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblSurvey_Disaster" Width="1.5" PointX="8.375" PointY="4.75" Height="7.2792569986979174" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

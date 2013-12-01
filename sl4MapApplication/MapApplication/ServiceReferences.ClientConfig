@@ -1,0 +1,17 @@
+﻿<configuration>
+    <system.serviceModel>
+        <bindings>
+            <basicHttpBinding>
+                <binding name="BasicHttpBinding_ISSHMCDataService" maxBufferSize="2147483647"
+                    maxReceivedMessageSize="2147483647">
+                    <security mode="None" />
+                </binding>
+            </basicHttpBinding>
+        </bindings>
+        <client>
+            <endpoint address="http://192.192.161.4/dataservice/sshmcDataService.svc"
+                binding="basicHttpBinding" bindingConfiguration="BasicHttpBinding_ISSHMCDataService"
+                contract="DataService.ISSHMCDataService" name="BasicHttpBinding_ISSHMCDataService" />
+        </client>
+    </system.serviceModel>
+</configuration>

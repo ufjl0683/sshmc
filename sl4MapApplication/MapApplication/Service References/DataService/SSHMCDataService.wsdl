@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="SSHMCDataService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataService" />
+      <xsd:import schemaLocation="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+      <xsd:import schemaLocation="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ISSHMCDataService_CheckUserIDPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserIDPassword" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_CheckUserIDPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckUserIDPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetSiteInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteInfo" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetSiteInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSiteInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetSensorInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSensorInfo" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetSensorInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSensorInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetCCTVInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCCTVInfo" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetCCTVInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCCTVInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetDisasterInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDisasterInfo" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetDisasterInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDisasterInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetSurveyDisaster_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurveyDisaster" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GetSurveyDisaster_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSurveyDisasterResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_AddSurverDiasterInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSurverDiasterInfo" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_AddSurverDiasterInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSurverDiasterInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GettblReportNotified_InputMessage">
+    <wsdl:part name="parameters" element="tns:GettblReportNotified" />
+  </wsdl:message>
+  <wsdl:message name="ISSHMCDataService_GettblReportNotified_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GettblReportNotifiedResponse" />
+  </wsdl:message>
+  <wsdl:portType name="ISSHMCDataService">
+    <wsdl:operation name="CheckUserIDPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISSHMCDataService/CheckUserIDPassword" message="tns:ISSHMCDataService_CheckUserIDPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISSHMCDataService/CheckUserIDPasswordResponse" message="tns:ISSHMCDataService_CheckUserIDPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISSHMCDataService/GetSiteInfo" message="tns:ISSHMCDataService_GetSiteInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISSHMCDataService/GetSiteInfoResponse" message="tns:ISSHMCDataService_GetSiteInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSensorInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISSHMCDataService/GetSensorInfo" message="tns:ISSHMCDataService_GetSensorInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISSHMCDataService/GetSensorInfoResponse" message="tns:ISSHMCDataService_GetSensorInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCCTVInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISSHMCDataService/GetCCTVInfo" message="tns:ISSHMCDataService_GetCCTVInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISSHMCDataService/GetCCTVInfoResponse" message="tns:ISSHMCDataService_GetCCTVInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDisasterInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISSHMCDataService/GetDisasterInfo" message="tns:ISSHMCDataService_GetDisasterInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISSHMCDataService/GetDisasterInfoResponse" message="tns:ISSHMCDataService_GetDisasterInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyDisaster">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISSHMCDataService/GetSurveyDisaster" message="tns:ISSHMCDataService_GetSurveyDisaster_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISSHMCDataService/GetSurveyDisasterResponse" message="tns:ISSHMCDataService_GetSurveyDisaster_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSurverDiasterInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISSHMCDataService/AddSurverDiasterInfo" message="tns:ISSHMCDataService_AddSurverDiasterInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISSHMCDataService/AddSurverDiasterInfoResponse" message="tns:ISSHMCDataService_AddSurverDiasterInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GettblReportNotified">
+      <wsdl:input wsaw:Action="http://tempuri.org/ISSHMCDataService/GettblReportNotified" message="tns:ISSHMCDataService_GettblReportNotified_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ISSHMCDataService/GettblReportNotifiedResponse" message="tns:ISSHMCDataService_GettblReportNotified_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_ISSHMCDataService" type="tns:ISSHMCDataService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CheckUserIDPassword">
+      <soap:operation soapAction="http://tempuri.org/ISSHMCDataService/CheckUserIDPassword" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSiteInfo">
+      <soap:operation soapAction="http://tempuri.org/ISSHMCDataService/GetSiteInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSensorInfo">
+      <soap:operation soapAction="http://tempuri.org/ISSHMCDataService/GetSensorInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCCTVInfo">
+      <soap:operation soapAction="http://tempuri.org/ISSHMCDataService/GetCCTVInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDisasterInfo">
+      <soap:operation soapAction="http://tempuri.org/ISSHMCDataService/GetDisasterInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSurveyDisaster">
+      <soap:operation soapAction="http://tempuri.org/ISSHMCDataService/GetSurveyDisaster" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddSurverDiasterInfo">
+      <soap:operation soapAction="http://tempuri.org/ISSHMCDataService/AddSurverDiasterInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GettblReportNotified">
+      <soap:operation soapAction="http://tempuri.org/ISSHMCDataService/GettblReportNotified" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SSHMCDataService">
+    <wsdl:port name="BasicHttpBinding_ISSHMCDataService" binding="tns:BasicHttpBinding_ISSHMCDataService">
+      <soap:address location="http://192.192.161.4/dataservice/sshmcDataService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

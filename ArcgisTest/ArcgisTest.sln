@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcgisTest", "ArcgisTest\ArcgisTest.csproj", "{00C677F6-9907-4126-8F23-982344DE0276}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArcgisTest.Web", "ArcgisTest.Web\ArcgisTest.Web.csproj", "{332F35E2-E289-4201-9EA5-9EBDF04354C1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{00C677F6-9907-4126-8F23-982344DE0276}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C677F6-9907-4126-8F23-982344DE0276}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C677F6-9907-4126-8F23-982344DE0276}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C677F6-9907-4126-8F23-982344DE0276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{332F35E2-E289-4201-9EA5-9EBDF04354C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{332F35E2-E289-4201-9EA5-9EBDF04354C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{332F35E2-E289-4201-9EA5-9EBDF04354C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{332F35E2-E289-4201-9EA5-9EBDF04354C1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

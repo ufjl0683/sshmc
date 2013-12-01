@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slStatusMoniter", "slStatusMoniter\slStatusMoniter.csproj", "{EB1C7678-BFF4-4960-B7E6-6089D725F719}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EDB518B3-CB6B-4E6F-9A61-F8A43C6313B9} = {EDB518B3-CB6B-4E6F-9A61-F8A43C6313B9}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "slStatusMoniter.Web", "slStatusMoniter.Web\slStatusMoniter.Web.csproj", "{EDB518B3-CB6B-4E6F-9A61-F8A43C6313B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB1C7678-BFF4-4960-B7E6-6089D725F719}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB1C7678-BFF4-4960-B7E6-6089D725F719}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB1C7678-BFF4-4960-B7E6-6089D725F719}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB1C7678-BFF4-4960-B7E6-6089D725F719}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDB518B3-CB6B-4E6F-9A61-F8A43C6313B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDB518B3-CB6B-4E6F-9A61-F8A43C6313B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDB518B3-CB6B-4E6F-9A61-F8A43C6313B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDB518B3-CB6B-4E6F-9A61-F8A43C6313B9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

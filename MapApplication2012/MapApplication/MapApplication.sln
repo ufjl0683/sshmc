@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapApplication", "MapApplication\MapApplication.csproj", "{8BDABC87-0133-4919-ACF6-5C29224F0FAD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F2BE690C-D483-45DB-94FA-88284DCF046A} = {F2BE690C-D483-45DB-94FA-88284DCF046A}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapApplication.Web", "MapApplication.Web\MapApplication.Web.csproj", "{F2BE690C-D483-45DB-94FA-88284DCF046A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8BDABC87-0133-4919-ACF6-5C29224F0FAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8BDABC87-0133-4919-ACF6-5C29224F0FAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8BDABC87-0133-4919-ACF6-5C29224F0FAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8BDABC87-0133-4919-ACF6-5C29224F0FAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2BE690C-D483-45DB-94FA-88284DCF046A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2BE690C-D483-45DB-94FA-88284DCF046A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2BE690C-D483-45DB-94FA-88284DCF046A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2BE690C-D483-45DB-94FA-88284DCF046A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SSHMC01Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SSHMC01ModelStoreContainer">
+          <EntitySet Name="tblCustomer" EntityType="SSHMC01Model.Store.tblCustomer" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblPre_disasterNotified" EntityType="SSHMC01Model.Store.tblPre_disasterNotified" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblUser" EntityType="SSHMC01Model.Store.tblUser" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_tblUser_tblCustomer" Association="SSHMC01Model.Store.FK_tblUser_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="CUSTOMER_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="TELEPHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="ADDRESS" Type="nvarchar" MaxLength="100" />
+          <Property Name="MAIL" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblPre_disasterNotified">
+          <Key>
+            <PropertyRef Name="IDENTIFIED_ID" />
+          </Key>
+          <Property Name="IDENTIFIED_ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TIMESTAMP" Type="datetime" />
+          <Property Name="PUBLISH_ORANG" Type="nvarchar" MaxLength="50" />
+          <Property Name="CONTENT" Type="nvarchar" MaxLength="50" />
+          <Property Name="PRE_ADMONISH_CLASS" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISSEND" Type="bit" Nullable="false" />
+          <Property Name="TITLE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="USER_PW" Type="nvarchar" MaxLength="20" />
+          <Property Name="USER_NAME" Type="nvarchar" MaxLength="20" />
+          <Property Name="ROLES" Type="int" />
+          <Property Name="CUSTOMER_ID" Type="int" />
+          <Property Name="TELEPHONE" Type="nvarchar" MaxLength="20" />
+          <Property Name="MOBLE" Type="nvarchar" MaxLength="20" />
+          <Property Name="FAX" Type="nvarchar" MaxLength="20" />
+          <Property Name="USER_ADDRESS" Type="nvarchar" MaxLength="100" />
+          <Property Name="USER_MAIL" Type="nvarchar" MaxLength="50" />
+          <Property Name="URI_CODE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tblUser_tblCustomer">
+          <End Role="tblCustomer" Type="SSHMC01Model.Store.tblCustomer" Multiplicity="0..1" />
+          <End Role="tblUser" Type="SSHMC01Model.Store.tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSHMC01Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SSHMC01Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblCustomer" EntityType="SSHMC01Model.tblCustomer" />
+          <EntitySet Name="tblUser" EntityType="SSHMC01Model.tblUser" />
+          <AssociationSet Name="FK_tblUser_tblCustomer" Association="SSHMC01Model.FK_tblUser_tblCustomer">
+            <End Role="tblCustomer" EntitySet="tblCustomer" />
+            <End Role="tblUser" EntitySet="tblUser" />
+          </AssociationSet>
+          <EntitySet Name="tblPre_disasterNotified" EntityType="SSHMC01Model.tblPre_disasterNotified" />
+        </EntityContainer>
+        <EntityType Name="tblCustomer">
+          <Key>
+            <PropertyRef Name="CUSTOMER_ID" />
+          </Key>
+          <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Name="CUSTOMER_NAME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="TELEPHONE" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ADDRESS" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="MAIL" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="tblUser" Relationship="SSHMC01Model.FK_tblUser_tblCustomer" FromRole="tblCustomer" ToRole="tblUser" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Type="String" Name="USER_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="USER_PW" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="USER_NAME" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ROLES" />
+          <Property Type="Int32" Name="CUSTOMER_ID" />
+          <Property Type="String" Name="TELEPHONE" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MOBLE" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FAX" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="USER_ADDRESS" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="USER_MAIL" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URI_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblCustomer" Relationship="SSHMC01Model.FK_tblUser_tblCustomer" FromRole="tblUser" ToRole="tblCustomer" />
+        </EntityType>
+        <Association Name="FK_tblUser_tblCustomer">
+          <End Type="SSHMC01Model.tblCustomer" Role="tblCustomer" Multiplicity="0..1" />
+          <End Type="SSHMC01Model.tblUser" Role="tblUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCustomer">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Principal>
+            <Dependent Role="tblUser">
+              <PropertyRef Name="CUSTOMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblPre_disasterNotified">
+          <Key>
+            <PropertyRef Name="IDENTIFIED_ID" />
+          </Key>
+          <Property Type="Int32" Name="IDENTIFIED_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="TIMESTAMP" />
+          <Property Type="String" Name="PUBLISH_ORANG" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="CONTENT" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PRE_ADMONISH_CLASS" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISSEND" Nullable="false" />
+          <Property Type="String" Name="TITLE" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSHMC01ModelStoreContainer" CdmEntityContainer="SSHMC01Entities">
+          <EntitySetMapping Name="tblCustomer"><EntityTypeMapping TypeName="SSHMC01Model.tblCustomer"><MappingFragment StoreEntitySet="tblCustomer">
+            <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+            <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
+            <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+            <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+            <ScalarProperty Name="MAIL" ColumnName="MAIL" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="tblUser">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="URI_CODE" ColumnName="URI_CODE" />
+                <ScalarProperty Name="USER_MAIL" ColumnName="USER_MAIL" />
+                <ScalarProperty Name="USER_ADDRESS" ColumnName="USER_ADDRESS" />
+                <ScalarProperty Name="FAX" ColumnName="FAX" />
+                <ScalarProperty Name="MOBLE" ColumnName="MOBLE" />
+                <ScalarProperty Name="TELEPHONE" ColumnName="TELEPHONE" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="ROLES" ColumnName="ROLES" />
+                <ScalarProperty Name="USER_NAME" ColumnName="USER_NAME" />
+                <ScalarProperty Name="USER_PW" ColumnName="USER_PW" />
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblPre_disasterNotified">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblPre_disasterNotified">
+              <MappingFragment StoreEntitySet="tblPre_disasterNotified">
+                <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="ISSEND" ColumnName="ISSEND" />
+                <ScalarProperty Name="PRE_ADMONISH_CLASS" ColumnName="PRE_ADMONISH_CLASS" />
+                <ScalarProperty Name="CONTENT" ColumnName="CONTENT" />
+                <ScalarProperty Name="PUBLISH_ORANG" ColumnName="PUBLISH_ORANG" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="IDENTIFIED_ID" ColumnName="IDENTIFIED_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DB">
+        <EntityTypeShape EntityType="SSHMC01Model.tblCustomer" Width="1.5" PointX="0.75" PointY="0.75" Height="1.9802864583333331" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblUser" Width="1.5" PointX="2.125" PointY="3.375" Height="3.3263964843749996" />
+        <AssociationConnector Association="SSHMC01Model.FK_tblUser_tblCustomer" >
+          <ConnectorPoint PointX="1.5" PointY="2.922587890625" />
+          <ConnectorPoint PointX="1.5" PointY="3.125" />
+          <ConnectorPoint PointX="2.875" PointY="3.125" />
+          <ConnectorPoint PointX="2.875" PointY="3.375" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="SSHMC01Model.tblPre_disasterNotified" Width="2.25" PointX="3.75" PointY="0.75" Height="2.3648893229166656" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

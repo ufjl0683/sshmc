@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="MapApplication.Controls.SensorMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mapctl="clr-namespace:MapApplication.MapControls"
+    xmlns:controls="clr-namespace:MapApplication.Controls"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400">
+
+    <Control.Resources>
+        <controls:SensorMenuValueConverter x:Key="SensorMenuValueConverter" />
+        <mapctl:DegreeColorConverter x:Key="DegreeColorConverter" />
+        <Storyboard x:Name="stbValue0Change">
+        	<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="txtValue0">
+        		<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="360" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>                     
+        	</DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="stbValue1Change">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="txtValue1">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="360"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Name="stbValue2Change">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Projection).(PlaneProjection.RotationX)" Storyboard.TargetName="txtValue2">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="360"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Control.Resources>
+    <Border x:Name="border"  Margin="0" BorderThickness="3"   >
+        <Grid x:Name="LayoutRoot" Background="{Binding CURRENT_DEGREE,Converter={StaticResource DegreeColorConverter}}" Loaded="LayoutRoot_Loaded"  >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="90*" />
+                <RowDefinition Height="90*" />
+                <RowDefinition Height="90*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock x:Name="txtSiteName" Text="{Binding SENSOR_NAME}"  Foreground="White" TextAlignment="Center" TextWrapping="Wrap" FontSize="20" Grid.ColumnSpan="2"  >
+            	<TextBlock.Effect>
+            		<DropShadowEffect/>
+            	</TextBlock.Effect>
+            </TextBlock>
+            <Image Grid.Row="1" Margin="0,0,0,0" Name="image1" Stretch="None"  Source="{Binding SENSOR_TYPE,StringFormat='/icons/\{0\}.png'  }"    />
+            <StackPanel Grid.Column="1" Orientation="Vertical" Grid.Row="1" Grid.RowSpan="2" d:LayoutOverrides="Height">
+            	<!--<TextBlock x:Name="txtValue0" Height="20" Margin="0,0,0,0" TextWrapping="NoWrap"  TextAlignment="Right" Text="{Binding VALUE0, StringFormat=\{0:0.0000\}}"  Foreground="White">
+            		<TextBlock.Projection>
+            			<PlaneProjection/>
+            		</TextBlock.Projection>
+            	</TextBlock>-->
+                <TextBlock x:Name="txtValue0" Height="20" Margin="0,0,0,0" TextWrapping="NoWrap"  TextAlignment="Right" Text="{Binding    Converter={StaticResource SensorMenuValueConverter}, ConverterParameter=0, StringFormat=\{0:0.0000\}}"  Foreground="White">
+            		<TextBlock.Projection>
+            			<PlaneProjection/>
+            		</TextBlock.Projection>
+                </TextBlock>
+                <TextBlock x:Name="txtValue1" Margin="0,0,0,0" TextWrapping="NoWrap"  TextAlignment="Right" Text="{Binding    Converter={StaticResource SensorMenuValueConverter}, ConverterParameter=1, StringFormat=\{0:0.0000\}}" Foreground="White" Height="20"  >
+                    	<TextBlock.Projection>
+            			<PlaneProjection/>
+            		</TextBlock.Projection>
+                </TextBlock>
+
+                <TextBlock x:Name="txtValue2" Margin="0,0,0,0" TextWrapping="NoWrap" TextAlignment="Right"  Text="{Binding    Converter={StaticResource SensorMenuValueConverter}, ConverterParameter=2, StringFormat=\{0:0.0000\}}" Foreground="White" Height="20" >
+                	<TextBlock.Projection>
+            			<PlaneProjection/>
+            		</TextBlock.Projection>
+                </TextBlock>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

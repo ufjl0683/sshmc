@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:complexType name="ArrayOfvwSiteDegree">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="vwSiteDegree" nillable="true" type="tns:vwSiteDegree" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfvwSiteDegree" nillable="true" type="tns:ArrayOfvwSiteDegree" />
+  <xs:complexType name="vwSiteDegree">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q1:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CURRENT_DEGREE" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="CUSTOMER_ID" type="xs:int" />
+          <xs:element minOccurs="0" name="CUSTOMER_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ENVIRONMENT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MAX_X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="MAX_Y" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="MIN_X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="MIN_Y" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="SITE_ADDRESS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITE_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITE_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="X" type="xs:double" />
+          <xs:element minOccurs="0" name="Y" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="vwSiteDegree" nillable="true" type="tns:vwSiteDegree" />
+  <xs:complexType name="ArrayOfvwSensorDegree">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="vwSensorDegree" nillable="true" type="tns:vwSensorDegree" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfvwSensorDegree" nillable="true" type="tns:ArrayOfvwSensorDegree" />
+  <xs:complexType name="vwSensorDegree">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q2:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CURRENT_DEGREE" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="EXCUTION_MODE" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="ISCONNECTED" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ISVALID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsConfirmed" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MFCC_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SENSOR_ID" type="xs:int" />
+          <xs:element minOccurs="0" name="SENSOR_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SENSOR_TYPE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITE_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="VALUE0" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="VALUE1" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="VALUE2" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="Y" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="vwSensorDegree" nillable="true" type="tns:vwSensorDegree" />
+  <xs:complexType name="ArrayOftblCCTV">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblCCTV" nillable="true" type="tns:tblCCTV" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblCCTV" nillable="true" type="tns:ArrayOftblCCTV" />
+  <xs:complexType name="tblCCTV">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q3:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CCTV_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCRIPTION" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="REF_CCTV_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ROTATION" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="SITE_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="Y" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="tblSite" nillable="true" type="tns:tblSite" />
+          <xs:element minOccurs="0" name="tblSiteReference" nillable="true" type="q3:EntityReferenceOftblSite1U8vXZAD" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblCCTV" nillable="true" type="tns:tblCCTV" />
+  <xs:complexType name="tblSite">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q4:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AREA_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BUILDING_TYPE_ID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="CONTRACT_START" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CONTRACT_TERMINATION" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="COUNTY_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTROMER_ID" type="xs:int" />
+          <xs:element minOccurs="0" name="ENGINEER" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ENVIRONMENT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FAX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MAX_X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="MAX_Y" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="MIN_X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="MIN_Y" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="N3_CONTENT" type="xs:int" />
+          <xs:element minOccurs="0" name="ON_STORIED" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="SITE_ADDRESS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITE_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITE_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITE_NO" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="STRUCT_TYPE_ID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="UNDER_STORIED" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="X" type="xs:double" />
+          <xs:element minOccurs="0" name="Y" type="xs:double" />
+          <xs:element minOccurs="0" name="tblCCTV" nillable="true" type="tns:ArrayOftblCCTV" />
+          <xs:element minOccurs="0" name="tblCustomer" nillable="true" type="tns:tblCustomer" />
+          <xs:element minOccurs="0" name="tblCustomerReference" nillable="true" type="q4:EntityReferenceOftblCustomer1U8vXZAD" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblSite" nillable="true" type="tns:tblSite" />
+  <xs:complexType name="tblCustomer">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q5:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ADDRESS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CUSTOMER_ID" type="xs:int" />
+          <xs:element minOccurs="0" name="CUSTOMER_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MAIL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SUB_CUSTOMER_IDS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TELEPHONE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tblSite" nillable="true" type="tns:ArrayOftblSite" />
+          <xs:element minOccurs="0" name="tblUser" nillable="true" type="tns:ArrayOftblUser" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblCustomer" nillable="true" type="tns:tblCustomer" />
+  <xs:complexType name="ArrayOftblSite">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblSite" nillable="true" type="tns:tblSite" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblSite" nillable="true" type="tns:ArrayOftblSite" />
+  <xs:complexType name="ArrayOftblUser">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblUser" nillable="true" type="tns:tblUser" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblUser" nillable="true" type="tns:ArrayOftblUser" />
+  <xs:complexType name="tblUser">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q6:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CUSTOMER_ID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="FAX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MOBLE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ROLES" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="TELEPHONE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="URI_CODE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="USER_ADDRESS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="USER_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="USER_MAIL" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="USER_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="USER_PW" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="tblCustomer" nillable="true" type="tns:tblCustomer" />
+          <xs:element minOccurs="0" name="tblCustomerReference" nillable="true" type="q6:EntityReferenceOftblCustomer1U8vXZAD" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblUser" nillable="true" type="tns:tblUser" />
+  <xs:complexType name="ArrayOftblPre_disasterNotified">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblPre_disasterNotified" nillable="true" type="tns:tblPre_disasterNotified" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblPre_disasterNotified" nillable="true" type="tns:ArrayOftblPre_disasterNotified" />
+  <xs:complexType name="tblPre_disasterNotified">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q7:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AFTER_TIMESTAMP" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CONTENT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DISASTER_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IDENTIFIED_ID" type="xs:int" />
+          <xs:element minOccurs="0" name="ISREPORT" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="ISSEND" type="xs:boolean" />
+          <xs:element minOccurs="0" name="NOTIFIED_TIME" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PRE_ADMONISH_CLASS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PRE_TIMESTAMP" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PUBLISH_ORANG" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TIMESTAMP" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="TITLE" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblPre_disasterNotified" nillable="true" type="tns:tblPre_disasterNotified" />
+  <xs:complexType name="ArrayOftblSurvey_Disaster">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="tblSurvey_Disaster" nillable="true" type="tns:tblSurvey_Disaster" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOftblSurvey_Disaster" nillable="true" type="tns:ArrayOftblSurvey_Disaster" />
+  <xs:complexType name="tblSurvey_Disaster">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q8:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BUILD_TIME" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="BUILD_USER" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CASUALTIES_0" type="xs:int" />
+          <xs:element minOccurs="0" name="CASUALTIES_1" type="xs:int" />
+          <xs:element minOccurs="0" name="CASUALTIES_2" type="xs:int" />
+          <xs:element minOccurs="0" name="CASUALTIES_3" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DAMAGED_BRIDGE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DAMAGED_BRIDGE_0" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="DAMAGED_ROADS" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DAMAGED_ROADS_0" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="EVACUATION_0" type="xs:boolean" />
+          <xs:element minOccurs="0" name="EVACUATION_1" type="xs:int" />
+          <xs:element minOccurs="0" name="ID" type="xs:int" />
+          <xs:element minOccurs="0" name="ISCHECK" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ISCLOSE" type="xs:boolean" />
+          <xs:element minOccurs="0" name="N3_REPORT_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OCCUR_TIME" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PHOTO_PATH" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PLACE_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITE_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITUATION_0" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="SITUATION_1" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="SITUATION_2" type="xs:int" />
+          <xs:element minOccurs="0" name="TYPE_0" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TYPE_1" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TYPE_2" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TYPE_3" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TYPE_4" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TYPE_5" type="xs:boolean" />
+          <xs:element minOccurs="0" name="TYPE_6" type="xs:boolean" />
+          <xs:element minOccurs="0" name="USER__POSITION_X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="USER__POSITION_Y" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="Y" nillable="true" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="tblSurvey_Disaster" nillable="true" type="tns:tblSurvey_Disaster" />
+  <xs:complexType name="ArrayOfvwReportNotified">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="vwReportNotified" nillable="true" type="tns:vwReportNotified" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfvwReportNotified" nillable="true" type="tns:ArrayOfvwReportNotified" />
+  <xs:complexType name="vwReportNotified">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q9:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CUSTROMER_ID" type="xs:int" />
+          <xs:element minOccurs="0" name="DATATIME" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ISTOBA" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SITE_ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SITE_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="TYPE" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="URL" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="vwReportNotified" nillable="true" type="tns:vwReportNotified" />
+  <xs:complexType name="ArrayOfvwSensorValuesAndTC10MinDataLog">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="vwSensorValuesAndTC10MinDataLog" nillable="true" type="tns:vwSensorValuesAndTC10MinDataLog" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfvwSensorValuesAndTC10MinDataLog" nillable="true" type="tns:ArrayOfvwSensorValuesAndTC10MinDataLog" />
+  <xs:complexType name="vwSensorValuesAndTC10MinDataLog">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q10="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" base="q10:EntityObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CONTROLLER_ID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DEGREE" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="EXECUTION_MODE" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ISVALID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IS_REPAIR" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SENSOR_ID" type="xs:int" />
+          <xs:element minOccurs="0" name="TIMESTAMP" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="VALUE0" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="VALUE1" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="VALUE2" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="VALUE_CNT" nillable="true" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="initmean0" type="xs:double" />
+          <xs:element minOccurs="0" name="initmean1" type="xs:double" />
+          <xs:element minOccurs="0" name="initmean2" type="xs:double" />
+          <xs:element minOccurs="0" name="sigma1" type="xs:double" />
+          <xs:element minOccurs="0" name="sigma2" type="xs:double" />
+          <xs:element minOccurs="0" name="signama0" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="vwSensorValuesAndTC10MinDataLog" nillable="true" type="tns:vwSensorValuesAndTC10MinDataLog" />
+</xs:schema>

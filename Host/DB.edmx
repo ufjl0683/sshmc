@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DBStoreContainer">
+          <EntitySet Name="VWHOSTMFCC" EntityType="DB.Store.VWHOSTMFCC" store:Type="Views" store:Schema="dbo" store:Name="VWHOSTMFCC">
+            <DefiningQuery>SELECT 
+      [VWHOSTMFCC].[HOST_ID] AS [HOST_ID], 
+      [VWHOSTMFCC].[HOST_TYPE] AS [HOST_TYPE], 
+      [VWHOSTMFCC].[MEMO] AS [MEMO], 
+      [VWHOSTMFCC].[MFCC_ID] AS [MFCC_ID], 
+      [VWHOSTMFCC].[MFCC_TYPE] AS [MFCC_TYPE], 
+      [VWHOSTMFCC].[REMOTE_PORT] AS [REMOTE_PORT]
+      FROM [dbo].[VWHOSTMFCC] AS [VWHOSTMFCC]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSensorDegree" EntityType="DB.Store.vwSensorDegree" store:Type="Views" store:Schema="dbo" store:Name="vwSensorDegree">
+            <DefiningQuery>SELECT 
+      [vwSensorDegree].[SITE_ID] AS [SITE_ID], 
+      [vwSensorDegree].[SENSOR_ID] AS [SENSOR_ID], 
+      [vwSensorDegree].[SENSOR_NAME] AS [SENSOR_NAME], 
+      [vwSensorDegree].[X] AS [X], 
+      [vwSensorDegree].[Y] AS [Y], 
+      [vwSensorDegree].[ISCONNECTED] AS [ISCONNECTED], 
+      [vwSensorDegree].[ID] AS [ID], 
+      [vwSensorDegree].[EXCUTION_MODE] AS [EXCUTION_MODE], 
+      [vwSensorDegree].[SENSOR_TYPE] AS [SENSOR_TYPE], 
+      [vwSensorDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
+      [vwSensorDegree].[VALUE0] AS [VALUE0], 
+      [vwSensorDegree].[VALUE1] AS [VALUE1], 
+      [vwSensorDegree].[VALUE2] AS [VALUE2], 
+      [vwSensorDegree].[ISVALID] AS [ISVALID], 
+      [vwSensorDegree].[MFCC_ID] AS [MFCC_ID]
+      FROM [dbo].[vwSensorDegree] AS [vwSensorDegree]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.VWHOSTMFCC' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="VWHOSTMFCC">
+          <Key>
+            <PropertyRef Name="HOST_ID" />
+            <PropertyRef Name="MFCC_ID" />
+            <PropertyRef Name="REMOTE_PORT" />
+          </Key>
+          <Property Name="HOST_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="HOST_TYPE" Type="char" MaxLength="1" />
+          <Property Name="MEMO" Type="nvarchar" MaxLength="50" />
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="MFCC_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="REMOTE_PORT" Type="int" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSensorDegree' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSensorDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="ISCONNECTED" />
+            <PropertyRef Name="ISVALID" />
+            <PropertyRef Name="MFCC_ID" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="SENSOR_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ISCONNECTED" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="ID" Type="int" />
+          <Property Name="EXCUTION_MODE" Type="bit" />
+          <Property Name="SENSOR_TYPE" Type="nvarchar" MaxLength="20" />
+          <Property Name="CURRENT_DEGREE" Type="int" />
+          <Property Name="VALUE0" Type="float" />
+          <Property Name="VALUE1" Type="float" />
+          <Property Name="VALUE2" Type="float" />
+          <Property Name="ISVALID" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SSHMC01Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VWHOSTMFCC" EntityType="DB.VWHOSTMFCC" />
+          <EntitySet Name="vwSensorDegree" EntityType="DB.vwSensorDegree" />
+        </EntityContainer>
+        <EntityType Name="VWHOSTMFCC">
+          <Key>
+            <PropertyRef Name="HOST_ID" />
+            <PropertyRef Name="MFCC_ID" />
+            <PropertyRef Name="REMOTE_PORT" />
+          </Key>
+          <Property Type="String" Name="HOST_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="HOST_TYPE" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="MEMO" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MFCC_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MFCC_TYPE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="REMOTE_PORT" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwSensorDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="ISCONNECTED" />
+            <PropertyRef Name="ISVALID" />
+            <PropertyRef Name="MFCC_ID" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SENSOR_ID" Nullable="false" />
+          <Property Type="String" Name="SENSOR_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="String" Name="ISCONNECTED" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="ID" />
+          <Property Type="Boolean" Name="EXCUTION_MODE" />
+          <Property Type="String" Name="SENSOR_TYPE" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CURRENT_DEGREE" />
+          <Property Type="Double" Name="VALUE0" />
+          <Property Type="Double" Name="VALUE1" />
+          <Property Type="Double" Name="VALUE2" />
+          <Property Type="String" Name="ISVALID" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="MFCC_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DBStoreContainer" CdmEntityContainer="SSHMC01Entities1">
+          <EntitySetMapping Name="VWHOSTMFCC">
+            <EntityTypeMapping TypeName="DB.VWHOSTMFCC">
+              <MappingFragment StoreEntitySet="VWHOSTMFCC">
+                <ScalarProperty Name="REMOTE_PORT" ColumnName="REMOTE_PORT" />
+                <ScalarProperty Name="MFCC_TYPE" ColumnName="MFCC_TYPE" />
+                <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+                <ScalarProperty Name="MEMO" ColumnName="MEMO" />
+                <ScalarProperty Name="HOST_TYPE" ColumnName="HOST_TYPE" />
+                <ScalarProperty Name="HOST_ID" ColumnName="HOST_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSensorDegree">
+            <EntityTypeMapping TypeName="DB.vwSensorDegree">
+              <MappingFragment StoreEntitySet="vwSensorDegree">
+                <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+                <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
+                <ScalarProperty Name="VALUE2" ColumnName="VALUE2" />
+                <ScalarProperty Name="VALUE1" ColumnName="VALUE1" />
+                <ScalarProperty Name="VALUE0" ColumnName="VALUE0" />
+                <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
+                <ScalarProperty Name="SENSOR_TYPE" ColumnName="SENSOR_TYPE" />
+                <ScalarProperty Name="EXCUTION_MODE" ColumnName="EXCUTION_MODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ISCONNECTED" ColumnName="ISCONNECTED" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="SENSOR_NAME" ColumnName="SENSOR_NAME" />
+                <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="DB">
+        <EntityTypeShape EntityType="DB.VWHOSTMFCC" Width="1.5" PointX="0.75" PointY="0.75" Height="2.1725878906249996" />
+        <EntityTypeShape EntityType="DB.vwSensorDegree" Width="1.5" PointX="3.375" PointY="0.75" Height="3.9033007812499996" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

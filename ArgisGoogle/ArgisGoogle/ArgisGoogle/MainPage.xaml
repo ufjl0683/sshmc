@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="ArgisGoogle.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:gm="clr-namespace:ArcGISLib;assembly=ArcGISLib"
+    mc:Ignorable="d"
+    d:DesignHeight="578" d:DesignWidth="812" xmlns:esri="http://schemas.esri.com/arcgis/client/2009" Loaded="UserControl_Loaded">
+    <UserControl.Resources>
+        <esri:SimpleMarkerSymbol Color="Red" x:Key="sample" Size="12" Style="Diamond" />
+    </UserControl.Resources>
+        <Grid x:Name="LayoutRoot" Background="White">
+        
+        <esri:Map Background="White" Name="map1" IsLogoVisible="False">
+            <i:Interaction.Behaviors >
+                <esri:ShowCoordinatesBehavior FormatString="{}{0:0.000000},{1:0.000000}"    />
+            </i:Interaction.Behaviors>
+            <esri:Map.Extent >
+                <esri:Envelope  XMax="13580000" XMin="13350000" YMax="2911000" YMin="2551000"    >
+                    <esri:Envelope.SpatialReference>
+                        <esri:SpatialReference WKID="102100" />
+                    </esri:Envelope.SpatialReference>
+                </esri:Envelope>
+             
+            </esri:Map.Extent>
+            <!--gm:TYFDMap Opacity="1" /-->
+            <!--esri:ArcGISDynamicMapServiceLayer Url="http://192.192.85.80:80/arcgis/rest/services/david_map/Taiwan/MapServer" Opacity="1" /-->
+            <gm:GoogleMap />
+            <esri:ElementLayer x:Name="elementlyr"  ID="elementlyr" />
+           
+            <esri:GraphicsLayer x:Name="mygraphic" ID="mygraphic" Opacity="1" />
+            <!--esri:GraphicsLayer  >
+           
+                <esri:Graphic Symbol="{StaticResource sample}"       >
+                   
+                    <esri:MapPoint  X="13493316" Y="2881864"  >
+                        <esri:MapPoint.SpatialReference>
+                            <esri:SpatialReference WKID="4326" />
+                        </esri:MapPoint.SpatialReference>
+                    </esri:MapPoint>
+                  
+                </esri:Graphic>
+            </esri:GraphicsLayer-->
+        </esri:Map>
+     
+        <StackPanel Orientation="Vertical" Margin="0,0,494,0">
+            
+            
+        <TextBlock   Height="26" HorizontalAlignment="Left"  Text="{Binding ElementName=map1,Path=Extent.XMin, StringFormat=xmin:\{0\}}" VerticalAlignment="Top"  />
+            <TextBlock   Height="26" HorizontalAlignment="Left"  Text="{Binding ElementName=map1,Path=Extent.XMax, StringFormat=xmax:\{0\}}" VerticalAlignment="Top"  />
+          
+            <TextBlock   Height="26" HorizontalAlignment="Left"  Text="{Binding ElementName=map1,Path=Extent.YMin, StringFormat=Ymin:\{0\}}" VerticalAlignment="Top"  />
+            <TextBlock   Height="26" HorizontalAlignment="Left"  Text="{Binding ElementName=map1,Path=Extent.YMax, StringFormat=Ymax:\{0\}}" VerticalAlignment="Top"  />
+        </StackPanel>
+        <TextBlock Height="30" Name="textBlock1" Text="TextBlock" Margin="0,135" HorizontalAlignment="Left" Width="318" />
+        <Button Content="Button" Height="21" Name="button1" Margin="0,10,-4,0" Click="button1_Click" HorizontalAlignment="Right" Width="54" VerticalAlignment="Top" />
+        <Border Margin="0"  Height="156" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="158"   BorderThickness="5" CornerRadius="1"  BorderBrush="DarkGreen" >
+        <esri:OverviewMap  Name="overviewMap1" Map="{Binding ElementName=map1}" IsStatic="False">
+
+            <!--gm:TYFDMap   /-->
+                <!--esri:ArcGISDynamicMapServiceLayer Url="http://192.192.85.80:80/arcgis/rest/services/david_map/Taiwan/MapServer" /-->
+                <gm:GoogleMap />
+            </esri:OverviewMap>
+        </Border>
+        <esri:MapProgressBar Height="26" Name="mapProgressBar1" Width="342" Margin="0" Map="{Binding ElementName=map1}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <esri:ScaleLine Height="24" HorizontalAlignment="Center" Margin="312,0" Name="scaleLine1" VerticalAlignment="Bottom" Width="188" Map="{Binding ElementName=map1}" MapUnit="Kilometers" />
+    </Grid>
+</UserControl>

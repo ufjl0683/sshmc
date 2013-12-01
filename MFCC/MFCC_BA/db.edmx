@@ -1,0 +1,350 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SSHMC01Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="SSHMC01ModelStoreContainer">
+          <EntitySet Name="tblReportNotified" EntityType="SSHMC01Model.Store.tblReportNotified" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblTC" EntityType="SSHMC01Model.Store.tblTC" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vwSensorDegree" EntityType="SSHMC01Model.Store.vwSensorDegree" store:Type="Views" store:Schema="dbo" store:Name="vwSensorDegree">
+            <DefiningQuery>SELECT 
+      [vwSensorDegree].[SITE_ID] AS [SITE_ID], 
+      [vwSensorDegree].[SENSOR_ID] AS [SENSOR_ID], 
+      [vwSensorDegree].[SENSOR_NAME] AS [SENSOR_NAME], 
+      [vwSensorDegree].[X] AS [X], 
+      [vwSensorDegree].[Y] AS [Y], 
+      [vwSensorDegree].[ISCONNECTED] AS [ISCONNECTED], 
+      [vwSensorDegree].[ID] AS [ID], 
+      [vwSensorDegree].[EXCUTION_MODE] AS [EXCUTION_MODE], 
+      [vwSensorDegree].[SENSOR_TYPE] AS [SENSOR_TYPE], 
+      [vwSensorDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
+      [vwSensorDegree].[VALUE0] AS [VALUE0], 
+      [vwSensorDegree].[VALUE1] AS [VALUE1], 
+      [vwSensorDegree].[VALUE2] AS [VALUE2], 
+      [vwSensorDegree].[ISVALID] AS [ISVALID], 
+      [vwSensorDegree].[MFCC_ID] AS [MFCC_ID], 
+      [vwSensorDegree].[IsConfirmed] AS [IsConfirmed]
+      FROM [dbo].[vwSensorDegree] AS [vwSensorDegree]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSiteToBA_Report" EntityType="SSHMC01Model.Store.vwSiteToBA_Report" store:Type="Views" store:Schema="dbo" store:Name="vwSiteToBA_Report">
+            <DefiningQuery>SELECT 
+      [vwSiteToBA_Report].[SITE_ID] AS [SITE_ID], 
+      [vwSiteToBA_Report].[DATATIME] AS [DATATIME], 
+      [vwSiteToBA_Report].[TYPE] AS [TYPE], 
+      [vwSiteToBA_Report].[URL] AS [URL], 
+      [vwSiteToBA_Report].[ISTOBA] AS [ISTOBA], 
+      [vwSiteToBA_Report].[CONTROLLER_ID] AS [CONTROLLER_ID], 
+      [vwSiteToBA_Report].[MFCC_ID] AS [MFCC_ID]
+      FROM [dbo].[vwSiteToBA_Report] AS [vwSiteToBA_Report]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vwSiteToBA_Status" EntityType="SSHMC01Model.Store.vwSiteToBA_Status" store:Type="Views" store:Schema="dbo" store:Name="vwSiteToBA_Status">
+            <DefiningQuery>SELECT 
+      [vwSiteToBA_Status].[SITE_ID] AS [SITE_ID], 
+      [vwSiteToBA_Status].[current_degree] AS [current_degree]
+      FROM [dbo].[vwSiteToBA_Status] AS [vwSiteToBA_Status]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <EntityType Name="tblReportNotified">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="DATATIME" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="DATATIME" Type="datetime" Nullable="false" />
+          <Property Name="TYPE" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ISTOBA" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblTC">
+          <Key>
+            <PropertyRef Name="CONTROLLER_ID" />
+          </Key>
+          <Property Name="CONTROLLER_ID" Type="int" Nullable="false" />
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="ISCONNECTED" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="IP" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="PORT" Type="int" Nullable="false" />
+          <Property Name="DEVICE_TYPE" Type="nvarchar" MaxLength="50" />
+          <Property Name="BUILD_DATE" Type="datetime" />
+          <Property Name="VERSION_NO" Type="nvarchar" MaxLength="30" />
+          <Property Name="HW_STATUS_1" Type="tinyint" Nullable="false" />
+          <Property Name="HW_STATUS_2" Type="tinyint" Nullable="false" />
+          <Property Name="HW_STATUS_3" Type="tinyint" Nullable="false" />
+          <Property Name="HW_STATUS_4" Type="tinyint" Nullable="false" />
+          <Property Name="ENABLE" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="INTERNALL_IP" Type="nvarchar" MaxLength="20" />
+          <Property Name="INTERNAL_PORT" Type="int" />
+          <Property Name="CONNECTIONSTATUSLOG_ID" Type="bigint" />
+          <Property Name="LATEST_UPDATE" Type="datetime" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSensorDegree' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSensorDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="ISCONNECTED" />
+            <PropertyRef Name="ISVALID" />
+            <PropertyRef Name="MFCC_ID" />
+            <PropertyRef Name="IsConfirmed" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="SENSOR_ID" Type="int" Nullable="false" />
+          <Property Name="SENSOR_NAME" Type="nvarchar" MaxLength="50" />
+          <Property Name="X" Type="float" />
+          <Property Name="Y" Type="float" />
+          <Property Name="ISCONNECTED" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="ID" Type="int" />
+          <Property Name="EXCUTION_MODE" Type="bit" />
+          <Property Name="SENSOR_TYPE" Type="nvarchar" MaxLength="20" />
+          <Property Name="CURRENT_DEGREE" Type="int" />
+          <Property Name="VALUE0" Type="float" />
+          <Property Name="VALUE1" Type="float" />
+          <Property Name="VALUE2" Type="float" />
+          <Property Name="ISVALID" Type="char" Nullable="false" MaxLength="1" />
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+          <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSiteToBA_Report' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSiteToBA_Report">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="DATATIME" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="URL" />
+            <PropertyRef Name="CONTROLLER_ID" />
+            <PropertyRef Name="MFCC_ID" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="DATATIME" Type="datetime" Nullable="false" />
+          <Property Name="TYPE" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="URL" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="ISTOBA" Type="bit" />
+          <Property Name="CONTROLLER_ID" Type="int" Nullable="false" />
+          <Property Name="MFCC_ID" Type="nvarchar" Nullable="false" MaxLength="20" />
+        </EntityType>
+        <!--產生期間發現錯誤:
+      警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSiteToBA_Status' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
+      -->
+        <EntityType Name="vwSiteToBA_Status">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="current_degree" />
+          </Key>
+          <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
+          <Property Name="current_degree" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSHMC01Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="SSHMC01Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblTC" EntityType="SSHMC01Model.tblTC" />
+          <EntitySet Name="vwSensorDegree" EntityType="SSHMC01Model.vwSensorDegree" />
+          <EntitySet Name="vwSiteToBA_Status" EntityType="SSHMC01Model.vwSiteToBA_Status" />
+          <EntitySet Name="vwSiteToBA_Report" EntityType="SSHMC01Model.vwSiteToBA_Report" />
+          <EntitySet Name="tblReportNotified" EntityType="SSHMC01Model.tblReportNotified" />
+        </EntityContainer>
+        <EntityType Name="tblTC">
+          <Key>
+            <PropertyRef Name="CONTROLLER_ID" />
+          </Key>
+          <Property Name="CONTROLLER_ID" Type="Int32" Nullable="false" />
+          <Property Name="SITE_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="MFCC_ID" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="ISCONNECTED" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="IP" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="PORT" Type="Int32" Nullable="false" />
+          <Property Name="DEVICE_TYPE" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="BUILD_DATE" Type="DateTime" />
+          <Property Name="VERSION_NO" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="HW_STATUS_1" Type="Byte" Nullable="false" />
+          <Property Name="HW_STATUS_2" Type="Byte" Nullable="false" />
+          <Property Name="HW_STATUS_3" Type="Byte" Nullable="false" />
+          <Property Name="HW_STATUS_4" Type="Byte" Nullable="false" />
+          <Property Name="ENABLE" Type="String" Nullable="false" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Name="INTERNALL_IP" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+          <Property Name="INTERNAL_PORT" Type="Int32" />
+          <Property Name="CONNECTIONSTATUSLOG_ID" Type="Int64" />
+          <Property Name="LATEST_UPDATE" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="vwSensorDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SENSOR_ID" />
+            <PropertyRef Name="ISCONNECTED" />
+            <PropertyRef Name="ISVALID" />
+            <PropertyRef Name="MFCC_ID" />
+            <PropertyRef Name="IsConfirmed" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SENSOR_ID" Nullable="false" />
+          <Property Type="String" Name="SENSOR_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="X" />
+          <Property Type="Double" Name="Y" />
+          <Property Type="String" Name="ISCONNECTED" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="ID" />
+          <Property Type="Boolean" Name="EXCUTION_MODE" />
+          <Property Type="String" Name="SENSOR_TYPE" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CURRENT_DEGREE" />
+          <Property Type="Double" Name="VALUE0" />
+          <Property Type="Double" Name="VALUE1" />
+          <Property Type="Double" Name="VALUE2" />
+          <Property Type="String" Name="ISVALID" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="MFCC_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsConfirmed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwSiteToBA_Status">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="current_degree" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="current_degree" Nullable="false" />
+        </EntityType>
+        <EntityType Name="vwSiteToBA_Report">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="DATATIME" />
+            <PropertyRef Name="TYPE" />
+            <PropertyRef Name="URL" />
+            <PropertyRef Name="CONTROLLER_ID" />
+            <PropertyRef Name="MFCC_ID" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DATATIME" Nullable="false" />
+          <Property Type="String" Name="TYPE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISTOBA" />
+          <Property Type="Int32" Name="CONTROLLER_ID" Nullable="false" />
+          <Property Type="String" Name="MFCC_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblReportNotified">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="DATATIME" />
+            <PropertyRef Name="TYPE" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DATATIME" Nullable="false" />
+          <Property Type="String" Name="TYPE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URL" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISTOBA" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSHMC01ModelStoreContainer" CdmEntityContainer="SSHMC01Entities">
+          <EntitySetMapping Name="tblTC"><EntityTypeMapping TypeName="SSHMC01Model.tblTC"><MappingFragment StoreEntitySet="tblTC">
+            <ScalarProperty Name="CONTROLLER_ID" ColumnName="CONTROLLER_ID" />
+            <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+            <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+            <ScalarProperty Name="ISCONNECTED" ColumnName="ISCONNECTED" />
+            <ScalarProperty Name="IP" ColumnName="IP" />
+            <ScalarProperty Name="PORT" ColumnName="PORT" />
+            <ScalarProperty Name="DEVICE_TYPE" ColumnName="DEVICE_TYPE" />
+            <ScalarProperty Name="BUILD_DATE" ColumnName="BUILD_DATE" />
+            <ScalarProperty Name="VERSION_NO" ColumnName="VERSION_NO" />
+            <ScalarProperty Name="HW_STATUS_1" ColumnName="HW_STATUS_1" />
+            <ScalarProperty Name="HW_STATUS_2" ColumnName="HW_STATUS_2" />
+            <ScalarProperty Name="HW_STATUS_3" ColumnName="HW_STATUS_3" />
+            <ScalarProperty Name="HW_STATUS_4" ColumnName="HW_STATUS_4" />
+            <ScalarProperty Name="ENABLE" ColumnName="ENABLE" />
+            <ScalarProperty Name="INTERNALL_IP" ColumnName="INTERNALL_IP" />
+            <ScalarProperty Name="INTERNAL_PORT" ColumnName="INTERNAL_PORT" />
+            <ScalarProperty Name="CONNECTIONSTATUSLOG_ID" ColumnName="CONNECTIONSTATUSLOG_ID" />
+            <ScalarProperty Name="LATEST_UPDATE" ColumnName="LATEST_UPDATE" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="vwSensorDegree">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwSensorDegree">
+              <MappingFragment StoreEntitySet="vwSensorDegree">
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+                <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
+                <ScalarProperty Name="VALUE2" ColumnName="VALUE2" />
+                <ScalarProperty Name="VALUE1" ColumnName="VALUE1" />
+                <ScalarProperty Name="VALUE0" ColumnName="VALUE0" />
+                <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
+                <ScalarProperty Name="SENSOR_TYPE" ColumnName="SENSOR_TYPE" />
+                <ScalarProperty Name="EXCUTION_MODE" ColumnName="EXCUTION_MODE" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ISCONNECTED" ColumnName="ISCONNECTED" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="SENSOR_NAME" ColumnName="SENSOR_NAME" />
+                <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSiteToBA_Status">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwSiteToBA_Status">
+              <MappingFragment StoreEntitySet="vwSiteToBA_Status">
+                <ScalarProperty Name="current_degree" ColumnName="current_degree" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSiteToBA_Report">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwSiteToBA_Report">
+              <MappingFragment StoreEntitySet="vwSiteToBA_Report">
+                <ScalarProperty Name="MFCC_ID" ColumnName="MFCC_ID" />
+                <ScalarProperty Name="CONTROLLER_ID" ColumnName="CONTROLLER_ID" />
+                <ScalarProperty Name="ISTOBA" ColumnName="ISTOBA" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="DATATIME" ColumnName="DATATIME" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblReportNotified">
+            <EntityTypeMapping TypeName="SSHMC01Model.tblReportNotified">
+              <MappingFragment StoreEntitySet="tblReportNotified">
+                <ScalarProperty Name="ISTOBA" ColumnName="ISTOBA" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="TYPE" ColumnName="TYPE" />
+                <ScalarProperty Name="DATATIME" ColumnName="DATATIME" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="db">
+        <EntityTypeShape EntityType="SSHMC01Model.tblTC" Width="1.5" PointX="0.75" PointY="0.75" Height="4.480205078125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSensorDegree" Width="1.5" PointX="3.375" PointY="2.625" Height="4.0956022135416656" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSiteToBA_Status" Width="1.5" PointX="5.375" PointY="0.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSiteToBA_Report" Width="1.5" PointX="5.375" PointY="3.75" Height="2.3648893229166656" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblReportNotified" Width="1.5" PointX="0.75" PointY="6.75" Height="1.9802864583333317" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

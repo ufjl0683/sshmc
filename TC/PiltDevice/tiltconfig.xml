@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<ControllerConfigBase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <controller_id>100</controller_id>
+  <listen_port>1002</listen_port>
+  <device_type>TILT</device_type>
+  <build_date>2011-10-21T19:35:00</build_date>
+  <version_no>1</version_no>
+  
+  <sensors>
+    <SensorConfigBase  xsi:type="TiltSensorConfig">
+    <device_name>Tilt1</device_name>
+    <id>0</id>
+    <com_type>TCP</com_type>
+    <ip_comport>192.168.168.135</ip_comport>
+    <port_baud>6000</port_baud>
+    <execution_mode>0</execution_mode>
+      <sensor_values>
+       <SensorValueConfigBase>
+        <id>0</id>
+        <desc>TileX</desc>
+         <offset>0</offset>
+         <coefficient>1</coefficient>
+        <rules>
+         <SensorValueRuleConfigBase>
+          <level>1</level>
+          <hour_ma>1</hour_ma>
+         
+          <lower_limit>1</lower_limit>
+          <upper_limit>1</upper_limit>
+          <left_hour_ma1>1</left_hour_ma1>
+          <right_hour_ma1>2</right_hour_ma1>
+          <left_hour_ma2>1</left_hour_ma2>
+          <right_hour_ma2>3</right_hour_ma2>
+        </SensorValueRuleConfigBase>
+          <SensorValueRuleConfigBase>
+          <level>2</level>
+          <hour_ma>1</hour_ma>
+          <lower_limit>1</lower_limit>
+          <upper_limit>1</upper_limit>
+          <left_hour_ma1>1</left_hour_ma1>
+          <right_hour_ma1>2</right_hour_ma1>
+          <left_hour_ma2>1</left_hour_ma2>
+          <right_hour_ma2>3</right_hour_ma2>
+        </SensorValueRuleConfigBase>
+          <SensorValueRuleConfigBase>
+          <level>3</level>
+          <hour_ma>1</hour_ma>
+          <lower_limit>1</lower_limit>
+          <upper_limit>1</upper_limit>
+          <left_hour_ma1>1</left_hour_ma1>
+          <right_hour_ma1>2</right_hour_ma1>
+          <left_hour_ma2>1</left_hour_ma2>
+          <right_hour_ma2>3</right_hour_ma2>
+        </SensorValueRuleConfigBase>
+        </rules>
+       </SensorValueConfigBase>
+       <SensorValueConfigBase>
+         <id>1</id>
+         <desc>TileY</desc>
+         <offset>0</offset>
+         <coefficient>1</coefficient>
+          <rules>
+            <SensorValueRuleConfigBase>
+              <level>1</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>2</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>3</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+          </rules>
+
+
+        </SensorValueConfigBase>
+     </sensor_values>
+    
+   
+
+     
+    </SensorConfigBase>
+    <SensorConfigBase  xsi:type="TiltSensorConfig">
+      <device_name>Tilt2</device_name>
+      <id>1</id>
+      <com_type>TCP</com_type>
+      <ip_comport>192.168.168.136</ip_comport>
+      <port_baud>6000</port_baud>
+      <execution_mode>0</execution_mode>
+      <sensor_values>
+        <SensorValueConfigBase>
+          <id>1</id>
+          <desc>TileX</desc>
+          <offset>0</offset>
+          <coefficient>1</coefficient>
+          <rules>
+            <SensorValueRuleConfigBase>
+              <level>1</level>
+              <hour_ma>1</hour_ma>
+
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>2</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>3</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+          </rules>
+        </SensorValueConfigBase>
+        <SensorValueConfigBase>
+          <id>1</id>
+          <desc>TileY</desc>
+          <offset>0</offset>
+          <coefficient>1</coefficient>
+          <rules>
+            <SensorValueRuleConfigBase>
+              <level>1</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>2</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>3</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+          </rules>
+
+
+        </SensorValueConfigBase>
+      </sensor_values>
+
+
+
+
+    </SensorConfigBase>
+  </sensors>
+  
+</ControllerConfigBase>

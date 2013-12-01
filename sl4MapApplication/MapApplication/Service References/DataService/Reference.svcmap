@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fdd58867-531e-43d1-938e-2d0e6ec71198" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>true</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.ObjectModel.ObservableCollection`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>false</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://192.192.161.4/dataservice/sshmcdataservice.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="sshmcDataService.xsd" MetadataType="Schema" ID="6a537cf9-810b-487e-a1aa-765d7d3aff25" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd4" />
+    <MetadataFile FileName="sshmcDataService1.xsd" MetadataType="Schema" ID="a3de4112-7cf5-47e9-959a-cfec1e7b2f6c" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd3" />
+    <MetadataFile FileName="sshmcDataService.disco" MetadataType="Disco" ID="31838495-166d-48fe-b505-35b220cfff88" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?disco" />
+    <MetadataFile FileName="sshmcDataService2.xsd" MetadataType="Schema" ID="03f4b880-f1fb-4797-9630-d46317278a3b" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd2" />
+    <MetadataFile FileName="SSHMCDataService.wsdl" MetadataType="Wsdl" ID="9326534b-1d80-4d19-99c5-4c9109fe1c37" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?wsdl" />
+    <MetadataFile FileName="sshmcDataService3.xsd" MetadataType="Schema" ID="00e91a60-d831-48ac-a72d-4fde952b6616" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd0" />
+    <MetadataFile FileName="sshmcDataService4.xsd" MetadataType="Schema" ID="99de2d53-fef2-4595-a138-1ca834566b3e" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

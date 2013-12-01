@@ -1,0 +1,54 @@
+
+        
+        //void dev_OnReceiveText(object sender, Comm.TextPackage txtObj)
+        //{
+        //    //throw new NotImplementedException();
+
+
+
+        //    try
+        //    {
+        //        double volt1, volt2;
+        //        volt1 = (txtObj.Text[0] + txtObj.Text[1] * 256 + txtObj.Text[2] * 256 * 256) / Math.Pow(2, 24) * 5;
+        //        volt2 = (txtObj.Text[3] + txtObj.Text[4] * 256 + txtObj.Text[5] * 256 * 256) / Math.Pow(2, 24) * 5;
+        //        Point p1 = new Point(inx, -volt1 / 5 * 200 + 160);
+        //        Point p2 = new Point(inx, -volt2 / 5 * 200 + 160);
+        //        vc1.Add(p1);
+        //        vc2.Add(p2);
+        //        if (vc1.Count > 400)
+        //            vc1.RemoveAt(0);
+
+        //        if (vc2.Count > 400)
+        //            vc2.RemoveAt(0);
+        //        Point[] points1 = vc1.ToArray();
+        //        Point[] points2 = vc2.ToArray();
+
+        //        for (int i = 0; i < points1.Length; i++)
+        //        {
+        //            points1[i].X = i;
+        //            points2[i].X = i;
+        //        }
+        //        // inx++;
+        //        //if (inx >= 400)
+        //        //    inx = 399;
+        //        this.Dispatcher.Invoke(
+        //         new Action(delegate()
+        //             {
+
+
+
+
+        //                 polyline1.Points = new PointCollection(points1);
+        //                 polyline2.Points = new PointCollection(points2);
+
+        //             })
+        //        );
+
+
+
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //    };
+        //}

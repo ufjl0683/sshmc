@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="MapApplication.Controls.SiteMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mapctl="clr-namespace:MapApplication.MapControls"
+    mc:Ignorable="d"
+    d:DesignHeight="300" d:DesignWidth="400" Height="100">
+    <Control.Resources>
+        <mapctl:DegreeColorConverter x:Key="DegreeColorConverter" />
+     </Control.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="{Binding CURRENT_DEGREE,Converter={StaticResource DegreeColorConverter}}" SizeChanged="LayoutRoot_SizeChanged"  >
+    	<Grid x:Name="border" MouseLeave="border_MouseLeave" Margin="0" MouseEnter="Border_MouseEnter">
+            <Image x:Name="buldingPic"   Source="{Binding SITE_ID,StringFormat=http://192.192.161.4/pic/sitepic/\{0\}.jpg}" Visibility="Collapsed"   HorizontalAlignment="Right" Margin="0"   Stretch="UniformToFill"  />
+            <TextBlock x:Name="txtCustomerName" Foreground="White" FontSize="14" Text="{Binding CUSTOMER_NAME}" VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0" />
+            <TextBlock x:Name="txtSiteName" Text="{Binding SITE_NAME}"  Foreground="White" TextAlignment="Center" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" >
+             <!--<TextBlock.Effect>
+                 <DropShadowEffect  />
+             </TextBlock.Effect>-->
+            </TextBlock>
+
+        </Grid>
+        <!--<ToolTipService.ToolTip>-->
+            <!--<Image Source="{Binding SITE_ID,StringFormat=http://192.192.161.4/pic/sitepic/\{0\}.jpg}" Width="100" Height="100" Stretch="UniformToFill" />-->
+            <!--<Image Source="http://192.192.161.4/pic/sitepic/0001.jpg" Width="100" Height="100" Stretch="UniformToFill" />-->
+        <!--</ToolTipService.ToolTip>-->
+    </Grid>
+</UserControl>

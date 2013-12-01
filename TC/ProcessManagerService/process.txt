@@ -1,0 +1,3 @@
+﻿# ProcessName,ExecutePath, Args,Description
+NotePad1,NotePad.exe,,
+NotePad2,NotePad.exe,,

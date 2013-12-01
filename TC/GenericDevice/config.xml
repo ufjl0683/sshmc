@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+<ControllerConfigBase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <controller_id>100</controller_id>
+  <listen_port>1002</listen_port>
+  <device_type>EGPS</device_type>
+  <build_date>2011-10-21T19:35:00</build_date>
+  <version_no>1</version_no>
+  
+  <sensors>
+    <SensorConfigBase   >
+    <device_name>EGPS1</device_name>
+    <id>0</id>
+    <com_type>TCP</com_type>
+    <ip_comport>127.0.0.1</ip_comport>
+    <port_baud>17000</port_baud>
+    <execution_mode>1</execution_mode>
+      <sensor_values>
+       <SensorValueConfigBase>
+        <id>0</id>
+        <desc>X</desc>
+         <offset>0</offset>
+         <coefficient>1</coefficient>
+         <SIGMA>0.0014</SIGMA>
+         <INITMEAN>-0.2376</INITMEAN>
+         <MeanThreshold>0</MeanThreshold>
+         <ConvertFormula>{0}</ConvertFormula>
+        <!--<rules>
+         <SensorValueRuleConfigBase>
+          <level>1</level>
+          <hour_ma>1</hour_ma>
+         
+          <lower_limit>1</lower_limit>
+          <upper_limit>1</upper_limit>
+          <left_hour_ma1>1</left_hour_ma1>
+          <right_hour_ma1>2</right_hour_ma1>
+          <left_hour_ma2>1</left_hour_ma2>
+          <right_hour_ma2>3</right_hour_ma2>
+        </SensorValueRuleConfigBase>
+          <SensorValueRuleConfigBase>
+          <level>2</level>
+          <hour_ma>1</hour_ma>
+          <lower_limit>1</lower_limit>
+          <upper_limit>1</upper_limit>
+          <left_hour_ma1>1</left_hour_ma1>
+          <right_hour_ma1>2</right_hour_ma1>
+          <left_hour_ma2>1</left_hour_ma2>
+          <right_hour_ma2>3</right_hour_ma2>
+        </SensorValueRuleConfigBase>
+          <SensorValueRuleConfigBase>
+          <level>3</level>
+          <hour_ma>1</hour_ma>
+          <lower_limit>1</lower_limit>
+          <upper_limit>1</upper_limit>
+          <left_hour_ma1>1</left_hour_ma1>
+          <right_hour_ma1>2</right_hour_ma1>
+          <left_hour_ma2>1</left_hour_ma2>
+          <right_hour_ma2>3</right_hour_ma2>
+        </SensorValueRuleConfigBase>
+        </rules>-->
+       </SensorValueConfigBase>
+       <SensorValueConfigBase>
+         <id>1</id>
+         <desc>Y</desc>
+         <offset>0</offset>
+         <coefficient>1</coefficient>
+         <SIGMA>0.0014</SIGMA>
+         <INITMEAN>1.2149</INITMEAN>
+         <MeanThreshold>0</MeanThreshold>
+         <ConvertFormula>{1}</ConvertFormula>
+          <!--<rules>
+            <SensorValueRuleConfigBase>
+              <level>1</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>2</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>3</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+          </rules>-->
+
+
+        </SensorValueConfigBase>
+       <SensorValueConfigBase>
+          <id>2</id>
+          <desc>Z</desc>
+          <offset>0</offset>
+          <coefficient>1</coefficient>
+          <SIGMA>5</SIGMA>
+          <INITMEAN>20</INITMEAN>
+         <MeanThreshold>0</MeanThreshold>
+         <ConvertFormula>{2}</ConvertFormula>
+          <!--<rules>
+            <SensorValueRuleConfigBase>
+              <level>1</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>2</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+            <SensorValueRuleConfigBase>
+              <level>3</level>
+              <hour_ma>1</hour_ma>
+              <lower_limit>1</lower_limit>
+              <upper_limit>1</upper_limit>
+              <left_hour_ma1>1</left_hour_ma1>
+              <right_hour_ma1>2</right_hour_ma1>
+              <left_hour_ma2>1</left_hour_ma2>
+              <right_hour_ma2>3</right_hour_ma2>
+            </SensorValueRuleConfigBase>
+          </rules>-->
+
+
+        </SensorValueConfigBase>
+     </sensor_values>
+    
+   
+
+     
+    </SensorConfigBase>
+    <SensorConfigBase  >
+      <device_name>EGPS2</device_name>
+      <id>1</id>
+      <com_type>TCP</com_type>
+      <ip_comport>127.0.0.1</ip_comport>
+      <port_baud>17001</port_baud>
+      <execution_mode>1</execution_mode>
+      <sensor_values>
+        <SensorValueConfigBase>
+          <id>0</id>
+          <desc> X</desc>
+          <offset>0</offset>
+          <coefficient>1</coefficient>
+          <SIGMA>0.0014</SIGMA>
+          <INITMEAN>11.6853</INITMEAN>
+          <MeanThreshold>0</MeanThreshold>
+          <ConvertFormula>{0}</ConvertFormula>
+        
+        </SensorValueConfigBase>
+        <SensorValueConfigBase>
+          <id>1</id>
+          <desc> Y</desc>
+          <offset>0</offset>
+          <coefficient>1</coefficient>
+          <SIGMA>0.0014</SIGMA>
+          <INITMEAN>8.9602</INITMEAN>
+          <MeanThreshold>0</MeanThreshold>
+          <ConvertFormula>{1}</ConvertFormula>
+          
+
+
+        </SensorValueConfigBase>
+
+        <SensorValueConfigBase>
+          <id>2</id>
+          <desc>Z</desc>
+          <offset>0</offset>
+          <coefficient>1</coefficient>
+          <SIGMA>5</SIGMA>
+          <INITMEAN>20</INITMEAN>
+          <MeanThreshold>0</MeanThreshold>
+          <ConvertFormula>{2}</ConvertFormula>
+        
+
+
+        </SensorValueConfigBase>  
+      </sensor_values>
+
+
+
+
+    </SensorConfigBase>
+  </sensors>
+  
+</ControllerConfigBase>
