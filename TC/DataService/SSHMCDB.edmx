@@ -208,11 +208,12 @@
           <Property Name="PHOTO_PATH" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="X" Type="float" />
           <Property Name="Y" Type="float" />
-          <Property Name="USER_ POSITION_X" Type="float" />
-          <Property Name="USER_ POSITION_Y" Type="float" />
+          <Property Name="USER_POSITION_X" Type="float" />
+          <Property Name="USER_POSITION_Y" Type="float" />
           <Property Name="ISCHECK" Type="bit" />
           <Property Name="ISCLOSE" Type="bit" />
           <Property Name="PLACE_NAME" Type="nvarchar" MaxLength="15" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -490,15 +491,15 @@
             <PropertyRef Name="IDENTIFIED_ID" />
           </Key>
           <Property Type="Int32" Name="IDENTIFIED_ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="TIMESTAMP" />
+          <Property Type="DateTime" Name="TIMESTAMP" Precision="3" />
           <Property Type="String" Name="PUBLISH_ORANG" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="CONTENT" MaxLength="1500" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="PRE_ADMONISH_CLASS" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="ISSEND" Nullable="false" />
           <Property Type="String" Name="TITLE" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="NOTIFIED_TIME" />
-          <Property Type="DateTime" Name="PRE_TIMESTAMP" />
-          <Property Type="DateTime" Name="AFTER_TIMESTAMP" />
+          <Property Type="DateTime" Name="NOTIFIED_TIME" Precision="3" />
+          <Property Type="DateTime" Name="PRE_TIMESTAMP" Precision="3" />
+          <Property Type="DateTime" Name="AFTER_TIMESTAMP" Precision="3" />
           <Property Type="Byte" Name="ISREPORT" Nullable="false" />
           <Property Type="String" Name="DISASTER_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -509,7 +510,7 @@
             <PropertyRef Name="TYPE" />
           </Key>
           <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DATATIME" Nullable="false" />
+          <Property Type="DateTime" Name="DATATIME" Nullable="false" Precision="3" />
           <Property Type="String" Name="TYPE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="URL" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="ISTOBA" />
@@ -603,7 +604,7 @@
             <PropertyRef Name="SITE_NAME" />
           </Key>
           <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="DATATIME" Nullable="false" />
+          <Property Type="DateTime" Name="DATATIME" Nullable="false" Precision="3" />
           <Property Type="String" Name="TYPE" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="URL" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="ISTOBA" />
@@ -624,7 +625,7 @@
             <PropertyRef Name="initmean2" />
           </Key>
           <Property Type="Int32" Name="SENSOR_ID" Nullable="false" />
-          <Property Type="DateTime" Name="TIMESTAMP" Nullable="false" />
+          <Property Type="DateTime" Name="TIMESTAMP" Nullable="false" Precision="3" />
           <Property Type="Double" Name="VALUE0" />
           <Property Type="Double" Name="VALUE1" />
           <Property Type="Byte" Name="DEGREE" Nullable="false" />
@@ -648,8 +649,8 @@
           <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="SITE_ID" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="N3_REPORT_ID" MaxLength="2" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="BUILD_TIME" Nullable="false" />
-          <Property Type="DateTime" Name="OCCUR_TIME" Nullable="false" />
+          <Property Type="DateTime" Name="BUILD_TIME" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="OCCUR_TIME" Nullable="false" Precision="3" />
           <Property Type="String" Name="BUILD_USER" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="Byte" Name="SITUATION_0" Nullable="false" />
           <Property Type="Byte" Name="SITUATION_1" Nullable="false" />
@@ -674,11 +675,12 @@
           <Property Type="String" Name="PHOTO_PATH" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Double" Name="X" />
           <Property Type="Double" Name="Y" />
-          <Property Type="Double" Name="USER__POSITION_X" />
-          <Property Type="Double" Name="USER__POSITION_Y" />
+          <Property Type="Double" Name="USER_POSITION_X" />
+          <Property Type="Double" Name="USER_POSITION_Y" />
           <Property Type="Boolean" Name="ISCHECK" />
           <Property Type="Boolean" Name="ISCLOSE" />
           <Property Type="String" Name="PLACE_NAME" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -854,11 +856,12 @@
           <EntitySetMapping Name="tblSurvey_Disaster">
             <EntityTypeMapping TypeName="SSHMC01Model.tblSurvey_Disaster">
               <MappingFragment StoreEntitySet="tblSurvey_Disaster">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
                 <ScalarProperty Name="ISCLOSE" ColumnName="ISCLOSE" />
                 <ScalarProperty Name="ISCHECK" ColumnName="ISCHECK" />
-                <ScalarProperty Name="USER__POSITION_Y" ColumnName="USER_ POSITION_Y" />
-                <ScalarProperty Name="USER__POSITION_X" ColumnName="USER_ POSITION_X" />
+                <ScalarProperty Name="USER_POSITION_Y" ColumnName="USER_POSITION_Y" />
+                <ScalarProperty Name="USER_POSITION_X" ColumnName="USER_POSITION_X" />
                 <ScalarProperty Name="Y" ColumnName="Y" />
                 <ScalarProperty Name="X" ColumnName="X" />
                 <ScalarProperty Name="PHOTO_PATH" ColumnName="PHOTO_PATH" />
@@ -915,7 +918,7 @@
         <EntityTypeShape EntityType="SSHMC01Model.tblUser" Width="1.5" PointX="0.75" PointY="0.75" Height="3.1340950520833335" IsExpanded="true" />
         <EntityTypeShape EntityType="SSHMC01Model.vwSensorDegree" Width="1.5" PointX="2.75" PointY="0.75" Height="3.7109993489583326" IsExpanded="true" />
         <EntityTypeShape EntityType="SSHMC01Model.vwSiteDegree" Width="1.5" PointX="4.75" PointY="0.75" Height="3.5186979166666656" IsExpanded="true" />
-        <EntityTypeShape EntityType="SSHMC01Model.tblCCTV" Width="1.5" PointX="4" PointY="5.375" Height="2.4746101888020835" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblCCTV" Width="1.5" PointX="4.875" PointY="5.375" Height="2.4746101888020835" />
         <EntityTypeShape EntityType="SSHMC01Model.tblPre_disasterNotified" Width="1.5" PointX="6" PointY="5.625" Height="3.2137866210937496" />
         <EntityTypeShape EntityType="SSHMC01Model.tblReportNotified" Width="1.5" PointX="7.375" PointY="0.75" Height="1.9202278645833317" />
         <EntityTypeShape EntityType="SSHMC01Model.tblSite" Width="1.5" PointX="0.75" PointY="7.625" Height="5.4313159179687531" />
@@ -935,7 +938,7 @@
         </AssociationConnector>
         <EntityTypeShape EntityType="SSHMC01Model.vwReportNotified" Width="1.5" PointX="9.375" PointY="0.75" Height="2.2898160807291674" />
         <EntityTypeShape EntityType="SSHMC01Model.vwSensorValuesAndTC10MinDataLog" Width="2.5" PointX="3.375" PointY="9.75" Height="4.1377571614583317" />
-        <EntityTypeShape EntityType="SSHMC01Model.tblSurvey_Disaster" Width="1.5" PointX="8.375" PointY="4.75" Height="7.2792569986979174" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblSurvey_Disaster" Width="1.5" PointX="8.75" PointY="3.5" />
       </Diagram>
     </Diagrams>
   </Designer>

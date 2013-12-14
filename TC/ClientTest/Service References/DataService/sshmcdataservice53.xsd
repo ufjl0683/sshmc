@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/DataService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/DataService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
+  <xs:import schemaLocation="http://127.0.0.1:49202/sshmcdataservice.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System.Data.Objects.DataClasses" />
   <xs:complexType name="ArrayOfvwSiteDegree">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="vwSiteDegree" nillable="true" type="tns:vwSiteDegree" />
@@ -217,6 +217,7 @@
           <xs:element minOccurs="0" name="DAMAGED_BRIDGE_0" type="xs:unsignedByte" />
           <xs:element minOccurs="0" name="DAMAGED_ROADS" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="DAMAGED_ROADS_0" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="DESCRIPTION" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="EVACUATION_0" type="xs:boolean" />
           <xs:element minOccurs="0" name="EVACUATION_1" type="xs:int" />
           <xs:element minOccurs="0" name="ID" type="xs:int" />
@@ -237,6 +238,8 @@
           <xs:element minOccurs="0" name="TYPE_4" type="xs:boolean" />
           <xs:element minOccurs="0" name="TYPE_5" type="xs:boolean" />
           <xs:element minOccurs="0" name="TYPE_6" type="xs:boolean" />
+          <xs:element minOccurs="0" name="USER_POSITION_X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="USER_POSITION_Y" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="USER__POSITION_X" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="USER__POSITION_Y" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="X" nillable="true" type="xs:double" />

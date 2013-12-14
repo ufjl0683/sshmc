@@ -1594,15 +1594,17 @@ namespace sshmc.Service {
         
         private byte DAMAGED_ROADS_0Field;
         
+        private string DESCRIPTIONField;
+        
         private bool EVACUATION_0Field;
         
         private int EVACUATION_1Field;
         
         private int IDField;
         
-        private bool ISCHECKField;
+        private System.Nullable<bool> ISCHECKField;
         
-        private bool ISCLOSEField;
+        private System.Nullable<bool> ISCLOSEField;
         
         private string N3_REPORT_IDField;
         
@@ -1633,6 +1635,10 @@ namespace sshmc.Service {
         private bool TYPE_5Field;
         
         private bool TYPE_6Field;
+        
+        private System.Nullable<double> USER_POSITION_XField;
+        
+        private System.Nullable<double> USER_POSITION_YField;
         
         private System.Nullable<double> USER__POSITION_XField;
         
@@ -1773,6 +1779,19 @@ namespace sshmc.Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DESCRIPTION {
+            get {
+                return this.DESCRIPTIONField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DESCRIPTIONField, value) != true)) {
+                    this.DESCRIPTIONField = value;
+                    this.RaisePropertyChanged("DESCRIPTION");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool EVACUATION_0 {
             get {
                 return this.EVACUATION_0Field;
@@ -1812,7 +1831,7 @@ namespace sshmc.Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ISCHECK {
+        public System.Nullable<bool> ISCHECK {
             get {
                 return this.ISCHECKField;
             }
@@ -1825,7 +1844,7 @@ namespace sshmc.Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ISCLOSE {
+        public System.Nullable<bool> ISCLOSE {
             get {
                 return this.ISCLOSEField;
             }
@@ -2028,6 +2047,32 @@ namespace sshmc.Service {
                 if ((this.TYPE_6Field.Equals(value) != true)) {
                     this.TYPE_6Field = value;
                     this.RaisePropertyChanged("TYPE_6");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> USER_POSITION_X {
+            get {
+                return this.USER_POSITION_XField;
+            }
+            set {
+                if ((this.USER_POSITION_XField.Equals(value) != true)) {
+                    this.USER_POSITION_XField = value;
+                    this.RaisePropertyChanged("USER_POSITION_X");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> USER_POSITION_Y {
+            get {
+                return this.USER_POSITION_YField;
+            }
+            set {
+                if ((this.USER_POSITION_YField.Equals(value) != true)) {
+                    this.USER_POSITION_YField = value;
+                    this.RaisePropertyChanged("USER_POSITION_Y");
                 }
             }
         }
@@ -2665,7 +2710,7 @@ namespace sshmc.Service {
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<sshmc.Service.tblSurvey_Disaster>> GetSurveyDisasterAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISSHMCDataService/AddSurverDiasterInfo", ReplyAction="http://tempuri.org/ISSHMCDataService/AddSurverDiasterInfoResponse")]
-        System.Threading.Tasks.Task AddSurverDiasterInfoAsync(sshmc.Service.tblSurvey_Disaster info);
+        System.Threading.Tasks.Task<string> AddSurverDiasterInfoAsync(sshmc.Service.tblSurvey_Disaster info);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ISSHMCDataService/GettblReportNotified", ReplyAction="http://tempuri.org/ISSHMCDataService/GettblReportNotifiedResponse")]
         System.Threading.Tasks.Task<System.Collections.ObjectModel.ObservableCollection<sshmc.Service.vwReportNotified>> GettblReportNotifiedAsync(string userid);
@@ -2741,7 +2786,7 @@ namespace sshmc.Service {
             return base.Channel.GetSurveyDisasterAsync();
         }
         
-        public System.Threading.Tasks.Task AddSurverDiasterInfoAsync(sshmc.Service.tblSurvey_Disaster info) {
+        public System.Threading.Tasks.Task<string> AddSurverDiasterInfoAsync(sshmc.Service.tblSurvey_Disaster info) {
             return base.Channel.AddSurverDiasterInfoAsync(info);
         }
         

@@ -18,16 +18,16 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.192.161.4/dataservice/sshmcdataservice.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://127.0.0.1:49202/sshmcdataservice.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="sshmcDataService.xsd" MetadataType="Schema" ID="3b699458-e370-42a2-9697-e6494d79e447" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd4" />
-    <MetadataFile FileName="sshmcDataService2.xsd" MetadataType="Schema" ID="c65a9306-481d-4a15-b9d9-210010e3ea5b" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd3" />
-    <MetadataFile FileName="sshmcDataService.disco" MetadataType="Disco" ID="fc52db07-f2fb-4655-89d8-f6028aeebb1f" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?disco" />
-    <MetadataFile FileName="sshmcDataService1.xsd" MetadataType="Schema" ID="4521782e-1623-4785-8d3e-de94838713fb" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd2" />
-    <MetadataFile FileName="SSHMCDataService.wsdl" MetadataType="Wsdl" ID="ae088818-b953-4e95-82a5-71d08899e96e" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?wsdl" />
-    <MetadataFile FileName="sshmcDataService3.xsd" MetadataType="Schema" ID="9a4d936d-f5a1-4815-8543-669570f795cf" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd0" />
-    <MetadataFile FileName="sshmcDataService4.xsd" MetadataType="Schema" ID="51f62c5f-2f69-4bd3-bcc8-c6b20b36732c" SourceId="1" SourceUrl="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd1" />
+    <MetadataFile FileName="sshmcdataservice5.xsd" MetadataType="Schema" ID="337131be-99ad-486d-875e-ab2683d85e42" SourceId="1" SourceUrl="http://127.0.0.1:49202/sshmcdataservice.svc?xsd=xsd1" />
+    <MetadataFile FileName="sshmcdataservice51.xsd" MetadataType="Schema" ID="cfd222a4-01c1-4f73-96e6-c1b0c5db7987" SourceId="1" SourceUrl="http://127.0.0.1:49202/sshmcdataservice.svc?xsd=xsd4" />
+    <MetadataFile FileName="sshmcdataservice1.disco" MetadataType="Disco" ID="6ad42385-1748-4688-9d49-9e61bc6e6e34" SourceId="1" SourceUrl="http://127.0.0.1:49202/sshmcdataservice.svc?disco" />
+    <MetadataFile FileName="sshmcdataservice52.xsd" MetadataType="Schema" ID="3cb1264c-50a0-4b83-aaf8-38a563c1d40b" SourceId="1" SourceUrl="http://127.0.0.1:49202/sshmcdataservice.svc?xsd=xsd0" />
+    <MetadataFile FileName="sshmcdataservice53.xsd" MetadataType="Schema" ID="0c424999-e490-4a9b-99ee-4fe72c06d044" SourceId="1" SourceUrl="http://127.0.0.1:49202/sshmcdataservice.svc?xsd=xsd2" />
+    <MetadataFile FileName="SSHMCDataService1.wsdl" MetadataType="Wsdl" ID="a443b888-fe95-4c7d-bb98-603d347d4f10" SourceId="1" SourceUrl="http://127.0.0.1:49202/sshmcdataservice.svc?wsdl" />
+    <MetadataFile FileName="sshmcdataservice54.xsd" MetadataType="Schema" ID="6183b0a3-8cc5-402a-8528-fda4f897a6f0" SourceId="1" SourceUrl="http://127.0.0.1:49202/sshmcdataservice.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

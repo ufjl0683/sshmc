@@ -2747,48 +2747,48 @@ namespace DataService
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> USER__POSITION_X
+        public Nullable<global::System.Double> USER_POSITION_X
         {
             get
             {
-                return _USER__POSITION_X;
+                return _USER_POSITION_X;
             }
             set
             {
-                OnUSER__POSITION_XChanging(value);
-                ReportPropertyChanging("USER__POSITION_X");
-                _USER__POSITION_X = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("USER__POSITION_X");
-                OnUSER__POSITION_XChanged();
+                OnUSER_POSITION_XChanging(value);
+                ReportPropertyChanging("USER_POSITION_X");
+                _USER_POSITION_X = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("USER_POSITION_X");
+                OnUSER_POSITION_XChanged();
             }
         }
-        private Nullable<global::System.Double> _USER__POSITION_X;
-        partial void OnUSER__POSITION_XChanging(Nullable<global::System.Double> value);
-        partial void OnUSER__POSITION_XChanged();
+        private Nullable<global::System.Double> _USER_POSITION_X;
+        partial void OnUSER_POSITION_XChanging(Nullable<global::System.Double> value);
+        partial void OnUSER_POSITION_XChanged();
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> USER__POSITION_Y
+        public Nullable<global::System.Double> USER_POSITION_Y
         {
             get
             {
-                return _USER__POSITION_Y;
+                return _USER_POSITION_Y;
             }
             set
             {
-                OnUSER__POSITION_YChanging(value);
-                ReportPropertyChanging("USER__POSITION_Y");
-                _USER__POSITION_Y = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("USER__POSITION_Y");
-                OnUSER__POSITION_YChanged();
+                OnUSER_POSITION_YChanging(value);
+                ReportPropertyChanging("USER_POSITION_Y");
+                _USER_POSITION_Y = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("USER_POSITION_Y");
+                OnUSER_POSITION_YChanged();
             }
         }
-        private Nullable<global::System.Double> _USER__POSITION_Y;
-        partial void OnUSER__POSITION_YChanging(Nullable<global::System.Double> value);
-        partial void OnUSER__POSITION_YChanged();
+        private Nullable<global::System.Double> _USER_POSITION_Y;
+        partial void OnUSER_POSITION_YChanging(Nullable<global::System.Double> value);
+        partial void OnUSER_POSITION_YChanged();
     
         /// <summary>
         /// 沒有可用的中繼資料文件。
@@ -2861,6 +2861,30 @@ namespace DataService
         private global::System.String _PLACE_NAME;
         partial void OnPLACE_NAMEChanging(global::System.String value);
         partial void OnPLACE_NAMEChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DESCRIPTION
+        {
+            get
+            {
+                return _DESCRIPTION;
+            }
+            set
+            {
+                OnDESCRIPTIONChanging(value);
+                ReportPropertyChanging("DESCRIPTION");
+                _DESCRIPTION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DESCRIPTION");
+                OnDESCRIPTIONChanged();
+            }
+        }
+        private global::System.String _DESCRIPTION;
+        partial void OnDESCRIPTIONChanging(global::System.String value);
+        partial void OnDESCRIPTIONChanged();
 
         #endregion
 

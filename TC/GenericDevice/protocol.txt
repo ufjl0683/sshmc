@@ -1,9 +1,9 @@
 [DeviceInfo]
 
 Version=3.0
-DeviceType=Tilt
+DeviceType=EGPS
 IP=127.0.0.1
-port=1002
+port=1003
 DeviceID=0xFFFF
 
 

@@ -46,6 +46,15 @@ namespace ClientTest
      
         static void Main(string[] args)
         {
+            SSHMC01Entities db = new SSHMC01Entities();
+            var q = from n in db.tblUser  where n.USER_ID=="david" && n.USER_PW=="0988163835" select n;
+            tblUser[] users = q.ToArray();
+            tblUser user = (from n in db.tblUser where n.USER_ID == "david" && n.USER_PW == "0988163835" select n).FirstOrDefault();
+            Console.WriteLine(user.USER_ID);
+            foreach (tblUser u in users)
+            {
+                Console.WriteLine(u.USER_ID);
+            }
           //  System.Net.Sockets.TcpListener sv = new System.Net.Sockets.TcpListener(
           //new System.Net.IPEndPoint(new IPAddress(new byte[] { 127, 0, 0, 1 }), 1101));
           //  sv.Start();
@@ -58,6 +67,8 @@ namespace ClientTest
           //      Console.WriteLine(System.Text.UTF8Encoding.UTF8.GetString(data,0,cnt));
           //  }
             DataService.SSHMCDataServiceClient c= new DataService.SSHMCDataServiceClient();
+
+            c.CheckUserIDPassword("david", "0988163835");
 
             c.AddSurverDiasterInfo(new DataService.tblSurvey_Disaster() { 
              BUILD_TIME = DateTime.UtcNow,

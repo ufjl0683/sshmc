@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <ControllerConfigBase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <controller_id>100</controller_id>
-  <listen_port>1002</listen_port>
+  <listen_port>1003</listen_port>
   <device_type>EGPS</device_type>
   <build_date>2011-10-21T19:35:00</build_date>
   <version_no>1</version_no>

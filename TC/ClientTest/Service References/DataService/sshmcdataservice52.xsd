@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.192.161.4/dataservice/sshmcDataService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataService" />
+  <xs:import schemaLocation="http://127.0.0.1:49202/sshmcdataservice.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DataService" />
   <xs:element name="CheckUserIDPassword">
     <xs:complexType>
       <xs:sequence>

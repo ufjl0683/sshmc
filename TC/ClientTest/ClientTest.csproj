@@ -36,15 +36,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.JScript" />
+    <Reference Include="Microsoft.VisualStudio.DebuggerVisualizers, Version=11.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="OpenPop">
       <HintPath>..\..\..\..\download\DotNet\OpenPop.NET 2.0.4\OpenPop.NET 2.0.4\binaries\unsigned\OpenPop.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +63,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Visualizer1.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\RemoteInterface\RemoteInterface.csproj">
@@ -86,6 +90,7 @@
     <Content Include="process.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Service References\DataService\sshmcdataservice1.disco" />
     <None Include="Service References\DataService\ClientTest.DataService.tblCCTV.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -113,17 +118,20 @@
     </None>
     <None Include="Service References\DataService\configuration.svcinfo" />
     <None Include="Service References\DataService\configuration91.svcinfo" />
-    <None Include="Service References\DataService\sshmcDataService.disco" />
-    <None Include="Service References\DataService\sshmcDataService1.xsd">
+    <None Include="Service References\DataService\SSHMCDataService1.wsdl" />
+    <None Include="Service References\DataService\sshmcdataservice5.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DataService\sshmcDataService2.xsd">
+    <None Include="Service References\DataService\sshmcdataservice51.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DataService\sshmcDataService3.xsd">
+    <None Include="Service References\DataService\sshmcdataservice52.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\DataService\sshmcDataService4.xsd">
+    <None Include="Service References\DataService\sshmcdataservice53.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\DataService\sshmcdataservice54.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -133,10 +141,6 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Service References\DataService\SSHMCDataService.wsdl" />
-    <None Include="Service References\DataService\sshmcDataService.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

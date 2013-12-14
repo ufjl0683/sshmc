@@ -6,5 +6,5 @@
     cause the file to be unrecognizable by the program.
 -->
 <GenericObjectDataSource DisplayName="vwSensorValuesAndTC10MinDataLog" Version="1.0" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
-   <TypeInfo>sshmc.Service.vwSensorValuesAndTC10MinDataLog</TypeInfo>
+   <TypeInfo>sshmc.Service.vwSensorValuesAndTC10MinDataLog, sshmc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
 </GenericObjectDataSource>

@@ -1454,6 +1454,9 @@ namespace ClientTest.DataService {
         private byte DAMAGED_ROADS_0Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DESCRIPTIONField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool EVACUATION_0Field;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1512,6 +1515,12 @@ namespace ClientTest.DataService {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private bool TYPE_6Field;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<double> USER_POSITION_XField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<double> USER_POSITION_YField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.Nullable<double> USER__POSITION_XField;
@@ -1632,6 +1641,16 @@ namespace ClientTest.DataService {
             }
             set {
                 this.DAMAGED_ROADS_0Field = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DESCRIPTION {
+            get {
+                return this.DESCRIPTIONField;
+            }
+            set {
+                this.DESCRIPTIONField = value;
             }
         }
         
@@ -1832,6 +1851,26 @@ namespace ClientTest.DataService {
             }
             set {
                 this.TYPE_6Field = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> USER_POSITION_X {
+            get {
+                return this.USER_POSITION_XField;
+            }
+            set {
+                this.USER_POSITION_XField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<double> USER_POSITION_Y {
+            get {
+                return this.USER_POSITION_YField;
+            }
+            set {
+                this.USER_POSITION_YField = value;
             }
         }
         
