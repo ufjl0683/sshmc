@@ -302,7 +302,7 @@ namespace Comm.MFCC
                 try
                 {
                     protocol = new Protocol();
-                    protocol.Parse(protocol_source,true);
+                    protocol.Parse(protocol_source,false);
                     System.IO.StreamWriter sw = new System.IO.StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "protocol.txt");
                     sw.Write(protocol_source);
                     sw.Close();
@@ -612,6 +612,11 @@ namespace Comm.MFCC
           {
              // tc = new Comm.TC.RGSTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, opmode, opstatus,comm_state);
               tc = new Comm.TC.GPSTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, isconnected);
+          }
+
+          else if (this.devType == "EGPS")
+          {
+              tc = new Comm.TC.GenericTC(protocol, rd[0].ToString().Trim(), rd[1].ToString(), (int)rd[2], 0xffff, hw_status, isconnected);
           }
         
       

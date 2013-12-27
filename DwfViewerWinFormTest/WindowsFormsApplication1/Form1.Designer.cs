@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.axCExpressViewerControl1 = new AxExpressViewerDll.AxCExpressViewerControl();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.axCExpressViewerControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -41,6 +43,11 @@
             this.axCExpressViewerControl1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axCExpressViewerControl1.OcxState")));
             this.axCExpressViewerControl1.Size = new System.Drawing.Size(871, 654);
             this.axCExpressViewerControl1.TabIndex = 0;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Form1
             // 
@@ -58,6 +65,7 @@
         #endregion
 
         private AxExpressViewerDll.AxCExpressViewerControl axCExpressViewerControl1;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 

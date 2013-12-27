@@ -50,8 +50,10 @@
     <Compile Include="SQL\SQL.cs" />
     <Compile Include="TCBase.cs" />
     <Compile Include="TC\BATC.cs" />
+    <Compile Include="TC\GenericTC.cs" />
     <Compile Include="TC\TILTTC.cs" />
     <Compile Include="TC\GPSTC.cs" />
+    <Compile Include="TC\EGPSTC.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

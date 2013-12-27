@@ -46,6 +46,23 @@ namespace ClientTest
      
         static void Main(string[] args)
         {
+            //System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient();
+            //client.Connect("192.168.2.100", 7002);
+
+            //System.IO.Stream stream = client.GetStream();
+            //int d;
+            //while ((d = stream.ReadByte()) != -1)
+            //{
+            //    Console.Write(d);
+            //}
+
+         
+
+           RTKMiddle.RtkClient client = new RTKMiddle.RtkClient("192.168.2.100", 7002);
+
+           client.OnData += client_OnData;
+
+            Console.ReadKey();
             SSHMC01Entities db = new SSHMC01Entities();
             var q = from n in db.tblUser  where n.USER_ID=="david" && n.USER_PW=="0988163835" select n;
             tblUser[] users = q.ToArray();
@@ -162,6 +179,11 @@ namespace ClientTest
          
             Console.ReadKey();
            // mgr.KillAll();
+        }
+
+        static void client_OnData(object sender, string data)
+        {
+            //throw new NotImplementedException();
         }
 
         static void Mail()

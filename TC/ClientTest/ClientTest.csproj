@@ -82,6 +82,10 @@
       <Project>{1E33C6A2-4A58-427B-8136-E0216C12951C}</Project>
       <Name>ProcessManagerService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RTKMiddle\RTKMiddle.csproj">
+      <Project>{83015776-9a3a-44f2-9e4c-19b62cf7f03d}</Project>
+      <Name>RTKMiddle</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="PILT.txt">

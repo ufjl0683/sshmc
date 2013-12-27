@@ -30,8 +30,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherMail", "..\..\Weathe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherService", "..\..\WeatherService\WeatherService.csproj", "{4725C316-BFC7-4CB5-8ACE-7355C756A8A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SensorMoniter", "..\..\SensorMoniter\SensorMoniter\SensorMoniter\SensorMoniter.csproj", "{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Host", "..\..\Host\Host.csproj", "{525FD440-2522-40D1-BA2B-5C156B63E2DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFCC_BA", "..\..\MFCC\MFCC_BA\MFCC_BA.csproj", "{76A517CE-3D54-441F-9ECA-61C729CA267E}"
@@ -45,6 +43,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapApplication", "..\..\MapApplication2012\MapApplication\MapApplication\MapApplication.csproj", "{8BDABC87-0133-4919-ACF6-5C29224F0FAD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapApplication.Web", "..\..\MapApplication2012\MapApplication\MapApplication.Web\MapApplication.Web.csproj", "{F2BE690C-D483-45DB-94FA-88284DCF046A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MFCC_GENERIC", "..\..\MFCC\MFCC_GENERIC\MFCC_GENERIC.csproj", "{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -186,16 +186,6 @@ Global
 		{4725C316-BFC7-4CB5-8ACE-7355C756A8A0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{4725C316-BFC7-4CB5-8ACE-7355C756A8A0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{4725C316-BFC7-4CB5-8ACE-7355C756A8A0}.Release|x86.ActiveCfg = Release|Any CPU
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Debug|x86.ActiveCfg = Debug|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Debug|x86.Build.0 = Debug|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Release|Any CPU.ActiveCfg = Release|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Release|Mixed Platforms.Build.0 = Release|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Release|x86.ActiveCfg = Release|x86
-		{FC0DB80E-AB09-4A69-9D4B-5F25624C2D16}.Release|x86.Build.0 = Release|x86
 		{525FD440-2522-40D1-BA2B-5C156B63E2DD}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{525FD440-2522-40D1-BA2B-5C156B63E2DD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{525FD440-2522-40D1-BA2B-5C156B63E2DD}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -266,6 +256,16 @@ Global
 		{F2BE690C-D483-45DB-94FA-88284DCF046A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{F2BE690C-D483-45DB-94FA-88284DCF046A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{F2BE690C-D483-45DB-94FA-88284DCF046A}.Release|x86.ActiveCfg = Release|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{54E35EEF-0640-4BF9-9105-E5049BE5FCF4}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
