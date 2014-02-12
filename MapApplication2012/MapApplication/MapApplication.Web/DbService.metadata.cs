@@ -319,6 +319,8 @@ namespace MapApplication.Web
             public Nullable<double> X { get; set; }
 
             public Nullable<double> Y { get; set; }
+
+            public bool ISBIM { get; set; }
         }
     }
 
@@ -579,6 +581,8 @@ namespace MapApplication.Web
             public Nullable<double> X { get; set; }
 
             public Nullable<double> Y { get; set; }
+
+            public bool ISBIM { get; set; }
         }
 
         [MetadataTypeAttribute(typeof(vwSensorDegree.vwSensorDegreeMetadata))]

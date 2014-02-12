@@ -17,6 +17,7 @@ using MapApplication.Web;
 using System.Collections.ObjectModel;
 using MapApplication.Controls;
 using System.Windows.Threading;
+using System.Windows.Browser;
 
 
 
@@ -31,6 +32,7 @@ namespace MapApplication.MapControls
    
     public partial class SSHMC_MapControl97 : UserControl
     {
+        
         public event EventHandler OnClick;
         double currentx = 0, currenty = 0;
         enumDisplayMode view_mode = enumDisplayMode.GLOBAL_VIEW;
@@ -54,8 +56,9 @@ namespace MapApplication.MapControls
         
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
+            this.htmlhost.SetHostDivVisible(false);
 
-      
+             //  HtmlPage.Document
 
           
         }
@@ -86,6 +89,8 @@ namespace MapApplication.MapControls
             {
                 Load_Site(cust_site_id);
                 this.btmGoback.Visibility = System.Windows.Visibility.Collapsed;
+                btnBim.Visibility = System.Windows.Visibility.Collapsed;
+                btnBim.IsChecked = false;
                 (this.map1.Layers["siteLyr"] as Layer).Visible = true;
                
                      
@@ -102,12 +107,20 @@ namespace MapApplication.MapControls
                 if (site == null)
                     return;
 
+                if (site.ISBIM)
+                    btnBim.Visibility = System.Windows.Visibility.Visible;
+                else
+                    btnBim.Visibility = System.Windows.Visibility.Collapsed;
+
+                btnBim.IsChecked = false; ;
                 loadSiteSensor(site );
+                
                 loadSiteCCTV(site);
                 (this.map1.Layers["siteLyr"] as Layer).Visible = false;
                 ZoomToLevel(SITE_VIEW_LEVEL, ConvertMapPointTo102100(new MapPoint((double)site.X, (double)site.Y)));
                 this.map1.ExtentChanged+=new EventHandler<ExtentEventArgs>(map1_CustomExtentChanged);
                  
+
                // this.largeCCTVPanel.Opacity = 0;
               //  this.largeCCTV.Visibility = System.Windows.Visibility.Visible;
              //   this.largeCCTV.DataContext = null;  
@@ -613,6 +626,7 @@ namespace MapApplication.MapControls
         private void btmGoback_Click(object sender, RoutedEventArgs e)
         {
            // map1.ZoomDuration = TimeSpan.FromMilliseconds(500);
+             HtmlPage.Window.Invoke("closeBim"); 
             DispatcherTimer tmr = new DispatcherTimer();
             tmr.Interval = TimeSpan.FromMilliseconds(1000);
             tmr.Tick += (s, a) =>
@@ -641,13 +655,18 @@ namespace MapApplication.MapControls
          //   this.btmGoback.Visibility = System.Windows.Visibility.Collapsed;
         }
 
-        private void SensorMenu_MouseEnter(object sender, MouseEventArgs e)
+        private    void SensorMenu_MouseEnter(object sender, MouseEventArgs e)
         {
             SensorMenu menu = sender as SensorMenu;
           //  menu.CaptureMouse();
             vwSensorDegree sensorInfo = menu.DataContext as vwSensorDegree;
             dictSensors[sensorInfo.SENSOR_ID].SetBlind();
             this.ZoomToLevel(SITE_VIEW_LEVEL,ConvertMapPointTo102100(new MapPoint((double)sensorInfo.X,(double)sensorInfo.Y)));
+            if (btnBim.IsChecked==true)
+            {
+                   HtmlPage.Window.Invoke("SelectObject", string.Format("sensor{0:000000}", sensorInfo.SENSOR_ID));
+            }
+        
         }
 
         private void SensorMenu_MouseLeave(object sender, MouseEventArgs e)
@@ -731,6 +750,8 @@ namespace MapApplication.MapControls
 
         private void SensorMenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            if (btnBim.IsChecked == true)
+                return;
             SensorMenu menu = sender as SensorMenu;
             vwSensorDegree sensorInfo = menu.DataContext as vwSensorDegree;
             dictSensors[sensorInfo.SENSOR_ID].StopBlind();
@@ -940,6 +961,24 @@ namespace MapApplication.MapControls
                 map1.Layers["PoliceLyr"].Visible = false;
             }
             catch { ;}
+        }
+
+        private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+   }
+
+        private void btnBim_Checked(object sender, RoutedEventArgs e)
+        {
+
+            this.htmlhost.SetHostDivVisible(true);
+            HtmlPage.Window.Invoke("result", new string[] { string.Format("http://192.192.161.4/mobile/Resources/{0}.dwf",CURRENT_SITE_ID) }); 
+     
+
+        }
+
+        private void btnBim_UnChecked(object sender, RoutedEventArgs e)
+        {
+            HtmlPage.Window.Invoke("closeBim"); 
         }
 
       

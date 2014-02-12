@@ -275,22 +275,6 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        public ObjectSet<vwSiteDegree> vwSiteDegree
-        {
-            get
-            {
-                if ((_vwSiteDegree == null))
-                {
-                    _vwSiteDegree = base.CreateObjectSet<vwSiteDegree>("vwSiteDegree");
-                }
-                return _vwSiteDegree;
-            }
-        }
-        private ObjectSet<vwSiteDegree> _vwSiteDegree;
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
         public ObjectSet<vwSensorValuesAndTC10MinDataLog> vwSensorValuesAndTC10MinDataLog
         {
             get
@@ -351,6 +335,22 @@ namespace MapApplication.Web
             }
         }
         private ObjectSet<tblPre_disasterNotified> _tblPre_disasterNotified;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<vwSiteDegree> vwSiteDegree
+        {
+            get
+            {
+                if ((_vwSiteDegree == null))
+                {
+                    _vwSiteDegree = base.CreateObjectSet<vwSiteDegree>("vwSiteDegree");
+                }
+                return _vwSiteDegree;
+            }
+        }
+        private ObjectSet<vwSiteDegree> _vwSiteDegree;
 
         #endregion
 
@@ -453,14 +453,6 @@ namespace MapApplication.Web
         }
     
         /// <summary>
-        /// 將新物件加入 vwSiteDegree EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
-        /// </summary>
-        public void AddTovwSiteDegree(vwSiteDegree vwSiteDegree)
-        {
-            base.AddObject("vwSiteDegree", vwSiteDegree);
-        }
-    
-        /// <summary>
         /// 將新物件加入 vwSensorValuesAndTC10MinDataLog EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
         /// </summary>
         public void AddTovwSensorValuesAndTC10MinDataLog(vwSensorValuesAndTC10MinDataLog vwSensorValuesAndTC10MinDataLog)
@@ -490,6 +482,14 @@ namespace MapApplication.Web
         public void AddTotblPre_disasterNotified(tblPre_disasterNotified tblPre_disasterNotified)
         {
             base.AddObject("tblPre_disasterNotified", tblPre_disasterNotified);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 vwSiteDegree EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTovwSiteDegree(vwSiteDegree vwSiteDegree)
+        {
+            base.AddObject("vwSiteDegree", vwSiteDegree);
         }
 
         #endregion
@@ -2742,6 +2742,30 @@ namespace MapApplication.Web
         private global::System.String _CONVERTFORMULA;
         partial void OnCONVERTFORMULAChanging(global::System.String value);
         partial void OnCONVERTFORMULAChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> UPDATE_DATETIME
+        {
+            get
+            {
+                return _UPDATE_DATETIME;
+            }
+            set
+            {
+                OnUPDATE_DATETIMEChanging(value);
+                ReportPropertyChanging("UPDATE_DATETIME");
+                _UPDATE_DATETIME = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UPDATE_DATETIME");
+                OnUPDATE_DATETIMEChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _UPDATE_DATETIME;
+        partial void OnUPDATE_DATETIMEChanging(Nullable<global::System.DateTime> value);
+        partial void OnUPDATE_DATETIMEChanged();
 
         #endregion
 
@@ -2832,7 +2856,8 @@ namespace MapApplication.Web
         /// <param name="y">Y 屬性的初始值。</param>
         /// <param name="cUSTROMER_ID">CUSTROMER_ID 屬性的初始值。</param>
         /// <param name="n3_CONTENT">N3_CONTENT 屬性的初始值。</param>
-        public static tblSite CreatetblSite(global::System.String sITE_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.Double x, global::System.Double y, global::System.Int32 cUSTROMER_ID, global::System.Int32 n3_CONTENT)
+        /// <param name="iSBIM">ISBIM 屬性的初始值。</param>
+        public static tblSite CreatetblSite(global::System.String sITE_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.Double x, global::System.Double y, global::System.Int32 cUSTROMER_ID, global::System.Int32 n3_CONTENT, global::System.Boolean iSBIM)
         {
             tblSite tblSite = new tblSite();
             tblSite.SITE_ID = sITE_ID;
@@ -2842,6 +2867,7 @@ namespace MapApplication.Web
             tblSite.Y = y;
             tblSite.CUSTROMER_ID = cUSTROMER_ID;
             tblSite.N3_CONTENT = n3_CONTENT;
+            tblSite.ISBIM = iSBIM;
             return tblSite;
         }
 
@@ -3403,6 +3429,30 @@ namespace MapApplication.Web
         private global::System.Int32 _N3_CONTENT;
         partial void OnN3_CONTENTChanging(global::System.Int32 value);
         partial void OnN3_CONTENTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ISBIM
+        {
+            get
+            {
+                return _ISBIM;
+            }
+            set
+            {
+                OnISBIMChanging(value);
+                ReportPropertyChanging("ISBIM");
+                _ISBIM = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ISBIM");
+                OnISBIMChanged();
+            }
+        }
+        private global::System.Boolean _ISBIM;
+        partial void OnISBIMChanging(global::System.Boolean value);
+        partial void OnISBIMChanged();
 
         #endregion
 
@@ -6117,20 +6167,20 @@ namespace MapApplication.Web
         /// <param name="sITE_ID">SITE_ID 屬性的初始值。</param>
         /// <param name="sITE_NAME">SITE_NAME 屬性的初始值。</param>
         /// <param name="sITE_ADDRESS">SITE_ADDRESS 屬性的初始值。</param>
-        /// <param name="eNVIRONMENT">ENVIRONMENT 屬性的初始值。</param>
         /// <param name="x">X 屬性的初始值。</param>
         /// <param name="y">Y 屬性的初始值。</param>
         /// <param name="cUSTOMER_ID">CUSTOMER_ID 屬性的初始值。</param>
-        public static vwSiteDegree CreatevwSiteDegree(global::System.String sITE_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.String eNVIRONMENT, global::System.Double x, global::System.Double y, global::System.Int32 cUSTOMER_ID)
+        /// <param name="iSBIM">ISBIM 屬性的初始值。</param>
+        public static vwSiteDegree CreatevwSiteDegree(global::System.String sITE_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.Double x, global::System.Double y, global::System.Int32 cUSTOMER_ID, global::System.Boolean iSBIM)
         {
             vwSiteDegree vwSiteDegree = new vwSiteDegree();
             vwSiteDegree.SITE_ID = sITE_ID;
             vwSiteDegree.SITE_NAME = sITE_NAME;
             vwSiteDegree.SITE_ADDRESS = sITE_ADDRESS;
-            vwSiteDegree.ENVIRONMENT = eNVIRONMENT;
             vwSiteDegree.X = x;
             vwSiteDegree.Y = y;
             vwSiteDegree.CUSTOMER_ID = cUSTOMER_ID;
+            vwSiteDegree.ISBIM = iSBIM;
             return vwSiteDegree;
         }
 
@@ -6168,7 +6218,7 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String SITE_NAME
         {
@@ -6178,11 +6228,14 @@ namespace MapApplication.Web
             }
             set
             {
-                OnSITE_NAMEChanging(value);
-                ReportPropertyChanging("SITE_NAME");
-                _SITE_NAME = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("SITE_NAME");
-                OnSITE_NAMEChanged();
+                if (_SITE_NAME != value)
+                {
+                    OnSITE_NAMEChanging(value);
+                    ReportPropertyChanging("SITE_NAME");
+                    _SITE_NAME = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("SITE_NAME");
+                    OnSITE_NAMEChanged();
+                }
             }
         }
         private global::System.String _SITE_NAME;
@@ -6192,7 +6245,7 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String SITE_ADDRESS
         {
@@ -6202,11 +6255,14 @@ namespace MapApplication.Web
             }
             set
             {
-                OnSITE_ADDRESSChanging(value);
-                ReportPropertyChanging("SITE_ADDRESS");
-                _SITE_ADDRESS = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("SITE_ADDRESS");
-                OnSITE_ADDRESSChanged();
+                if (_SITE_ADDRESS != value)
+                {
+                    OnSITE_ADDRESSChanging(value);
+                    ReportPropertyChanging("SITE_ADDRESS");
+                    _SITE_ADDRESS = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("SITE_ADDRESS");
+                    OnSITE_ADDRESSChanged();
+                }
             }
         }
         private global::System.String _SITE_ADDRESS;
@@ -6216,7 +6272,7 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
         public global::System.String ENVIRONMENT
         {
@@ -6228,7 +6284,7 @@ namespace MapApplication.Web
             {
                 OnENVIRONMENTChanging(value);
                 ReportPropertyChanging("ENVIRONMENT");
-                _ENVIRONMENT = StructuralObject.SetValidValue(value, false);
+                _ENVIRONMENT = StructuralObject.SetValidValue(value, true);
                 ReportPropertyChanged("ENVIRONMENT");
                 OnENVIRONMENTChanged();
             }
@@ -6240,7 +6296,7 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double X
         {
@@ -6250,11 +6306,14 @@ namespace MapApplication.Web
             }
             set
             {
-                OnXChanging(value);
-                ReportPropertyChanging("X");
-                _X = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("X");
-                OnXChanged();
+                if (_X != value)
+                {
+                    OnXChanging(value);
+                    ReportPropertyChanging("X");
+                    _X = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("X");
+                    OnXChanged();
+                }
             }
         }
         private global::System.Double _X;
@@ -6264,7 +6323,7 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Double Y
         {
@@ -6274,11 +6333,14 @@ namespace MapApplication.Web
             }
             set
             {
-                OnYChanging(value);
-                ReportPropertyChanging("Y");
-                _Y = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("Y");
-                OnYChanged();
+                if (_Y != value)
+                {
+                    OnYChanging(value);
+                    ReportPropertyChanging("Y");
+                    _Y = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Y");
+                    OnYChanged();
+                }
             }
         }
         private global::System.Double _Y;
@@ -6455,6 +6517,33 @@ namespace MapApplication.Web
         private global::System.Int32 _CUSTOMER_ID;
         partial void OnCUSTOMER_IDChanging(global::System.Int32 value);
         partial void OnCUSTOMER_IDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ISBIM
+        {
+            get
+            {
+                return _ISBIM;
+            }
+            set
+            {
+                if (_ISBIM != value)
+                {
+                    OnISBIMChanging(value);
+                    ReportPropertyChanging("ISBIM");
+                    _ISBIM = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ISBIM");
+                    OnISBIMChanged();
+                }
+            }
+        }
+        private global::System.Boolean _ISBIM;
+        partial void OnISBIMChanging(global::System.Boolean value);
+        partial void OnISBIMChanged();
 
         #endregion
 

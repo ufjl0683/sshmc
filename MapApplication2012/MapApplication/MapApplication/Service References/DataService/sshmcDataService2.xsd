@@ -15,6 +15,7 @@
           <xs:element minOccurs="0" name="CUSTOMER_ID" type="xs:int" />
           <xs:element minOccurs="0" name="CUSTOMER_NAME" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ENVIRONMENT" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ISBIM" type="xs:boolean" />
           <xs:element minOccurs="0" name="MAX_X" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="MAX_Y" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="MIN_X" nillable="true" type="xs:double" />
@@ -97,6 +98,7 @@
           <xs:element minOccurs="0" name="ENGINEER" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ENVIRONMENT" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="FAX" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ISBIM" type="xs:boolean" />
           <xs:element minOccurs="0" name="MAX_X" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="MAX_Y" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="MIN_X" nillable="true" type="xs:double" />
@@ -217,11 +219,13 @@
           <xs:element minOccurs="0" name="DAMAGED_BRIDGE_0" type="xs:unsignedByte" />
           <xs:element minOccurs="0" name="DAMAGED_ROADS" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="DAMAGED_ROADS_0" type="xs:unsignedByte" />
+          <xs:element minOccurs="0" name="DESCRIPTION" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="EVACUATION_0" type="xs:boolean" />
           <xs:element minOccurs="0" name="EVACUATION_1" type="xs:int" />
           <xs:element minOccurs="0" name="ID" type="xs:int" />
-          <xs:element minOccurs="0" name="ISCHECK" type="xs:boolean" />
-          <xs:element minOccurs="0" name="ISCLOSE" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ISCHECK" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ISCLOSE" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ISREPORT" type="xs:unsignedByte" />
           <xs:element minOccurs="0" name="N3_REPORT_ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="OCCUR_TIME" type="xs:dateTime" />
           <xs:element minOccurs="0" name="PHOTO_PATH" nillable="true" type="xs:string" />
@@ -237,8 +241,8 @@
           <xs:element minOccurs="0" name="TYPE_4" type="xs:boolean" />
           <xs:element minOccurs="0" name="TYPE_5" type="xs:boolean" />
           <xs:element minOccurs="0" name="TYPE_6" type="xs:boolean" />
-          <xs:element minOccurs="0" name="USER__POSITION_X" nillable="true" type="xs:double" />
-          <xs:element minOccurs="0" name="USER__POSITION_Y" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="USER_POSITION_X" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="USER_POSITION_Y" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="X" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="Y" nillable="true" type="xs:double" />
         </xs:sequence>

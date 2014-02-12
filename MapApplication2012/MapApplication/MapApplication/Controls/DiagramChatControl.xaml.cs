@@ -21,7 +21,7 @@ namespace MapApplication.Controls
     {
         MapApplication.Web.DbContext db = new MapApplication.Web.DbContext();
         int sensorID = 0;
-        System.Windows.Threading.DispatcherTimer _timer = new System.Windows.Threading.DispatcherTimer();
+        //System.Windows.Threading.DispatcherTimer _timer = new System.Windows.Threading.DispatcherTimer();
         //Boolean _oddState = false;
         int vcnt = 0,IsTilt=0;
         string status = "Normal";///////////
@@ -31,19 +31,21 @@ namespace MapApplication.Controls
         {
             InitializeComponent();
             sensorID = SensorID;
+            //BeginPicker.SelectedDate = DateTime.Today; /////////////102.08.19新增   
             LoadData(System.DateTime.Now.Date.AddDays(0), sensorID);
             //_timer.Tick += new EventHandler(_timer_Tick);
             //_timer.Interval = TimeSpan.FromMinutes(10);
 
 
             LayoutRoot.Loaded += new RoutedEventHandler(LayoutRoot_Loaded);
-          
+
 
         }
 
         void LayoutRoot_Loaded(object sender, RoutedEventArgs e)
         {
-            _timer.Start();
+            
+            //_timer.Start();
         }
 
 
@@ -52,10 +54,12 @@ namespace MapApplication.Controls
 
 
 
-        void _timer_Tick(object sender, EventArgs e)
-        {
-            LoadData(DateTime.Now, sensorID);
-        }
+        //void _timer_Tick(object sender, EventArgs e)
+        //{
+        //    if (BeginPicker.SelectedDate == DateTime.Today)/////////////102.08.19新增
+        //    LoadData(DateTime.Today, sensorID);///////////////102.08.19新增           目的讓每十分鐘自動更新 如果selectdate不是今天則不更新
+            
+        //}
 
 
         private void LoadData(DateTime dt, int SensorID)
@@ -138,21 +142,6 @@ namespace MapApplication.Controls
 
         }
         //Visifire.Charts.Chart chart = new Visifire.Charts.Chart();
-
-
-        private void chart_Rendered(object sender, EventArgs e)
-        {
-            var c = sender as Chart;
-            var legend = c.Legends[0];
-            var root = legend.Parent as Grid;
-
-
-            //root.Children.Clear();
-            root.Children.RemoveAt(8);
-            //root.Children.RemoveAt(8);
-            //MessageBox.Show(root.Children.Count().ToString());
-        }
-
         public void CreateChart(int valueid)
         {
 
@@ -196,71 +185,73 @@ namespace MapApplication.Controls
 
                 double linethickness = 0.5, avg = 0, sigma = 0;/////////////
                 /****************************/
-
-
-                if (valueid == 1)
+                datacnt++;    //103.01.21 15:25 修改
+                if (datacnt == db.vwSensorValuesAndTC10MinDataLogs.Count)//103.01.21 15:25 修改
                 {
-                    avg = data.initmean0;
-                    sigma = data.signama0;
-
-                }
-                else if (valueid == 2)
-                {
-                    avg = data.initmean1;
-                    sigma = data.sigma1;
-
-                }
-                else if (valueid == 3)
-                {
-                    avg = data.initmean2;
-                    sigma = data.sigma2;
-
-                }
-
-
-                if (status == "Normal")
-                {
-                    max = avg + (sigma * 4);
-                    min = avg - (sigma * 4);
-                    //datacnt++;
-                }
-                else if (status == "Range")
-                {
-
                     if (valueid == 1)
                     {
-                        max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE0);
-                        min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE0);
-                        avg = ((max + min)) / 2;
-                        sigma = (max - min) / 6;
+                        avg = data.initmean0;
+                        sigma = data.signama0;
 
                     }
                     else if (valueid == 2)
                     {
-                        max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE1);
-                        min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE1);
-                        avg = ((max + min)) / 2;
-                        sigma = (max - min) / 6;
+                        avg = data.initmean1;
+                        sigma = data.sigma1;
+
                     }
                     else if (valueid == 3)
                     {
-                        max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE2);
-                        min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE2);
-                        avg = ((max + min)) / 2;
-                        sigma = (max - min) / 6;
+                        avg = data.initmean2;
+                        sigma = data.sigma2;
+
                     }
-                    if (max == min)
+
+
+                    if (status == "Normal")
                     {
-                        sigma = max / 6;
-                        max = avg + sigma * 3;
-                        min = avg - sigma * 3;
+                        max = avg + (sigma * 4);
+                        min = avg - (sigma * 4);
+                        //datacnt++;
                     }
+                    else if (status == "Range")
+                    {
+
+                        if (valueid == 1)
+                        {
+                            max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE0);
+                            min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE0);
+                            avg = ((max + min)) / 2;
+                            sigma = (max - min) / 6;
+
+                        }
+                        else if (valueid == 2)
+                        {
+                            max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE1);
+                            min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE1);
+                            avg = ((max + min)) / 2;
+                            sigma = (max - min) / 6;
+                        }
+                        else if (valueid == 3)
+                        {
+                            max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE2);
+                            min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE2);
+                            avg = ((max + min)) / 2;
+                            sigma = (max - min) / 6;
+                        }
+                        if (max == min)
+                        {
+                            sigma = Math.Abs(max) / 6;//103.01.21 15:25 修改
+                            max = avg + sigma * 3;
+                            min = avg - sigma * 3;
+                        }
 
 
+                    }
                 }
                 /****************************/
 
-                datacnt++;
+                //datacnt++;//103.01.21 15:25 修改
 
                 switch (valueid)
                 {
@@ -495,10 +486,22 @@ namespace MapApplication.Controls
             //stackpanel.Orientation = Orientation.Horizontal;
             stackpanel.Children.Add(chart);
 
+            
 
 
 
+        }
 
+        private void chart_Rendered(object sender, EventArgs e)
+        {
+            var c = sender as Chart;
+            var legend = c.Legends[0];
+            var root = legend.Parent as Grid;
+
+            //root.Children.Clear();
+            root.Children.RemoveAt(8);
+            //root.Children.RemoveAt(8);
+            //MessageBox.Show(root.Children.Count().ToString());
         }
 
         private void DownLoad_Click(object sender, RoutedEventArgs e)

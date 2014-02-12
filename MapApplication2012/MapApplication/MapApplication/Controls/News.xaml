@@ -23,7 +23,7 @@
     </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot" Background="White">
-        <My:HtmlHost x:Name="webbrowser" HostDiv="htmlhost"  Url="http://192.192.161.4/sshmc/News.aspx" Margin="0,87,0,0"  />
+        <My:HtmlHost x:Name="webbrowser" HostDiv="htmlhost"   Url="http://192.192.161.4/sshmc/News.aspx" Margin="0,87,0,0"  />
         <TextBlock HorizontalAlignment="Center" Height="45" Margin="140,24,140,0" TextWrapping="Wrap" Text="防災訊息" VerticalAlignment="Top" Width="154" FontSize="32"/>
         <Button Content="返回" HorizontalAlignment="Left" Height="49" Margin="43,25,0,0" Style="{StaticResource ButtonStyle1}" VerticalAlignment="Top" Width="46" Click="Button_Click_1"/>
     </Grid>

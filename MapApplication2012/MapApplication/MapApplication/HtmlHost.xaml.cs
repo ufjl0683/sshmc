@@ -75,6 +75,8 @@ namespace MapApplication
         public HtmlHost()
         {
             InitializeComponent();
+
+            
             if (DesignerProperties.IsInDesignTool)
             {
                 return;
@@ -91,6 +93,11 @@ namespace MapApplication
 
         }
 
+
+        public void SetHostDivVisible(bool IsVisible)
+        {
+            _div.SetAttribute(ATTR_VISIBILITY, IsVisible ? VISIBLE : HIDDEN);
+        }
         public void Show()
         {
             _div.RemoveStyleAttribute(ATTR_VISIBILITY);

@@ -262,6 +262,7 @@
     <None Include="icons\Thumbs.db" />
     <None Include="images\Thumbs.db" />
     <None Include="Properties\AppManifest.xml" />
+    <None Include="Properties\DataSources\MapApplication.Web.DbContext.datasource" />
     <None Include="Service References\DataService\MapApplication.DataService.tblCCTV.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -297,6 +298,7 @@
     <Content Include="icons\EGPS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="images\bim.png" />
     <Content Include="images\center.png" />
     <Content Include="images\excel2.png" />
     <Content Include="images\fire.png" />

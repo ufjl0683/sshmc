@@ -84,6 +84,7 @@
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\css\example3.css" />
     <Content Include="Scripts\jquery-2.0.3.js" />
+    <Content Include="Scripts\js\bimViewerSensor.js" />
     <Content Include="Scripts\js\css3-multi-column.js" />
     <Content Include="Service References\DataService\MapApplication.Web.DataService.tblCCTV.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>

@@ -28,6 +28,8 @@ namespace MapApplication.DataService {
         
         private string ENVIRONMENTField;
         
+        private bool ISBIMField;
+        
         private System.Nullable<double> MAX_XField;
         
         private System.Nullable<double> MAX_YField;
@@ -94,6 +96,19 @@ namespace MapApplication.DataService {
                 if ((object.ReferenceEquals(this.ENVIRONMENTField, value) != true)) {
                     this.ENVIRONMENTField = value;
                     this.RaisePropertyChanged("ENVIRONMENT");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ISBIM {
+            get {
+                return this.ISBIMField;
+            }
+            set {
+                if ((this.ISBIMField.Equals(value) != true)) {
+                    this.ISBIMField = value;
+                    this.RaisePropertyChanged("ISBIM");
                 }
             }
         }
@@ -683,6 +698,8 @@ namespace MapApplication.DataService {
         
         private string FAXField;
         
+        private bool ISBIMField;
+        
         private System.Nullable<double> MAX_XField;
         
         private System.Nullable<double> MAX_YField;
@@ -830,6 +847,19 @@ namespace MapApplication.DataService {
                 if ((object.ReferenceEquals(this.FAXField, value) != true)) {
                     this.FAXField = value;
                     this.RaisePropertyChanged("FAX");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool ISBIM {
+            get {
+                return this.ISBIMField;
+            }
+            set {
+                if ((this.ISBIMField.Equals(value) != true)) {
+                    this.ISBIMField = value;
+                    this.RaisePropertyChanged("ISBIM");
                 }
             }
         }
@@ -1594,15 +1624,19 @@ namespace MapApplication.DataService {
         
         private byte DAMAGED_ROADS_0Field;
         
+        private string DESCRIPTIONField;
+        
         private bool EVACUATION_0Field;
         
         private int EVACUATION_1Field;
         
         private int IDField;
         
-        private bool ISCHECKField;
+        private System.Nullable<bool> ISCHECKField;
         
-        private bool ISCLOSEField;
+        private System.Nullable<bool> ISCLOSEField;
+        
+        private byte ISREPORTField;
         
         private string N3_REPORT_IDField;
         
@@ -1634,9 +1668,9 @@ namespace MapApplication.DataService {
         
         private bool TYPE_6Field;
         
-        private System.Nullable<double> USER__POSITION_XField;
+        private System.Nullable<double> USER_POSITION_XField;
         
-        private System.Nullable<double> USER__POSITION_YField;
+        private System.Nullable<double> USER_POSITION_YField;
         
         private System.Nullable<double> XField;
         
@@ -1773,6 +1807,19 @@ namespace MapApplication.DataService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string DESCRIPTION {
+            get {
+                return this.DESCRIPTIONField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DESCRIPTIONField, value) != true)) {
+                    this.DESCRIPTIONField = value;
+                    this.RaisePropertyChanged("DESCRIPTION");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public bool EVACUATION_0 {
             get {
                 return this.EVACUATION_0Field;
@@ -1812,7 +1859,7 @@ namespace MapApplication.DataService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ISCHECK {
+        public System.Nullable<bool> ISCHECK {
             get {
                 return this.ISCHECKField;
             }
@@ -1825,7 +1872,7 @@ namespace MapApplication.DataService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool ISCLOSE {
+        public System.Nullable<bool> ISCLOSE {
             get {
                 return this.ISCLOSEField;
             }
@@ -1833,6 +1880,19 @@ namespace MapApplication.DataService {
                 if ((this.ISCLOSEField.Equals(value) != true)) {
                     this.ISCLOSEField = value;
                     this.RaisePropertyChanged("ISCLOSE");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public byte ISREPORT {
+            get {
+                return this.ISREPORTField;
+            }
+            set {
+                if ((this.ISREPORTField.Equals(value) != true)) {
+                    this.ISREPORTField = value;
+                    this.RaisePropertyChanged("ISREPORT");
                 }
             }
         }
@@ -2033,27 +2093,27 @@ namespace MapApplication.DataService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<double> USER__POSITION_X {
+        public System.Nullable<double> USER_POSITION_X {
             get {
-                return this.USER__POSITION_XField;
+                return this.USER_POSITION_XField;
             }
             set {
-                if ((this.USER__POSITION_XField.Equals(value) != true)) {
-                    this.USER__POSITION_XField = value;
-                    this.RaisePropertyChanged("USER__POSITION_X");
+                if ((this.USER_POSITION_XField.Equals(value) != true)) {
+                    this.USER_POSITION_XField = value;
+                    this.RaisePropertyChanged("USER_POSITION_X");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<double> USER__POSITION_Y {
+        public System.Nullable<double> USER_POSITION_Y {
             get {
-                return this.USER__POSITION_YField;
+                return this.USER_POSITION_YField;
             }
             set {
-                if ((this.USER__POSITION_YField.Equals(value) != true)) {
-                    this.USER__POSITION_YField = value;
-                    this.RaisePropertyChanged("USER__POSITION_Y");
+                if ((this.USER_POSITION_YField.Equals(value) != true)) {
+                    this.USER_POSITION_YField = value;
+                    this.RaisePropertyChanged("USER_POSITION_Y");
                 }
             }
         }
@@ -2679,7 +2739,7 @@ namespace MapApplication.DataService {
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISSHMCDataService/AddSurverDiasterInfo", ReplyAction="http://tempuri.org/ISSHMCDataService/AddSurverDiasterInfoResponse")]
         System.IAsyncResult BeginAddSurverDiasterInfo(MapApplication.DataService.tblSurvey_Disaster info, System.AsyncCallback callback, object asyncState);
         
-        void EndAddSurverDiasterInfo(System.IAsyncResult result);
+        string EndAddSurverDiasterInfo(System.IAsyncResult result);
         
         [System.ServiceModel.OperationContractAttribute(AsyncPattern=true, Action="http://tempuri.org/ISSHMCDataService/GettblReportNotified", ReplyAction="http://tempuri.org/ISSHMCDataService/GettblReportNotifiedResponse")]
         System.IAsyncResult BeginGettblReportNotified(string userid, System.AsyncCallback callback, object asyncState);
@@ -2806,6 +2866,25 @@ namespace MapApplication.DataService {
             get {
                 base.RaiseExceptionIfNecessary();
                 return ((System.Collections.ObjectModel.ObservableCollection<MapApplication.DataService.tblSurvey_Disaster>)(this.results[0]));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddSurverDiasterInfoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        public AddSurverDiasterInfoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        public string Result {
+            get {
+                base.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
@@ -2970,7 +3049,7 @@ namespace MapApplication.DataService {
         
         public event System.EventHandler<GetSurveyDisasterCompletedEventArgs> GetSurveyDisasterCompleted;
         
-        public event System.EventHandler<System.ComponentModel.AsyncCompletedEventArgs> AddSurverDiasterInfoCompleted;
+        public event System.EventHandler<AddSurverDiasterInfoCompletedEventArgs> AddSurverDiasterInfoCompleted;
         
         public event System.EventHandler<GettblReportNotifiedCompletedEventArgs> GettblReportNotifiedCompleted;
         
@@ -3260,8 +3339,8 @@ namespace MapApplication.DataService {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        void MapApplication.DataService.ISSHMCDataService.EndAddSurverDiasterInfo(System.IAsyncResult result) {
-            base.Channel.EndAddSurverDiasterInfo(result);
+        string MapApplication.DataService.ISSHMCDataService.EndAddSurverDiasterInfo(System.IAsyncResult result) {
+            return base.Channel.EndAddSurverDiasterInfo(result);
         }
         
         private System.IAsyncResult OnBeginAddSurverDiasterInfo(object[] inValues, System.AsyncCallback callback, object asyncState) {
@@ -3270,14 +3349,15 @@ namespace MapApplication.DataService {
         }
         
         private object[] OnEndAddSurverDiasterInfo(System.IAsyncResult result) {
-            ((MapApplication.DataService.ISSHMCDataService)(this)).EndAddSurverDiasterInfo(result);
-            return null;
+            string retVal = ((MapApplication.DataService.ISSHMCDataService)(this)).EndAddSurverDiasterInfo(result);
+            return new object[] {
+                    retVal};
         }
         
         private void OnAddSurverDiasterInfoCompleted(object state) {
             if ((this.AddSurverDiasterInfoCompleted != null)) {
                 InvokeAsyncCompletedEventArgs e = ((InvokeAsyncCompletedEventArgs)(state));
-                this.AddSurverDiasterInfoCompleted(this, new System.ComponentModel.AsyncCompletedEventArgs(e.Error, e.Cancelled, e.UserState));
+                this.AddSurverDiasterInfoCompleted(this, new AddSurverDiasterInfoCompletedEventArgs(e.Results, e.Error, e.Cancelled, e.UserState));
             }
         }
         
@@ -3555,9 +3635,10 @@ namespace MapApplication.DataService {
                 return _result;
             }
             
-            public void EndAddSurverDiasterInfo(System.IAsyncResult result) {
+            public string EndAddSurverDiasterInfo(System.IAsyncResult result) {
                 object[] _args = new object[0];
-                base.EndInvoke("AddSurverDiasterInfo", _args, result);
+                string _result = ((string)(base.EndInvoke("AddSurverDiasterInfo", _args, result)));
+                return _result;
             }
             
             public System.IAsyncResult BeginGettblReportNotified(string userid, System.AsyncCallback callback, object asyncState) {

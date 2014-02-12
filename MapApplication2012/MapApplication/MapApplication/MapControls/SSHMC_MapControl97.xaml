@@ -16,6 +16,8 @@
           
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" xmlns:sdk="http://schemas.microsoft.com/winfx/2006/xaml/presentation/sdk"
           
+    xmlns:MapApplication="clr-namespace:MapApplication"
+          
     x:Class="MapApplication.MapControls.SSHMC_MapControl97"
     
     d:DesignHeight="842.75" d:DesignWidth="1257.695" Loaded="UserControl_Loaded" mc:Ignorable="d">
@@ -443,6 +445,35 @@
             </toolkit:WrapPanel>
 
         </ItemsPanelTemplate>
+        <Style x:Key="CheckBoxStyle2" TargetType="CheckBox">
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="CheckBox">
+        				<Grid>
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="CommonStates">
+        							<VisualState x:Name="MouseOver"/>
+        							<VisualState x:Name="Normal">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="14.667" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
+        									<DoubleAnimation Duration="0" To="71.333" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="contentPresenter" d:IsOptimized="True"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Pressed"/>
+        							<VisualState x:Name="Disabled"/>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<Image   MouseLeftButtonDown="Image_MouseLeftButtonDown" Source="/images/bim.png" Visibility="Visible"/>
+        					<ContentPresenter x:Name="contentPresenter" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" RenderTransformOrigin="0.5,0.5" Margin="14,74,0,-23" Visibility="Collapsed">
+        						<ContentPresenter.RenderTransform>
+        							<CompositeTransform/>
+        						</ContentPresenter.RenderTransform>
+        					</ContentPresenter>
+        				</Grid>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
 
 
     </UserControl.Resources>
@@ -609,7 +640,7 @@
 
                 <Border Height="23" VerticalAlignment="Top" Background="#FF2DB411" >
                     <TextBlock TextWrapping="Wrap" FontSize="18.667" Foreground="#FFFBF9F9" HorizontalAlignment="Center" Width="79" Margin="0" VerticalAlignment="Center" Text="災害潛勢"/>
-                   
+
                 </Border>
                 <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Left" Height="31" Margin="10,10,0,5">
                     <Image  Source="/images/muddy.png" Width="17" Margin="0" Height="17" Stretch="UniformToFill" />
@@ -660,5 +691,7 @@
         <Button   HorizontalAlignment="Right" Height="76" Margin="0,251,41,0"  ToolTipService.ToolTip="防災報告"  VerticalAlignment="Top" Width="83" Click="Button_Click_2">
             <Image Source="/images/report.png" />
         </Button>
+        <CheckBox x:Name="btnBim" Content="CheckBox" HorizontalAlignment="Right" Height="67" Margin="0,109,265,0" Style="{StaticResource CheckBoxStyle2}" Checked="btnBim_Checked"  Unchecked="btnBim_UnChecked"   VerticalAlignment="Top" Width="79"/>
+        <MapApplication:HtmlHost x:Name="htmlhost"  HostDiv="htmlhost"     Margin="0,190,265,10"/>
     </Grid>
 </UserControl>

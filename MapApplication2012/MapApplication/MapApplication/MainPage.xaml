@@ -9,7 +9,7 @@
     xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
     x:Class="MapApplication.MainPage"
     mc:Ignorable="d"
-    d:DesignHeight="570.447" d:DesignWidth="568.293" Loaded="UserControl_Loaded">
+    d:DesignHeight="772.239" d:DesignWidth="1318" Loaded="UserControl_Loaded">
 
     <Grid x:Name="LayoutRoot" Background="White"  Loaded="LayoutRoot_Loaded"  >
 

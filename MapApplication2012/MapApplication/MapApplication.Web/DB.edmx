@@ -75,7 +75,8 @@
       [vwSiteDegree].[MAX_Y] AS [MAX_Y], 
       [vwSiteDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
       [vwSiteDegree].[CUSTOMER_NAME] AS [CUSTOMER_NAME], 
-      [vwSiteDegree].[CUSTOMER_ID] AS [CUSTOMER_ID]
+      [vwSiteDegree].[CUSTOMER_ID] AS [CUSTOMER_ID], 
+      [vwSiteDegree].[ISBIM] AS [ISBIM]
       FROM [dbo].[vwSiteDegree] AS [vwSiteDegree]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_tblCCTV_tblSite" Association="SSHMC01Model.Store.FK_tblCCTV_tblSite">
@@ -207,7 +208,7 @@
           <Property Name="CONNECTIONSTATUSLOG_ID" Type="bigint" />
           <Property Name="ISVALID" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="EVET_ID" Type="int" />
-          <Property Name="ORG_EVENT_ID" Type="int" />
+          <Property Name="ORG_EVENT_ID" Type="money" />
           <Property Name="IsConfirmed" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSensor_Values">
@@ -224,6 +225,7 @@
           <Property Name="INITMEAN" Type="float" />
           <Property Name="MEANTHRESHOLD" Type="int" />
           <Property Name="CONVERTFORMULA" Type="nvarchar" MaxLength="512" />
+          <Property Name="UPDATE_DATETIME" Type="datetime" />
         </EntityType>
         <EntityType Name="tblSite">
           <Key>
@@ -252,6 +254,7 @@
           <Property Name="AREA_ID" Type="nvarchar" MaxLength="3" />
           <Property Name="ENGINEER" Type="nvarchar" MaxLength="10" />
           <Property Name="N3_CONTENT" Type="int" Nullable="false" />
+          <Property Name="ISBIM" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblTC">
           <Key>
@@ -338,9 +341,6 @@
           <Property Name="ENTRANCE" Type="tinyint" Nullable="false" />
         </EntityType>
         <!--產生期間發現錯誤:
-      警告 6002: 資料表/檢視 'SSHMC01.dbo.VWHOSTMFCC' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
-      -->
-        <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSensorDegree' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
       -->
         <EntityType Name="vwSensorDegree">
@@ -409,17 +409,17 @@
         <EntityType Name="vwSiteDegree">
           <Key>
             <PropertyRef Name="SITE_ID" />
-            
-            
-            
-            
-            
+            <PropertyRef Name="SITE_NAME" />
+            <PropertyRef Name="SITE_ADDRESS" />
+            <PropertyRef Name="X" />
+            <PropertyRef Name="Y" />
             <PropertyRef Name="CUSTOMER_ID" />
+            <PropertyRef Name="ISBIM" />
           </Key>
           <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
           <Property Name="SITE_NAME" Type="nvarchar" Nullable="false" MaxLength="15" />
           <Property Name="SITE_ADDRESS" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ENVIRONMENT" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="ENVIRONMENT" Type="nvarchar" MaxLength="4" />
           <Property Name="X" Type="float" Nullable="false" />
           <Property Name="Y" Type="float" Nullable="false" />
           <Property Name="MIN_X" Type="float" />
@@ -429,6 +429,7 @@
           <Property Name="CURRENT_DEGREE" Type="int" />
           <Property Name="CUSTOMER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="ISBIM" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblCCTV_tblSite">
           <End Role="tblSite" Type="SSHMC01Model.Store.tblSite" Multiplicity="1" />
@@ -601,11 +602,11 @@
             <End Role="tblCCTV" EntitySet="tblCCTV" />
           </AssociationSet>
           <EntitySet Name="vwSensorDegree" EntityType="SSHMC01Model.vwSensorDegree" />
-          <EntitySet Name="vwSiteDegree" EntityType="SSHMC01Model.vwSiteDegree" />
           <EntitySet Name="vwSensorValuesAndTC10MinDataLog" EntityType="SSHMC01Model.vwSensorValuesAndTC10MinDataLog" />
           <EntitySet Name="tblUser" EntityType="SSHMC01Model.tblUser" />
           <EntitySet Name="tblUserLogin" EntityType="SSHMC01Model.tblUserLogin" />
           <EntitySet Name="tblPre_disasterNotified" EntityType="SSHMC01Model.tblPre_disasterNotified" />
+          <EntitySet Name="vwSiteDegree" EntityType="SSHMC01Model.vwSiteDegree" />
         </EntityContainer>
         <EntityType Name="tblHOST_Config">
           <Key>
@@ -696,6 +697,7 @@
           <Property Type="Double" Name="INITMEAN" />
           <Property Type="Int32" Name="MEANTHRESHOLD" />
           <Property Type="String" Name="CONVERTFORMULA" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
         </EntityType>
         <EntityType Name="tblSite">
           <Key>
@@ -727,6 +729,7 @@
           <Property Type="String" Name="AREA_ID" MaxLength="3" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="ENGINEER" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="N3_CONTENT" Nullable="false" />
+          <Property Type="Boolean" Name="ISBIM" Nullable="false" />
         </EntityType>
         <EntityType Name="tblTC">
           <Key>
@@ -955,25 +958,6 @@
           <Property Type="String" Name="MFCC_ID" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="IsConfirmed" Nullable="false" />
         </EntityType>
-        <EntityType Name="vwSiteDegree">
-          <Key>
-            <PropertyRef Name="SITE_ID" />
-            <PropertyRef Name="CUSTOMER_ID" />
-          </Key>
-          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="SITE_NAME" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Type="String" Name="SITE_ADDRESS" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Type="String" Name="ENVIRONMENT" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Type="Double" Name="X" Nullable="false" />
-          <Property Type="Double" Name="Y" Nullable="false" />
-          <Property Type="Double" Name="MIN_X" />
-          <Property Type="Double" Name="MIN_Y" />
-          <Property Type="Double" Name="MAX_X" />
-          <Property Type="Double" Name="MAX_Y" />
-          <Property Type="Int32" Name="CURRENT_DEGREE" />
-          <Property Type="String" Name="CUSTOMER_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="CUSTOMER_ID" Nullable="false" />
-        </EntityType>
         <EntityType Name="vwSensorValuesAndTC10MinDataLog">
           <Key>
             <PropertyRef Name="SENSOR_ID" />
@@ -1040,6 +1024,31 @@
           <Property Type="Byte" Name="ISREPORT" Nullable="false" />
           <Property Type="String" Name="DISASTER_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="vwSiteDegree">
+          <Key>
+            <PropertyRef Name="SITE_ID" />
+            <PropertyRef Name="SITE_NAME" />
+            <PropertyRef Name="SITE_ADDRESS" />
+            <PropertyRef Name="X" />
+            <PropertyRef Name="Y" />
+            <PropertyRef Name="CUSTOMER_ID" />
+            <PropertyRef Name="ISBIM" />
+          </Key>
+          <Property Type="String" Name="SITE_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SITE_NAME" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SITE_ADDRESS" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ENVIRONMENT" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Type="Double" Name="X" Nullable="false" />
+          <Property Type="Double" Name="Y" Nullable="false" />
+          <Property Type="Double" Name="MIN_X" />
+          <Property Type="Double" Name="MIN_Y" />
+          <Property Type="Double" Name="MAX_X" />
+          <Property Type="Double" Name="MAX_Y" />
+          <Property Type="Int32" Name="CURRENT_DEGREE" />
+          <Property Type="String" Name="CUSTOMER_NAME" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CUSTOMER_ID" Nullable="false" />
+          <Property Type="Boolean" Name="ISBIM" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1099,7 +1108,8 @@
             <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tblSensor_Values"><EntityTypeMapping TypeName="SSHMC01Model.tblSensor_Values"><MappingFragment StoreEntitySet="tblSensor_Values">
-            <ScalarProperty Name="CONVERTFORMULA" ColumnName="CONVERTFORMULA" />
+            <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
+                <ScalarProperty Name="CONVERTFORMULA" ColumnName="CONVERTFORMULA" />
                 <ScalarProperty Name="MEANTHRESHOLD" ColumnName="MEANTHRESHOLD" />
                 <ScalarProperty Name="INITMEAN" ColumnName="INITMEAN" />
                 <ScalarProperty Name="SIGMA" ColumnName="SIGMA" />
@@ -1110,7 +1120,8 @@
             <ScalarProperty Name="COEFFICIENT" ColumnName="COEFFICIENT" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tblSite"><EntityTypeMapping TypeName="SSHMC01Model.tblSite"><MappingFragment StoreEntitySet="tblSite">
-            <ScalarProperty Name="N3_CONTENT" ColumnName="N3_CONTENT" />
+            <ScalarProperty Name="ISBIM" ColumnName="ISBIM" />
+                <ScalarProperty Name="N3_CONTENT" ColumnName="N3_CONTENT" />
                 <ScalarProperty Name="ENGINEER" ColumnName="ENGINEER" />
                 <ScalarProperty Name="AREA_ID" ColumnName="AREA_ID" />
                 <ScalarProperty Name="COUNTY_ID" ColumnName="COUNTY_ID" />
@@ -1214,25 +1225,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="vwSiteDegree">
-            <EntityTypeMapping TypeName="SSHMC01Model.vwSiteDegree">
-              <MappingFragment StoreEntitySet="vwSiteDegree">
-                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
-                <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
-                <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
-                <ScalarProperty Name="MAX_Y" ColumnName="MAX_Y" />
-                <ScalarProperty Name="MAX_X" ColumnName="MAX_X" />
-                <ScalarProperty Name="MIN_Y" ColumnName="MIN_Y" />
-                <ScalarProperty Name="MIN_X" ColumnName="MIN_X" />
-                <ScalarProperty Name="Y" ColumnName="Y" />
-                <ScalarProperty Name="X" ColumnName="X" />
-                <ScalarProperty Name="ENVIRONMENT" ColumnName="ENVIRONMENT" />
-                <ScalarProperty Name="SITE_ADDRESS" ColumnName="SITE_ADDRESS" />
-                <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
-                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vwSensorValuesAndTC10MinDataLog">
             <EntityTypeMapping TypeName="SSHMC01Model.vwSensorValuesAndTC10MinDataLog">
               <MappingFragment StoreEntitySet="vwSensorValuesAndTC10MinDataLog">
@@ -1297,6 +1289,26 @@
                 <ScalarProperty Name="PUBLISH_ORANG" ColumnName="PUBLISH_ORANG" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="IDENTIFIED_ID" ColumnName="IDENTIFIED_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vwSiteDegree">
+            <EntityTypeMapping TypeName="SSHMC01Model.vwSiteDegree">
+              <MappingFragment StoreEntitySet="vwSiteDegree">
+                <ScalarProperty Name="ISBIM" ColumnName="ISBIM" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CUSTOMER_NAME" ColumnName="CUSTOMER_NAME" />
+                <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
+                <ScalarProperty Name="MAX_Y" ColumnName="MAX_Y" />
+                <ScalarProperty Name="MAX_X" ColumnName="MAX_X" />
+                <ScalarProperty Name="MIN_Y" ColumnName="MIN_Y" />
+                <ScalarProperty Name="MIN_X" ColumnName="MIN_X" />
+                <ScalarProperty Name="Y" ColumnName="Y" />
+                <ScalarProperty Name="X" ColumnName="X" />
+                <ScalarProperty Name="ENVIRONMENT" ColumnName="ENVIRONMENT" />
+                <ScalarProperty Name="SITE_ADDRESS" ColumnName="SITE_ADDRESS" />
+                <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1377,11 +1389,11 @@
           <ConnectorPoint PointX="3" PointY="8.0285953776041659" />
         </AssociationConnector>
         <EntityTypeShape EntityType="SSHMC01Model.vwSensorDegree" Width="1.5" PointX="3.125" PointY="9.875" Height="3.5186979166666656" />
-        <EntityTypeShape EntityType="SSHMC01Model.vwSiteDegree" Width="1.5" PointX="0.75" PointY="10.75" Height="3.1340950520833388" />
         <EntityTypeShape EntityType="SSHMC01Model.vwSensorValuesAndTC10MinDataLog" Width="1.5" PointX="5.125" PointY="11.125" Height="4.2879036458333388" />
         <EntityTypeShape EntityType="SSHMC01Model.tblUser" Width="1.5" PointX="2.75" PointY="14.25" Height="3.1340950520833388" />
         <EntityTypeShape EntityType="SSHMC01Model.tblUserLogin" Width="1.5" PointX="11.375" PointY="0.75" Height="1.4033821614583388" />
         <EntityTypeShape EntityType="SSHMC01Model.tblPre_disasterNotified" Width="1.5" PointX="2.0374122215609125" PointY="18.509864458120365" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSiteDegree" Width="1.5" PointX="4.2878403087555625" PointY="1.183188558175782" />
       </Diagram>
     </Diagrams>
   </Designer>

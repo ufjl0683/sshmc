@@ -20,6 +20,8 @@
     }
     </style>
     <script type="text/javascript" src="Silverlight.js"></script>
+     <script type="text/javascript" src="Scripts/jquery-2.0.3.js" ></script>
+     <script type="text/javascript" src="Scripts/js/bimViewerSensor.js" ></script>
     <script type="text/javascript">
         function onSilverlightError(sender, args) {
             var appSource = "";

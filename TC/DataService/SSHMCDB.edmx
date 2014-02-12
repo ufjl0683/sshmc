@@ -79,7 +79,8 @@
       [vwSiteDegree].[MAX_Y] AS [MAX_Y], 
       [vwSiteDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
       [vwSiteDegree].[CUSTOMER_NAME] AS [CUSTOMER_NAME], 
-      [vwSiteDegree].[CUSTOMER_ID] AS [CUSTOMER_ID]
+      [vwSiteDegree].[CUSTOMER_ID] AS [CUSTOMER_ID], 
+      [vwSiteDegree].[ISBIM] AS [ISBIM]
       FROM [dbo].[vwSiteDegree] AS [vwSiteDegree]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_tblCCTV_tblSite" Association="SSHMC01Model.Store.FK_tblCCTV_tblSite">
@@ -174,6 +175,7 @@
           <Property Name="AREA_ID" Type="nvarchar" MaxLength="3" />
           <Property Name="ENGINEER" Type="nvarchar" MaxLength="10" />
           <Property Name="N3_CONTENT" Type="int" Nullable="false" />
+          <Property Name="ISBIM" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSurvey_Disaster">
           <Key>
@@ -214,6 +216,7 @@
           <Property Name="ISCLOSE" Type="bit" />
           <Property Name="PLACE_NAME" Type="nvarchar" MaxLength="15" />
           <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="ISREPORT" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -322,15 +325,16 @@
             <PropertyRef Name="SITE_ID" />
             <PropertyRef Name="SITE_NAME" />
             <PropertyRef Name="SITE_ADDRESS" />
-            <PropertyRef Name="ENVIRONMENT" />
             <PropertyRef Name="X" />
             <PropertyRef Name="Y" />
             <PropertyRef Name="CUSTOMER_ID" />
+            <PropertyRef Name="ISBIM" />
+            <PropertyRef Name="ENVIRONMENT" />
           </Key>
           <Property Name="SITE_ID" Type="nvarchar" Nullable="false" MaxLength="30" />
           <Property Name="SITE_NAME" Type="nvarchar" Nullable="false" MaxLength="15" />
           <Property Name="SITE_ADDRESS" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="ENVIRONMENT" Type="nvarchar" Nullable="false" MaxLength="4" />
+          <Property Name="ENVIRONMENT" Type="nvarchar" MaxLength="4" Nullable="false" />
           <Property Name="X" Type="float" Nullable="false" />
           <Property Name="Y" Type="float" Nullable="false" />
           <Property Name="MIN_X" Type="float" />
@@ -340,6 +344,7 @@
           <Property Name="CURRENT_DEGREE" Type="int" />
           <Property Name="CUSTOMER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
+          <Property Name="ISBIM" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblCCTV_tblSite">
           <End Role="tblSite" Type="SSHMC01Model.Store.tblSite" Multiplicity="1" />
@@ -458,6 +463,7 @@
             <PropertyRef Name="X" />
             <PropertyRef Name="Y" />
             <PropertyRef Name="CUSTOMER_ID" />
+            <PropertyRef Name="ISBIM" />
           </Key>
           <Property Name="SITE_ID" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
           <Property Name="SITE_NAME" Type="String" Nullable="false" MaxLength="15" Unicode="true" FixedLength="false" />
@@ -472,6 +478,7 @@
           <Property Name="CURRENT_DEGREE" Type="Int32" />
           <Property Name="CUSTOMER_NAME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
+          <Property Type="Boolean" Name="ISBIM" Nullable="false" />
         </EntityType>
         <EntityType Name="tblCCTV">
           <Key>
@@ -544,6 +551,7 @@
           <Property Type="Int32" Name="N3_CONTENT" Nullable="false" />
           <NavigationProperty Name="tblCCTV" Relationship="SSHMC01Model.FK_tblCCTV_tblSite" FromRole="tblSite" ToRole="tblCCTV" />
           <NavigationProperty Name="tblCustomer" Relationship="SSHMC01Model.FK_tblSite_tblCustomer" FromRole="tblSite" ToRole="tblCustomer" />
+          <Property Type="Boolean" Name="ISBIM" Nullable="false" />
         </EntityType>
         <Association Name="FK_tblCCTV_tblSite">
           <End Type="SSHMC01Model.tblSite" Role="tblSite" Multiplicity="1" />
@@ -681,6 +689,7 @@
           <Property Type="Boolean" Name="ISCLOSE" />
           <Property Type="String" Name="PLACE_NAME" MaxLength="15" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Byte" Name="ISREPORT" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -720,7 +729,8 @@
             <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="vwSiteDegree"><EntityTypeMapping TypeName="SSHMC01Model.vwSiteDegree"><MappingFragment StoreEntitySet="vwSiteDegree">
-            <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
+            <ScalarProperty Name="ISBIM" ColumnName="ISBIM" />
+                <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
             <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
             <ScalarProperty Name="SITE_ADDRESS" ColumnName="SITE_ADDRESS" />
             <ScalarProperty Name="ENVIRONMENT" ColumnName="ENVIRONMENT" />
@@ -779,6 +789,7 @@
           <EntitySetMapping Name="tblSite">
             <EntityTypeMapping TypeName="SSHMC01Model.tblSite">
               <MappingFragment StoreEntitySet="tblSite">
+                <ScalarProperty Name="ISBIM" ColumnName="ISBIM" />
                 <ScalarProperty Name="N3_CONTENT" ColumnName="N3_CONTENT" />
                 <ScalarProperty Name="ENGINEER" ColumnName="ENGINEER" />
                 <ScalarProperty Name="AREA_ID" ColumnName="AREA_ID" />
@@ -856,6 +867,7 @@
           <EntitySetMapping Name="tblSurvey_Disaster">
             <EntityTypeMapping TypeName="SSHMC01Model.tblSurvey_Disaster">
               <MappingFragment StoreEntitySet="tblSurvey_Disaster">
+                <ScalarProperty Name="ISREPORT" ColumnName="ISREPORT" />
                 <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
                 <ScalarProperty Name="PLACE_NAME" ColumnName="PLACE_NAME" />
                 <ScalarProperty Name="ISCLOSE" ColumnName="ISCLOSE" />

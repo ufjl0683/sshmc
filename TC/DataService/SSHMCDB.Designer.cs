@@ -1329,7 +1329,8 @@ namespace DataService
         /// <param name="x">X 屬性的初始值。</param>
         /// <param name="y">Y 屬性的初始值。</param>
         /// <param name="n3_CONTENT">N3_CONTENT 屬性的初始值。</param>
-        public static tblSite CreatetblSite(global::System.String sITE_ID, global::System.Int32 cUSTROMER_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.Double x, global::System.Double y, global::System.Int32 n3_CONTENT)
+        /// <param name="iSBIM">ISBIM 屬性的初始值。</param>
+        public static tblSite CreatetblSite(global::System.String sITE_ID, global::System.Int32 cUSTROMER_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.Double x, global::System.Double y, global::System.Int32 n3_CONTENT, global::System.Boolean iSBIM)
         {
             tblSite tblSite = new tblSite();
             tblSite.SITE_ID = sITE_ID;
@@ -1339,6 +1340,7 @@ namespace DataService
             tblSite.X = x;
             tblSite.Y = y;
             tblSite.N3_CONTENT = n3_CONTENT;
+            tblSite.ISBIM = iSBIM;
             return tblSite;
         }
 
@@ -1900,6 +1902,30 @@ namespace DataService
         private global::System.Int32 _N3_CONTENT;
         partial void OnN3_CONTENTChanging(global::System.Int32 value);
         partial void OnN3_CONTENTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ISBIM
+        {
+            get
+            {
+                return _ISBIM;
+            }
+            set
+            {
+                OnISBIMChanging(value);
+                ReportPropertyChanging("ISBIM");
+                _ISBIM = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ISBIM");
+                OnISBIMChanged();
+            }
+        }
+        private global::System.Boolean _ISBIM;
+        partial void OnISBIMChanging(global::System.Boolean value);
+        partial void OnISBIMChanged();
 
         #endregion
 
@@ -2008,7 +2034,8 @@ namespace DataService
         /// <param name="eVACUATION_0">EVACUATION_0 屬性的初始值。</param>
         /// <param name="eVACUATION_1">EVACUATION_1 屬性的初始值。</param>
         /// <param name="pHOTO_PATH">PHOTO_PATH 屬性的初始值。</param>
-        public static tblSurvey_Disaster CreatetblSurvey_Disaster(global::System.Int32 id, global::System.DateTime bUILD_TIME, global::System.DateTime oCCUR_TIME, global::System.String bUILD_USER, global::System.Byte sITUATION_0, global::System.Byte sITUATION_1, global::System.Int32 sITUATION_2, global::System.Boolean tYPE_0, global::System.Boolean tYPE_1, global::System.Boolean tYPE_2, global::System.Boolean tYPE_3, global::System.Boolean tYPE_4, global::System.Boolean tYPE_5, global::System.Boolean tYPE_6, global::System.Int32 cASUALTIES_0, global::System.Int32 cASUALTIES_1, global::System.Int32 cASUALTIES_2, global::System.String cASUALTIES_3, global::System.String dAMAGED_ROADS, global::System.Byte dAMAGED_ROADS_0, global::System.String dAMAGED_BRIDGE, global::System.Byte dAMAGED_BRIDGE_0, global::System.Boolean eVACUATION_0, global::System.Int32 eVACUATION_1, global::System.String pHOTO_PATH)
+        /// <param name="iSREPORT">ISREPORT 屬性的初始值。</param>
+        public static tblSurvey_Disaster CreatetblSurvey_Disaster(global::System.Int32 id, global::System.DateTime bUILD_TIME, global::System.DateTime oCCUR_TIME, global::System.String bUILD_USER, global::System.Byte sITUATION_0, global::System.Byte sITUATION_1, global::System.Int32 sITUATION_2, global::System.Boolean tYPE_0, global::System.Boolean tYPE_1, global::System.Boolean tYPE_2, global::System.Boolean tYPE_3, global::System.Boolean tYPE_4, global::System.Boolean tYPE_5, global::System.Boolean tYPE_6, global::System.Int32 cASUALTIES_0, global::System.Int32 cASUALTIES_1, global::System.Int32 cASUALTIES_2, global::System.String cASUALTIES_3, global::System.String dAMAGED_ROADS, global::System.Byte dAMAGED_ROADS_0, global::System.String dAMAGED_BRIDGE, global::System.Byte dAMAGED_BRIDGE_0, global::System.Boolean eVACUATION_0, global::System.Int32 eVACUATION_1, global::System.String pHOTO_PATH, global::System.Byte iSREPORT)
         {
             tblSurvey_Disaster tblSurvey_Disaster = new tblSurvey_Disaster();
             tblSurvey_Disaster.ID = id;
@@ -2036,6 +2063,7 @@ namespace DataService
             tblSurvey_Disaster.EVACUATION_0 = eVACUATION_0;
             tblSurvey_Disaster.EVACUATION_1 = eVACUATION_1;
             tblSurvey_Disaster.PHOTO_PATH = pHOTO_PATH;
+            tblSurvey_Disaster.ISREPORT = iSREPORT;
             return tblSurvey_Disaster;
         }
 
@@ -2885,6 +2913,30 @@ namespace DataService
         private global::System.String _DESCRIPTION;
         partial void OnDESCRIPTIONChanging(global::System.String value);
         partial void OnDESCRIPTIONChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Byte ISREPORT
+        {
+            get
+            {
+                return _ISREPORT;
+            }
+            set
+            {
+                OnISREPORTChanging(value);
+                ReportPropertyChanging("ISREPORT");
+                _ISREPORT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ISREPORT");
+                OnISREPORTChanged();
+            }
+        }
+        private global::System.Byte _ISREPORT;
+        partial void OnISREPORTChanging(global::System.Byte value);
+        partial void OnISREPORTChanged();
 
         #endregion
 
@@ -4404,7 +4456,8 @@ namespace DataService
         /// <param name="x">X 屬性的初始值。</param>
         /// <param name="y">Y 屬性的初始值。</param>
         /// <param name="cUSTOMER_ID">CUSTOMER_ID 屬性的初始值。</param>
-        public static vwSiteDegree CreatevwSiteDegree(global::System.String sITE_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.String eNVIRONMENT, global::System.Double x, global::System.Double y, global::System.Int32 cUSTOMER_ID)
+        /// <param name="iSBIM">ISBIM 屬性的初始值。</param>
+        public static vwSiteDegree CreatevwSiteDegree(global::System.String sITE_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.String eNVIRONMENT, global::System.Double x, global::System.Double y, global::System.Int32 cUSTOMER_ID, global::System.Boolean iSBIM)
         {
             vwSiteDegree vwSiteDegree = new vwSiteDegree();
             vwSiteDegree.SITE_ID = sITE_ID;
@@ -4414,6 +4467,7 @@ namespace DataService
             vwSiteDegree.X = x;
             vwSiteDegree.Y = y;
             vwSiteDegree.CUSTOMER_ID = cUSTOMER_ID;
+            vwSiteDegree.ISBIM = iSBIM;
             return vwSiteDegree;
         }
 
@@ -4753,6 +4807,33 @@ namespace DataService
         private global::System.Int32 _CUSTOMER_ID;
         partial void OnCUSTOMER_IDChanging(global::System.Int32 value);
         partial void OnCUSTOMER_IDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Boolean ISBIM
+        {
+            get
+            {
+                return _ISBIM;
+            }
+            set
+            {
+                if (_ISBIM != value)
+                {
+                    OnISBIMChanging(value);
+                    ReportPropertyChanging("ISBIM");
+                    _ISBIM = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("ISBIM");
+                    OnISBIMChanged();
+                }
+            }
+        }
+        private global::System.Boolean _ISBIM;
+        partial void OnISBIMChanging(global::System.Boolean value);
+        partial void OnISBIMChanged();
 
         #endregion
 
