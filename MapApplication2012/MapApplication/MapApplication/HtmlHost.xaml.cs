@@ -96,7 +96,7 @@ namespace MapApplication
 
         public void SetHostDivVisible(bool IsVisible)
         {
-            _div.SetAttribute(ATTR_VISIBILITY, IsVisible ? VISIBLE : HIDDEN);
+            _div.SetStyleAttribute(ATTR_VISIBILITY, IsVisible ? VISIBLE : HIDDEN);
         }
         public void Show()
         {
@@ -130,6 +130,10 @@ namespace MapApplication
           
             _Resize();
         }
+        public  void SetReSize()
+        {
+            _Resize();
+        }
         private void _Resize()
         {
             var gt = LayoutRoot.TransformToVisual(Application.Current.RootVisual);
@@ -148,6 +152,7 @@ namespace MapApplication
 
         private void UserControl_Unloaded(object sender, RoutedEventArgs e)
         {
+            _div.SetProperty(ATTR_INNER_HTML, "");
             _div.SetStyleAttribute(ATTR_VISIBILITY, "hidden");
         }
 

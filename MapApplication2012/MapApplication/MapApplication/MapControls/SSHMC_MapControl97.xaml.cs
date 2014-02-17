@@ -18,6 +18,7 @@ using System.Collections.ObjectModel;
 using MapApplication.Controls;
 using System.Windows.Threading;
 using System.Windows.Browser;
+using System.Threading.Tasks;
 
 
 
@@ -626,6 +627,7 @@ namespace MapApplication.MapControls
         private void btmGoback_Click(object sender, RoutedEventArgs e)
         {
            // map1.ZoomDuration = TimeSpan.FromMilliseconds(500);
+             htmlhost.SetHostDivVisible(false);
              HtmlPage.Window.Invoke("closeBim"); 
             DispatcherTimer tmr = new DispatcherTimer();
             tmr.Interval = TimeSpan.FromMilliseconds(1000);
@@ -664,7 +666,7 @@ namespace MapApplication.MapControls
             this.ZoomToLevel(SITE_VIEW_LEVEL,ConvertMapPointTo102100(new MapPoint((double)sensorInfo.X,(double)sensorInfo.Y)));
             if (btnBim.IsChecked==true)
             {
-                   HtmlPage.Window.Invoke("SelectObject", string.Format("sensor{0:000000}", sensorInfo.SENSOR_ID));
+                   HtmlInvokeAsync("SelectObject", string.Format("sensor{0:000000}", sensorInfo.SENSOR_ID));
             }
         
         }
@@ -927,17 +929,24 @@ namespace MapApplication.MapControls
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            if (btnBim.IsChecked == true)
+                return;
             News ctlNews = new News();
             ctlNews.Margin = new Thickness(0);
             Grid.SetRow(ctlNews, 0);
             Grid.SetColumn(ctlNews, 0);
             Grid.SetColumnSpan(ctlNews, 2);
+            ctlNews.Unloaded += (s, a) =>
+                {
+                    htmlhost.SetReSize();
+                };
             this.LayoutRoot.Children.Add(ctlNews);
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            
+            if (btnBim.IsChecked == true)
+                return;
             if (this.OnClick != null)
                 this.OnClick(this, e);
 
@@ -967,17 +976,27 @@ namespace MapApplication.MapControls
         {
    }
 
-        private void btnBim_Checked(object sender, RoutedEventArgs e)
+        private   async void btnBim_Checked(object sender, RoutedEventArgs e)
         {
-
+            
             this.htmlhost.SetHostDivVisible(true);
-            HtmlPage.Window.Invoke("result", new string[] { string.Format("http://192.192.161.4/mobile/Resources/{0}.dwf",CURRENT_SITE_ID) }); 
-     
+          // System.Threading.Tasks.TaskCompletionSource<  HtmlPage.Window.Invoke("result", new string[] { string.Format("http://192.192.161.4/mobile/Resources/{0}.dwf",CURRENT_SITE_ID) }); 
 
+            await HtmlInvokeAsync("result", string.Format("http://192.192.161.4/mobile/Resources/{0}.dwf", CURRENT_SITE_ID));
+           // MessageBox.Show("ok");
         }
 
+        Task<object> HtmlInvokeAsync(string result,params string[] param)
+        {
+            System.Threading.Tasks.TaskCompletionSource<object> source=new TaskCompletionSource<object>();
+            HtmlPage.Window.Invoke(result, param );
+              source.TrySetResult(new object());
+              return source.Task;
+        }
         private void btnBim_UnChecked(object sender, RoutedEventArgs e)
         {
+            
+            this.htmlhost.SetHostDivVisible(false);
             HtmlPage.Window.Invoke("closeBim"); 
         }
 

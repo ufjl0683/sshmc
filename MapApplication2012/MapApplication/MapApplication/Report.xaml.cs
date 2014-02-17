@@ -88,6 +88,11 @@ namespace MapApplication
             base.OnNavigatedFrom(e);
           
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
     
 
     }

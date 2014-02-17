@@ -64,7 +64,7 @@
        
 
     <div id="silverlightControlHost">
-          <div id="htmlhost" style="visibility: hidden; position: absolute;"></div>
+          <div id="htmlhost" style="visibility: collapse; position: absolute;"></div>
         <object data="data:application/x-silverlight-2," type="application/x-silverlight-2" width="100%" height="100%">
 		  <param name="source" value="ClientBin/MapApplication.xap"/>
             <param name="windowless" value="true" />

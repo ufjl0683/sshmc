@@ -26,5 +26,16 @@ namespace MapApplication.Controls
             this.webbrowser.Url = this.NavigationContext.QueryString["url"].ToString();
         }
 
+        private void Page_Unloaded(object sender, RoutedEventArgs e)
+        {
+            
+            this.webbrowser.SetHostDivVisible(false);
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.GoBack();
+        }
+
     }
 }
