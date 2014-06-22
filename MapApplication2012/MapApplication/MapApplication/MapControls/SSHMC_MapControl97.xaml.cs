@@ -171,6 +171,8 @@ namespace MapApplication.MapControls
 
                          (dictPins[siteinfo.SITE_ID].DataContext as DataService.vwSiteDegree).CURRENT_DEGREE = siteinfo.CURRENT_DEGREE;
 
+                         (dictPins[siteinfo.SITE_ID].DataContext as DataService.vwSiteDegree).NID = siteinfo.NID;
+                      //   (dictPins[siteinfo.SITE_ID].DataContext as DataService.vwSiteDegree).SurveyImageFilePath = siteinfo.SurveyImageFilePath;
                      }
 
                 };
@@ -595,7 +597,10 @@ namespace MapApplication.MapControls
            this.ZoomToLevel(GLOBAL_VIEW_LEVEL, ConvertMapPointTo102100(mp));
 
            dictPins[sitedata.SITE_ID].SetBlind();
-
+            if(sitedata.NID!=null)
+                  dictPins[sitedata.SITE_ID].SetNotifyDataVisibility(true);
+           
+          
         }
         private void SiteMenu_MouseLeave(object sender, MouseEventArgs e)
         {
@@ -606,7 +611,7 @@ namespace MapApplication.MapControls
            // this.ZoomToLevel(GLOBAL_VIEW_LEVEL, ConvertMapPointTo102100(mp));
 
             dictPins[sitedata.SITE_ID].StopBlind();
-          
+            dictPins[sitedata.SITE_ID].SetNotifyDataVisibility(false);
         }
 
         private void SiteMenu_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

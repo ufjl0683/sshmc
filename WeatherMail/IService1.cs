@@ -15,5 +15,8 @@ namespace WeatherMail
         [OperationContract]
         [WebGet(UriTemplate="SendMailToAll/{subject}/{bodytext}")]
         string SendMailToAll(string subject,string bodytext);
+         [OperationContract]
+        [WebGet]
+        string SendMailToUser(string address,string subject,string bodytext);
     }
 }

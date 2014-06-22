@@ -27,7 +27,7 @@ namespace MFCC_GENERIC
                 mfccid = args[0];
 
                 System.Threading.Thread.CurrentThread.Priority = System.Threading.ThreadPriority.Highest;
-                mfcc_generic = new MFCC_GENERIC(mfccid, args[1], RemotingPort, NotifyPort, ConsolePort, "MFCC_TILT", typeof(RemoteObj));
+                mfcc_generic = new MFCC_GENERIC(mfccid, args[1], RemotingPort, NotifyPort, ConsolePort,"MFCC_"+args[1].ToUpper(), typeof(RemoteObj));
 
 
                 ConsoleServer.WriteLine(mfccid + " Start success!");

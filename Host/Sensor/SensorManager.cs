@@ -22,14 +22,14 @@ namespace Host.Sensor
            }
        }
 
-       public System.Collections.IEnumerable getAllDeviceEnum()
+       public System.Collections.IEnumerable  getAllDeviceEnum()
        {
 
            System.Collections.IEnumerator ie = this.dictSensors.GetEnumerator();
            while (ie.MoveNext())
            {
                // if (!(((System.Collections.DictionaryEntry)ie.Current).Value is TC.OutPutDeviceBase))
-               yield return ((System.Collections.DictionaryEntry)ie.Current).Value;
+               yield return    ((KeyValuePair<int,SensorBase>)(ie.Current)).Value;
            }
 
        }
@@ -80,7 +80,7 @@ namespace Host.Sensor
                            snr = new Tilt(sensor.SENSOR_ID, sensor.SENSOR_NAME, sensor.SENSOR_TYPE, sensor.MFCC_ID, (int)sensor.ID, sensor.SITE_ID,(int)sensor.CURRENT_DEGREE);
                            // dictSensors.Add(sensor.SENSOR_ID, new Tilt(sensor.SENSOR_ID, sensor.SENSOR_NAME, sensor.SENSOR_TYPE,sensor.MFCC_ID,sensor.ID,sensor.SITE_ID));
                        }
-                       else if (sensor.SENSOR_TYPE == "GPS")
+                       else if (sensor.SENSOR_TYPE == "GPS"  || sensor.SENSOR_TYPE=="EGPS")
                            snr = new GPS(sensor.SENSOR_ID, sensor.SENSOR_NAME, sensor.SENSOR_TYPE, sensor.MFCC_ID, (int)sensor.ID, sensor.SITE_ID,(int)sensor.CURRENT_DEGREE);
                        //  dictSensors.Add(sensor.SENSOR_ID, new GPS(sensor.SENSOR_ID, sensor.SENSOR_NAME, sensor.SENSOR_TYPE,sensor.MFCC_ID,sensor.ID,sensor.SITE_ID));
                        else

@@ -46,6 +46,7 @@ namespace ClientTest
      
         static void Main(string[] args)
         {
+           // SendMailTest();
             //System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient();
             //client.Connect("192.168.2.100", 7002);
 
@@ -56,136 +57,172 @@ namespace ClientTest
             //    Console.Write(d);
             //}
 
-         
+           HostSetSntValteTest();
 
-           RTKMiddle.RtkClient client = new RTKMiddle.RtkClient("192.168.2.100", 7002);
+//           RTKMiddle.RtkClient client = new RTKMiddle.RtkClient("192.168.2.100", 7002);
 
-           client.OnData += client_OnData;
+//           client.OnData += client_OnData;
 
-            Console.ReadKey();
-            SSHMC01Entities db = new SSHMC01Entities();
-            var q = from n in db.tblUser  where n.USER_ID=="david" && n.USER_PW=="0988163835" select n;
-            tblUser[] users = q.ToArray();
-            tblUser user = (from n in db.tblUser where n.USER_ID == "david" && n.USER_PW == "0988163835" select n).FirstOrDefault();
-            Console.WriteLine(user.USER_ID);
-            foreach (tblUser u in users)
-            {
-                Console.WriteLine(u.USER_ID);
-            }
-          //  System.Net.Sockets.TcpListener sv = new System.Net.Sockets.TcpListener(
-          //new System.Net.IPEndPoint(new IPAddress(new byte[] { 127, 0, 0, 1 }), 1101));
-          //  sv.Start();
-          // System.Net.Sockets.Socket soc= sv.AcceptSocket();
+//            Console.ReadKey();
+//            SSHMC01Entities db = new SSHMC01Entities();
+//            var q = from n in db.tblUser  where n.USER_ID=="david" && n.USER_PW=="0988163835" select n;
+//            tblUser[] users = q.ToArray();
+//            tblUser user = (from n in db.tblUser where n.USER_ID == "david" && n.USER_PW == "0988163835" select n).FirstOrDefault();
+//            Console.WriteLine(user.USER_ID);
+//            foreach (tblUser u in users)
+//            {
+//                Console.WriteLine(u.USER_ID);
+//            }
+//          //  System.Net.Sockets.TcpListener sv = new System.Net.Sockets.TcpListener(
+//          //new System.Net.IPEndPoint(new IPAddress(new byte[] { 127, 0, 0, 1 }), 1101));
+//          //  sv.Start();
+//          // System.Net.Sockets.Socket soc= sv.AcceptSocket();
 
-          //  byte[] data=new byte[1024];;
-          //  int cnt;
-          //  while ((cnt = soc.Receive(data)) != -1)
-          //  {
-          //      Console.WriteLine(System.Text.UTF8Encoding.UTF8.GetString(data,0,cnt));
-          //  }
-            DataService.SSHMCDataServiceClient c= new DataService.SSHMCDataServiceClient();
+//          //  byte[] data=new byte[1024];;
+//          //  int cnt;
+//          //  while ((cnt = soc.Receive(data)) != -1)
+//          //  {
+//          //      Console.WriteLine(System.Text.UTF8Encoding.UTF8.GetString(data,0,cnt));
+//          //  }
+//            DataService.SSHMCDataServiceClient c= new DataService.SSHMCDataServiceClient();
 
-            c.CheckUserIDPassword("david", "0988163835");
+//            c.CheckUserIDPassword("david", "0988163835");
 
-            c.AddSurverDiasterInfo(new DataService.tblSurvey_Disaster() { 
-             BUILD_TIME = DateTime.UtcNow,
-             BUILD_USER = "User",
-             CASUALTIES_0 = 0,
-             CASUALTIES_1 = 0,
-             CASUALTIES_2 = 0,
-             CASUALTIES_3 ="none",
-             DAMAGED_BRIDGE ="none",
-             DAMAGED_BRIDGE_0 = 0,
-             DAMAGED_ROADS = "none",
-             DAMAGED_ROADS_0 = 0,
-              EVACUATION_0 = true,
-              EVACUATION_1 = 0,
-             ISCHECK=true,
-             ISCLOSE =false,
-             OCCUR_TIME = DateTime.UtcNow,
-             PHOTO_PATH="Update",
-             PLACE_NAME="none",
-             SITUATION_0 = 0,
-             SITUATION_1 =0,
-             SITUATION_2 = 0,
-             TYPE_0 = true,
-             TYPE_1=false,
-             TYPE_2=false,
-             TYPE_3=false,
-             TYPE_4=false,
-             TYPE_5=false,
-             TYPE_6=false,
-             USER__POSITION_X = 121.5555,
-             USER__POSITION_Y = 24.9999,
-             X = 121.5555,
-             Y =24.9999
+//            c.AddSurverDiasterInfo(new DataService.tblSurvey_Disaster() { 
+//             BUILD_TIME = DateTime.UtcNow,
+//             BUILD_USER = "User",
+//             CASUALTIES_0 = 0,
+//             CASUALTIES_1 = 0,
+//             CASUALTIES_2 = 0,
+//             CASUALTIES_3 ="none",
+//             DAMAGED_BRIDGE ="none",
+//             DAMAGED_BRIDGE_0 = 0,
+//             DAMAGED_ROADS = "none",
+//             DAMAGED_ROADS_0 = 0,
+//              EVACUATION_0 = true,
+//              EVACUATION_1 = 0,
+//             ISCHECK=true,
+//             ISCLOSE =false,
+//             OCCUR_TIME = DateTime.UtcNow,
+//             PHOTO_PATH="Update",
+//             PLACE_NAME="none",
+//             SITUATION_0 = 0,
+//             SITUATION_1 =0,
+//             SITUATION_2 = 0,
+//             TYPE_0 = true,
+//             TYPE_1=false,
+//             TYPE_2=false,
+//             TYPE_3=false,
+//             TYPE_4=false,
+//             TYPE_5=false,
+//             TYPE_6=false,
+//             USER__POSITION_X = 121.5555,
+//             USER__POSITION_Y = 24.9999,
+//             X = 121.5555,
+//             Y =24.9999
              
             
-            });
+//            });
 
 
-            //foreach(DataService.tblSurvey_Disaster d in  c.GetSurveyDisaster())
-            //{
-            //    Console.WriteLine(d.BUILD_TIME+","+d.SITE_ID+","+d.USER__POSITION_X+","+d.USER__POSITION_Y+","+d.PHOTO_PATH);
-            //}
-         //  Mail();
-            c.Close();
-            Console.ReadKey();
-            //Microsoft.JScript.Vsa.VsaEngine eng = Microsoft.JScript.Vsa.VsaEngine.CreateEngine();
-            //object res = Microsoft.JScript.Eval.JScriptEvaluate("var a=10;a+2*6+5;Math.sin(0);", eng);
-            //Console.WriteLine(res.ToString());
-            //string fmla = "{0}+-1.00672e-5*{2}*{2}*{2}+0.00063197*{2}*{2}-0.01225*{2}+1.050715+-0.98048";
-            //  res= Microsoft.JScript.Eval.JScriptEvaluate(string.Format(fmla,1,0,32), eng);
-            //  Console.WriteLine(res.ToString());
-            // Console.ReadKey();
+//            //foreach(DataService.tblSurvey_Disaster d in  c.GetSurveyDisaster())
+//            //{
+//            //    Console.WriteLine(d.BUILD_TIME+","+d.SITE_ID+","+d.USER__POSITION_X+","+d.USER__POSITION_Y+","+d.PHOTO_PATH);
+//            //}
+//         //  Mail();
+//            c.Close();
+//            Console.ReadKey();
+//            //Microsoft.JScript.Vsa.VsaEngine eng = Microsoft.JScript.Vsa.VsaEngine.CreateEngine();
+//            //object res = Microsoft.JScript.Eval.JScriptEvaluate("var a=10;a+2*6+5;Math.sin(0);", eng);
+//            //Console.WriteLine(res.ToString());
+//            //string fmla = "{0}+-1.00672e-5*{2}*{2}*{2}+0.00063197*{2}*{2}-0.01225*{2}+1.050715+-0.98048";
+//            //  res= Microsoft.JScript.Eval.JScriptEvaluate(string.Format(fmla,1,0,32), eng);
+//            //  Console.WriteLine(res.ToString());
+//            // Console.ReadKey();
 
 
-            //SSHMC01Entities db = new SSHMC01Entities();
-            //var q = from n in db.tblUser select n;
-            //foreach (tblUser user in q)
-            //{
-            //    Console.WriteLine(user.USER_NAME);
-            //}
-           // DateTime dt = new DateTime(2012, 0, 31);
-           //GPSControllerConfig config = new GPSControllerConfig()
-           // {
-           //     build_date = DateTime.Now,
-           //     device_type = "GPS",
-           //     controller_id = 100,
-           //     listen_port = 1001,
-           //     ref_gps = new GPSSensorConfig() { com_type="COM", device_name="GPS0", execution_mode=0, id=0, ip_comport="COM8", is_reference=false, port_baud=115200  },
+//            //SSHMC01Entities db = new SSHMC01Entities();
+//            //var q = from n in db.tblUser select n;
+//            //foreach (tblUser user in q)
+//            //{
+//            //    Console.WriteLine(user.USER_NAME);
+//            //}
+//           // DateTime dt = new DateTime(2012, 0, 31);
+//           //GPSControllerConfig config = new GPSControllerConfig()
+//           // {
+//           //     build_date = DateTime.Now,
+//           //     device_type = "GPS",
+//           //     controller_id = 100,
+//           //     listen_port = 1001,
+//           //     ref_gps = new GPSSensorConfig() { com_type="COM", device_name="GPS0", execution_mode=0, id=0, ip_comport="COM8", is_reference=false, port_baud=115200  },
                
              
 
-           // };
+//           // };
 
-           // System.Xml.Serialization.XmlSerializer sr = new XmlSerializer(typeof(ControllerConfigBase));
+//           // System.Xml.Serialization.XmlSerializer sr = new XmlSerializer(typeof(ControllerConfigBase));
 
-           // System.IO.Stream stream=System.IO.File.OpenWrite("c:\\config.xml");
-           // sr.Serialize(stream, config);
-           // stream.Close();
+//           // System.IO.Stream stream=System.IO.File.OpenWrite("c:\\config.xml");
+//           // sr.Serialize(stream, config);
+//           // stream.Close();
 
-            //Console.WriteLine(System.BitConverter.ToInt16(new byte[] { (byte)0x55, (byte)0xfd }, 0)*Math.Pow(2,-38)*Math.PI);
+//            //Console.WriteLine(System.BitConverter.ToInt16(new byte[] { (byte)0x55, (byte)0xfd }, 0)*Math.Pow(2,-38)*Math.PI);
            
-          //  UBLOX_Test();
-           //ProcessManagerService.ProcessManager mgr=  new ProcessManagerService.ProcessManager();
+//          //  UBLOX_Test();
+//           //ProcessManagerService.ProcessManager mgr=  new ProcessManagerService.ProcessManager();
 
-           // GetTileConfig();
-        //    TILECOm();
-          //  Console.WriteLine(ThreeBytesToInt(new byte[] { 0x80, 0x00, 0x00 }));
-          //  QRTest();
-//GetPeriodData();
+//           // GetTileConfig();
+//        //    TILECOm();
+//          //  Console.WriteLine(ThreeBytesToInt(new byte[] { 0x80, 0x00, 0x00 }));
+//          //  QRTest();
+////GetPeriodData();
 
          
             Console.ReadKey();
            // mgr.KillAll();
         }
-
+        public static void SendMailToUser(string mailaddress, string subject, string bodytext)
+        {
+            WebClient client = new WebClient();
+            string url = "http://localhost:8080/WeatherMailService/SendMailToUser?address={0}&subject={1}&bodytext={2}";
+           string res= new System.IO.StreamReader(client.OpenRead( string.Format(url, mailaddress, subject, bodytext))).ReadToEnd();
+           Console.WriteLine(res);
+        }
+        static void SendMailTest()
+        {
+            SendMailToUser("ufjl0683@emome.net", "升級", "升級測試systest");
+        }
         static void client_OnData(object sender, string data)
         {
             //throw new NotImplementedException();
         }
+        static void HostSetSntValteTest()
+        {
 
+            RemoteInterface.HC.I_HC_Comm r_host_comm =(RemoteInterface.HC.I_HC_Comm) 
+                RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(RemoteInterface.HC.I_HC_Comm),
+                RemoteInterface.RemoteBuilder.getRemoteUri("192.192.161.5", 9010, "Comm"));
+
+            r_host_comm.SetSensorValueDegree(35, 0, 0, 0, 1);
+            Console.WriteLine("id:35  to degree 1");
+            Console.ReadKey();
+            r_host_comm.SetSensorValueDegree(35, 0, 0, 0, 0);
+            Console.WriteLine("id:35  to degree 0");
+            Console.ReadKey();
+
+            r_host_comm.SetSensorValueDegree(35, 0, 0, 0,1);
+            Console.WriteLine("id:35  to degree 1");
+            Console.ReadKey();
+            r_host_comm.SetSensorValueDegree(35, 0, 0, 0,2);
+            Console.WriteLine("id:35  to degree 2");
+            Console.ReadKey();
+            r_host_comm.SetSensorValueDegree(35, 0, 0, 0, 1);
+            Console.WriteLine("id:35  to degree 1");
+            Console.ReadKey();
+            r_host_comm.SetSensorValueDegree(35, 0, 0, 0,0);
+            Console.WriteLine("id:35  to degree 0");
+            Console.ReadKey();
+        }
         static void Mail()
         {
             string s="致 貴客戶，依中央氣象局發布資料，提醒您以下防災預警資訊:\n";

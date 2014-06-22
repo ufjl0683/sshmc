@@ -29,5 +29,22 @@ namespace WeatherMail
             }
             //throw new NotImplementedException();
         }
+
+        public string SendMailToUser(string mailaddress, string subject, string bodytext)
+        {
+            try
+            {
+                Program.SendMailToUserFromSSHMC(mailaddress,subject, bodytext);
+                return "ok";
+
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            //throw new NotImplementedException();
+        }
+
+     
     }
 }

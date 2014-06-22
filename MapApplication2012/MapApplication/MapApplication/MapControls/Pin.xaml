@@ -7,58 +7,79 @@
     mc:Ignorable="d"
     d:DesignHeight="11.5733" d:DesignWidth="7.35583">
     <Control.Resources>
+        <mapctl:HasSurveyDataToVisibilityConverter x:Key="HasSurveyDataToVisibilityConverter" />
         <mapctl:DegreeColorConverter x:Key="DegreeColorConverter" />
         <Storyboard x:Name="stbBlind" RepeatBehavior="Forever">
-            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"  Storyboard.TargetName="grid">
-        		<DiscreteObjectKeyFrame KeyTime="0">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Visible</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:0.5">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Collapsed</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:1">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Visible</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:1.4">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Collapsed</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:1.8">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Visible</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:2.2">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Collapsed</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        		<DiscreteObjectKeyFrame KeyTime="0:0:2.5">
-        			<DiscreteObjectKeyFrame.Value>
-        				<Visibility>Visible</Visibility>
-        			</DiscreteObjectKeyFrame.Value>
-        		</DiscreteObjectKeyFrame>
-        	</ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)"  Storyboard.TargetName="PinBody">
+                <DiscreteObjectKeyFrame KeyTime="0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:0.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.4">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:1.8">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:2.2">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Collapsed</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+                <DiscreteObjectKeyFrame KeyTime="0:0:2.5">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
         </Storyboard>
     </Control.Resources>
 
 
     <Grid x:Name="grid" RenderTransformOrigin="0.5,0.5" Width="7.35583" Height="11.5733">
-        <Grid.RenderTransform>
-            <TransformGroup>
-                <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
-            </TransformGroup>
-        </Grid.RenderTransform>
-        <Canvas HorizontalAlignment="Left" VerticalAlignment="Top">
+
+        <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" x:Name="PinBody">
+            <Canvas.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="2.5" ScaleY="2.5" />
+                </TransformGroup>
+            </Canvas.RenderTransform>
             <Rectangle Fill="#00FFFFFF" Width="7.35583" Height="11.5733" Canvas.Left="0" Canvas.Top="0" />
             <Path   Fill="{Binding CURRENT_DEGREE,Converter={StaticResource DegreeColorConverter}}" Data="F1 M 4.10667,7.65332L 3.67792,11.5733L 3.13542,7.65332L 1.47695e-007,7.65332L 1.45542,6.29126L 1.45542,1.4379L 0.13125,0.915802L 1.47695e-007,0L 7.35583,0L 7.16917,0.988739L 5.90042,1.4379L 5.90042,6.32913L 7.35583,7.65332L 4.10667,7.65332 Z " Stroke="#FF060606" />
+
         </Canvas>
+        <Image HorizontalAlignment="Left" Visibility="{Binding NID,Converter={StaticResource HasSurveyDataToVisibilityConverter}}"  Height="24" Margin="20,-17,-37,5"  Stretch="Fill" VerticalAlignment="Bottom" Width="24" RenderTransformOrigin="0.293,-1.041" Source="/icons/camera.png">
+            <ToolTipService.ToolTip>
+                <ToolTip  >
+                    <StackPanel Orientation="Vertical"  Margin="10">
+
+                        <Image Source="{Binding SurveyImageFilePath}" />
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding DESCRIPTION}" />
+                    </StackPanel>
+                </ToolTip>
+            </ToolTipService.ToolTip>
+        </Image>
+        <Border   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="26,12,-210,-300" Width="Auto" Height="Auto"   >
+            <StackPanel   Orientation="Vertical" x:Name="notifyData"  Background="White"   Visibility="Collapsed" Margin="10" >
+
+                <Image Source="{Binding SurveyImageFilePath}" Stretch="None" Margin="10,10,10,0" />
+                <TextBlock HorizontalAlignment="Center" Text="{Binding DESCRIPTION}" Margin="10,0,10,10" />
+            </StackPanel>
+        </Border>
     </Grid>
 </UserControl>

@@ -4834,6 +4834,78 @@ namespace DataService
         private global::System.Boolean _ISBIM;
         partial void OnISBIMChanging(global::System.Boolean value);
         partial void OnISBIMChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PHOTO_PATH
+        {
+            get
+            {
+                return _PHOTO_PATH;
+            }
+            set
+            {
+                OnPHOTO_PATHChanging(value);
+                ReportPropertyChanging("PHOTO_PATH");
+                _PHOTO_PATH = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PHOTO_PATH");
+                OnPHOTO_PATHChanged();
+            }
+        }
+        private global::System.String _PHOTO_PATH;
+        partial void OnPHOTO_PATHChanging(global::System.String value);
+        partial void OnPHOTO_PATHChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DESCRIPTION
+        {
+            get
+            {
+                return _DESCRIPTION;
+            }
+            set
+            {
+                OnDESCRIPTIONChanging(value);
+                ReportPropertyChanging("DESCRIPTION");
+                _DESCRIPTION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DESCRIPTION");
+                OnDESCRIPTIONChanged();
+            }
+        }
+        private global::System.String _DESCRIPTION;
+        partial void OnDESCRIPTIONChanging(global::System.String value);
+        partial void OnDESCRIPTIONChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NID
+        {
+            get
+            {
+                return _NID;
+            }
+            set
+            {
+                OnNIDChanging(value);
+                ReportPropertyChanging("NID");
+                _NID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NID");
+                OnNIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NID;
+        partial void OnNIDChanging(Nullable<global::System.Int32> value);
+        partial void OnNIDChanged();
 
         #endregion
 

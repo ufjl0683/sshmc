@@ -80,7 +80,10 @@
       [vwSiteDegree].[CURRENT_DEGREE] AS [CURRENT_DEGREE], 
       [vwSiteDegree].[CUSTOMER_NAME] AS [CUSTOMER_NAME], 
       [vwSiteDegree].[CUSTOMER_ID] AS [CUSTOMER_ID], 
-      [vwSiteDegree].[ISBIM] AS [ISBIM]
+      [vwSiteDegree].[ISBIM] AS [ISBIM], 
+      [vwSiteDegree].[PHOTO_PATH] AS [PHOTO_PATH], 
+      [vwSiteDegree].[DESCRIPTION] AS [DESCRIPTION], 
+      [vwSiteDegree].[NID] AS [NID]
       FROM [dbo].[vwSiteDegree] AS [vwSiteDegree]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_tblCCTV_tblSite" Association="SSHMC01Model.Store.FK_tblCCTV_tblSite">
@@ -345,6 +348,9 @@
           <Property Name="CUSTOMER_NAME" Type="nvarchar" MaxLength="50" />
           <Property Name="CUSTOMER_ID" Type="int" Nullable="false" />
           <Property Name="ISBIM" Type="bit" Nullable="false" />
+          <Property Name="PHOTO_PATH" Type="nvarchar" MaxLength="255" />
+          <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" />
+          <Property Name="NID" Type="int" />
         </EntityType>
         <Association Name="FK_tblCCTV_tblSite">
           <End Role="tblSite" Type="SSHMC01Model.Store.tblSite" Multiplicity="1" />
@@ -479,6 +485,9 @@
           <Property Name="CUSTOMER_NAME" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="CUSTOMER_ID" Type="Int32" Nullable="false" />
           <Property Type="Boolean" Name="ISBIM" Nullable="false" />
+          <Property Type="String" Name="PHOTO_PATH" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DESCRIPTION" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="NID" />
         </EntityType>
         <EntityType Name="tblCCTV">
           <Key>
@@ -729,7 +738,10 @@
             <ScalarProperty Name="ISVALID" ColumnName="ISVALID" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="vwSiteDegree"><EntityTypeMapping TypeName="SSHMC01Model.vwSiteDegree"><MappingFragment StoreEntitySet="vwSiteDegree">
-            <ScalarProperty Name="ISBIM" ColumnName="ISBIM" />
+            <ScalarProperty Name="NID" ColumnName="NID" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="PHOTO_PATH" ColumnName="PHOTO_PATH" />
+                <ScalarProperty Name="ISBIM" ColumnName="ISBIM" />
                 <ScalarProperty Name="SITE_ID" ColumnName="SITE_ID" />
             <ScalarProperty Name="SITE_NAME" ColumnName="SITE_NAME" />
             <ScalarProperty Name="SITE_ADDRESS" ColumnName="SITE_ADDRESS" />

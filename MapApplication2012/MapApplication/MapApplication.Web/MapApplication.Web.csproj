@@ -137,6 +137,7 @@
     <Compile Include="ChangePasswordPage.aspx.designer.cs">
       <DependentUpon>ChangePasswordPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DB.shared.cs" />
     <Compile Include="DB1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

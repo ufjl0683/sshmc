@@ -361,6 +361,14 @@ namespace Host
                         //    wrapper.getRemoteObj().AddDevice(wrapper.deviceName);
                         devices.Add(devicename, wrapper);
                     }
+                    else if (devicetype == "EGPS")
+                    {
+                        TC.GPSDeviceWrapper wrapper = new TC.GPSDeviceWrapper(mfccid, devicename, devicetype, ip, port, hwstatus);
+                        //if (isMfccAddDevice)
+                        //    wrapper.getRemoteObj().AddDevice(wrapper.deviceName);
+                        devices.Add(devicename, wrapper);
+                    }
+
                  
 
 

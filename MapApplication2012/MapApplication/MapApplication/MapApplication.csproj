@@ -159,6 +159,7 @@
     <Compile Include="Controls\SiteMenu.xaml.cs">
       <DependentUpon>SiteMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataService_parted.cs" />
     <Compile Include="db_part.cs" />
     <Compile Include="EntryPage.xaml.cs">
       <DependentUpon>EntryPage.xaml</DependentUpon>
@@ -308,6 +309,9 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <Content Include="icons\CAM.png" />
+    <Content Include="icons\camera.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="icons\GPS.png" />
     <Content Include="icons\TILT.png" />
     <Content Include="icons\TILT1.png" />

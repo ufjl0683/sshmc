@@ -16,10 +16,13 @@ namespace Host
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.Message + "," + ex.StackTrace);
                 throw new RemoteInterface.RemoteException(ex.Message);
             }
           //  throw new NotImplementedException();
         }
+
+       
 
         public void setDeviceStatus(string devName, byte[] hw_status, byte opstatus, byte opmode, bool isConnected)
         {
@@ -85,6 +88,23 @@ namespace Host
         public void setDeviceStatus(int controllerid, byte[] hw_status, bool isConnected)
         {
            // throw new NotImplementedException();
+        }
+
+
+        public void NotifySponsor(string siteid, string mailaddress, string mailtitle, string mailbody)
+        {
+            Program.host.site_mgr.NotifySponsor(siteid, mailaddress, mailtitle, mailbody);
+           // throw new NotImplementedException();
+        }
+
+        public void SuspendEvent(string siteid)
+        {
+            Program.host.site_mgr.SuspendEvent(siteid); 
+        }
+
+        public void ExeuteEvent(string siteid)
+        {
+            Program.host.site_mgr.ExeuteEvent(siteid);
         }
     }
 }

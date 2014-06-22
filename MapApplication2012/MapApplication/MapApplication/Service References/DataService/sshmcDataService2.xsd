@@ -14,12 +14,15 @@
           <xs:element minOccurs="0" name="CURRENT_DEGREE" nillable="true" type="xs:int" />
           <xs:element minOccurs="0" name="CUSTOMER_ID" type="xs:int" />
           <xs:element minOccurs="0" name="CUSTOMER_NAME" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DESCRIPTION" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ENVIRONMENT" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="ISBIM" type="xs:boolean" />
           <xs:element minOccurs="0" name="MAX_X" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="MAX_Y" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="MIN_X" nillable="true" type="xs:double" />
           <xs:element minOccurs="0" name="MIN_Y" nillable="true" type="xs:double" />
+          <xs:element minOccurs="0" name="NID" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="PHOTO_PATH" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="SITE_ADDRESS" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="SITE_ID" nillable="true" type="xs:string" />
           <xs:element minOccurs="0" name="SITE_NAME" nillable="true" type="xs:string" />

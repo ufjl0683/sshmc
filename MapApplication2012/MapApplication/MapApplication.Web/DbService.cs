@@ -482,6 +482,11 @@ namespace MapApplication.Web
         {
             return HttpContext.Current.Session["CustomerID"] != null  && HttpContext.Current.Session["CustomerID"].ToString()==CustomerID  ;
         }
+
+        public IQueryable<tblSensorTypeGroup> GetTblSensorTypeGroup()
+        {
+            return this.ObjectContext.tblSensorTypeGroup;
+        }
     }
 }
 

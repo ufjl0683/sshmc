@@ -98,9 +98,16 @@ namespace sshmc
                
                 if (sites == null)
                 {
-                    sites = await client.GetSiteInfoAsync(UserID);
-                    listView.ItemsSource = GridViewSites.ItemsSource = sites;
-                    PushPinOnMap();
+                    try
+                    {
+                        sites = await client.GetSiteInfoAsync(UserID);
+                        listView.ItemsSource = GridViewSites.ItemsSource = sites;
+                        PushPinOnMap();
+                    }
+                    catch (Exception ex)
+                    {
+                       new MessageDialog(ex.Message).ShowAsync();
+                    }
                 }
                 else
                 {
@@ -118,8 +125,14 @@ namespace sshmc
 
         void PushPinOnMap()
         {
-
-            this.mapControls.ItemsSource = sites;
+            try
+            {
+                this.mapControls.ItemsSource = sites;
+            }
+            catch (Exception ex)
+            {
+                new MessageDialog(ex.Message).ShowAsync();
+            }
 
         }
 

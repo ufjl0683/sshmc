@@ -210,7 +210,7 @@ namespace Comm
 
             if (this.m_protocol.DeviceType.Trim().ToUpper() == "TILT")
                 senddata[1] = 10;
-            else if (this.m_protocol.DeviceType.Trim().ToUpper() == "GPS")
+            else if (this.m_protocol.DeviceType.Trim().ToUpper() == "GPS" || this.m_protocol.DeviceType.Trim().ToUpper() == "EGPS")
                 senddata[1] = 10;
             else if (this.m_protocol.DeviceType.Trim().ToUpper() == "RD")
                 senddata[1] = 8;

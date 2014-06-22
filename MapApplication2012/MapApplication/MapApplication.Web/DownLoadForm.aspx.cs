@@ -18,14 +18,26 @@ namespace MapApplication.Web
     {
 
         string filename ;
-        string selectday, selectYestaday,Istilt,Zaxis;
+        string selectday, selectYestaday, Istilt, Zaxis, startime, endtime, IsValue, title0_down, title1_down, title2_down;
         protected void Page_Load(object sender, EventArgs e)
         {
             //WriteXls();
             string sensorID = Request["id"].ToString(), selectDate ="";
             
             selectDate = Request["date"].ToString();
-            Istilt = Request["Istilt"].ToString();
+            if (selectDate != "")
+            {
+                string[] spitstr = selectDate.Split(',');
+                startime = spitstr[0].Trim();
+                endtime = spitstr[1].Trim();
+            }
+            //Istilt = Request["Istilt"].ToString();
+            title0_down = Request["title0"].ToString().Trim('-');
+            title1_down = Request["title1"].ToString().Trim('-');
+            title2_down = Request["title2"].ToString().Trim('-');
+
+            if(Request["IsValue"].ToString() != null)
+            IsValue = Request["IsValue"].ToString();
             Response.Clear();
             Export_CVS_Funtion(sensorID,selectDate);
 
@@ -44,33 +56,62 @@ namespace MapApplication.Web
             SqlCommand s_com = new SqlCommand();
 
 
-            if (Istilt == "1")
-                Zaxis = "溫度";
-            else
-                Zaxis = "Z軸";
+
+            //if (Istilt == "1")
+            //    Zaxis = "溫度";
+            //else
+            //    Zaxis = "Z軸";
             
 
             //DateTime DT = Convert.ToDateTime(selectDate);
             //selectDate = string.Format("{0:G}", DT);//2005-11-5 14:23:23
-            if (selectDate != " ")//other days
+            if (IsValue != "N")
             {
-                DateTime ConverterTime = Convert.ToDateTime(selectDate);
+                if (selectDate != " ")//other days
+                {
 
-                //2012/10/01 10:30:00
-                //2012/10/01 下午 10:30:00
-                selectday = ConverterTime.ToString("yyyy") + "/" + ConverterTime.ToString("MM") + "/" + ConverterTime.ToString("dd") + " " + ConverterTime.ToString("HH:mm:ss");
-                ConverterTime = ConverterTime.AddDays(1);
-                selectYestaday = ConverterTime.ToString("yyyy") + "/" + ConverterTime.ToString("MM") + "/" + ConverterTime.ToString("dd").ToString() + " " + ConverterTime.ToString("HH:mm:ss");
+                    DateTime ConverterStarTime = Convert.ToDateTime(startime);
+                    startime = ConverterStarTime.ToString("yyyy") + "/" + ConverterStarTime.ToString("MM") + "/" + ConverterStarTime.ToString("dd") + " " + ConverterStarTime.ToString("HH:mm:ss");
 
-                s_com.CommandText = "SELECT    TIMESTAMP As '時間', VALUE0 As 'X軸', VALUE1 As 'Y軸', VALUE2 As " + Zaxis + "  FROM          tblTC10MinDataLog WHERE      (TIMESTAMP >= '" + selectday + "') AND   (TIMESTAMP < '" + selectYestaday + "') AND (SENSOR_ID = '" + sensorID + "') AND (ISVALID = 'Y') ORDER BY TIMESTAMP";
+                    DateTime ConverterEndTime = Convert.ToDateTime(endtime);
+                    ConverterEndTime = ConverterEndTime.AddDays(1);
+                    endtime = ConverterEndTime.ToString("yyyy") + "/" + ConverterEndTime.ToString("MM") + "/" + ConverterEndTime.ToString("dd") + " " + ConverterEndTime.ToString("HH:mm:ss");
+
+                    s_com.CommandText = "SELECT    TIMESTAMP As '時間', VALUE0 As " + title0_down + ", VALUE1 As " + title1_down + ", VALUE2 As " + title2_down + "  FROM          tblTC10MinDataLog WHERE      (TIMESTAMP >= '" + startime + "') AND   (TIMESTAMP < '" + endtime + "') AND (SENSOR_ID = '" + sensorID + "') AND (ISVALID = 'Y') ORDER BY TIMESTAMP";
+                }
+                else//today
+                {
+                    s_com.CommandText = "SELECT    TIMESTAMP As '時間', VALUE0 As " + title0_down + ", VALUE1 As " + title1_down + ", VALUE2 As " + title2_down + "  FROM          tblTC10MinDataLog WHERE      (TIMESTAMP >= CONVERT(char(11),GETDATE() , 120)) AND (SENSOR_ID = '" + sensorID + "' ) AND (ISVALID = 'Y') ORDER BY TIMESTAMP";
+                    DateTime ConverterTime = Convert.ToDateTime(DateTime.Today);
+                    selectday = ConverterTime.ToString("yyyy") + "/" + ConverterTime.ToString("MM") + "/" + ConverterTime.ToString("dd") + " " + ConverterTime.ToString("HH:mm:ss");
+
+                }
             }
-            else//today
+            else
             {
-                s_com.CommandText = "SELECT    TIMESTAMP As '時間', VALUE0 As 'X軸', VALUE1 As 'Y軸', VALUE2 As " + Zaxis + "  FROM          tblTC10MinDataLog WHERE      (TIMESTAMP >= CONVERT(char(11),GETDATE() , 120)) AND (SENSOR_ID = '" + sensorID + "' ) AND (ISVALID = 'Y') ORDER BY TIMESTAMP";
-                DateTime ConverterTime = Convert.ToDateTime(DateTime.Today);
-                selectday = ConverterTime.ToString("yyyy") + "/" + ConverterTime.ToString("MM") + "/" + ConverterTime.ToString("dd") + " " + ConverterTime.ToString("HH:mm:ss");
-                
+                if (selectDate != " ")//other days
+                {
+
+                    DateTime ConverterStarTime = Convert.ToDateTime(startime);
+                    startime = ConverterStarTime.ToString("yyyy") + "/" + ConverterStarTime.ToString("MM") + "/" + ConverterStarTime.ToString("dd") + " " + ConverterStarTime.ToString("HH:mm:ss");
+
+                    DateTime ConverterEndTime = Convert.ToDateTime(endtime);
+                    ConverterEndTime = ConverterEndTime.AddDays(1);
+                    endtime = ConverterEndTime.ToString("yyyy") + "/" + ConverterEndTime.ToString("MM") + "/" + ConverterEndTime.ToString("dd") + " " + ConverterEndTime.ToString("HH:mm:ss");
+
+                    s_com.CommandText = "SELECT    TIMESTAMP As '時間', VALUE0 As " + title0_down + ", VALUE1 As " + title1_down + ", VALUE2 As " + title2_down + "  FROM          tblTC10MinDataLog WHERE      (TIMESTAMP >= '" + startime + "') AND   (TIMESTAMP < '" + endtime + "') AND (SENSOR_ID = '" + sensorID + "') ORDER BY TIMESTAMP";
+                }
+                else//today
+                {
+                    s_com.CommandText = "SELECT    TIMESTAMP As '時間', VALUE0 As " + title0_down + ", VALUE1 As " + title1_down + ", VALUE2 As " + title2_down + "  FROM          tblTC10MinDataLog WHERE      (TIMESTAMP >= CONVERT(char(11),GETDATE() , 120)) AND (SENSOR_ID = '" + sensorID + "' )  ORDER BY TIMESTAMP";
+                    DateTime ConverterTime = Convert.ToDateTime(DateTime.Today);
+                    selectday = ConverterTime.ToString("yyyy") + "/" + ConverterTime.ToString("MM") + "/" + ConverterTime.ToString("dd") + " " + ConverterTime.ToString("HH:mm:ss");
+
+                }
             }
+
+
+
             s_com.Connection = conn;    //select convert(char(19),GETDATE()+2,120)
 
 
@@ -90,9 +131,13 @@ namespace MapApplication.Web
 
             DateTime parsed;
 
-            if (DateTime.TryParseExact(selectday, "yyyy/MM/dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out parsed))
+            if (DateTime.TryParseExact(startime, "yyyy/MM/dd HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None, out parsed))
             {
-                filename = parsed.ToString("yyyyMMdd") + "-SensorID_" + Request["id"].ToString();
+                //filename = parsed.ToString("yyyyMMdd") + "-SensorID_" + Request["id"].ToString();
+                DateTime stardatetime = Convert.ToDateTime(startime),enddatetime = Convert.ToDateTime(endtime);
+                enddatetime =enddatetime.AddDays(-1);
+                filename = stardatetime.ToString("yyyyMMdd") +"-"+ enddatetime.ToString("yyyyMMdd") + "-SensorID_" + Request["id"].ToString();
+
             }
             Response.Clear();
             Response.AddHeader("content-disposition", "attachment;filename=" + filename + ".xls");

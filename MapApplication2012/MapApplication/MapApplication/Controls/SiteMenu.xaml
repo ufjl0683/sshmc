@@ -7,11 +7,14 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400" Height="100">
     <Control.Resources>
+        <mapctl:HasSurveyDataToVisibilityConverter x:Key="HasSurveyDataToVisibilityConverter" />
         <mapctl:DegreeColorConverter x:Key="DegreeColorConverter" />
-     </Control.Resources>
+        
+    </Control.Resources>
 
     <Grid x:Name="LayoutRoot" Background="{Binding CURRENT_DEGREE,Converter={StaticResource DegreeColorConverter}}" SizeChanged="LayoutRoot_SizeChanged"  >
-    	<Grid x:Name="border" MouseLeave="border_MouseLeave" Margin="0" MouseEnter="Border_MouseEnter">
+        <Grid x:Name="border" MouseLeave="border_MouseLeave" Margin="0" MouseEnter="Border_MouseEnter">
+           
             <Image x:Name="buldingPic"   Source="{Binding SITE_ID,StringFormat=http://192.192.161.4/pic/sitepic/\{0\}.jpg}" Visibility="Collapsed"   HorizontalAlignment="Right" Margin="0"   Stretch="UniformToFill"  />
             <TextBlock x:Name="txtCustomerName" Foreground="White" FontSize="14" Text="{Binding CUSTOMER_NAME}" VerticalAlignment="Top" HorizontalAlignment="Stretch"  Margin="0" />
             <TextBlock x:Name="txtSiteName" Text="{Binding SITE_NAME}"  Foreground="White" TextAlignment="Center" TextWrapping="Wrap" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center" >
@@ -19,11 +22,11 @@
                  <DropShadowEffect  />
              </TextBlock.Effect>-->
             </TextBlock>
-
+            <Image HorizontalAlignment="Right" Visibility="{Binding NID,Converter={StaticResource HasSurveyDataToVisibilityConverter}}"  Height="56" Margin="0,-6,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="0.293,-1.041" Source="/icons/camera.png" />
         </Grid>
         <!--<ToolTipService.ToolTip>-->
-            <!--<Image Source="{Binding SITE_ID,StringFormat=http://192.192.161.4/pic/sitepic/\{0\}.jpg}" Width="100" Height="100" Stretch="UniformToFill" />-->
-            <!--<Image Source="http://192.192.161.4/pic/sitepic/0001.jpg" Width="100" Height="100" Stretch="UniformToFill" />-->
+        <!--<Image Source="{Binding SITE_ID,StringFormat=http://192.192.161.4/pic/sitepic/\{0\}.jpg}" Width="100" Height="100" Stretch="UniformToFill" />-->
+        <!--<Image Source="http://192.192.161.4/pic/sitepic/0001.jpg" Width="100" Height="100" Stretch="UniformToFill" />-->
         <!--</ToolTipService.ToolTip>-->
     </Grid>
 </UserControl>

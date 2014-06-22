@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="e086a90b-3a78-4d89-8aa2-da65b9fb7218" Publisher="CN=SSHMC1000" Version="1.0.0.1" />
+  <Identity Name="e086a90b-3a78-4d89-8aa2-da65b9fb7218" Publisher="CN=SSHMC1000" Version="1.0.0.2" />
   <Properties>
     <DisplayName>sshmc</DisplayName>
     <PublisherDisplayName>SSHMC1000</PublisherDisplayName>

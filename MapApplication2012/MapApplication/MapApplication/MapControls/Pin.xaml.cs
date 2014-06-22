@@ -30,5 +30,13 @@ namespace MapApplication.MapControls
             Storyboard board = this.Resources["stbBlind"] as Storyboard;
             board.Stop();
         }
+
+        public void SetNotifyDataVisibility(bool visible)
+        {
+            if (visible)
+                this.notifyData.Visibility = System.Windows.Visibility.Visible;
+            else
+                this.notifyData.Visibility = System.Windows.Visibility.Collapsed;
+        }
     }
 }

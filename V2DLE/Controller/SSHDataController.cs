@@ -70,7 +70,7 @@ namespace Comm.Controller
        int GetDegree(int sensorid, double[] values10min,double[]values1hr)
        {
 
-
+           
            int degree = 0;
            SensorConfigBase snrconfig =  config.sensors[sensorid];
            if (snrconfig.execution_mode == 0)
@@ -81,23 +81,35 @@ namespace Comm.Controller
                double sigma, initmean;
                //string formula;
                //double mean_threshold;
+               
                sigma = snrconfig.sensor_values[vinx].SIGMA;
                initmean = snrconfig.sensor_values[vinx].INITMEAN;
              //  formula = snrconfig.sensor_values[vinx].ConvertFormula;
              //  mean_threshold = snrconfig.sensor_values[vinx].MeanThreshold;
                //for (int i = 0; i < snrconfig.sensor_values.Length; i++)
                //{
+
+               double meanThreshold = snrconfig.sensor_values[vinx].MeanThreshold; 
+               if (this.config.device_type == "GPS" || this.config.device_type == "EGPS")
+                   meanThreshold = 0.02;
+               else if(this.config.device_type == "TILT")
+                   meanThreshold = 0.02;
+
+
+
                    double value10min, value1hr;
                    value10min = values10min[vinx+sensorid * snrconfig.sensor_values.Length  ];
                    value1hr = values1hr[vinx + sensorid * snrconfig.sensor_values.Length  ];
-                   if (value1hr > initmean + 2 * sigma || value1hr < initmean - 2 * sigma ||
-                       (value10min > initmean + 2 * sigma && value1hr > initmean + 1.5 * sigma) || (value10min < initmean - 2 * sigma && value1hr < initmean - 1.5 * sigma))
+
+              
+                   if ((Math.Abs(value1hr - initmean)>   3*sigma ||
+                      ((value10min - initmean) > 3 * sigma && value1hr - initmean > 2.5 * sigma || (value10min - initmean) > -3 * sigma && value1hr - initmean < -2.5 * sigma)) && Math.Abs(value10min - initmean)>0.05)
                        degree = degree<3?3:degree;
-                   else if (value1hr > initmean + 1.5 * sigma || value1hr < initmean - 1.5 * sigma ||
-                       (value10min > initmean + 1.5 * sigma && value1hr > initmean + 1 * sigma) || (value10min < initmean - 1.5 * sigma && value1hr < initmean - 1 * sigma))
+                   else if ((Math.Abs(value1hr - initmean) > 2 * sigma ||
+                      ((value10min - initmean) > 2 * sigma && value1hr - initmean > 1.5 * sigma || (value10min - initmean) > -2 * sigma && value1hr - initmean < -1.5 * sigma)) && Math.Abs(value10min - initmean) > 0.03)
                        degree = degree<2 ? 2:degree;
-                   else if(value1hr > initmean + 1  * sigma || value1hr < initmean - 1  * sigma ||
-                       (value10min > initmean + 1  * sigma && value1hr > initmean + 0.5 * sigma) || (value10min < initmean - 1  * sigma && value1hr < initmean - 0.5 * sigma))
+                   else if ((Math.Abs(value1hr - initmean) > 1 * sigma ||
+                      ((value10min - initmean) > 1 * sigma && value1hr - initmean > 0.5 * sigma || (value10min - initmean) > -1 * sigma && value1hr - initmean < -0.5 * sigma)) && Math.Abs(value10min - initmean) > 0.02)
                        degree=degree<1?1:degree;
 
 

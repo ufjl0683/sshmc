@@ -73,6 +73,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="rjdj009sf2code6.dwf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="rjdj009sf2code6mod.dwf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="rjdj009sfs.dwf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

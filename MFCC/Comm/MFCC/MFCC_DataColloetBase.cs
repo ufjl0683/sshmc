@@ -61,7 +61,7 @@ namespace Comm.MFCC
 
                 sql = string.Format("update tblTC_Restore set trycnt=trycnt+1,isfinsh='Y' where controller_id={0} and timestamp='{1}'", (tc as TCBase).DeviceName, DbCmdServer.getTimeStampString(timestamp));
                 dbServer.SendSqlCmd(sql);
-                if (r_host_comm != null)
+                if (r_host_comm != null   &&  isvalid=="Y")
                 {
                     try
                     {

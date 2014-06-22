@@ -46,6 +46,9 @@ namespace ArcGISLib
                 resolution /= 2;
             }
 
+      
+
+
             base.Initialize();
         }
 

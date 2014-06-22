@@ -72,6 +72,11 @@ namespace Host.MFCC
 
                 robj = (I_MFCC_GPS)RemoteBuilder.GetRemoteObj(typeof(I_MFCC_GPS), RemoteBuilder.getRemoteUri(hostip, remoteport, "MFCC_GPS"));
             }
+            else if (mfcctype == "EGPS")
+            {
+
+                robj = (I_MFCC_Base)RemoteBuilder.GetRemoteObj(typeof(I_MFCC_Base), RemoteBuilder.getRemoteUri(hostip, remoteport, "MFCC_EGPS"));
+            }
             else if (mfcctype == "BA")
             {
 

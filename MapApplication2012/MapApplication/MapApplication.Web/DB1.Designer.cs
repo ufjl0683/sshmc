@@ -29,6 +29,7 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("SSHMC01Model", "FK_tblTCrestore_tblTC", "tblTC", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MapApplication.Web.tblTC), "tblTC_Restore", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MapApplication.Web.tblTC_Restore), true)]
 [assembly: EdmRelationshipAttribute("SSHMC01Model", "FK_tblTC_Box_tblSite", "tblSite", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MapApplication.Web.tblSite), "tblTC_Box", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MapApplication.Web.tblTC_Box), true)]
 [assembly: EdmRelationshipAttribute("SSHMC01Model", "FK_tblCCTV_tblSite", "tblSite", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(MapApplication.Web.tblSite), "tblCCTV", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MapApplication.Web.tblCCTV), true)]
+[assembly: EdmRelationshipAttribute("SSHMC01Model", "FK_tblSensor_tblSensorTypeGroup", "tblSensorTypeGroup", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(MapApplication.Web.tblSensorTypeGroup), "tblSensor", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(MapApplication.Web.tblSensor), true)]
 
 #endregion
 
@@ -351,6 +352,22 @@ namespace MapApplication.Web
             }
         }
         private ObjectSet<vwSiteDegree> _vwSiteDegree;
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        public ObjectSet<tblSensorTypeGroup> tblSensorTypeGroup
+        {
+            get
+            {
+                if ((_tblSensorTypeGroup == null))
+                {
+                    _tblSensorTypeGroup = base.CreateObjectSet<tblSensorTypeGroup>("tblSensorTypeGroup");
+                }
+                return _tblSensorTypeGroup;
+            }
+        }
+        private ObjectSet<tblSensorTypeGroup> _tblSensorTypeGroup;
 
         #endregion
 
@@ -490,6 +507,14 @@ namespace MapApplication.Web
         public void AddTovwSiteDegree(vwSiteDegree vwSiteDegree)
         {
             base.AddObject("vwSiteDegree", vwSiteDegree);
+        }
+    
+        /// <summary>
+        /// 將新物件加入 tblSensorTypeGroup EntitySet 的方法已被取代。請考慮改為使用關聯的 ObjectSet&lt;T&gt; 屬性的 .Add 方法。
+        /// </summary>
+        public void AddTotblSensorTypeGroup(tblSensorTypeGroup tblSensorTypeGroup)
+        {
+            base.AddObject("tblSensorTypeGroup", tblSensorTypeGroup);
         }
 
         #endregion
@@ -2402,6 +2427,30 @@ namespace MapApplication.Web
         private global::System.Boolean _IsConfirmed;
         partial void OnIsConfirmedChanging(global::System.Boolean value);
         partial void OnIsConfirmedChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> CHANGEDEGREELOG_ID
+        {
+            get
+            {
+                return _CHANGEDEGREELOG_ID;
+            }
+            set
+            {
+                OnCHANGEDEGREELOG_IDChanging(value);
+                ReportPropertyChanging("CHANGEDEGREELOG_ID");
+                _CHANGEDEGREELOG_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CHANGEDEGREELOG_ID");
+                OnCHANGEDEGREELOG_IDChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _CHANGEDEGREELOG_ID;
+        partial void OnCHANGEDEGREELOG_IDChanging(Nullable<global::System.Int64> value);
+        partial void OnCHANGEDEGREELOG_IDChanged();
 
         #endregion
 
@@ -2489,6 +2538,44 @@ namespace MapApplication.Web
                 }
             }
         }
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SSHMC01Model", "FK_tblSensor_tblSensorTypeGroup", "tblSensorTypeGroup")]
+        public tblSensorTypeGroup tblSensorTypeGroup
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSensorTypeGroup>("SSHMC01Model.FK_tblSensor_tblSensorTypeGroup", "tblSensorTypeGroup").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSensorTypeGroup>("SSHMC01Model.FK_tblSensor_tblSensorTypeGroup", "tblSensorTypeGroup").Value = value;
+            }
+        }
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<tblSensorTypeGroup> tblSensorTypeGroupReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<tblSensorTypeGroup>("SSHMC01Model.FK_tblSensor_tblSensorTypeGroup", "tblSensorTypeGroup");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<tblSensorTypeGroup>("SSHMC01Model.FK_tblSensor_tblSensorTypeGroup", "tblSensorTypeGroup", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -2509,11 +2596,13 @@ namespace MapApplication.Web
         /// </summary>
         /// <param name="sENSOR_ID">SENSOR_ID 屬性的初始值。</param>
         /// <param name="vALUE_ID">VALUE_ID 屬性的初始值。</param>
-        public static tblSensor_Values CreatetblSensor_Values(global::System.Int32 sENSOR_ID, global::System.Int32 vALUE_ID)
+        /// <param name="sIGMA">SIGMA 屬性的初始值。</param>
+        public static tblSensor_Values CreatetblSensor_Values(global::System.Int32 sENSOR_ID, global::System.Int32 vALUE_ID, global::System.Double sIGMA)
         {
             tblSensor_Values tblSensor_Values = new tblSensor_Values();
             tblSensor_Values.SENSOR_ID = sENSOR_ID;
             tblSensor_Values.VALUE_ID = vALUE_ID;
+            tblSensor_Values.SIGMA = sIGMA;
             return tblSensor_Values;
         }
 
@@ -2650,9 +2739,9 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Double> SIGMA
+        public global::System.Double SIGMA
         {
             get
             {
@@ -2667,8 +2756,8 @@ namespace MapApplication.Web
                 OnSIGMAChanged();
             }
         }
-        private Nullable<global::System.Double> _SIGMA;
-        partial void OnSIGMAChanging(Nullable<global::System.Double> value);
+        private global::System.Double _SIGMA;
+        partial void OnSIGMAChanging(global::System.Double value);
         partial void OnSIGMAChanged();
     
         /// <summary>
@@ -2766,6 +2855,54 @@ namespace MapApplication.Web
         private Nullable<global::System.DateTime> _UPDATE_DATETIME;
         partial void OnUPDATE_DATETIMEChanging(Nullable<global::System.DateTime> value);
         partial void OnUPDATE_DATETIMEChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> UPDATED_SIGMA
+        {
+            get
+            {
+                return _UPDATED_SIGMA;
+            }
+            set
+            {
+                OnUPDATED_SIGMAChanging(value);
+                ReportPropertyChanging("UPDATED_SIGMA");
+                _UPDATED_SIGMA = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UPDATED_SIGMA");
+                OnUPDATED_SIGMAChanged();
+            }
+        }
+        private Nullable<global::System.Double> _UPDATED_SIGMA;
+        partial void OnUPDATED_SIGMAChanging(Nullable<global::System.Double> value);
+        partial void OnUPDATED_SIGMAChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> UPDATED_INITMEAN
+        {
+            get
+            {
+                return _UPDATED_INITMEAN;
+            }
+            set
+            {
+                OnUPDATED_INITMEANChanging(value);
+                ReportPropertyChanging("UPDATED_INITMEAN");
+                _UPDATED_INITMEAN = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("UPDATED_INITMEAN");
+                OnUPDATED_INITMEANChanged();
+            }
+        }
+        private Nullable<global::System.Double> _UPDATED_INITMEAN;
+        partial void OnUPDATED_INITMEANChanging(Nullable<global::System.Double> value);
+        partial void OnUPDATED_INITMEANChanged();
 
         #endregion
 
@@ -2839,6 +2976,305 @@ namespace MapApplication.Web
     /// <summary>
     /// 沒有可用的中繼資料文件。
     /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="SSHMC01Model", Name="tblSensorTypeGroup")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class tblSensorTypeGroup : EntityObject
+    {
+        #region Factory 方法
+    
+        /// <summary>
+        /// 建立新 tblSensorTypeGroup 物件。
+        /// </summary>
+        /// <param name="tYPEGROUP_ID">TYPEGROUP_ID 屬性的初始值。</param>
+        public static tblSensorTypeGroup CreatetblSensorTypeGroup(global::System.Int32 tYPEGROUP_ID)
+        {
+            tblSensorTypeGroup tblSensorTypeGroup = new tblSensorTypeGroup();
+            tblSensorTypeGroup.TYPEGROUP_ID = tYPEGROUP_ID;
+            return tblSensorTypeGroup;
+        }
+
+        #endregion
+
+        #region 基本屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 TYPEGROUP_ID
+        {
+            get
+            {
+                return _TYPEGROUP_ID;
+            }
+            set
+            {
+                if (_TYPEGROUP_ID != value)
+                {
+                    OnTYPEGROUP_IDChanging(value);
+                    ReportPropertyChanging("TYPEGROUP_ID");
+                    _TYPEGROUP_ID = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("TYPEGROUP_ID");
+                    OnTYPEGROUP_IDChanged();
+                }
+            }
+        }
+        private global::System.Int32 _TYPEGROUP_ID;
+        partial void OnTYPEGROUP_IDChanging(global::System.Int32 value);
+        partial void OnTYPEGROUP_IDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SENSOR_TYPE
+        {
+            get
+            {
+                return _SENSOR_TYPE;
+            }
+            set
+            {
+                OnSENSOR_TYPEChanging(value);
+                ReportPropertyChanging("SENSOR_TYPE");
+                _SENSOR_TYPE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SENSOR_TYPE");
+                OnSENSOR_TYPEChanged();
+            }
+        }
+        private global::System.String _SENSOR_TYPE;
+        partial void OnSENSOR_TYPEChanging(global::System.String value);
+        partial void OnSENSOR_TYPEChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String SENSOR_TYPE_PORT
+        {
+            get
+            {
+                return _SENSOR_TYPE_PORT;
+            }
+            set
+            {
+                OnSENSOR_TYPE_PORTChanging(value);
+                ReportPropertyChanging("SENSOR_TYPE_PORT");
+                _SENSOR_TYPE_PORT = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("SENSOR_TYPE_PORT");
+                OnSENSOR_TYPE_PORTChanged();
+            }
+        }
+        private global::System.String _SENSOR_TYPE_PORT;
+        partial void OnSENSOR_TYPE_PORTChanging(global::System.String value);
+        partial void OnSENSOR_TYPE_PORTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Byte> VALUE_COUNT
+        {
+            get
+            {
+                return _VALUE_COUNT;
+            }
+            set
+            {
+                OnVALUE_COUNTChanging(value);
+                ReportPropertyChanging("VALUE_COUNT");
+                _VALUE_COUNT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("VALUE_COUNT");
+                OnVALUE_COUNTChanged();
+            }
+        }
+        private Nullable<global::System.Byte> _VALUE_COUNT;
+        partial void OnVALUE_COUNTChanging(Nullable<global::System.Byte> value);
+        partial void OnVALUE_COUNTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String VALUE0_TITLE
+        {
+            get
+            {
+                return _VALUE0_TITLE;
+            }
+            set
+            {
+                OnVALUE0_TITLEChanging(value);
+                ReportPropertyChanging("VALUE0_TITLE");
+                _VALUE0_TITLE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("VALUE0_TITLE");
+                OnVALUE0_TITLEChanged();
+            }
+        }
+        private global::System.String _VALUE0_TITLE;
+        partial void OnVALUE0_TITLEChanging(global::System.String value);
+        partial void OnVALUE0_TITLEChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String VALUE1_TITLE
+        {
+            get
+            {
+                return _VALUE1_TITLE;
+            }
+            set
+            {
+                OnVALUE1_TITLEChanging(value);
+                ReportPropertyChanging("VALUE1_TITLE");
+                _VALUE1_TITLE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("VALUE1_TITLE");
+                OnVALUE1_TITLEChanged();
+            }
+        }
+        private global::System.String _VALUE1_TITLE;
+        partial void OnVALUE1_TITLEChanging(global::System.String value);
+        partial void OnVALUE1_TITLEChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String VALUE2_TITLE
+        {
+            get
+            {
+                return _VALUE2_TITLE;
+            }
+            set
+            {
+                OnVALUE2_TITLEChanging(value);
+                ReportPropertyChanging("VALUE2_TITLE");
+                _VALUE2_TITLE = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("VALUE2_TITLE");
+                OnVALUE2_TITLEChanged();
+            }
+        }
+        private global::System.String _VALUE2_TITLE;
+        partial void OnVALUE2_TITLEChanging(global::System.String value);
+        partial void OnVALUE2_TITLEChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SCALE0
+        {
+            get
+            {
+                return _SCALE0;
+            }
+            set
+            {
+                OnSCALE0Changing(value);
+                ReportPropertyChanging("SCALE0");
+                _SCALE0 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SCALE0");
+                OnSCALE0Changed();
+            }
+        }
+        private Nullable<global::System.Double> _SCALE0;
+        partial void OnSCALE0Changing(Nullable<global::System.Double> value);
+        partial void OnSCALE0Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SCALE1
+        {
+            get
+            {
+                return _SCALE1;
+            }
+            set
+            {
+                OnSCALE1Changing(value);
+                ReportPropertyChanging("SCALE1");
+                _SCALE1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SCALE1");
+                OnSCALE1Changed();
+            }
+        }
+        private Nullable<global::System.Double> _SCALE1;
+        partial void OnSCALE1Changing(Nullable<global::System.Double> value);
+        partial void OnSCALE1Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> SCALE2
+        {
+            get
+            {
+                return _SCALE2;
+            }
+            set
+            {
+                OnSCALE2Changing(value);
+                ReportPropertyChanging("SCALE2");
+                _SCALE2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SCALE2");
+                OnSCALE2Changed();
+            }
+        }
+        private Nullable<global::System.Double> _SCALE2;
+        partial void OnSCALE2Changing(Nullable<global::System.Double> value);
+        partial void OnSCALE2Changed();
+
+        #endregion
+
+    
+        #region 導覽屬性
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("SSHMC01Model", "FK_tblSensor_tblSensorTypeGroup", "tblSensor")]
+        public EntityCollection<tblSensor> tblSensor
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<tblSensor>("SSHMC01Model.FK_tblSensor_tblSensorTypeGroup", "tblSensor");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<tblSensor>("SSHMC01Model.FK_tblSensor_tblSensorTypeGroup", "tblSensor", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// 沒有可用的中繼資料文件。
+    /// </summary>
     [EdmEntityTypeAttribute(NamespaceName="SSHMC01Model", Name="tblSite")]
     [Serializable()]
     [DataContractAttribute(IsReference=true)]
@@ -2857,7 +3293,10 @@ namespace MapApplication.Web
         /// <param name="cUSTROMER_ID">CUSTROMER_ID 屬性的初始值。</param>
         /// <param name="n3_CONTENT">N3_CONTENT 屬性的初始值。</param>
         /// <param name="iSBIM">ISBIM 屬性的初始值。</param>
-        public static tblSite CreatetblSite(global::System.String sITE_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.Double x, global::System.Double y, global::System.Int32 cUSTROMER_ID, global::System.Int32 n3_CONTENT, global::System.Boolean iSBIM)
+        /// <param name="r1_2BCNT">R1_2BCNT 屬性的初始值。</param>
+        /// <param name="r1_2CCNT">R1_2CCNT 屬性的初始值。</param>
+        /// <param name="r1_2DCNT">R1_2DCNT 屬性的初始值。</param>
+        public static tblSite CreatetblSite(global::System.String sITE_ID, global::System.String sITE_NAME, global::System.String sITE_ADDRESS, global::System.Double x, global::System.Double y, global::System.Int32 cUSTROMER_ID, global::System.Int32 n3_CONTENT, global::System.Boolean iSBIM, global::System.Int32 r1_2BCNT, global::System.Int32 r1_2CCNT, global::System.Int32 r1_2DCNT)
         {
             tblSite tblSite = new tblSite();
             tblSite.SITE_ID = sITE_ID;
@@ -2868,6 +3307,9 @@ namespace MapApplication.Web
             tblSite.CUSTROMER_ID = cUSTROMER_ID;
             tblSite.N3_CONTENT = n3_CONTENT;
             tblSite.ISBIM = iSBIM;
+            tblSite.R1_2BCNT = r1_2BCNT;
+            tblSite.R1_2CCNT = r1_2CCNT;
+            tblSite.R1_2DCNT = r1_2DCNT;
             return tblSite;
         }
 
@@ -3453,6 +3895,174 @@ namespace MapApplication.Web
         private global::System.Boolean _ISBIM;
         partial void OnISBIMChanging(global::System.Boolean value);
         partial void OnISBIMChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 R1_2BCNT
+        {
+            get
+            {
+                return _R1_2BCNT;
+            }
+            set
+            {
+                OnR1_2BCNTChanging(value);
+                ReportPropertyChanging("R1_2BCNT");
+                _R1_2BCNT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("R1_2BCNT");
+                OnR1_2BCNTChanged();
+            }
+        }
+        private global::System.Int32 _R1_2BCNT;
+        partial void OnR1_2BCNTChanging(global::System.Int32 value);
+        partial void OnR1_2BCNTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 R1_2CCNT
+        {
+            get
+            {
+                return _R1_2CCNT;
+            }
+            set
+            {
+                OnR1_2CCNTChanging(value);
+                ReportPropertyChanging("R1_2CCNT");
+                _R1_2CCNT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("R1_2CCNT");
+                OnR1_2CCNTChanged();
+            }
+        }
+        private global::System.Int32 _R1_2CCNT;
+        partial void OnR1_2CCNTChanging(global::System.Int32 value);
+        partial void OnR1_2CCNTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 R1_2DCNT
+        {
+            get
+            {
+                return _R1_2DCNT;
+            }
+            set
+            {
+                OnR1_2DCNTChanging(value);
+                ReportPropertyChanging("R1_2DCNT");
+                _R1_2DCNT = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("R1_2DCNT");
+                OnR1_2DCNTChanged();
+            }
+        }
+        private global::System.Int32 _R1_2DCNT;
+        partial void OnR1_2DCNTChanging(global::System.Int32 value);
+        partial void OnR1_2DCNTChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> CURRENT_DEGREE
+        {
+            get
+            {
+                return _CURRENT_DEGREE;
+            }
+            set
+            {
+                OnCURRENT_DEGREEChanging(value);
+                ReportPropertyChanging("CURRENT_DEGREE");
+                _CURRENT_DEGREE = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CURRENT_DEGREE");
+                OnCURRENT_DEGREEChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _CURRENT_DEGREE;
+        partial void OnCURRENT_DEGREEChanging(Nullable<global::System.Int32> value);
+        partial void OnCURRENT_DEGREEChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> SEVENT_ID
+        {
+            get
+            {
+                return _SEVENT_ID;
+            }
+            set
+            {
+                OnSEVENT_IDChanging(value);
+                ReportPropertyChanging("SEVENT_ID");
+                _SEVENT_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("SEVENT_ID");
+                OnSEVENT_IDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _SEVENT_ID;
+        partial void OnSEVENT_IDChanging(Nullable<global::System.Int32> value);
+        partial void OnSEVENT_IDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String STATUS
+        {
+            get
+            {
+                return _STATUS;
+            }
+            set
+            {
+                OnSTATUSChanging(value);
+                ReportPropertyChanging("STATUS");
+                _STATUS = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("STATUS");
+                OnSTATUSChanged();
+            }
+        }
+        private global::System.String _STATUS;
+        partial void OnSTATUSChanging(global::System.String value);
+        partial void OnSTATUSChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> REF_SENDSOR_ID
+        {
+            get
+            {
+                return _REF_SENDSOR_ID;
+            }
+            set
+            {
+                OnREF_SENDSOR_IDChanging(value);
+                ReportPropertyChanging("REF_SENDSOR_ID");
+                _REF_SENDSOR_ID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("REF_SENDSOR_ID");
+                OnREF_SENDSOR_IDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _REF_SENDSOR_ID;
+        partial void OnREF_SENDSOR_IDChanging(Nullable<global::System.Int32> value);
+        partial void OnREF_SENDSOR_IDChanged();
 
         #endregion
 
@@ -6544,6 +7154,78 @@ namespace MapApplication.Web
         private global::System.Boolean _ISBIM;
         partial void OnISBIMChanging(global::System.Boolean value);
         partial void OnISBIMChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String PHOTO_PATH
+        {
+            get
+            {
+                return _PHOTO_PATH;
+            }
+            set
+            {
+                OnPHOTO_PATHChanging(value);
+                ReportPropertyChanging("PHOTO_PATH");
+                _PHOTO_PATH = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("PHOTO_PATH");
+                OnPHOTO_PATHChanged();
+            }
+        }
+        private global::System.String _PHOTO_PATH;
+        partial void OnPHOTO_PATHChanging(global::System.String value);
+        partial void OnPHOTO_PATHChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String DESCRIPTION
+        {
+            get
+            {
+                return _DESCRIPTION;
+            }
+            set
+            {
+                OnDESCRIPTIONChanging(value);
+                ReportPropertyChanging("DESCRIPTION");
+                _DESCRIPTION = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("DESCRIPTION");
+                OnDESCRIPTIONChanged();
+            }
+        }
+        private global::System.String _DESCRIPTION;
+        partial void OnDESCRIPTIONChanging(global::System.String value);
+        partial void OnDESCRIPTIONChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> NID
+        {
+            get
+            {
+                return _NID;
+            }
+            set
+            {
+                OnNIDChanging(value);
+                ReportPropertyChanging("NID");
+                _NID = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("NID");
+                OnNIDChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _NID;
+        partial void OnNIDChanging(Nullable<global::System.Int32> value);
+        partial void OnNIDChanged();
 
         #endregion
 

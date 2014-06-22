@@ -583,6 +583,9 @@ namespace MapApplication.Web
             public Nullable<double> Y { get; set; }
 
             public bool ISBIM { get; set; }
+
+            public string PHOTO_PATH { get; set; }
+            public string DESCRIPTION { get; set; }
         }
 
         [MetadataTypeAttribute(typeof(vwSensorDegree.vwSensorDegreeMetadata))]
@@ -684,6 +687,51 @@ namespace MapApplication.Web
                 public Nullable<double> VALUE1 { get; set; }
 
                 public Nullable<double> VALUE2 { get; set; }
+            }
+
+            [MetadataTypeAttribute(typeof(tblSensorTypeGroup.tblSensorTypeGroupMetadata))]
+            public partial class tblSensorTypeGroup
+            {
+
+                // 這個類別可讓您將自訂屬性 (Attribute) 附加到 tblSensorTypeGroup 類別
+                // 的 properties。
+                //
+                // 例如，下列程式碼將 Xyz 屬性標記為
+                // 必要的屬性，並指定有效值的格式:
+                //    [Required]
+                //    [RegularExpression("[A-Z][A-Za-z0-9]*")]
+                //    [StringLength(32)]
+                //    public string Xyz { get; set; }
+                internal sealed class tblSensorTypeGroupMetadata
+                {
+
+                    // 中繼資料類別本就不應該具現化。
+                    private tblSensorTypeGroupMetadata()
+                    {
+                    }
+
+                    public Nullable<double> SCALE0 { get; set; }
+
+                    public Nullable<double> SCALE1 { get; set; }
+
+                    public Nullable<double> SCALE2 { get; set; }
+
+                    public string SENSOR_TYPE { get; set; }
+
+                    public string SENSOR_TYPE_PORT { get; set; }
+
+                    public EntityCollection<tblSensor> tblSensor { get; set; }
+
+                    public int TYPEGROUP_ID { get; set; }
+
+                    public Nullable<byte> VALUE_COUNT { get; set; }
+
+                    public string VALUE0_TITLE { get; set; }
+
+                    public string VALUE1_TITLE { get; set; }
+
+                    public string VALUE2_TITLE { get; set; }
+                }
             }
         }
     }

@@ -18,6 +18,7 @@ namespace MapApplication.Web
         {
             get
             {
+               
                 switch (this.SENSOR_TYPE.ToUpper().Trim())
                 {
                     case "TILE":

@@ -48,10 +48,13 @@ namespace RemoteInterface.HC
         //void setRMS_RampControl_Stop(string devName);
         //int getCurrentDBQueueCnt();  
         //void dbExecute(string sqlcmd);
-      
+      void  NotifySponsor(string siteid,string mailaddress,string mailtitle, string mailbody);
+      void SuspendEvent(string siteid);
+      void ExeuteEvent(string siteid);
+
       //  void setConnecttionStatus(string devName, bool isConnect);
         DateTime getDateTime();
         void SetSensorValueDegree(int snrid, double value0, double value1, double value2, int degree);
-        
+     
     }
 }

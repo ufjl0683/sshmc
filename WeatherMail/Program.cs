@@ -173,6 +173,33 @@ namespace WeatherMail
             return true;
         }
 
+        public static void SendMailToUser(string address, string subject, string bodytext)
+        {
+            System.Net.Mail.SmtpClient c = new SmtpClient("mail.cute.edu.tw", 25);
+            c.DeliveryMethod = SmtpDeliveryMethod.Network;
+            c.Credentials = new System.Net.NetworkCredential("weather", "0988163835");
+
+            MailMessage m_mesg = new MailMessage(new MailAddress("weather@cute.edu.tw"), new MailAddress(address));
+            m_mesg.Body = bodytext;
+            m_mesg.Subject = subject;
+            m_mesg.IsBodyHtml = true;
+            c.Send(m_mesg);
+           // c.Dispose();
+        }
+
+        public static void SendMailToUserFromSSHMC(string address, string subject, string bodytext)
+        {
+            System.Net.Mail.SmtpClient c = new SmtpClient("mail.cute.edu.tw", 25);
+            c.DeliveryMethod = SmtpDeliveryMethod.Network;
+            c.Credentials = new System.Net.NetworkCredential("sshmc", "S$hmc@464");
+
+            MailMessage m_mesg = new MailMessage(new MailAddress("sshmc@cute.edu.tw"),new MailAddress(address));
+            m_mesg.Body = bodytext;
+            m_mesg.Subject = subject;
+            m_mesg.IsBodyHtml = true;
+            c.Send(m_mesg);
+            // c.Dispose();
+        }
        public static void SendMailToAllUser(  string subject, string bodytext )
         {
             System.Net.Mail.SmtpClient c = new SmtpClient("mail.cute.edu.tw", 25);
