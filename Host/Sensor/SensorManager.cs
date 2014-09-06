@@ -42,10 +42,10 @@ namespace Host.Sensor
                    throw new Exception(snrid + "not found!");
                
                dictSensors[snrid].CurrentDegree = degree;
-               dictSensors[snrid].Value0=value0;
+
+               dictSensors[snrid].Value0 = value0;
                dictSensors[snrid].Value1 = value1;
                dictSensors[snrid].Value2 = value2;
-               
 
            }
        }

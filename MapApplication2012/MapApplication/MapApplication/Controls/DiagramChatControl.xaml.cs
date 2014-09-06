@@ -13,7 +13,6 @@ using System.Windows.Browser;
 using Visifire.Charts;
 using MapApplication.Web;
 using System.ServiceModel.DomainServices.Client;
- 
 
 namespace MapApplication.Controls
 {
@@ -25,15 +24,15 @@ namespace MapApplication.Controls
         //System.Windows.Threading.DispatcherTimer _timer = new System.Windows.Threading.DispatcherTimer();
         //Boolean _oddState = false;
         int vcnt = 0, IsTilt = 0;
-        string status = "Normal";///////////
-        string Isvalid = "N";
-        byte sensorvaluescount = 0;
+        string status = "Normal";/////////// Normal=> 正常顯示 Range=>全距顯示
+        string Isvalid = "N";  // 判斷下載時的char Values是否有效
+        byte sensorvaluescount = 0; 
         string[] titlename_arry;
         double[] scale_arry;
 
 
 
-        public DiagramChatControl(int SensorID)
+        public DiagramChatControl(int SensorID) //Sensorid => send sensor_value id
         {
             InitializeComponent();
             sensorID = SensorID;
@@ -68,11 +67,12 @@ namespace MapApplication.Controls
         private void LoadData(DateTime stardt, DateTime enddt, int SensorID)
         {
             //qry = null;
+            if (status != "Range")
             stackpanel.Children.Clear();
             db = new DbContext();
 
             Isvalid = "N";
-            FunctionLoadSensorTypeGroupID(stardt, enddt,SensorID);
+            FunctionLoadSensorTypeGroupID(stardt, enddt,SensorID); // 抓SensorTypeGroup 的 ID 
 
 
         }
@@ -101,7 +101,7 @@ namespace MapApplication.Controls
                     scale_arry[2] = lo2.Entities.FirstOrDefault().SCALE2??0;
 
 
-                    FunctionCreateDiagramChart(stardt,enddt, sensorvaluescount);
+                    FunctionCreateDiagramChart(stardt,enddt, sensorvaluescount); // 傳入 開始時間、結束時間、軸數
                 }
             };
         }
@@ -111,9 +111,20 @@ namespace MapApplication.Controls
             if (CheckBoxIsValue.IsChecked ?? true)
             {
                 #region 有效筆數
+                //DbContext context = new DbContext();
+                //var query = (from n in context.vwSensorValuesAndTC10MinDataLogs
+                //             where n.TIMESTAMP >= stardt && n.TIMESTAMP < enddt.AddDays(1) && n.SENSOR_ID == sensorID && n.ISVALID == "Y"
+                //             orderby n.TIMESTAMP
+                //             select n).ToList();
+                //foreach (var i in query)
+                //{ 
+                //    //
+                //}
 
-                EntityQuery<vwSensorValuesAndTC10MinDataLog> qry = from n in db.GetVwSensorValuesAndTC10MinDataLogQuery()
-                                                                   where n.TIMESTAMP >= stardt && n.TIMESTAMP < enddt.AddDays(1) && n.SENSOR_ID == sensorID && n.ISVALID == "Y"
+
+
+                EntityQuery<vwSensorValuesAndTC10MinDataLog> qry = from n in db.GetVwSensorValuesAndTC10MinDataLogQuery()                                       // ISVALID指的是 通常=0為無效，主要為有效 !=0
+                                                                   where n.TIMESTAMP >= stardt && n.TIMESTAMP < enddt.AddDays(1) && n.SENSOR_ID == sensorID && n.ISVALID == "Y" // 老師寫的程式會先判斷是否有效  Y/N
                                                                    orderby n.TIMESTAMP
                                                                    select n;
 
@@ -237,16 +248,18 @@ namespace MapApplication.Controls
                         return;
                     }
                     sensorTypeGroupID = lo1.Entities.FirstOrDefault().TYPEGROUP_ID ?? 0;
-                    FunctionTypeGroupData(stardt, enddt,sensorTypeGroupID);
+                    FunctionTypeGroupData(stardt, enddt,sensorTypeGroupID);   // 取出SenSorTypeGroup的資料，包涵 Title 和 scale
                 };
 
 
 
         }
         //Visifire.Charts.Chart chart = new Visifire.Charts.Chart();
-        public void CreateChart(int valueid)
+        public void CreateChart(int valueid) // 傳入第N個軸數 valueid <x,y,z,...>
         {
-
+            // 先宣告一條線Series
+            // 程式用的是quickLine，不會顯示點點
+            // 網頁用的是SpLine，會顯示點點
             DataSeries dataSeries = new DataSeries();
             dataSeries.RenderAs = RenderAs.Spline;
             dataSeries.Color = new SolidColorBrush(Colors.White);
@@ -263,19 +276,23 @@ namespace MapApplication.Controls
 
 
             Title title = new Visifire.Charts.Title();
+
             Visifire.Charts.Chart chart = new Visifire.Charts.Chart();
+            
             chart.Rendered += new EventHandler(chart_Rendered);
+            
             int datacnt = 0;
             int datavalchk = 0;
-            datanum.Text = "共 " + db.vwSensorValuesAndTC10MinDataLogs.Count.ToString() + " 筆資料！";
+            datanum.Text = "開始:" + BeginPicker.SelectedDates.FirstOrDefault().ToString("yyyy/MM/dd") + "\n結束:" + BeginPicker.SelectedDates.LastOrDefault().ToString("yyyy/MM/dd") + "\n共 " + db.vwSensorValuesAndTC10MinDataLogs.Count.ToString() + " 筆資料！";
+            datanum.Tag = BeginPicker.SelectedDates.FirstOrDefault()+","+BeginPicker.SelectedDates.LastOrDefault();
             if (db.vwSensorValuesAndTC10MinDataLogs.Count != 0)
             {
                 foreach (vwSensorValuesAndTC10MinDataLog data in db.vwSensorValuesAndTC10MinDataLogs)
-                {
+                {   // 純脆程式檢查用
                     if (datavalchk != 1)
                         datavalchk = 1;
                     DataPoint dataPoint = new DataPoint();
-                    tblSensor sensor = new tblSensor();
+         
 
 
                     #region 設定point大小，隨資料多寡，縮放。
@@ -307,27 +324,27 @@ namespace MapApplication.Controls
 
 
 
-                    double linethickness = 0.5, avg = 0, sigma = 0;/////////////
+                    double linethickness = 0.5, avg = 0, sigma1 = 0, sigma2 = 0, sigma3 = 0;/////////////
                     /****************************/
-                    datacnt++;
+                    datacnt++; // 計算這個foreach迴圈做了總共幾次，當他==總比數時才做，只做一次!
                     if (datacnt == db.vwSensorValuesAndTC10MinDataLogs.Count)
                     {
                         if (valueid == 1)
                         {
-                            avg = data.initmean0;
-                            sigma = data.signama0;
+                            avg = data.initmean0??0;
+                            sigma1 = data.T0_MEANTHRESHOLD1??0;
 
                         }
                         else if (valueid == 2)
                         {
-                            avg = data.initmean1;
-                            sigma = data.sigma1;
+                            avg = data.initmean1??0;
+                            sigma2 = data.T1_MEANTHRESHOLD1??0;
 
                         }
                         else if (valueid == 3)
                         {
-                            avg = data.initmean2;
-                            sigma = data.sigma2;
+                            avg = data.initmean2??0;
+                            sigma3 = data.T2_MEANTHRESHOLD1??0;
 
                         }
 
@@ -347,24 +364,27 @@ namespace MapApplication.Controls
 
 
                         //}
-                        if (valueid == 1)
-                        {
-                            avg = data.initmean0;
-                            sigma = scale_arry[0];
+                        //if (valueid == 1)
+                        //{
+                        //    avg = data.initmean0;
+                        //    //sigma = scale_arry[0];
+                        //    sigma1 = data.T0_MEANTHRESHOLD1 ?? 0;
 
-                        }
-                        else if (valueid == 2)
-                        {
-                            avg = data.initmean1;
-                            sigma = scale_arry[1];
+                        //}
+                        //else if (valueid == 2)
+                        //{
+                        //    avg = data.initmean1;
+                        //    //sigma = scale_arry[1];
+                        //    sigma1 = data.T1_MEANTHRESHOLD1 ?? 0;
 
-                        }
-                        else if (valueid == 3)
-                        {
-                            avg = data.initmean2;
-                            sigma = scale_arry[2];
+                        //}
+                        //else if (valueid == 3)
+                        //{
+                        //    avg = data.initmean2;
+                        //    //sigma = scale_arry[2];       
+                        //    sigma3 = data.T2_MEANTHRESHOLD1 ?? 0;
 
-                        }
+                        //}
 
 
                         #endregion
@@ -372,56 +392,161 @@ namespace MapApplication.Controls
 
                         if (status == "Normal")
                         {
-                            max = avg + (sigma * 4);
-                            min = avg - (sigma * 4);
+                            //max = avg + (sigma * 4);
+                            //min = avg - (sigma * 4);
                             //datacnt++;
+                            //double func1 = Math.Abs(data.T0_MEANTHRESHOLD1 ?? 0 + data.T0_MEANTHRESHOLD2 ?? 0 + data.T0_MEANTHRESHOLD3 ?? 0 / 3) *4;
+                            //double func2 = Math.Abs(data.T1_MEANTHRESHOLD1 ?? 0 + data.T1_MEANTHRESHOLD2 ?? 0 + data.T1_MEANTHRESHOLD3 ?? 0 / 3) *4;
+                            //double func3 = Math.Abs(data.T2_MEANTHRESHOLD1 ?? 0 + data.T2_MEANTHRESHOLD2 ?? 0 + data.T2_MEANTHRESHOLD3 ?? 0 / 3) *4;
+                            double func1 =  data.T0_MEANTHRESHOLD3 ?? 0 ;
+                            double func2 =  data.T1_MEANTHRESHOLD3 ?? 0 ;
+                            double func3 =  data.T2_MEANTHRESHOLD3 ?? 0 ;
+
+                            if (valueid==1)
+                            {
+                                max = avg + func1;
+                                min = avg - func1;
+                            }
+                            else if (valueid==2)
+                            {
+                                max = avg + func2;
+                                min = avg - func2;
+                            }
+                            else if (valueid==3)
+                            {
+                                max = avg + func3;
+                                min = avg - func3;
+                            }
+
+                            // ************************** 判斷例外狀況 Start************************** //
+                            //if (max == min)
+                            //{
+                            //    max++;
+                            //    min--;
+                            //}
+
+                            //if (max ==0 || min ==0)
+                            //{
+                            //    max++;
+                            //    min--;
+                            //}
+
+                            //if (max == 0 || min != 0)
+                            //{
+                            //    max++;
+                            //    min--;
+                            //}
+
+                            //if (max != 0 || min == 0)
+                            //{
+                            //    max++;
+                            //    min--;
+                            //}
+                            // ************************** 判斷例外狀況 End************************** //
+                            
+
                         }
                         else if (status == "Range")
                         {
+                            #region 2014/07/21 改用speedFunRange()
+                            
+                            
+                            //if (valueid == 1)
+                            //{
+                            //    max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE0);
+                            //    min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE0);
+                            //    avg = ((max + min)) / 2;
+                            //    sigma1 = (max - min) / 6;
 
-                            if (valueid == 1)
-                            {
-                                max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE0);
-                                min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE0);
-                                avg = ((max + min)) / 2;
-                                sigma = (max - min) / 6;
+                            //}
+                            //else if (valueid == 2)
+                            //{
+                            //    max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE1);
+                            //    min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE1);
+                            //    avg = ((max + min)) / 2;
+                            //    sigma2 = (max - min) / 6;
+                            //}
+                            //else if (valueid == 3)
+                            //{
+                            //    max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE2);
+                            //    min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE2);
+                            //    avg = ((max + min)) / 2;
+                            //    sigma3 = (max - min) / 6;
+                            //}
 
-                            }
-                            else if (valueid == 2)
-                            {
-                                max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE1);
-                                min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE1);
-                                avg = ((max + min)) / 2;
-                                sigma = (max - min) / 6;
-                            }
-                            else if (valueid == 3)
-                            {
-                                max = (double)db.vwSensorValuesAndTC10MinDataLogs.Max(n => n.VALUE2);
-                                min = (double)db.vwSensorValuesAndTC10MinDataLogs.Min(n => n.VALUE2);
-                                avg = ((max + min)) / 2;
-                                sigma = (max - min) / 6;
-                            }
-                            if (max == min)
-                            {
-                                sigma = Math.Abs(max) / 6;
-                                max = avg + sigma * 3;
-                                min = avg - sigma * 3;
-                            }
+                            //// ************************** 判斷例外狀況 Start************************** //
+                            ////if (max == min)
+                            ////{
+                            ////    max++;
+                            ////    min--;
+                            ////}
 
+                            ////if (max == 0 || min == 0)
+                            ////{
+                            ////    max++;
+                            ////    min--;
+                            ////}
 
+                            ////if (max != 0 || min == 0)
+                            ////{
+                            ////    max++;
+                            ////    min--;
+                            ////}
+
+                            ////if (max == 0 || min != 0)
+                            ////{
+                            ////    max++;
+                            ////    min--;
+                            ////}
+                            //// ************************** 判斷例外狀況 End************************** //
+
+                            //if (valueid == 1)
+                            //{
+                            //    sigma1 = Math.Abs(max) / 6;
+                            //    max = avg + sigma1 * 3;
+                            //    min = avg - sigma1 * 3;
+                            //}
+                            //else if (valueid == 2)
+                            //{
+                            //    sigma2 = Math.Abs(max) / 6;
+                            //    max = avg + sigma2 * 3;
+                            //    min = avg - sigma2 * 3;
+                            //}
+                            //else if (valueid == 3)
+                            //{
+                            //    sigma3 = Math.Abs(max) / 6;
+                            //    max = avg + sigma3 * 3;
+                            //    min = avg - sigma3 * 3;
+                            //}
+                                
+                            
+#endregion
+                            sppendFunRange(valueid );
+                            break;
                         }
                     }
                     /****************************/
 
                     //datacnt++;
 
+                    // 因為用的是valueid
+                    // 所以在畫線的function裏頭
+                    // 不能用sigma(n)表示 
+                    // sigma1 對應 t0 --> x軸
+                    // 若再valueid == 1的時候用到 sigma2 也就是y軸的T1數值，會有問題
+                    // 因此單獨帶 MEANTHRESHOLD進去
                     switch (valueid)
                     {
                         case 1:
                             dataPoint.YValue = (double)data.VALUE0;
                             //dataPoint.AxisXLabel = data.TIMESTAMP.ToString("hh:mm:ss tt");
                             //dataPoint.AxisXLabel = data.TIMESTAMP.ToString("hh");
-                            dataPoint.AxisXLabel = string.Format("{0:00}/{1:00} {2:00}:{3:00}", data.TIMESTAMP.Month, data.TIMESTAMP.Day, data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+                            if (db.vwSensorValuesAndTC10MinDataLogs.Count > 144)
+                                dataPoint.AxisXLabel = string.Format("{0:00}/{1:00} {2:00}:{3:00}", data.TIMESTAMP.Month, data.TIMESTAMP.Day, data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+                            else
+                                dataPoint.AxisXLabel = string.Format("{0:00}:{1:00}", data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+
+
                             if (data.DEGREE == 0)
                             {
                                 dataPoint.MarkerColor = new SolidColorBrush(Colors.Green);
@@ -451,19 +576,24 @@ namespace MapApplication.Controls
 
                                 //Isvalid = "Y";
                                 chart.TrendLines.Add(new TrendLine() { Value = avg, LineColor = new SolidColorBrush(Colors.Green), LabelText = avg.ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 1), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg + (sigma * 1)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 1), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg - (sigma * 1)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 2), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg + (sigma * 2)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 2), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg - (sigma * 2)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 3), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg + (sigma * 3)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 3), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg - (sigma * 3)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T0_MEANTHRESHOLD1 ?? 0), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg + data.T0_MEANTHRESHOLD1 ?? 0).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T0_MEANTHRESHOLD1 ?? 0), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg - data.T0_MEANTHRESHOLD1 ?? 0).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T0_MEANTHRESHOLD2 ?? 0), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg + data.T0_MEANTHRESHOLD2 ?? 0).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T0_MEANTHRESHOLD2 ?? 0), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg - data.T0_MEANTHRESHOLD2 ?? 0).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T0_MEANTHRESHOLD3 ?? 0), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg + Math.Abs(data.T0_MEANTHRESHOLD3 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T0_MEANTHRESHOLD3 ?? 0), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg - Math.Abs(data.T0_MEANTHRESHOLD3 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
                             }
                             break;
                         case 2:
                             dataPoint.YValue = (double)data.VALUE1;
                             //dataPoint.AxisXLabel = data.TIMESTAMP.ToString("hh:mm:ss tt");
                             //dataPoint.AxisXLabel = data.TIMESTAMP.ToString("hh");
-                            dataPoint.AxisXLabel = string.Format("{0:00}/{1:00} {2:00}:{3:00}", data.TIMESTAMP.Month, data.TIMESTAMP.Day, data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+                            if (db.vwSensorValuesAndTC10MinDataLogs.Count > 144)
+                                dataPoint.AxisXLabel = string.Format("{0:00}/{1:00} {2:00}:{3:00}", data.TIMESTAMP.Month, data.TIMESTAMP.Day, data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+                            else
+                                dataPoint.AxisXLabel = string.Format("{0:00}:{1:00}", data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+
+
                             if (data.DEGREE == 0)
                             {
                                 dataPoint.MarkerColor = new SolidColorBrush(Colors.Green);
@@ -491,19 +621,24 @@ namespace MapApplication.Controls
 
 
                                 chart.TrendLines.Add(new TrendLine() { Value = avg, LineColor = new SolidColorBrush(Colors.Green), LabelText = avg.ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 1), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg + (sigma * 1)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 1), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg - (sigma * 1)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 2), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg + (sigma * 2)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 2), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg - (sigma * 2)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 3), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg + (sigma * 3)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 3), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg - (sigma * 3)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T1_MEANTHRESHOLD1 ?? 0), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg + Math.Abs(data.T1_MEANTHRESHOLD1 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T1_MEANTHRESHOLD1 ?? 0), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg - Math.Abs(data.T1_MEANTHRESHOLD1 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T1_MEANTHRESHOLD2 ?? 0), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg + Math.Abs(data.T1_MEANTHRESHOLD2 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T1_MEANTHRESHOLD2 ?? 0), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg - Math.Abs(data.T1_MEANTHRESHOLD2 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T1_MEANTHRESHOLD3 ?? 0), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg + Math.Abs(data.T1_MEANTHRESHOLD3 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T1_MEANTHRESHOLD3 ?? 0), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg - Math.Abs(data.T1_MEANTHRESHOLD3 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
                             }
                             break;
                         case 3:
                             dataPoint.YValue = (double)data.VALUE2;
                             //                        dataPoint.AxisXLabel = data.TIMESTAMP.ToString("hh:mm:ss tt");
                             //dataPoint.AxisXLabel = data.TIMESTAMP.ToString("hh");
-                            dataPoint.AxisXLabel = string.Format("{0:00}/{1:00} {2:00}:{3:00}", data.TIMESTAMP.Month, data.TIMESTAMP.Day, data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+                            if (db.vwSensorValuesAndTC10MinDataLogs.Count > 144)
+                                dataPoint.AxisXLabel = string.Format("{0:00}/{1:00} {2:00}:{3:00}", data.TIMESTAMP.Month, data.TIMESTAMP.Day, data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+                            else
+                                dataPoint.AxisXLabel = string.Format("{0:00}:{1:00}", data.TIMESTAMP.Hour, data.TIMESTAMP.Minute);
+
+
                             if (data.DEGREE == 0)
                             {
                                 dataPoint.MarkerColor = new SolidColorBrush(Colors.Green);
@@ -534,12 +669,12 @@ namespace MapApplication.Controls
                             if (datacnt == db.vwSensorValuesAndTC10MinDataLogs.Count)
                             {
                                 chart.TrendLines.Add(new TrendLine() { Value = avg, LineColor = new SolidColorBrush(Colors.Green), LabelText = avg.ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 1), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg + (sigma * 1)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 1), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg - (sigma * 1)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 2), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg + (sigma * 2)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 2), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg - (sigma * 2)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg + (sigma * 3), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg + (sigma * 3)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
-                                chart.TrendLines.Add(new TrendLine() { Value = avg - (sigma * 3), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg - (sigma * 3)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T2_MEANTHRESHOLD1 ?? 0), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg + Math.Abs(data.T2_MEANTHRESHOLD1 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T2_MEANTHRESHOLD1 ?? 0), LineColor = new SolidColorBrush(Colors.Yellow), LabelText = (avg - Math.Abs(data.T2_MEANTHRESHOLD1 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T2_MEANTHRESHOLD2 ?? 0), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg + Math.Abs(data.T2_MEANTHRESHOLD2 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T2_MEANTHRESHOLD2 ?? 0), LineColor = new SolidColorBrush(Colors.Orange), LabelText = (avg - Math.Abs(data.T2_MEANTHRESHOLD2 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg + Math.Abs(data.T2_MEANTHRESHOLD3 ?? 0), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg + Math.Abs(data.T2_MEANTHRESHOLD3 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
+                                chart.TrendLines.Add(new TrendLine() { Value = avg - Math.Abs(data.T2_MEANTHRESHOLD3 ?? 0), LineColor = new SolidColorBrush(Colors.Red), LabelText = (avg - Math.Abs(data.T2_MEANTHRESHOLD3 ?? 0)).ToString("#,0.0000"), LineStyle = LineStyles.Solid, LineThickness = linethickness, LabelFontColor = new SolidColorBrush(Colors.White) });
                             }
                             break;
                     }
@@ -563,74 +698,144 @@ namespace MapApplication.Controls
 
 
 
-
-
-            Axis yaxis = new Axis();
-            yaxis.Opacity = 0;
-
-
-
-            yaxis.AxisMaximum = max;
-            yaxis.AxisMinimum = min;
-            yaxis.Interval = (max - min) / 5;
-            yaxis.ValueFormatString = "#,0.0000";
-            yaxis.Grids.Add(new ChartGrid() { Enabled = false });//********1126**********
-            chart.AxesY.Add(yaxis);
-
-            Axis axisX = new Axis();
-
-            //axisX.ValueFormatString = "hh:mm:ss tt";
-            axisX.AxisLabels = new AxisLabels();
-            //axisX.AxisLabels.Angle = -45;
-            axisX.AxisLabels.Interval = db.vwSensorValuesAndTC10MinDataLogs.Count / 6;
-            chart.AxesX.Add(axisX);
-
-            
-
-            chart.Titles.Add(title);
-
-            chart.ScrollingEnabled = false;
-            chart.LightingEnabled = true;
-            chart.IndicatorEnabled = true;
-            chart.AnimationEnabled = true;
-            chart.AnimatedUpdate = true;
-            chart.ZoomingEnabled = true;
-            chart.ShadowEnabled = true;
-            chart.Series.Add(dataSeries);
-            chart.Theme = "Theme3";
-            chart.Height = LayoutRoot.ActualHeight / vcnt;
-            Thickness tk = new Thickness()
+            if (status != "Range")
             {
-                Bottom = 1,
-                Top = 1
-            };
-            chart.Margin = tk;
-            //stackpanel.Orientation = Orientation.Horizontal;
-            stackpanel.Children.Add(chart);
 
-            // MessageBox.Show((dataSeries.Color as SolidColorBrush).Color.ToString());
+                Axis yaxis = new Axis();
+                yaxis.Opacity = 0;
+
+
+
+                yaxis.AxisMaximum = max;
+                yaxis.AxisMinimum = min;
+                //yaxis.Interval = (max - min) / 5;
+                yaxis.ValueFormatString = "#,0.0000";
+
+                yaxis.Grids.Add(new ChartGrid() { Enabled = false });//********1126**********
+
+                chart.AxesY.Add(yaxis);
+
+                Axis axisX = new Axis();
+
+                //axisX.ValueFormatString = "hh:mm:ss tt";
+                axisX.AxisLabels = new AxisLabels();
+                //axisX.AxisLabels.Angle = -45;
+                axisX.AxisLabels.Interval = db.vwSensorValuesAndTC10MinDataLogs.Count / 6;
+                chart.AxesX.Add(axisX);
+
+
+
+
+
+
+
+
+                chart.Titles.Add(title);
+
+                chart.ScrollingEnabled = false;
+                chart.LightingEnabled = true;
+                chart.IndicatorEnabled = true;
+                chart.AnimationEnabled = true;
+                chart.AnimatedUpdate = true;
+                chart.ZoomingEnabled = true;
+                chart.ShadowEnabled = true;
+                chart.Series.Add(dataSeries);
+                chart.Theme = "Theme3";
+                chart.Height = LayoutRoot.ActualHeight / vcnt;
+                Thickness tk = new Thickness()
+                {
+                    Bottom = 1,
+                    Top = 1
+                };
+                chart.Margin = tk;
+                //stackpanel.Orientation = Orientation.Horizontal;
+                stackpanel.Children.Add(chart);
+
+                // MessageBox.Show((dataSeries.Color as SolidColorBrush).Color.ToString());
+
+
+            }
+
+
             }
             else
             {
-                Border label = new Border() 
+
+
+
+                Border label = new Border()
                 {
-                  //  Content = "此感知器尚無資料。",
-                     Width = LayoutRoot.ActualWidth,
-                     Height = LayoutRoot.ActualHeight / vcnt,
-                     Background = new SolidColorBrush(Colors.Black),
-                  //   Foreground = new SolidColorBrush(Colors.White),
-                     Margin = new Thickness(5),
-                     HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
-                     VerticalAlignment = System.Windows.VerticalAlignment.Center
+                   // Content = "此感知器尚無資料。",
+                    Width = LayoutRoot.ActualWidth,
+                    Height = LayoutRoot.ActualHeight / vcnt,
+                    Background = new SolidColorBrush(Colors.Black),
+                  //  Foreground = new SolidColorBrush(Colors.White),
+                    Margin = new Thickness(5),
+                    HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                    VerticalAlignment = System.Windows.VerticalAlignment.Center
                 };
 
-                
+
 
                 //MessageBox.Show("此感知器尚無資料。");
                 stackpanel.Children.Add(label);
             }
 
 
+        }
+        double max, min;
+        private void sppendFunRange(int vaild)
+        {
+            #region  //2014/7/21 修改
+
+
+            if (vaild == 3)
+            {
+                foreach (Chart chartchil in (LayoutRoot.Children.FirstOrDefault() as StackPanel).Children.OfType<Chart>())
+                {
+                    DataSeries dataseries = chartchil.Series.FirstOrDefault();
+
+
+                    max = min = dataseries.DataPoints.FirstOrDefault().YValue;
+                    foreach (DataPoint dp in dataseries.DataPoints)
+                    {
+                        if (dp.YValue != 0)
+                        {
+                            if (max < dp.YValue)
+                                max = dp.YValue;
+
+                            if (min > dp.YValue)
+                                min = dp.YValue;
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    Axis yaxis = chartchil.AxesY[0];
+                    yaxis.AxisMaximum = max;
+                    yaxis.AxisMinimum = min;
+                    yaxis.Opacity = 1;
+                   //dataseries.AxisYType = AxisTypes.Secondary;
+
+                    yaxis.Grids.Add(new ChartGrid() { Enabled = true });//********0721**********
+
+
+                    foreach (TrendLine trendline in chartchil.TrendLines)
+                    {
+                        trendline.ToolTipText = trendline.LabelText;
+                        trendline.LineThickness = 5;
+                        trendline.LabelText = "";
+                       
+                    }
+
+                }
+            }
+           
+
+
+           
+            #endregion
         }
 
         //private void chart_Rendered(object sender, EventArgs e)
@@ -644,6 +849,7 @@ namespace MapApplication.Controls
         //    //root.Children.RemoveAt(8);
         //    //MessageBox.Show(root.Children.Count().ToString());
         //}
+        string removeStringchecksp;
         private void chart_Rendered(object sender, EventArgs e)
         {
 
@@ -665,14 +871,20 @@ namespace MapApplication.Controls
                 //    root.Children.Remove(root.Children.OfType<Border>().Last());
                 //}
 
-
-
-
-                string removeStringchecksp = (root.Children.OfType<StackPanel>().Cast<StackPanel>().Last().Children[0] as TextBlock).Text;
+              
+                if (root.Children.OfType<StackPanel>().Last().Children.Count() != 0)
+                {
+                    //MessageBox.Show(root.Children.OfType<StackPanel>().Last().Children.ToString());
+                    removeStringchecksp = (root.Children.OfType<StackPanel>().Last().Children.OfType<TextBlock>().FirstOrDefault()).Text;
+                    (root.Children.OfType<StackPanel>().Last().Children.OfType<TextBlock>().FirstOrDefault()).Text = "";
+                }
+                
+               
                 if (removeStringchecksp == "Visifire Trial Edition")
                 {
                     // root.Children.OfType<StackPanel>().Cast<StackPanel>().Last().Children.RemoveAt(0);
-                    root.Children.Remove(root.Children.OfType<StackPanel>().Cast<StackPanel>().Last());
+                  //  root.Children.Remove(root.Children.OfType<StackPanel>().Cast<StackPanel>().Last());
+                    //
                 }
 
             }
@@ -773,12 +985,12 @@ namespace MapApplication.Controls
         private void NormalDisable_Click(object sender, RoutedEventArgs e)
         {
             ChangeRangeDisable("Normal");
-            DateTime startime = BeginPicker.SelectedDates.FirstOrDefault().Date.AddDays(0);
-            DateTime endtime = BeginPicker.SelectedDates.LastOrDefault().Date.AddDays(0);
-            if (BeginPicker.SelectedDate == null)
-                LoadData(DateTime.Today, DateTime.Today, sensorID);
-            else
-                LoadData(startime, endtime, sensorID);
+            //DateTime startime = BeginPicker.SelectedDates.FirstOrDefault().Date.AddDays(0);
+            //DateTime endtime = BeginPicker.SelectedDates.LastOrDefault().Date.AddDays(0);
+            //if (BeginPicker.SelectedDate == null)
+            //    LoadData(DateTime.Today, DateTime.Today, sensorID);
+            //else
+            //    LoadData(startime, endtime, sensorID);
         }
 
 
@@ -786,12 +998,12 @@ namespace MapApplication.Controls
         private void RangeDisable_Click(object sender, RoutedEventArgs e)
         {
             ChangeRangeDisable("Range");
-            DateTime startime = BeginPicker.SelectedDates.FirstOrDefault().Date.AddDays(0);
-            DateTime endtime = BeginPicker.SelectedDates.LastOrDefault().Date.AddDays(0);
-            if (BeginPicker.SelectedDate == null)
-                LoadData(DateTime.Today, DateTime.Today, sensorID);
-            else
-                LoadData(startime, endtime, sensorID);
+            //DateTime startime = BeginPicker.SelectedDates.FirstOrDefault().Date.AddDays(0);
+            //DateTime endtime = BeginPicker.SelectedDates.LastOrDefault().Date.AddDays(0);
+            //if (BeginPicker.SelectedDate == null)
+            //    LoadData(DateTime.Today, DateTime.Today, sensorID);
+            //else
+            //    LoadData(startime, endtime, sensorID);
         }
 
 
@@ -814,7 +1026,73 @@ namespace MapApplication.Controls
            
             DateTime startime = BeginPicker.SelectedDates.FirstOrDefault().Date.AddDays(0);
             DateTime endtime = BeginPicker.SelectedDates.LastOrDefault().Date.AddDays(0);
-            LoadData(startime, endtime, sensorID);
+
+            string[] strspi = datanum.Tag.ToString().Split(',');
+            //MessageBox.Show(datanum.Tag.ToString());
+            DateTime oldstartime =  Convert.ToDateTime(strspi[0]).Date.AddDays(0);
+            DateTime oldendtime = Convert.ToDateTime(strspi[1]).Date.AddDays(0);
+
+            if (startime != oldstartime || endtime != oldendtime )
+            {
+                if (NormalDisable.IsChecked == true)
+                {
+                   
+                    status = "Normal";
+                    LoadData(startime, endtime, sensorID);
+                }
+                else if (RangeDisable.IsChecked == true)
+                { 
+                  //range error
+                    NormalDisable.IsChecked = true;
+                    status = "Normal";
+                    LoadData(startime, endtime, sensorID);
+                }
+              
+            }
+            else 
+            {
+                if (NormalDisable.IsChecked == true)
+                {
+                   
+                    status = "Normal";
+                    LoadData(startime, endtime, sensorID);
+                }
+                 else if (RangeDisable.IsChecked == true)
+                {
+                   
+                    status = "Range";
+                    LoadData(startime, endtime, sensorID);
+                }
+               
+            }
+                
+                
+                
+                
+            //    if(status !="Range")
+            //{
+            //    if (status == "Normal")
+            //    {
+                    
+            //    }
+            //    else if (status == "Range")
+            //    { 
+                
+                
+            //    RangeDisable.IsChecked = true;
+            //    status = "Range";
+            //    LoadData(startime, endtime, sensorID);
+            //}
+            //else if(status !="Normal")
+            //{
+            //    NormalDisable.IsChecked = true;
+            //    status = "Normal";
+            //    LoadData(startime, endtime, sensorID);
+            //}
+            //else
+            //{
+            //    MessageBox.Show("ex");
+            //}
         }
 
 

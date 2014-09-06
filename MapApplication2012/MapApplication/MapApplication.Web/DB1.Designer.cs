@@ -2789,30 +2789,6 @@ namespace MapApplication.Web
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int32> MEANTHRESHOLD
-        {
-            get
-            {
-                return _MEANTHRESHOLD;
-            }
-            set
-            {
-                OnMEANTHRESHOLDChanging(value);
-                ReportPropertyChanging("MEANTHRESHOLD");
-                _MEANTHRESHOLD = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("MEANTHRESHOLD");
-                OnMEANTHRESHOLDChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _MEANTHRESHOLD;
-        partial void OnMEANTHRESHOLDChanging(Nullable<global::System.Int32> value);
-        partial void OnMEANTHRESHOLDChanged();
-    
-        /// <summary>
-        /// 沒有可用的中繼資料文件。
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String CONVERTFORMULA
         {
             get
@@ -2903,6 +2879,78 @@ namespace MapApplication.Web
         private Nullable<global::System.Double> _UPDATED_INITMEAN;
         partial void OnUPDATED_INITMEANChanging(Nullable<global::System.Double> value);
         partial void OnUPDATED_INITMEANChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> MEANTHRESHOLD1
+        {
+            get
+            {
+                return _MEANTHRESHOLD1;
+            }
+            set
+            {
+                OnMEANTHRESHOLD1Changing(value);
+                ReportPropertyChanging("MEANTHRESHOLD1");
+                _MEANTHRESHOLD1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MEANTHRESHOLD1");
+                OnMEANTHRESHOLD1Changed();
+            }
+        }
+        private Nullable<global::System.Double> _MEANTHRESHOLD1;
+        partial void OnMEANTHRESHOLD1Changing(Nullable<global::System.Double> value);
+        partial void OnMEANTHRESHOLD1Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> MEANTHRESHOLD2
+        {
+            get
+            {
+                return _MEANTHRESHOLD2;
+            }
+            set
+            {
+                OnMEANTHRESHOLD2Changing(value);
+                ReportPropertyChanging("MEANTHRESHOLD2");
+                _MEANTHRESHOLD2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MEANTHRESHOLD2");
+                OnMEANTHRESHOLD2Changed();
+            }
+        }
+        private Nullable<global::System.Double> _MEANTHRESHOLD2;
+        partial void OnMEANTHRESHOLD2Changing(Nullable<global::System.Double> value);
+        partial void OnMEANTHRESHOLD2Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> MEANTHRESHOLD3
+        {
+            get
+            {
+                return _MEANTHRESHOLD3;
+            }
+            set
+            {
+                OnMEANTHRESHOLD3Changing(value);
+                ReportPropertyChanging("MEANTHRESHOLD3");
+                _MEANTHRESHOLD3 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("MEANTHRESHOLD3");
+                OnMEANTHRESHOLD3Changed();
+            }
+        }
+        private Nullable<global::System.Double> _MEANTHRESHOLD3;
+        partial void OnMEANTHRESHOLD3Changing(Nullable<global::System.Double> value);
+        partial void OnMEANTHRESHOLD3Changed();
 
         #endregion
 
@@ -4063,6 +4111,54 @@ namespace MapApplication.Web
         private Nullable<global::System.Int32> _REF_SENDSOR_ID;
         partial void OnREF_SENDSOR_IDChanging(Nullable<global::System.Int32> value);
         partial void OnREF_SENDSOR_IDChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> HappenTimeStamp
+        {
+            get
+            {
+                return _HappenTimeStamp;
+            }
+            set
+            {
+                OnHappenTimeStampChanging(value);
+                ReportPropertyChanging("HappenTimeStamp");
+                _HappenTimeStamp = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("HappenTimeStamp");
+                OnHappenTimeStampChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _HappenTimeStamp;
+        partial void OnHappenTimeStampChanging(Nullable<global::System.DateTime> value);
+        partial void OnHappenTimeStampChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> ConfirmTimes
+        {
+            get
+            {
+                return _ConfirmTimes;
+            }
+            set
+            {
+                OnConfirmTimesChanging(value);
+                ReportPropertyChanging("ConfirmTimes");
+                _ConfirmTimes = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ConfirmTimes");
+                OnConfirmTimesChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _ConfirmTimes;
+        partial void OnConfirmTimesChanging(Nullable<global::System.Int32> value);
+        partial void OnConfirmTimesChanged();
 
         #endregion
 
@@ -5736,6 +5832,30 @@ namespace MapApplication.Web
         private global::System.String _URI_CODE;
         partial void OnURI_CODEChanging(global::System.String value);
         partial void OnURI_CODEChanged();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> ISENGINEER
+        {
+            get
+            {
+                return _ISENGINEER;
+            }
+            set
+            {
+                OnISENGINEERChanging(value);
+                ReportPropertyChanging("ISENGINEER");
+                _ISENGINEER = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ISENGINEER");
+                OnISENGINEERChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _ISENGINEER;
+        partial void OnISENGINEERChanging(Nullable<global::System.Boolean> value);
+        partial void OnISENGINEERChanged();
 
         #endregion
 
@@ -6314,12 +6434,9 @@ namespace MapApplication.Web
         /// <param name="dEGREE">DEGREE 屬性的初始值。</param>
         /// <param name="iS_REPAIR">IS_REPAIR 屬性的初始值。</param>
         /// <param name="signama0">signama0 屬性的初始值。</param>
-        /// <param name="initmean0">initmean0 屬性的初始值。</param>
         /// <param name="sigma1">sigma1 屬性的初始值。</param>
-        /// <param name="initmean1">initmean1 屬性的初始值。</param>
         /// <param name="sigma2">sigma2 屬性的初始值。</param>
-        /// <param name="initmean2">initmean2 屬性的初始值。</param>
-        public static vwSensorValuesAndTC10MinDataLog CreatevwSensorValuesAndTC10MinDataLog(global::System.Int32 sENSOR_ID, global::System.DateTime tIMESTAMP, global::System.Byte dEGREE, global::System.String iS_REPAIR, global::System.Double signama0, global::System.Double initmean0, global::System.Double sigma1, global::System.Double initmean1, global::System.Double sigma2, global::System.Double initmean2)
+        public static vwSensorValuesAndTC10MinDataLog CreatevwSensorValuesAndTC10MinDataLog(global::System.Int32 sENSOR_ID, global::System.DateTime tIMESTAMP, global::System.Byte dEGREE, global::System.String iS_REPAIR, global::System.Double signama0, global::System.Double sigma1, global::System.Double sigma2)
         {
             vwSensorValuesAndTC10MinDataLog vwSensorValuesAndTC10MinDataLog = new vwSensorValuesAndTC10MinDataLog();
             vwSensorValuesAndTC10MinDataLog.SENSOR_ID = sENSOR_ID;
@@ -6327,11 +6444,8 @@ namespace MapApplication.Web
             vwSensorValuesAndTC10MinDataLog.DEGREE = dEGREE;
             vwSensorValuesAndTC10MinDataLog.IS_REPAIR = iS_REPAIR;
             vwSensorValuesAndTC10MinDataLog.signama0 = signama0;
-            vwSensorValuesAndTC10MinDataLog.initmean0 = initmean0;
             vwSensorValuesAndTC10MinDataLog.sigma1 = sigma1;
-            vwSensorValuesAndTC10MinDataLog.initmean1 = initmean1;
             vwSensorValuesAndTC10MinDataLog.sigma2 = sigma2;
-            vwSensorValuesAndTC10MinDataLog.initmean2 = initmean2;
             return vwSensorValuesAndTC10MinDataLog;
         }
 
@@ -6639,9 +6753,9 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Double initmean0
+        public Nullable<global::System.Double> initmean0
         {
             get
             {
@@ -6656,8 +6770,8 @@ namespace MapApplication.Web
                 Oninitmean0Changed();
             }
         }
-        private global::System.Double _initmean0;
-        partial void Oninitmean0Changing(global::System.Double value);
+        private Nullable<global::System.Double> _initmean0;
+        partial void Oninitmean0Changing(Nullable<global::System.Double> value);
         partial void Oninitmean0Changed();
     
         /// <summary>
@@ -6687,9 +6801,9 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Double initmean1
+        public Nullable<global::System.Double> initmean1
         {
             get
             {
@@ -6704,8 +6818,8 @@ namespace MapApplication.Web
                 Oninitmean1Changed();
             }
         }
-        private global::System.Double _initmean1;
-        partial void Oninitmean1Changing(global::System.Double value);
+        private Nullable<global::System.Double> _initmean1;
+        partial void Oninitmean1Changing(Nullable<global::System.Double> value);
         partial void Oninitmean1Changed();
     
         /// <summary>
@@ -6735,9 +6849,9 @@ namespace MapApplication.Web
         /// <summary>
         /// 沒有可用的中繼資料文件。
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Double initmean2
+        public Nullable<global::System.Double> initmean2
         {
             get
             {
@@ -6752,9 +6866,225 @@ namespace MapApplication.Web
                 Oninitmean2Changed();
             }
         }
-        private global::System.Double _initmean2;
-        partial void Oninitmean2Changing(global::System.Double value);
+        private Nullable<global::System.Double> _initmean2;
+        partial void Oninitmean2Changing(Nullable<global::System.Double> value);
         partial void Oninitmean2Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T0_MEANTHRESHOLD1
+        {
+            get
+            {
+                return _T0_MEANTHRESHOLD1;
+            }
+            set
+            {
+                OnT0_MEANTHRESHOLD1Changing(value);
+                ReportPropertyChanging("T0_MEANTHRESHOLD1");
+                _T0_MEANTHRESHOLD1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T0_MEANTHRESHOLD1");
+                OnT0_MEANTHRESHOLD1Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T0_MEANTHRESHOLD1;
+        partial void OnT0_MEANTHRESHOLD1Changing(Nullable<global::System.Double> value);
+        partial void OnT0_MEANTHRESHOLD1Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T0_MEANTHRESHOLD2
+        {
+            get
+            {
+                return _T0_MEANTHRESHOLD2;
+            }
+            set
+            {
+                OnT0_MEANTHRESHOLD2Changing(value);
+                ReportPropertyChanging("T0_MEANTHRESHOLD2");
+                _T0_MEANTHRESHOLD2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T0_MEANTHRESHOLD2");
+                OnT0_MEANTHRESHOLD2Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T0_MEANTHRESHOLD2;
+        partial void OnT0_MEANTHRESHOLD2Changing(Nullable<global::System.Double> value);
+        partial void OnT0_MEANTHRESHOLD2Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T0_MEANTHRESHOLD3
+        {
+            get
+            {
+                return _T0_MEANTHRESHOLD3;
+            }
+            set
+            {
+                OnT0_MEANTHRESHOLD3Changing(value);
+                ReportPropertyChanging("T0_MEANTHRESHOLD3");
+                _T0_MEANTHRESHOLD3 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T0_MEANTHRESHOLD3");
+                OnT0_MEANTHRESHOLD3Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T0_MEANTHRESHOLD3;
+        partial void OnT0_MEANTHRESHOLD3Changing(Nullable<global::System.Double> value);
+        partial void OnT0_MEANTHRESHOLD3Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T2_MEANTHRESHOLD1
+        {
+            get
+            {
+                return _T2_MEANTHRESHOLD1;
+            }
+            set
+            {
+                OnT2_MEANTHRESHOLD1Changing(value);
+                ReportPropertyChanging("T2_MEANTHRESHOLD1");
+                _T2_MEANTHRESHOLD1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T2_MEANTHRESHOLD1");
+                OnT2_MEANTHRESHOLD1Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T2_MEANTHRESHOLD1;
+        partial void OnT2_MEANTHRESHOLD1Changing(Nullable<global::System.Double> value);
+        partial void OnT2_MEANTHRESHOLD1Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T2_MEANTHRESHOLD2
+        {
+            get
+            {
+                return _T2_MEANTHRESHOLD2;
+            }
+            set
+            {
+                OnT2_MEANTHRESHOLD2Changing(value);
+                ReportPropertyChanging("T2_MEANTHRESHOLD2");
+                _T2_MEANTHRESHOLD2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T2_MEANTHRESHOLD2");
+                OnT2_MEANTHRESHOLD2Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T2_MEANTHRESHOLD2;
+        partial void OnT2_MEANTHRESHOLD2Changing(Nullable<global::System.Double> value);
+        partial void OnT2_MEANTHRESHOLD2Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T2_MEANTHRESHOLD3
+        {
+            get
+            {
+                return _T2_MEANTHRESHOLD3;
+            }
+            set
+            {
+                OnT2_MEANTHRESHOLD3Changing(value);
+                ReportPropertyChanging("T2_MEANTHRESHOLD3");
+                _T2_MEANTHRESHOLD3 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T2_MEANTHRESHOLD3");
+                OnT2_MEANTHRESHOLD3Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T2_MEANTHRESHOLD3;
+        partial void OnT2_MEANTHRESHOLD3Changing(Nullable<global::System.Double> value);
+        partial void OnT2_MEANTHRESHOLD3Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T1_MEANTHRESHOLD1
+        {
+            get
+            {
+                return _T1_MEANTHRESHOLD1;
+            }
+            set
+            {
+                OnT1_MEANTHRESHOLD1Changing(value);
+                ReportPropertyChanging("T1_MEANTHRESHOLD1");
+                _T1_MEANTHRESHOLD1 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T1_MEANTHRESHOLD1");
+                OnT1_MEANTHRESHOLD1Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T1_MEANTHRESHOLD1;
+        partial void OnT1_MEANTHRESHOLD1Changing(Nullable<global::System.Double> value);
+        partial void OnT1_MEANTHRESHOLD1Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T1_MEANTHRESHOLD2
+        {
+            get
+            {
+                return _T1_MEANTHRESHOLD2;
+            }
+            set
+            {
+                OnT1_MEANTHRESHOLD2Changing(value);
+                ReportPropertyChanging("T1_MEANTHRESHOLD2");
+                _T1_MEANTHRESHOLD2 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T1_MEANTHRESHOLD2");
+                OnT1_MEANTHRESHOLD2Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T1_MEANTHRESHOLD2;
+        partial void OnT1_MEANTHRESHOLD2Changing(Nullable<global::System.Double> value);
+        partial void OnT1_MEANTHRESHOLD2Changed();
+    
+        /// <summary>
+        /// 沒有可用的中繼資料文件。
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Double> T1_MEANTHRESHOLD3
+        {
+            get
+            {
+                return _T1_MEANTHRESHOLD3;
+            }
+            set
+            {
+                OnT1_MEANTHRESHOLD3Changing(value);
+                ReportPropertyChanging("T1_MEANTHRESHOLD3");
+                _T1_MEANTHRESHOLD3 = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("T1_MEANTHRESHOLD3");
+                OnT1_MEANTHRESHOLD3Changed();
+            }
+        }
+        private Nullable<global::System.Double> _T1_MEANTHRESHOLD3;
+        partial void OnT1_MEANTHRESHOLD3Changing(Nullable<global::System.Double> value);
+        partial void OnT1_MEANTHRESHOLD3Changed();
 
         #endregion
 

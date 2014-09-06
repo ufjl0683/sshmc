@@ -269,6 +269,10 @@ namespace MapApplication.Web
             public tblSensor tblSensor { get; set; }
 
             public int VALUE_ID { get; set; }
+
+            public double? MEANTHRESHOLD1 { get; set; }
+            public double? MEANTHRESHOLD2 { get; set; }
+            public double? MEANTHRESHOLD3 { get; set; }
         }
     }
 

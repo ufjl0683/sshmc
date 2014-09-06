@@ -93,7 +93,7 @@ namespace Comm
 
                         d = stream.ReadByte();
                         
-                   //     Console.WriteLine("{0:X2}", d);
+                       Console.WriteLine("{0:X2}", d);
                         readcnt++;
                         if (d == -1)
                             throw new Exception("Comm error!");

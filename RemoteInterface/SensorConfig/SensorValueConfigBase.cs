@@ -13,7 +13,9 @@ namespace RemoteInterface.SensorConfig
      //  public SensorValueRuleConfigBase[] rules{get;set;}
        public double SIGMA { get; set; }
        public double INITMEAN {get;set;}
-       public double MeanThreshold { get; set; }
+       public double MeanThreshold1 { get; set; }
+       public double MeanThreshold2 { get; set; }
+       public double MeanThreshold3 { get; set; }
        public string ConvertFormula { get; set; }
 
     }

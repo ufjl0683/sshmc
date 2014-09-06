@@ -11,6 +11,7 @@ using Comm.Controller;
 using OpenPop.Mime;
 using System.Net.Mail;
 using System.Net;
+using System.IO;
 namespace ClientTest
 {
     [XmlInclude(typeof(TiltSensorConfig)), XmlInclude(typeof(GPSSensorConfig))]
@@ -43,9 +44,61 @@ namespace ClientTest
     {
 
         static double[,] Matrix;
-     
+
+
+        static private TextPackage ReadText(Stream stream)
+        {
+            int len, devid;
+            TextPackage txt = new TextPackage();
+            // devid = stream.ReadByte();
+            len = stream.ReadByte() * 256 + stream.ReadByte();
+            txt.Text = new byte[len];
+            int rlen = 0;
+            txt.Address = 0; ; // devid;
+            do
+            {
+                rlen += stream.Read(txt.Text, rlen, len - rlen);
+
+            } while (rlen != len);
+            int cks = 0;
+            foreach (byte d in txt.Text)
+                cks += d;
+
+            cks &= 0x7fff;
+            int tempcks = stream.ReadByte() * 256 + stream.ReadByte();
+
+            if (cks != tempcks/*stream.ReadByte()*256+stream.ReadByte()*/)
+            {
+                txt.SetErrBit(SirfDLE.DLE_ERR_LCR, true);
+               // txt.eErrorDescription += getDeviceName() + "LRC Error!\r\n";
+
+            }
+
+
+
+            return txt;
+
+            //   throw new NotImplementedException();
+        }
         static void Main(string[] args)
         {
+
+            byte[] res = Pack(-1, -3e5, 123.456789e100);
+            MemoryStream ms = new MemoryStream();
+            for (int i = 2; i < res.Length; i++)
+            {
+                ms.WriteByte(res[i]);
+            }
+            ms.Position = 0;
+           TextPackage txt= ReadText(ms);
+
+           double v0, v1, v2;
+           v0 = System.BitConverter.ToDouble(txt.Text, 0);
+           v1 = System.BitConverter.ToDouble(txt.Text, 8);
+           v2 = System.BitConverter.ToDouble(txt.Text, 16);
+           Console.WriteLine("{0},{1},{2}", v0, v1, v2);
+          //  Console.WriteLine(System.DateTime.Now.ToString());
+            Console.ReadKey();
            // SendMailTest();
             //System.Net.Sockets.TcpClient client = new System.Net.Sockets.TcpClient();
             //client.Connect("192.168.2.100", 7002);
@@ -181,6 +234,33 @@ namespace ClientTest
             Console.ReadKey();
            // mgr.KillAll();
         }
+
+
+        public  static byte[] Pack(double v0, double v1, double v2)
+        {
+            byte[] temp;
+            byte[] data = new byte[32];
+            data[0] = 0xa0;
+            data[1] = 0xa2;
+            data[2] = 0x0;
+            data[3] = 24;
+           temp= System.BitConverter.GetBytes(v0);
+           Array.Copy(temp, 0, data, 4, 8);
+           temp = System.BitConverter.GetBytes(v1);
+           Array.Copy(temp, 0, data, 12, 8);
+           temp = System.BitConverter.GetBytes(v2);
+           Array.Copy(temp, 0, data, 20, 8);
+            ushort cks=0;
+            for (int i = 0; i < 24; i++)
+                cks += data[4 + i];
+            cks = (ushort)(cks & 0x7fff);
+            data[28] =(byte)( cks / 256);
+            data[29] =(byte)( cks % 256);
+            data[30] = 0xb0;
+            data[31] = 0xb3;
+            return data;
+            
+        }
         public static void SendMailToUser(string mailaddress, string subject, string bodytext)
         {
             WebClient client = new WebClient();
@@ -203,23 +283,23 @@ namespace ClientTest
                 RemoteInterface.RemoteBuilder.GetRemoteObj(typeof(RemoteInterface.HC.I_HC_Comm),
                 RemoteInterface.RemoteBuilder.getRemoteUri("192.192.161.5", 9010, "Comm"));
 
-            r_host_comm.SetSensorValueDegree(35, 0, 0, 0, 1);
+            r_host_comm.SetSensorValueDegree(17, 0, 0, 0, 1);
             Console.WriteLine("id:35  to degree 1");
             Console.ReadKey();
-            r_host_comm.SetSensorValueDegree(35, 0, 0, 0, 0);
+            r_host_comm.SetSensorValueDegree(17, 0, 0, 0, 0);
             Console.WriteLine("id:35  to degree 0");
             Console.ReadKey();
 
-            r_host_comm.SetSensorValueDegree(35, 0, 0, 0,1);
+            r_host_comm.SetSensorValueDegree(17, 0, 0, 0,1);
             Console.WriteLine("id:35  to degree 1");
             Console.ReadKey();
-            r_host_comm.SetSensorValueDegree(35, 0, 0, 0,2);
+            r_host_comm.SetSensorValueDegree(17, 0, 0, 0,2);
             Console.WriteLine("id:35  to degree 2");
             Console.ReadKey();
-            r_host_comm.SetSensorValueDegree(35, 0, 0, 0, 1);
+            r_host_comm.SetSensorValueDegree(17, 0, 0, 0, 1);
             Console.WriteLine("id:35  to degree 1");
             Console.ReadKey();
-            r_host_comm.SetSensorValueDegree(35, 0, 0, 0,0);
+            r_host_comm.SetSensorValueDegree(17, 0, 0, 0,0);
             Console.WriteLine("id:35  to degree 0");
             Console.ReadKey();
         }

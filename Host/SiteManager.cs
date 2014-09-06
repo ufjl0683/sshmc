@@ -196,7 +196,7 @@ namespace Host
                             site.REF_SENDSOR_ID = this.REF_SENSOR_ID = snr.SensorID;
                             site.CURRENT_DEGREE = this.CURRENT_DEGREE = maxDegree;
                             db.SaveChanges();
-                            string subject = site.SITE_NAME + (4 - maxDegree) + "級升級事件通知";
+                            string subject = ((DateTime)this.HappenTimeStamp).ToString() + "," + site.SITE_NAME + (4 - maxDegree) + "級升級事件通知";
                             string body = ComposeBody(site, snr, maxDegree);
                             string mailto = (from n in db.OMEMP where n.EMPNO == site.ENGINEER select n.MAIL).FirstOrDefault();
                             if (mailto != null)
@@ -219,7 +219,7 @@ namespace Host
                             site.CURRENT_DEGREE = this.CURRENT_DEGREE = maxDegree;
                             db.SaveChanges();
 
-                            string subject = site.SITE_NAME + (4 - maxDegree) + "級降級級事件通知";
+                            string subject = ((DateTime)this.HappenTimeStamp).ToString() + "," + site.SITE_NAME + (4 - maxDegree) + "級降級級事件通知";
                             string body = ComposeBody(site, snr, maxDegree);
                             string mailto = (from n in db.OMEMP where n.EMPNO == site.ENGINEER select n.MAIL).FirstOrDefault();
                             if (mailto != null)
@@ -238,7 +238,7 @@ namespace Host
                         }
 
                     }
-                    else if (site.STATUS == "S" || site.STATUS == "C")
+                    else if (site.STATUS == "S" || site.STATUS == "C"  ||  site.STATUS=="A")
                     {
                         if (maxDegree > CURRENT_DEGREE)  //upgrade
                         {
@@ -253,9 +253,25 @@ namespace Host
                             site.HappenTimeStamp = this.HappenTimeStamp = DateTime.Now;
                             site.ConfirmTimes = this.ConfirmTimes = 0;
                             db.SaveChanges();
-                            //string subject = site.SITE_NAME + (4 - maxDegree) + "級升級事件確認";
-                            //string body = ComposeBody(site, snr, maxDegree);
-                            //Global.SendMailToUser("ufjl0683@emome.net", subject, body);
+                            if (site.STATUS != "A")
+                            {
+                              
+                                string subject = site.SITE_NAME + (4 - maxDegree) + "級升級事件確認";
+                                string body = ComposeBody(site, snr, maxDegree);
+                                string mailto = (from n in db.OMEMP where n.EMPNO == site.ENGINEER select n.MAIL).FirstOrDefault();
+                                if (mailto != null)
+                                {
+                                    try
+                                    {
+                                        Global.SendMailToUser(mailto, subject, body);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                                    }
+                                }
+                                // Global.SendMailToUser(mailto, subject, body);
+                            }
                           //  throw new NotImplementedException();
                         }
                         else if (maxDegree < CURRENT_DEGREE)  // downgrade
@@ -266,18 +282,21 @@ namespace Host
                             site.HappenTimeStamp = this.HappenTimeStamp = DateTime.Now;
                            // site.ConfirmTimes = this.ConfirmTimes = 0;
                             db.SaveChanges();
-                            string subject = site.SITE_NAME + (4 - maxDegree) + "級降級級事件通知";
-                            string body = ComposeBody(site, snr, maxDegree);
-                            string mailto = (from n in db.OMEMP where n.EMPNO == site.ENGINEER select n.MAIL).FirstOrDefault();
-                            if(mailto !=null)
+                            if (site.STATUS != "A")
                             {
-                                try
+                                string subject = ((DateTime)this.HappenTimeStamp).ToString() + "," + site.SITE_NAME + (4 - maxDegree) + "級降級級事件通知";
+                                string body = ComposeBody(site, snr, maxDegree);
+                                string mailto = (from n in db.OMEMP where n.EMPNO == site.ENGINEER select n.MAIL).FirstOrDefault();
+                                if (mailto != null)
                                 {
-                                    Global.SendMailToUser(mailto, subject, body);
-                                }
-                                catch (Exception ex)
-                                {
-                                    Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                                    try
+                                    {
+                                        Global.SendMailToUser(mailto, subject, body);
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                                    }
                                 }
                             }
                            // throw new NotImplementedException();
@@ -296,6 +315,7 @@ namespace Host
             {
                 if(CURRENT_DEGREE>0)
                 {
+                    string LastStatus = site.STATUS;
                     this.STATUS = site.STATUS = null;  //waiting confirm
                     site.CURRENT_DEGREE = this.CURRENT_DEGREE = maxDegree;
                     this.SEVENT_ID = null;
@@ -305,19 +325,21 @@ namespace Host
                     site.HappenTimeStamp = this.HappenTimeStamp = null;
                     site.ConfirmTimes = this.ConfirmTimes = null;
                     db.SaveChanges();
-
-                    string subject = site.SITE_NAME  + "事件結束通知";
-                    string body = ComposeBody(site, snr, maxDegree);
-                    string mailto = (from n in db.OMEMP where n.EMPNO == site.ENGINEER select n.MAIL).FirstOrDefault();
-                    if (mailto != null)
+                    if (LastStatus != "A")
                     {
-                        try
+                        string subject = (DateTime.Now).ToString() + "," + site.SITE_NAME + "事件結束通知";
+                        string body = ComposeBody(site, snr, maxDegree);
+                        string mailto = (from n in db.OMEMP where n.EMPNO == site.ENGINEER select n.MAIL).FirstOrDefault();
+                        if (mailto != null)
                         {
-                            Global.SendMailToUser(mailto, subject, body);
-                        }
-                        catch (Exception ex)
-                        {
-                            Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                            try
+                            {
+                                Global.SendMailToUser(mailto, subject, body);
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine(ex.Message + "," + ex.StackTrace);
+                            }
                         }
                     }
                     // send mail to notify event has end

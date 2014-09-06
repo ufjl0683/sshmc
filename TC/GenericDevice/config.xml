@@ -11,8 +11,8 @@
     <device_name>EGPS1</device_name>
     <id>0</id>
     <com_type>TCP</com_type>
-    <ip_comport>127.0.0.1</ip_comport>
-    <port_baud>17000</port_baud>
+    <ip_comport>192.168.1.111</ip_comport>
+    <port_baud>6050</port_baud>
     <execution_mode>1</execution_mode>
       <sensor_values>
        <SensorValueConfigBase>
@@ -156,8 +156,8 @@
       <device_name>EGPS2</device_name>
       <id>1</id>
       <com_type>TCP</com_type>
-      <ip_comport>127.0.0.1</ip_comport>
-      <port_baud>17001</port_baud>
+      <ip_comport>192.168.1.111</ip_comport>
+      <port_baud>6060</port_baud>
       <execution_mode>1</execution_mode>
       <sensor_values>
         <SensorValueConfigBase>

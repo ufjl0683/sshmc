@@ -59,7 +59,16 @@
       [vwSensorValuesAndTC10MinDataLog].[sigma1] AS [sigma1], 
       [vwSensorValuesAndTC10MinDataLog].[initmean1] AS [initmean1], 
       [vwSensorValuesAndTC10MinDataLog].[sigma2] AS [sigma2], 
-      [vwSensorValuesAndTC10MinDataLog].[initmean2] AS [initmean2]
+      [vwSensorValuesAndTC10MinDataLog].[initmean2] AS [initmean2], 
+      [vwSensorValuesAndTC10MinDataLog].[T0_MEANTHRESHOLD1] AS [T0_MEANTHRESHOLD1], 
+      [vwSensorValuesAndTC10MinDataLog].[T0_MEANTHRESHOLD2] AS [T0_MEANTHRESHOLD2], 
+      [vwSensorValuesAndTC10MinDataLog].[T0_MEANTHRESHOLD3] AS [T0_MEANTHRESHOLD3], 
+      [vwSensorValuesAndTC10MinDataLog].[T2_MEANTHRESHOLD1] AS [T2_MEANTHRESHOLD1], 
+      [vwSensorValuesAndTC10MinDataLog].[T2_MEANTHRESHOLD2] AS [T2_MEANTHRESHOLD2], 
+      [vwSensorValuesAndTC10MinDataLog].[T2_MEANTHRESHOLD3] AS [T2_MEANTHRESHOLD3], 
+      [vwSensorValuesAndTC10MinDataLog].[T1_MEANTHRESHOLD1] AS [T1_MEANTHRESHOLD1], 
+      [vwSensorValuesAndTC10MinDataLog].[T1_MEANTHRESHOLD2] AS [T1_MEANTHRESHOLD2], 
+      [vwSensorValuesAndTC10MinDataLog].[T1_MEANTHRESHOLD3] AS [T1_MEANTHRESHOLD3]
       FROM [dbo].[vwSensorValuesAndTC10MinDataLog] AS [vwSensorValuesAndTC10MinDataLog]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="vwSiteDegree" EntityType="SSHMC01Model.Store.vwSiteDegree" store:Type="Views" store:Schema="dbo" store:Name="vwSiteDegree">
@@ -217,7 +226,7 @@
           <Property Name="CHANGEDEGREELOG_ID" Type="bigint" />
           <Property Name="ISVALID" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="EVET_ID" Type="int" />
-          <Property Name="ORG_EVENT_ID" Type="money" />
+          <Property Name="ORG_EVENT_ID" Type="int" />
           <Property Name="IsConfirmed" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblSensor_Values">
@@ -232,7 +241,9 @@
           <Property Name="COEFFICIENT" Type="float" />
           <Property Name="SIGMA" Type="float" Nullable="false" />
           <Property Name="INITMEAN" Type="float" />
-          <Property Name="MEANTHRESHOLD" Type="int" />
+          <Property Name="MEANTHRESHOLD1" Type="float" />
+          <Property Name="MEANTHRESHOLD2" Type="float" />
+          <Property Name="MEANTHRESHOLD3" Type="float" />
           <Property Name="CONVERTFORMULA" Type="nvarchar" MaxLength="512" />
           <Property Name="UPDATE_DATETIME" Type="datetime" />
           <Property Name="UPDATED_SIGMA" Type="float" />
@@ -288,6 +299,8 @@
           <Property Name="SEVENT_ID" Type="int" />
           <Property Name="STATUS" Type="char" MaxLength="1" />
           <Property Name="REF_SENDSOR_ID" Type="int" />
+          <Property Name="HappenTimeStamp" Type="datetime" />
+          <Property Name="ConfirmTimes" Type="int" />
         </EntityType>
         <EntityType Name="tblTC">
           <Key>
@@ -363,6 +376,7 @@
           <Property Name="USER_ADDRESS" Type="nvarchar" MaxLength="100" />
           <Property Name="USER_MAIL" Type="nvarchar" MaxLength="50" />
           <Property Name="URI_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISENGINEER" Type="bit" />
         </EntityType>
         <EntityType Name="tblUserLogin">
           <Key>
@@ -414,9 +428,6 @@
             
             
             
-            
-            
-            
           </Key>
           <Property Name="SENSOR_ID" Type="int" Nullable="false" />
           <Property Name="TIMESTAMP" Type="datetime" Nullable="false" />
@@ -430,11 +441,20 @@
           <Property Name="VALUE_CNT" Type="tinyint" />
           <Property Name="IS_REPAIR" Type="char" Nullable="false" MaxLength="1" />
           <Property Name="signama0" Type="float" Nullable="false" />
-          <Property Name="initmean0" Type="float" Nullable="false" />
+          <Property Name="initmean0" Type="float" />
           <Property Name="sigma1" Type="float" Nullable="false" />
-          <Property Name="initmean1" Type="float" Nullable="false" />
+          <Property Name="initmean1" Type="float" />
           <Property Name="sigma2" Type="float" Nullable="false" />
-          <Property Name="initmean2" Type="float" Nullable="false" />
+          <Property Name="initmean2" Type="float" />
+          <Property Name="T0_MEANTHRESHOLD1" Type="float" />
+          <Property Name="T0_MEANTHRESHOLD2" Type="float" />
+          <Property Name="T0_MEANTHRESHOLD3" Type="float" />
+          <Property Name="T2_MEANTHRESHOLD1" Type="float" />
+          <Property Name="T2_MEANTHRESHOLD2" Type="float" />
+          <Property Name="T2_MEANTHRESHOLD3" Type="float" />
+          <Property Name="T1_MEANTHRESHOLD1" Type="float" />
+          <Property Name="T1_MEANTHRESHOLD2" Type="float" />
+          <Property Name="T1_MEANTHRESHOLD3" Type="float" />
         </EntityType>
         <!--產生期間發現錯誤:
       警告 6002: 資料表/檢視 'SSHMC01.dbo.vwSiteDegree' 未定義主索引鍵。已推斷此索引鍵，並將定義建立成唯讀的資料表/檢視。
@@ -750,11 +770,13 @@
           <NavigationProperty Name="tblSensor" Relationship="SSHMC01Model.FK_tblSensor_Values_tblSensor1" FromRole="tblSensor_Values" ToRole="tblSensor" />
           <Property Type="Double" Name="SIGMA" Nullable="false" />
           <Property Type="Double" Name="INITMEAN" />
-          <Property Type="Int32" Name="MEANTHRESHOLD" />
           <Property Type="String" Name="CONVERTFORMULA" MaxLength="512" FixedLength="false" Unicode="true" />
           <Property Type="DateTime" Name="UPDATE_DATETIME" Precision="3" />
           <Property Type="Double" Name="UPDATED_SIGMA" />
           <Property Type="Double" Name="UPDATED_INITMEAN" />
+          <Property Type="Double" Name="MEANTHRESHOLD1" />
+          <Property Type="Double" Name="MEANTHRESHOLD2" />
+          <Property Type="Double" Name="MEANTHRESHOLD3" />
         </EntityType>
         <EntityType Name="tblSite">
           <Key>
@@ -794,6 +816,8 @@
           <Property Type="Int32" Name="SEVENT_ID" />
           <Property Type="String" Name="STATUS" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="Int32" Name="REF_SENDSOR_ID" />
+          <Property Type="DateTime" Name="HappenTimeStamp" Precision="3" />
+          <Property Type="Int32" Name="ConfirmTimes" />
         </EntityType>
         <EntityType Name="tblTC">
           <Key>
@@ -1040,11 +1064,20 @@
           <Property Type="Byte" Name="VALUE_CNT" />
           <Property Type="String" Name="IS_REPAIR" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Type="Double" Name="signama0" Nullable="false" />
-          <Property Type="Double" Name="initmean0" Nullable="false" />
+          <Property Type="Double" Name="initmean0" />
           <Property Type="Double" Name="sigma1" Nullable="false" />
-          <Property Type="Double" Name="initmean1" Nullable="false" />
+          <Property Type="Double" Name="initmean1" />
           <Property Type="Double" Name="sigma2" Nullable="false" />
-          <Property Type="Double" Name="initmean2" Nullable="false" />
+          <Property Type="Double" Name="initmean2" />
+          <Property Type="Double" Name="T0_MEANTHRESHOLD1" />
+          <Property Type="Double" Name="T0_MEANTHRESHOLD2" />
+          <Property Type="Double" Name="T0_MEANTHRESHOLD3" />
+          <Property Type="Double" Name="T2_MEANTHRESHOLD1" />
+          <Property Type="Double" Name="T2_MEANTHRESHOLD2" />
+          <Property Type="Double" Name="T2_MEANTHRESHOLD3" />
+          <Property Type="Double" Name="T1_MEANTHRESHOLD1" />
+          <Property Type="Double" Name="T1_MEANTHRESHOLD2" />
+          <Property Type="Double" Name="T1_MEANTHRESHOLD3" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -1061,6 +1094,7 @@
           <Property Type="String" Name="USER_ADDRESS" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="USER_MAIL" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="URI_CODE" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ISENGINEER" />
         </EntityType>
         <EntityType Name="tblUserLogin">
           <Key>
@@ -1204,11 +1238,13 @@
             <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tblSensor_Values"><EntityTypeMapping TypeName="SSHMC01Model.tblSensor_Values"><MappingFragment StoreEntitySet="tblSensor_Values">
-            <ScalarProperty Name="UPDATED_INITMEAN" ColumnName="UPDATED_INITMEAN" />
+            <ScalarProperty Name="MEANTHRESHOLD3" ColumnName="MEANTHRESHOLD3" />
+                <ScalarProperty Name="MEANTHRESHOLD2" ColumnName="MEANTHRESHOLD2" />
+                <ScalarProperty Name="MEANTHRESHOLD1" ColumnName="MEANTHRESHOLD1" />
+                <ScalarProperty Name="UPDATED_INITMEAN" ColumnName="UPDATED_INITMEAN" />
                 <ScalarProperty Name="UPDATED_SIGMA" ColumnName="UPDATED_SIGMA" />
                 <ScalarProperty Name="UPDATE_DATETIME" ColumnName="UPDATE_DATETIME" />
                 <ScalarProperty Name="CONVERTFORMULA" ColumnName="CONVERTFORMULA" />
-                <ScalarProperty Name="MEANTHRESHOLD" ColumnName="MEANTHRESHOLD" />
                 <ScalarProperty Name="INITMEAN" ColumnName="INITMEAN" />
                 <ScalarProperty Name="SIGMA" ColumnName="SIGMA" />
                 <ScalarProperty Name="SENSOR_ID" ColumnName="SENSOR_ID" />
@@ -1218,7 +1254,9 @@
             <ScalarProperty Name="COEFFICIENT" ColumnName="COEFFICIENT" />
           </MappingFragment></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="tblSite"><EntityTypeMapping TypeName="SSHMC01Model.tblSite"><MappingFragment StoreEntitySet="tblSite">
-            <ScalarProperty Name="REF_SENDSOR_ID" ColumnName="REF_SENDSOR_ID" />
+            <ScalarProperty Name="ConfirmTimes" ColumnName="ConfirmTimes" />
+                <ScalarProperty Name="HappenTimeStamp" ColumnName="HappenTimeStamp" />
+                <ScalarProperty Name="REF_SENDSOR_ID" ColumnName="REF_SENDSOR_ID" />
                 <ScalarProperty Name="STATUS" ColumnName="STATUS" />
                 <ScalarProperty Name="SEVENT_ID" ColumnName="SEVENT_ID" />
                 <ScalarProperty Name="CURRENT_DEGREE" ColumnName="CURRENT_DEGREE" />
@@ -1333,6 +1371,15 @@
           <EntitySetMapping Name="vwSensorValuesAndTC10MinDataLog">
             <EntityTypeMapping TypeName="SSHMC01Model.vwSensorValuesAndTC10MinDataLog">
               <MappingFragment StoreEntitySet="vwSensorValuesAndTC10MinDataLog">
+                <ScalarProperty Name="T1_MEANTHRESHOLD3" ColumnName="T1_MEANTHRESHOLD3" />
+                <ScalarProperty Name="T1_MEANTHRESHOLD2" ColumnName="T1_MEANTHRESHOLD2" />
+                <ScalarProperty Name="T1_MEANTHRESHOLD1" ColumnName="T1_MEANTHRESHOLD1" />
+                <ScalarProperty Name="T2_MEANTHRESHOLD3" ColumnName="T2_MEANTHRESHOLD3" />
+                <ScalarProperty Name="T2_MEANTHRESHOLD2" ColumnName="T2_MEANTHRESHOLD2" />
+                <ScalarProperty Name="T2_MEANTHRESHOLD1" ColumnName="T2_MEANTHRESHOLD1" />
+                <ScalarProperty Name="T0_MEANTHRESHOLD3" ColumnName="T0_MEANTHRESHOLD3" />
+                <ScalarProperty Name="T0_MEANTHRESHOLD2" ColumnName="T0_MEANTHRESHOLD2" />
+                <ScalarProperty Name="T0_MEANTHRESHOLD1" ColumnName="T0_MEANTHRESHOLD1" />
                 <ScalarProperty Name="initmean2" ColumnName="initmean2" />
                 <ScalarProperty Name="sigma2" ColumnName="sigma2" />
                 <ScalarProperty Name="initmean1" ColumnName="initmean1" />
@@ -1356,6 +1403,7 @@
           <EntitySetMapping Name="tblUser">
             <EntityTypeMapping TypeName="SSHMC01Model.tblUser">
               <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="ISENGINEER" ColumnName="ISENGINEER" />
                 <ScalarProperty Name="URI_CODE" ColumnName="URI_CODE" />
                 <ScalarProperty Name="USER_MAIL" ColumnName="USER_MAIL" />
                 <ScalarProperty Name="USER_ADDRESS" ColumnName="USER_ADDRESS" />
@@ -1461,7 +1509,7 @@
         <EntityTypeShape EntityType="SSHMC01Model.tblMFCC_Config" Width="1.5" PointX="3.75" PointY="2.625" Height="2.5571907552083335" IsExpanded="true" />
         <EntityTypeShape EntityType="SSHMC01Model.tblRules" Width="1.5" PointX="12.75" PointY="3" Height="3.1340950520833317" IsExpanded="true" />
         <EntityTypeShape EntityType="SSHMC01Model.tblSensor" Width="1.5" PointX="7.875" PointY="5.25" Height="4.2879036458333317" IsExpanded="true" />
-        <EntityTypeShape EntityType="SSHMC01Model.tblSensor_Values" Width="1.5" PointX="8.75" PointY="1.25" Height="2.3648893229166674" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSHMC01Model.tblSensor_Values" Width="1.5" PointX="8.875" PointY="0.875" Height="2.3648893229166674" IsExpanded="true" />
         <EntityTypeShape EntityType="SSHMC01Model.tblSite" Width="1.5" PointX="0.75" PointY="6.25" Height="3.3263964843749996" IsExpanded="true" />
         <EntityTypeShape EntityType="SSHMC01Model.tblTC" Width="1.5" PointX="6" PointY="5.625" Height="4.4802050781250031" IsExpanded="true" />
         <EntityTypeShape EntityType="SSHMC01Model.tblTC_Box" Width="1.5" PointX="1.5" PointY="0.5" Height="1.9802864583333339" IsExpanded="true" />
@@ -1517,7 +1565,7 @@
         <EntityTypeShape EntityType="SSHMC01Model.tblUser" Width="1.5" PointX="2.75" PointY="14.25" Height="3.1340950520833388" />
         <EntityTypeShape EntityType="SSHMC01Model.tblUserLogin" Width="1.5" PointX="11.375" PointY="0.75" Height="1.4033821614583388" />
         <EntityTypeShape EntityType="SSHMC01Model.tblPre_disasterNotified" Width="1.5" PointX="2.0374122215609125" PointY="18.509864458120365" />
-        <EntityTypeShape EntityType="SSHMC01Model.vwSiteDegree" Width="1.5" PointX="5.125" PointY="1.25" />
+        <EntityTypeShape EntityType="SSHMC01Model.vwSiteDegree" Width="1.5" PointX="6" PointY="0.625" />
         <EntityTypeShape EntityType="SSHMC01Model.tblSensorTypeGroup" Width="1.5" PointX="10.75" PointY="10.75" />
         <AssociationConnector Association="SSHMC01Model.FK_tblSensor_tblSensorTypeGroup" />
       </Diagram>
